@@ -1,0 +1,44 @@
+.code
+
+Main:
+    VR0 <- 0
+    loadl VR5 __stop
+    load VR1 [VR5, 0]
+    __loop:
+        VR2 <- VR0 < VR1
+        jumpf VR2 __else1
+            VR3 <- 1
+            jump __endif1
+        __else1:
+            VR3 <- 0
+        __endif1:
+
+        jumpf VR3 __end_loop
+
+        VI0 <- VR0
+        VR7 <- call Main_fun
+        VI0 <- VR7
+        VR4 <- call OutInt
+        loadl VR7 __str_ct1
+        VI0 <- VR7
+        VR4 <- call OutString
+        VR6 <- VR1 / 5
+        VR0 <- VR0 + VR6
+        jump __loop
+
+    __end_loop:
+
+    return 0
+
+Main_fun:
+    VR0 <- VI0
+    VR1 <- VR0 * VR0
+    VR2 <- VR0 * VR1
+    VR3 <- VR2 - VR1
+    VR3 <- VR3 + 3
+    return VR3
+
+.data
+__stop: DW 10
+__str_ct1: DS "\n\0"
+
