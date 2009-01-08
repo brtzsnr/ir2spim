@@ -31,7 +31,7 @@
 # end[licence]
 
 import sys
-import inspect
+# import inspect
 
 from antlr3 import runtime_version, runtime_version_str
 from antlr3.constants import DEFAULT_CHANNEL, HIDDEN_CHANNEL, EOF, \

@@ -1,58 +1,37 @@
-import misc
+import section
 
-_text = []
-_code = []
-
-def text(line):
-	_text.append(line)
-
-
-def code(line):
-	_code.append(line)
-
+_section = section.Section('.data')
 
 def storeWord(number):
-	# DW
-	text('.word %d' % number)
+	_section.storeWord(number)
 
 
-def storeLabel(address):
+def storeLabel(label):
 	# DL
-	private = misc.generate(suffix='data')
-
-	# allocates space
-	label(private)
-	storeBytes(4)
-
-	# generates code to fill space
-	code('la t0, %s' % address)
-	code('sw t0, %s' % private)
+	_section.storeLabel(label)
 
 
 def storeString(string):
 	# DS
 	assert string[0] == '"' and string[-1] == '"', 'String must be enclosed in quotes'
 	assert string.endswith('\\0"'), 'String must end in \\0'
-	string = string[1:-1]  # cuts first & final quote
 
-	string = string.replace('""', '\\"')  # converts "" in \"
-	for fragment in string.split('\\0'):
-		text('.asciiz "%s"' % fragment)
+	string = string[1:-3]  # cuts first & final quote & \\0
+	string = string.replace('""', '"')  # converts "" in "
+
+	_section.storeBytes(string)
+	_section.storeZero(1)
 
 
-def storeBytes(size):
+def storeZero(size):
+	"""Leaves some empty space"""
 	# DS
-	text('.space %d' % size)
+	_section.storeZero(size)
 
 
-def label(address):
-	text('%s:' % address)
+def addLabel(label):
+	"""Adds a label"""
+	_section.addLabel(label)
 
 
-def generateData():
-	return '\n'.join(_text)
-
-
-def generateCode():
-	return '\n'.join(_code)
 
