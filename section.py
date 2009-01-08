@@ -7,13 +7,12 @@ class Section(object):
 	def __init__(self, name):
 		self.name = name
 		self.memory = array.array('B')  # a list of bytes containing memory
-		self.storeBytes('[[ %s ]]' % self.name)
 
-		self.base_address = 0
 		self.__labels = {}  # a map from labels in this section to their location
-		self.__locations = {}  # inverse of the above map
-
 		self.__relocation = []  # relocation table: label -> address where to store
+
+	def store(self, *bytes):
+		self.memory.extend(bytes)
 
 	def storeZero(self, bytes):
 		self.memory.extend(itertools.repeat(0, bytes))
@@ -50,42 +49,44 @@ class Section(object):
 		assert temp == 0 or temp == -1, (
 				'%d is out of range (32bit signed/unsigned integers required)' % word)
 
-
 	def addLabel(self, label):
-		assert label not in self.__labels
-
+		assert label not in self.__labels, 'Duplicate label `%s`' % label
 		self.__labels[label] = len(self.memory)
-		self.__locations.setdefault(len(self.memory), []).append(label)
-
-	def locationToLabel(self, location):
-		return self.__locations.get(location)
 
 	def labelToLocation(self, label):
 		return self.__labels[label]
 
-	def dump(self):
-		print 'name =', self.name
-		print 'labels = ', self.__labels
-		print 'locations =', self.__locations
-		print 'memory =', self.memory
+	def extend(self, section):
+		assert self.name == section.name, (
+				'Section names must be identical (%s != %s)' % (
+					self.name, section.name))
+		# memory
+		base_address = len(self)
+		self.memory.extend(section.memory)
 
-	def relocate(self, start, labels):
-		"""Computes address of `__labels` based on start
-		address and stores in `labels` dictionary"""
+		# labels
+		section.gatherLabels(self.__labels, base_address)
 
-		logging.debug('relocating %d labels in `%s` starting from %X',
-				len(self.__labels), self.name, start)
-
-		self.base_address = start
-		for label, address in self.__labels.iteritems():
-			assert label not in labels, "Duplicate label `%s`" % label
-			labels[label] = start + address
+		# relocation table
+		for label, address in section.__relocation:
+			self.__relocation.append((label, address + base_address))
 
 	def writeLabels(self, labels):
 		"""Using the relocation table stores addresses of the labels"""
 		for label, address in self.__relocation:
 			assert label in labels, 'No such label `%s`' % label
 			self.storeWord(labels[label], address=address)
+
+	def gatherLabels(self, labels, base_address):
+		for label, address in self.__labels.iteritems():
+			assert label not in labels, 'Duplicate label `%s`' % label
+			labels[label] = base_address + address
+
+	def dump(self):
+		print 'name =', self.name
+		print 'labels = ', self.__labels
+		print 'locations =', self.__locations
+		print 'memory =', self.memory
 
 	def __len__(self):
 		return len(self.memory)

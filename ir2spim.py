@@ -3,9 +3,7 @@
 import sys
 import logging
 
-import code
-import data
-import memory
+import program
 
 import antlr3
 import ir2spimLexer
@@ -22,12 +20,7 @@ def main():
 	parser = ir2spimParser.ir2spimParser(tokens)
 	parser.program()
 
-	mem = memory.Memory()
-	mem.addSection(code._section)
-	mem.addSection(data._section)
-	mem.close()
-
-	mem.dump()
+	program.interpreter()
 
 
 if __name__ == '__main__':
