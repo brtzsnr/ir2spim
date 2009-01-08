@@ -1,5 +1,24 @@
 import section
 
+class Data(section.Section):
+	def __init__(self):
+		section.Section.__init__(self, '.data')
+
+	def storeString(self, string):
+		"""DS"""
+
+		assert string[0] == '"' and string[-1] == '"', 'String must be enclosed in quotes'
+		assert string.endswith('\\0"'), 'String must end in \\0'
+
+		string = string[1:-3]  # cuts first & final quote & \\0
+		string = string.replace('""', '"')  # converts "" in "
+
+		self.storeBytes(string)
+		self.storeZero(1)
+
+
+'''
+
 _section = section.Section('.data')
 
 def storeWord(number):
@@ -11,16 +30,6 @@ def storeLabel(label):
 	_section.storeLabel(label)
 
 
-def storeString(string):
-	# DS
-	assert string[0] == '"' and string[-1] == '"', 'String must be enclosed in quotes'
-	assert string.endswith('\\0"'), 'String must end in \\0'
-
-	string = string[1:-3]  # cuts first & final quote & \\0
-	string = string.replace('""', '"')  # converts "" in "
-
-	_section.storeBytes(string)
-	_section.storeZero(1)
 
 
 def storeZero(size):
@@ -34,4 +43,4 @@ def addLabel(label):
 	_section.addLabel(label)
 
 
-
+'''

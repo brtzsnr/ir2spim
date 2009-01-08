@@ -32,9 +32,9 @@ tokens {
 
 
 @parser::header {
-import code
-import data
 import operand
+from program import code
+from program import data
 }
 
 program
@@ -58,47 +58,37 @@ assignment
     // ANTLR doesn't understand dynamic languages (like python)
     // very well and complains when colapsing the below rules
     : vr '<-' operator {
-        code.add(
-            second=$operator.value, destination=$vr.value)
+        code.encode('mov', $vr.value, $operator.value)
     }
     | vr '<-' vi {
-        code.add(
-            second=$vi.value, destination=$vr.value)
+        code.encode('mov', $vr.value, $vi.value)
     }
-    | vi '<-' operator {
-        code.add(
-            second=$operator.value, destination=$vi.value)
+    | vi '<-' vr {
+        code.encode('mov', $vi.value, $vr.value)
     }
     | vr '<-' first=operator e=('+'|'-'|'*'|'/'|'<'|'<='|'=') second=operator {
-        code.add(
-            mnemonic=$e.text, first=$first.value,
-            second=$second.value, destination=$vr.value)
+        code.encode($e.text, $vr.value, $first.value, $second.value)
     }
     | vr '<-' e='not' operator {
-        code.add(
-            mnemonic=$e.text,
-            second=$operator.value, destination=$vr.value)
+        code.encode($e.text, $vr.value, $operator.value)
     }
     ;
 
 call
     : result=vr '<-' e='call' register=vr {
-        code.add(
-            mnemonic=$e.text,
-            second=$register.value, destination=$result.value)
+        code.encode($e.text, $result.value, $register.value)
     }
     | result=vr '<-' e='call' method=METHOD {
-        code.add(
-            mnemonic=$e.text,
-            second=operand.Label($method.text), destination=$result.value)
+        code.encode($e.text, $result.value, operand.Label($method.text))
     }
     ;
 
 jump
-    : e=('jump' | 'jumpt' | 'jumpf') vr? LABEL {
-        code.add(
-            mnemonic=$e.text, first=$vr.value,
-            second=operand.Label($LABEL.text))
+    : e='jump' LABEL {
+        code.encode($e.text, operand.Label($LABEL.text))
+    }
+    | e=('jumpt' | 'jumpf') vr LABEL {
+        code.encode($e.text, $vr.value, operand.Label($LABEL.text))
     }
     ;
 
@@ -111,30 +101,24 @@ label
 
 load
     : e='loadl' vr where=(METHOD | LABEL) {
-        code.add(
-            mnemonic=$e.text,
-            second=operand.Label($where.text), destination=$vr.value)
+        code.encode($e.text, $vr.value, operand.Label($where.text))
     }
     ;
 
 submit
     : e='return' operator {
-        code.add(
-            mnemonic=$e.text,
-            second=$operator.value)
+        code.encode($e.text, $operator.value)
     }
     ;
 
 io
 @after {
-    code.add(
-        mnemonic=$e.text, first=$first.value,
-        second=$second.value, destination=$destination.value)
+    code.encode($e.text, $zero.value, $one.value, $two.value)
 }
-    : e='load' destination=vr '[' first=vr ',' second=integer ']'
-    | e='store' destination=vr '[' first=vr ',' second=integer ']'
-    | e='loadb' destination=vr '[' first=vr ',' second=integer ']'
-    | e='storeb' destination=vr '[' first=vr ',' second=integer ']'
+    : e='load' zero=vr '[' one=vr ',' two=integer ']'
+    | e='store' zero=vr '[' one=vr ',' two=integer ']'
+    | e='loadb' zero=vr '[' one=vr ',' two=integer ']'
+    | e='storeb' zero=vr '[' one=vr ',' two=integer ']'
     ;
 
 
