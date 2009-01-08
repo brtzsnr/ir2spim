@@ -7,14 +7,34 @@ grammar ir2spim;
 
 options {
     language = Python;
-    output = AST;
-    ASTLabelType = CommonTree;
+}
+
+tokens {
+    ASSIGN = '<-';
+    CALL = 'call';
+    LOAD = 'load';
+    LOADL = 'loadl';
+    LOADB = 'loadb';
+    STORE = 'store';
+    STOREB = 'storeb';
+    JUMP = 'jump';
+    JUMPT = 'jumpt';
+    JUMPF = 'jumpf';
+    RETURN = 'return';
+    NOT = 'not';
+    CODE = '.code';
+    DATA = '.data';
+    DW = 'DW';
+    DL = 'DL';
+    DS = 'DS';
+    DB = 'DB';
 }
 
 
 @parser::header {
+import code
 import data
-import spim
+import operand
 }
 
 program
@@ -22,7 +42,7 @@ program
 
 // === CODE ===
 code
-    : '.code' { print '.code' } code_statement*;
+    : CODE code_statement*;
 
 code_statement
     : assignment
@@ -35,83 +55,123 @@ code_statement
     ;
 
 assignment
-    : VR '<-' operator
-    | VR '<-' VI
-    | VI '<-' operator
-    | VR '<-' operator '+' operator
-    | VR '<-' operator '-' operator
-    | VR '<-' operator '*' operator
-    | VR '<-' operator '/' operator
-    | VR '<-' operator '<' operator
-    | VR '<-' operator '<=' operator
-    | VR '<-' operator '=' operator
-    | VR '<-' 'not' operator
+    // ANTLR doesn't understand dynamic languages (like python)
+    // very well and complains when colapsing the below rules
+    : vr '<-' operator {
+        code.add(
+            second=$operator.value, destination=$vr.value)
+    }
+    | vr '<-' vi {
+        code.add(
+            second=$vi.value, destination=$vr.value)
+    }
+    | vi '<-' operator {
+        code.add(
+            second=$operator.value, destination=$vi.value)
+    }
+    | vr '<-' first=operator e=('+'|'-'|'*'|'/'|'<'|'<='|'=') second=operator {
+        code.add(
+            mnemonic=$e.text, first=$first.value,
+            second=$second.value, destination=$vr.value)
+    }
+    | vr '<-' e='not' operator {
+        code.add(
+            mnemonic=$e.text,
+            second=$operator.value, destination=$vr.value)
+    }
     ;
 
 call
-    : VR '<-' 'call' VR
-    | VR '<-' 'call' METHOD
+    : result=vr '<-' e='call' register=vr {
+        code.add(
+            mnemonic=$e.text,
+            second=$register.value, destination=$result.value)
+    }
+    | result=vr '<-' e='call' method=METHOD {
+        code.add(
+            mnemonic=$e.text,
+            second=operand.Label($method.text), destination=$result.value)
+    }
     ;
 
 jump
-    : 'jump' LABEL {
-        print 'bczt \%s', $LABEL.text
-    }
-    | 'jumpt' VR LABEL {
-    }
-    | 'jumpf' VR LABEL {
-        print 'beqz \%s, \%s' \% ($VR, $LABEL.text)
+    : e=('jump' | 'jumpt' | 'jumpf') vr? LABEL {
+        code.add(
+            mnemonic=$e.text, first=$vr.value,
+            second=operand.Label($LABEL.text))
     }
     ;
 
+
 label
-    : l=(METHOD | LABEL) ':' { print '\%s:' \% $l.text }
+    : l=(METHOD | LABEL) ':' {
+        code.addLabel($l.text)
+    }
     ;
 
 load
-    : 'loadl' VR (METHOD | LABEL)
+    : e='loadl' vr where=(METHOD | LABEL) {
+        code.add(
+            mnemonic=$e.text,
+            second=operand.Label($where.text), destination=$vr.value)
+    }
     ;
 
 submit
-    : 'return' operator
+    : e='return' operator {
+        code.add(
+            mnemonic=$e.text,
+            second=$operator.value)
+    }
     ;
 
 io
-    : 'load' VR '[' VR ',' INTEGER ']'
-    | 'store' VR '[' VR ',' INTEGER ']'
-    | 'loadb' VR '[' VR ',' INTEGER ']'
-    | 'storeb' VR '[' VR ',' INTEGER ']'
+@after {
+    code.add(
+        mnemonic=$e.text, first=$first.value,
+        second=$second.value, destination=$destination.value)
+}
+    : e='load' destination=vr '[' first=vr ',' second=integer ']'
+    | e='store' destination=vr '[' first=vr ',' second=integer ']'
+    | e='loadb' destination=vr '[' first=vr ',' second=integer ']'
+    | e='storeb' destination=vr '[' first=vr ',' second=integer ']'
     ;
 
 
 // === DATA ===
 data
-    : '.data' { print '.data' } data_statement*;
+    : DATA data_statement*;
 
 data_statement
-    : 'DW' i=INTEGER { data.storeWord(int($i.text)) }
-    | 'DL' l=(METHOD | LABEL) { data.storeLabel($l.text) }
-    | 'DS' s=STRING { data.storeString($s.text); }
-    | 'DB' i=INTEGER { data.storeBytes(int($i.text)) }
-    | l=LABEL ':' { data.label($l.text) }
+    : DW i=INTEGER { data.storeWord(int($i.text)) }
+    | DL l=(METHOD | LABEL) { data.storeLabel($l.text) }
+    | DS s=STRING { data.storeString($s.text) }
+    | DB i=INTEGER { data.storeZero(int($i.text)) }
+    | l=LABEL ':' { data.addLabel($l.text) }
     ;
 
 // === OPERANDS ===
-operator
-    : vr
-    | integer
+operator returns [value]
+    : vr { return $vr.value }
+    | integer { return $integer.value }
     ;
 
 vr returns [value]
-    : VR { $value = spim.Operand(spim.VIRTUAL_REGISTER, int($VR.text[2:])); }
+    : VR {
+        return operand.VR(int($VR.text[2:]))
+    }
     ;
 
 vi returns [value]
-    : VI { $value = spim.Operand(spim.VIRTUAL_INPUT, int($VI.text[2:])); }
+    : VI {
+        return operand.VI(int($VI.text[2:]))
+    }
     ;
 
 integer returns [value]
-    : INTEGER { $value = int($INTEGER.text); }
+    : INTEGER {
+        return operand.Integer(int($INTEGER.text))
+    }
     ;
 
 
