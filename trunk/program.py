@@ -1,4 +1,5 @@
 import sys
+import logging
 import traceback
 
 import code as _code
@@ -359,7 +360,7 @@ def interpreter():
 		try:
 			parseArgs(comm)
 		except ProgramAbortError, e:
-			print e
+			logging.info(e)
 			_ip = memory.labelToLocation('Abort')
 		except Exception, e:
 			traceback.print_exc(e)
@@ -373,9 +374,9 @@ def run():
 
 	try:
 		while True:
-			step(display=True)
+			step(display=False)
 	except ProgramAbortError, e:
-		print e
+		logging.info(e)
 
 
 

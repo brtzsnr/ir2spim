@@ -1,0 +1,57 @@
+.code
+
+Main:
+	VR0 <- 3
+	VR1 <- 4
+	VR2 <- 0
+
+	# should print 666
+	# constant folding
+	VR3 <- 18 * 37
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 2457 = 3 3 3 7 13
+	# constant propagation + constant folding
+	VR3 <- 1
+	VR3 <- VR3 * 3
+	VR3 <- VR3 * 3
+	VR3 <- VR3 * 3
+	VR3 <- VR3 * 7
+	VR3 <- VR3 * 13
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 2
+	# constant propagation + constant folding
+	VR3 <- VR1 / 2
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 6
+	# constant propagation + constant folding
+	VR3 <- 2 * VR0
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 1
+	# constant propagation + constant folding
+	VR3 <- not VR2
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 0
+	# constant propagation + constant folding
+	VR3 <- not VR1
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 12
+	# constant propagation + constant folding
+	VR3 <- VR0 * VR1
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	return 0
+
+.data

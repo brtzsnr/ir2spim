@@ -1,0 +1,18 @@
+.code
+
+Main:
+skip1:
+skip2:
+skip3
+skip4
+	loadl VR4 ok
+	VI0 <- VR4
+	VR4 <- call OutString
+
+error:
+end:
+	return 0
+
+.data
+	wrong: DS "wrong\n\0"
+	ok: DS "ok\n\0"

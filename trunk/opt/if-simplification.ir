@@ -1,0 +1,46 @@
+.code
+
+Main:
+	# invariant code elimination
+	VR0 <- 0
+	VR1 <- 1
+
+	# if simplification
+	jump skip1
+skip1:
+
+	# unreachable code elimination
+	jump skip2
+	jump error
+skip2:
+
+	# if simplification + unreachable code elimination
+	VR4 <- VR0 < VR1
+	jumpt VR4 skip3
+	jump error
+skip3:
+
+	# if simplification + unreachable code elimination
+	VR4 <- VR0 > VR1
+	jumpf VR4 skip4
+	jump error
+skip4:
+
+	loadl VR4 ok
+	VI0 <- VR4
+	VR4 <- call OutString
+	jump end
+
+	# unreachable code elimination
+error:
+	loadl VR4 wrong
+	VI0 <- VR4
+	VR4 <- call OutString
+	jump end
+
+end:
+	return 0
+
+.data
+	wrong: DS "wrong\n\0"
+	ok: DS "ok\n\0"
