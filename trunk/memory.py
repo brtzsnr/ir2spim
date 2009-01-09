@@ -13,7 +13,9 @@ class Memory(object):
 	def __init__(self):
 		self.__chunks = {}  # __chunks of 4k memory pages
 		self.__sections = {}
+
 		self.labels = {}
+		self.__locations = None  # inverse of the above
 
 	def addSection(self, section):
 		assert self.__sections is not None, 'Cannot add more sections because link done.'
@@ -76,10 +78,10 @@ class Memory(object):
 
 	def _dump_chunk(self, chunk_id, start, end):
 		base_address = chunk_id * Memory.CHUNK_SIZE
-		print '0x%08X (%d)' % (base_address, base_address)
-
 		if chunk_id not in self.__chunks:
 			return
+
+		print '0x%08X (%d)' % (base_address, base_address)
 		chunk = self.__chunks[chunk_id]
 
 		for i in xrange(0, Memory.CHUNK_SIZE, 16):
@@ -105,8 +107,11 @@ class Memory(object):
 			# decodes the string in memory
 			temp = [chunk[i + j] for j in xrange(16)]
 			for j in xrange(16):
-				if 0x20 > temp[j] or temp[j] > 0x7f:
-					temp[j] = 31
+				if start <= base_address + i + j < end:
+					if 0x20 > temp[j] or temp[j] > 0x7f:
+						temp[j] = 31
+				else:
+					temp[j] = 32
 			print ''.join(chr(j) for j in temp)
 
 
@@ -115,6 +120,7 @@ class Memory(object):
 		end_id = (end - 1) >> Memory.CHUNK_BITS
 
 		for chunk_id in xrange(start_id, end_id + 1):
+			# XXX improve (do not iterate through all possible chunks)
 			self._dump_chunk(chunk_id, start, end)
 
 	def printLabels(self, *args):
@@ -128,4 +134,25 @@ class Memory(object):
 					print '%s: None'
 				else:
 					print '%s: 0x%08X' % (label, address)
+
+	def labelToLocation(self, label):
+		return self.labels[label]
+
+	def loadByte(self, address):
+		"""Returns byte located at `address`"""
+		chunk_id = address >> Memory.CHUNK_BITS
+		chunk = self.__chunks.get(chunk_id)
+
+		if chunk is None:
+			raise IndexError('Cannot read address 0x%08X (ie. SIGSEGV)' % address)
+		return chunk[address % Memory.CHUNK_SIZE]
+
+	def loadWord(self, address):
+		# XXX improve, this is just a quick hack
+		return (
+				+ (self.loadByte(address + 0) << 0x00)
+				+ (self.loadByte(address + 1) << 0x08)
+				+ (self.loadByte(address + 2) << 0x10)
+				+ (self.loadByte(address + 3) << 0x18))
+
 
