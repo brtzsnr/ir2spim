@@ -1,4 +1,5 @@
 import section as _section
+import errors
 
 import array
 import logging
@@ -24,7 +25,7 @@ class Memory(object):
 		base = self.__sections.get(section.name)
 		if base is None:
 			base = _section.Section(section.name)
-			base.storeBytes('[[ %s ]]' % base.name)
+			base.storeBytes('---%s---' % base.name)
 			self.__sections[section.name] = base
 
 		base.extend(section)
@@ -123,18 +124,6 @@ class Memory(object):
 			# XXX improve (do not iterate through all possible chunks)
 			self._dump_chunk(chunk_id, start, end)
 
-	def printLabels(self, *args):
-		if not args:
-			for label, address in self.labels.iteritems():
-				print '%s: 0x%08X' % (label, address)
-		else:
-			for label in args:
-				address = self.labels.get(label)
-				if address is None:
-					print '%s: None'
-				else:
-					print '%s: 0x%08X' % (label, address)
-
 	def labelToLocation(self, label):
 		return self.labels[label]
 
@@ -151,7 +140,7 @@ class Memory(object):
 		chunk = self.__chunks.get(chunk_id)
 
 		if chunk is None:
-			raise IndexError('Cannot read address 0x%08X (ie. SIGSEGV)' % address)
+			raise errors.SegmentationFault(address)
 		return chunk[address % Memory.CHUNK_SIZE]
 
 	def loadWord(self, address):

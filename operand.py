@@ -16,7 +16,7 @@ class Register(object):
 	def store(self, section):
 		section.storeWord(self.number)
 
-	def load(self, address, memory):
+	def load(self, memory, address):
 		self.number = memory.loadWord(address)
 		return address + 4
 
@@ -45,7 +45,7 @@ class Integer(object):
 	def store(self, section):
 		section.storeWord(self.number)
 
-	def load(self, address, memory):
+	def load(self, memory, address):
 		self.number = memory.loadWord(address)
 		return address + 4
 
@@ -61,7 +61,7 @@ class Label(object):
 	def store(self, section):
 		section.storeLabel(self.label)
 
-	def load(self, address, memory):
+	def load(self, memory, address):
 		self.address = memory.loadWord(address)
 		return address + 4
 
