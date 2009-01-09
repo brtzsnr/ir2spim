@@ -1,0 +1,27 @@
+# library code
+# Most (if not all) of the functions are meant to
+# have special meaning.
+
+.code
+
+library_loop:
+	jump library_loop
+
+Abort:
+	jump library_loop
+
+OutInt:
+	jump library_loop
+
+OutString:
+	jump library_loop
+
+InInt:
+	jump library_loop
+
+InString:
+	jump library_loop
+
+.data
+InString_Buffer:
+	DB 1024

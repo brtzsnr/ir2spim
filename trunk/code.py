@@ -90,11 +90,8 @@ def _encodeMnemonic(mnemonic, *args):
 			continue
 
 		# two options
-		which = None
-		for j in xrange(len(meta[i])):
-			if isinstance(args[meta[0] + i - 1], meta[i][j]):
-				assert which is None
-				which = j
+		which = not isinstance(args[i - (not meta[0])], meta[i][0])
+		assert isinstance(args[i - (not meta[0])], meta[i][which])
 
 		assert bit >= (1 << OPCODE_BITS)
 		opcode |= which * bit
@@ -105,7 +102,6 @@ def _encodeMnemonic(mnemonic, *args):
 
 def decodeOpcode(opcode):
 	"""Returns an array [mnemonic, destination, arg1, arg2, ...]"""
-
 	result = []
 
 	# mnemonic

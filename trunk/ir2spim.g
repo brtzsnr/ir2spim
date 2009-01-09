@@ -33,11 +33,14 @@ tokens {
 
 @parser::header {
 import operand
-from program import code
-from program import data
 }
 
-program
+program[code, data]
+@init {
+    # NOT THREAD SAFE
+    self.__code = code
+    self.__data = data
+}
     : code data;
 
 // === CODE ===
@@ -58,62 +61,62 @@ assignment
     // ANTLR doesn't understand dynamic languages (like python)
     // very well and complains when colapsing the below rules
     : vr '<-' operator {
-        code.encode('mov', $vr.value, $operator.value)
+        self.__code.encode('mov', $vr.value, $operator.value)
     }
     | vr '<-' vi {
-        code.encode('mov', $vr.value, $vi.value)
+        self.__code.encode('mov', $vr.value, $vi.value)
     }
     | vi '<-' vr {
-        code.encode('mov', $vi.value, $vr.value)
+        self.__code.encode('mov', $vi.value, $vr.value)
     }
     | vr '<-' first=operator e=('+'|'-'|'*'|'/'|'<'|'<='|'=') second=operator {
-        code.encode($e.text, $vr.value, $first.value, $second.value)
+        self.__code.encode($e.text, $vr.value, $first.value, $second.value)
     }
     | vr '<-' e='not' operator {
-        code.encode($e.text, $vr.value, $operator.value)
+        self.__code.encode($e.text, $vr.value, $operator.value)
     }
     ;
 
 call
     : result=vr '<-' e='call' register=vr {
-        code.encode($e.text, $result.value, $register.value)
+        self.__code.encode($e.text, $result.value, $register.value)
     }
     | result=vr '<-' e='call' method=METHOD {
-        code.encode($e.text, $result.value, operand.Label($method.text))
+        self.__code.encode($e.text, $result.value, operand.Label($method.text))
     }
     ;
 
 jump
     : e='jump' LABEL {
-        code.encode($e.text, operand.Label($LABEL.text))
+        self.__code.encode($e.text, operand.Label($LABEL.text))
     }
     | e=('jumpt' | 'jumpf') vr LABEL {
-        code.encode($e.text, $vr.value, operand.Label($LABEL.text))
+        self.__code.encode($e.text, $vr.value, operand.Label($LABEL.text))
     }
     ;
 
 
 label
     : l=(METHOD | LABEL) ':' {
-        code.addLabel($l.text)
+        self.__code.addLabel($l.text)
     }
     ;
 
 load
     : e='loadl' vr where=(METHOD | LABEL) {
-        code.encode($e.text, $vr.value, operand.Label($where.text))
+        self.__code.encode($e.text, $vr.value, operand.Label($where.text))
     }
     ;
 
 submit
     : e='return' operator {
-        code.encode($e.text, $operator.value)
+        self.__code.encode($e.text, $operator.value)
     }
     ;
 
 io
 @after {
-    code.encode($e.text, $zero.value, $one.value, $two.value)
+    self.__code.encode($e.text, $zero.value, $one.value, $two.value)
 }
     : e='load' zero=vr '[' one=vr ',' two=integer ']'
     | e='store' zero=vr '[' one=vr ',' two=integer ']'
@@ -127,11 +130,11 @@ data
     : DATA data_statement*;
 
 data_statement
-    : DW i=INTEGER { data.storeWord(int($i.text)) }
-    | DL l=(METHOD | LABEL) { data.storeLabel($l.text) }
-    | DS s=STRING { data.storeString($s.text) }
-    | DB i=INTEGER { data.storeZero(int($i.text)) }
-    | l=LABEL ':' { data.addLabel($l.text) }
+    : DW i=INTEGER { self.__data.storeWord(int($i.text)) }
+    | DL l=(METHOD | LABEL) { self.__data.storeLabel($l.text) }
+    | DS s=STRING { self.__data.storeString($s.text) }
+    | DB i=INTEGER { self.__data.storeZero(int($i.text)) }
+    | l=LABEL ':' { self.__data.addLabel($l.text) }
     ;
 
 // === OPERANDS ===

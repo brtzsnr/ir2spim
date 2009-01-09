@@ -1,7 +1,15 @@
 #!/usr/bin/python
 
-import ir2spim
-import program
+import sys
 
-ir2spim.parse()
-program.run()
+import program as _program
+import parser
+import errors
+
+program = _program.Program()
+program.linkAll(sys.argv[1:])
+
+try:
+	program.run()
+except errors.ProgramAbortError, e:
+	print >> sys.stderr, e
