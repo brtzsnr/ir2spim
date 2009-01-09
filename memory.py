@@ -138,6 +138,13 @@ class Memory(object):
 	def labelToLocation(self, label):
 		return self.labels[label]
 
+	def locationToLabel(self, address):
+		if self.__locations is None:
+			self.__locations = {}
+			for label, address in self.labels.iteritems():
+				self.__locations.setdefault(address, []).append(label)
+		return self.__locations.get(address, [])
+
 	def loadByte(self, address):
 		"""Returns byte located at `address`"""
 		chunk_id = address >> Memory.CHUNK_BITS

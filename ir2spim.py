@@ -10,7 +10,8 @@ import ir2spimLexer
 import ir2spimParser
 
 
-def main():
+def parse():
+	"""Parses program passed as first argument"""
 	# XXX improve logging
 	logging.basicConfig(level=logging.DEBUG,)
 
@@ -20,8 +21,3 @@ def main():
 	parser = ir2spimParser.ir2spimParser(tokens)
 	parser.program()
 
-	program.interpreter()
-
-
-if __name__ == '__main__':
-	main()

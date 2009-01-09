@@ -67,7 +67,7 @@ Main:
         VR5 <- VR5 <= VR0
         jumpf VR5 label7
             # then branch
-            loadl VR5 __string_ct2
+            loadl VR5 __str_ct2
             VR5 <- call Abort
             jump label8
 

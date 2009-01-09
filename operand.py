@@ -20,10 +20,22 @@ class Register(object):
 		self.number = memory.loadWord(address)
 		return address + 4
 
+	def isgeneral(self):
+		return self.number < MAX_REGISTER_INDEX
+
 	def __str__(self):
-		if self.number >= MAX_REGISTER_INDEX:
-			return 'vi%d' % (self.number - MAX_REGISTER_INDEX)
-		return 'vr%d' % self.number
+		if self.isgeneral():
+			return 'vr%d' % self.number
+		return 'vi%d' % (self.number - MAX_REGISTER_INDEX)
+
+	def __repr__(self):
+		return str(self)
+
+	def __hash__(self):
+		return self.number
+
+	def __eq__(self, other):
+		return self.number == other.number
 
 
 class Integer(object):
@@ -54,7 +66,7 @@ class Label(object):
 		return address + 4
 
 	def __str__(self):
-		return str(self.label)
+		return '%s (0x%08X)' % (self.label, self.address)
 
 
 def VR(number):

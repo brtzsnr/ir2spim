@@ -13,34 +13,9 @@ class Data(section.Section):
 		string = string[1:-3]  # cuts first & final quote & \\0
 		string = string.replace('""', '"')  # converts "" in "
 
+		string = string.replace('\\n', '\n')
+		string = string.replace('\\t', '\t')
+
 		self.storeBytes(string)
 		self.storeZero(1)
 
-
-'''
-
-_section = section.Section('.data')
-
-def storeWord(number):
-	_section.storeWord(number)
-
-
-def storeLabel(label):
-	# DL
-	_section.storeLabel(label)
-
-
-
-
-def storeZero(size):
-	"""Leaves some empty space"""
-	# DS
-	_section.storeZero(size)
-
-
-def addLabel(label):
-	"""Adds a label"""
-	_section.addLabel(label)
-
-
-'''
