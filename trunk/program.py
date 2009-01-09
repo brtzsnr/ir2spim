@@ -222,13 +222,13 @@ class Program(object):
 
 		# opcodes that do not return a value
 		elif mnem == 'jump':
-			_ip = instr[2]
+			self.__ip = instr[2]
 		elif mnem == 'jumpf':
 			if not instr[2]:
-				_ip = instr[3]
+				self.__ip = instr[3]
 		elif mnem == 'jumpt':
 			if instr[2]:
-				_ip = instr[3]
+				self.__ip = instr[3]
 		elif mnem == 'store':
 			self.memory.storeWord(instr[2], address=instr[3] + instr[4])
 		elif mnem == 'storeb':
