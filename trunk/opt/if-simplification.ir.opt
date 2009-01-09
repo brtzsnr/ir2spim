@@ -8,7 +8,7 @@ skip4
 	loadl VR4 ok
 	VI0 <- VR4
 	VR4 <- call OutString
-
+dont_skip5:
 error:
 end:
 	return 0
