@@ -14,6 +14,7 @@ ir2spimTokens.py: ir2spim.tokens
 clean:
 	-rm -rdf ir2spimLexer.py
 	-rm -rdf ir2spimParser.py
+	-rm -rdf *.pyc
 
 %.class: %.java
 	javac -cp $(CLASSPATH) $^
