@@ -1,0 +1,211 @@
+.code
+Func1:
+
+	VR2 <- -44 	# VR2 <- -44
+	VR7 <- 2 	# VR7 <- 2
+	VR5 <- VR7 * VR2 	# VR5 <- -88
+	VR2 <- 42 + VR5 	# VR2 <- -46
+	VR9 <- -19 	# VR9 <- -19
+	VR4 <- VR7 * VR9 	# VR4 <- -38
+	VR1 <- 95 	# VR1 <- 95
+	VR8 <- VR9 	# VR8 <- -19
+	VR3 <- -20 	# VR3 <- -20
+	VR4 <- 9 - 17 	# VR4 <- -8
+	VR0 <- VR7 / VR1 	# VR0 <- 0
+	VR3 <- VR2 	# VR3 <- -46
+	VR8 <- VR8 * VR0 	# VR8 <- 0
+	VR9 <- VR1 + -84 	# VR9 <- 11
+	VR3 <- not VR5 	# VR3 <- 0
+	VR7 <- VR2 / 62 	# VR7 <- -1
+	VR1 <- -78 	# VR1 <- -78
+	VR4 <- 8 - VR0 	# VR4 <- 8
+	VR8 <- -93 	# VR8 <- -93
+	VR3 <- -85 	# VR3 <- -85
+	VR1 <- -35 	# VR1 <- -35
+	VR2 <- -45 	# VR2 <- -45
+	VR7 <- 42 	# VR7 <- 42
+	VR5 <- 17 	# VR5 <- 17
+	VR0 <- VR9 	# VR0 <- 11
+	VR4 <- 4 	# VR4 <- 4
+	VR2 <- -92 	# VR2 <- -92
+	VR0 <- VR2 + 68 	# VR0 <- -24
+	VR9 <- not 66 	# VR9 <- 0
+	VR7 <- -25 * VR9 	# VR7 <- 0
+	VR0 <- -46 	# VR0 <- -46
+	VR1 <- -24 * 0 	# VR1 <- 0
+	VR7 <- VR0 - VR9 	# VR7 <- -46
+	VR8 <- 9 	# VR8 <- 9
+	VR8 <- 73 	# VR8 <- 73
+	VR7 <- VR0 + 88 	# VR7 <- 42
+	VR9 <- VR5 - 90 	# VR9 <- -73
+	VR1 <- 76 - -9 	# VR1 <- 85
+	VR5 <- VR3 - 12 	# VR5 <- -97
+	VR6 <- 19 	# VR6 <- 19
+	VR3 <- 21 	# VR3 <- 21
+	VR5 <- not 0 	# VR5 <- 1
+	VR0 <- 48 	# VR0 <- 48
+	VR6 <- VR6 - 8 	# VR6 <- 11
+	VR2 <- 72 	# VR2 <- 72
+	VR5 <- not VR0 	# VR5 <- 0
+	VR9 <- 25 	# VR9 <- 25
+	VR4 <- VR4 + 45 	# VR4 <- 49
+	VR2 <- 46 	# VR2 <- 46
+	VR1 <- 16 	# VR1 <- 16
+	VR2 <- 15 	# VR2 <- 15
+	VR5 <- VR6 / VR2 	# VR5 <- 0
+	VR4 <- -19 	# VR4 <- -19
+	VR3 <- VR5 * VR8 	# VR3 <- 0
+	VR1 <- VR5 	# VR1 <- 0
+	VR3 <- -99 	# VR3 <- -99
+	VR8 <- -12 	# VR8 <- -12
+	VR6 <- -57 	# VR6 <- -57
+	VR4 <- -60 	# VR4 <- -60
+	VR7 <- not 61 	# VR7 <- 0
+	VR4 <- not 47 	# VR4 <- 0
+	VR9 <- not 61 	# VR9 <- 0
+	VR4 <- VR5 * VR5 	# VR4 <- 0
+	VR1 <- not VR6 	# VR1 <- 0
+	VR8 <- not 91 	# VR8 <- 0
+	VR8 <- VR8 * VR4 	# VR8 <- 0
+	VR5 <- VR4 - 92 	# VR5 <- -92
+	VR1 <- VR8 / -82 	# VR1 <- 0
+	VR2 <- 59 	# VR2 <- 59
+	VR6 <- VR5 + VR4 	# VR6 <- -92
+	VR9 <- VR0 + -40 	# VR9 <- 8
+	VR3 <- not 28 	# VR3 <- 0
+	VR1 <- -85 	# VR1 <- -85
+	VR6 <- 77 	# VR6 <- 77
+	VR1 <- VR1 	# VR1 <- -85
+	VR0 <- 97 	# VR0 <- 97
+	VR7 <- 76 	# VR7 <- 76
+	VR0 <- 37 	# VR0 <- 37
+	VR1 <- 43 / 64 	# VR1 <- 0
+	VR6 <- -99 	# VR6 <- -99
+	VR8 <- VR6 / 8 	# VR8 <- -13
+	VR9 <- 42 	# VR9 <- 42
+	VR8 <- -31 	# VR8 <- -31
+	VR4 <- 28 	# VR4 <- 28
+	VR4 <- -9 	# VR4 <- -9
+	VR0 <- not 16 	# VR0 <- 0
+	VR9 <- VR1 - VR2 	# VR9 <- -59
+	VR6 <- not 82 	# VR6 <- 0
+	VR9 <- 22 	# VR9 <- 22
+	VR5 <- 84 	# VR5 <- 84
+	VR7 <- -87 	# VR7 <- -87
+	VR4 <- -14 	# VR4 <- -14
+	VR6 <- VR6 * 93 	# VR6 <- 0
+	VR1 <- 10 	# VR1 <- 10
+	VR1 <- VR0 * VR3 	# VR1 <- 0
+	VR2 <- 7 	# VR2 <- 7
+	VR4 <- 29 	# VR4 <- 29
+	VR6 <- -94 	# VR6 <- -94
+	VR9 <- not 79 	# VR9 <- 0
+	VR9 <- -79 + 15 	# VR9 <- -64
+	VR9 <- 79 	# VR9 <- 79
+	VR9 <- VR5 	# VR9 <- 84
+	VR2 <- -4 	# VR2 <- -4
+	VR9 <- -23 - VR6 	# VR9 <- 71
+	VR1 <- -60 	# VR1 <- -60
+	VR3 <- VR7 	# VR3 <- -87
+	VR5 <- not 28 	# VR5 <- 0
+	VR6 <- not 13 	# VR6 <- 0
+	VR9 <- VR2 * VR0 	# VR9 <- 0
+	VR1 <- VR3 	# VR1 <- -87
+	VR7 <- VR1 + VR4 	# VR7 <- -58
+	VR0 <- 85 	# VR0 <- 85
+	VR5 <- -7 	# VR5 <- -7
+	VR8 <- 81 	# VR8 <- 81
+	VR6 <- -85 + 37 	# VR6 <- -48
+	VR5 <- 76 	# VR5 <- 76
+	VR4 <- -1 * 95 	# VR4 <- -95
+	VR4 <- 89 	# VR4 <- 89
+	VR9 <- -29 * VR9 	# VR9 <- 0
+	VR2 <- 54 	# VR2 <- 54
+	VR1 <- not 40 	# VR1 <- 0
+	VR6 <- 60 	# VR6 <- 60
+	VR0 <- VR5 - VR5 	# VR0 <- 0
+	VR8 <- VR8 / 10 	# VR8 <- 8
+	VR9 <- -40 / 35 	# VR9 <- -2
+	VR6 <- -51 	# VR6 <- -51
+	VR7 <- 22 	# VR7 <- 22
+	VR1 <- 68 	# VR1 <- 68
+
+	# VR 0
+	VI0 <- VR0
+	VR0 <- call OutInt
+	loadl VR0 new_line
+	VI0 <- VR0
+	VR0 <- call OutString
+
+	# VR 1
+	VI0 <- VR1
+	VR1 <- call OutInt
+	loadl VR1 new_line
+	VI0 <- VR1
+	VR1 <- call OutString
+
+	# VR 2
+	VI0 <- VR2
+	VR2 <- call OutInt
+	loadl VR2 new_line
+	VI0 <- VR2
+	VR2 <- call OutString
+
+	# VR 3
+	VI0 <- VR3
+	VR3 <- call OutInt
+	loadl VR3 new_line
+	VI0 <- VR3
+	VR3 <- call OutString
+
+	# VR 4
+	VI0 <- VR4
+	VR4 <- call OutInt
+	loadl VR4 new_line
+	VI0 <- VR4
+	VR4 <- call OutString
+
+	# VR 5
+	VI0 <- VR5
+	VR5 <- call OutInt
+	loadl VR5 new_line
+	VI0 <- VR5
+	VR5 <- call OutString
+
+	# VR 6
+	VI0 <- VR6
+	VR6 <- call OutInt
+	loadl VR6 new_line
+	VI0 <- VR6
+	VR6 <- call OutString
+
+	# VR 7
+	VI0 <- VR7
+	VR7 <- call OutInt
+	loadl VR7 new_line
+	VI0 <- VR7
+	VR7 <- call OutString
+
+	# VR 8
+	VI0 <- VR8
+	VR8 <- call OutInt
+	loadl VR8 new_line
+	VI0 <- VR8
+	VR8 <- call OutString
+
+	# VR 9
+	VI0 <- VR9
+	VR9 <- call OutInt
+	loadl VR9 new_line
+	VI0 <- VR9
+	VR9 <- call OutString
+
+	return 0
+
+Main:
+	VR0 <- call Func1
+	return 0
+
+.data
+	new_line: DS "\n\0"
+
