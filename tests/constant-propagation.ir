@@ -1,211 +1,2561 @@
 .code
-Func1:
-
-	VR2 <- -44 	# VR2 <- -44
-	VR7 <- 2 	# VR7 <- 2
-	VR5 <- VR7 * VR2 	# VR5 <- -88
-	VR2 <- 42 + VR5 	# VR2 <- -46
-	VR9 <- -19 	# VR9 <- -19
-	VR4 <- VR7 * VR9 	# VR4 <- -38
-	VR1 <- 95 	# VR1 <- 95
-	VR8 <- VR9 	# VR8 <- -19
-	VR3 <- -20 	# VR3 <- -20
-	VR4 <- 9 - 17 	# VR4 <- -8
-	VR0 <- VR7 / VR1 	# VR0 <- 0
-	VR3 <- VR2 	# VR3 <- -46
-	VR8 <- VR8 * VR0 	# VR8 <- 0
-	VR9 <- VR1 + -84 	# VR9 <- 11
-	VR3 <- not VR5 	# VR3 <- 0
-	VR7 <- VR2 / 62 	# VR7 <- -1
-	VR1 <- -78 	# VR1 <- -78
-	VR4 <- 8 - VR0 	# VR4 <- 8
-	VR8 <- -93 	# VR8 <- -93
-	VR3 <- -85 	# VR3 <- -85
-	VR1 <- -35 	# VR1 <- -35
-	VR2 <- -45 	# VR2 <- -45
-	VR7 <- 42 	# VR7 <- 42
-	VR5 <- 17 	# VR5 <- 17
-	VR0 <- VR9 	# VR0 <- 11
-	VR4 <- 4 	# VR4 <- 4
-	VR2 <- -92 	# VR2 <- -92
-	VR0 <- VR2 + 68 	# VR0 <- -24
-	VR9 <- not 66 	# VR9 <- 0
-	VR7 <- -25 * VR9 	# VR7 <- 0
-	VR0 <- -46 	# VR0 <- -46
-	VR1 <- -24 * 0 	# VR1 <- 0
-	VR7 <- VR0 - VR9 	# VR7 <- -46
-	VR8 <- 9 	# VR8 <- 9
-	VR8 <- 73 	# VR8 <- 73
-	VR7 <- VR0 + 88 	# VR7 <- 42
-	VR9 <- VR5 - 90 	# VR9 <- -73
-	VR1 <- 76 - -9 	# VR1 <- 85
-	VR5 <- VR3 - 12 	# VR5 <- -97
-	VR6 <- 19 	# VR6 <- 19
-	VR3 <- 21 	# VR3 <- 21
-	VR5 <- not 0 	# VR5 <- 1
-	VR0 <- 48 	# VR0 <- 48
-	VR6 <- VR6 - 8 	# VR6 <- 11
-	VR2 <- 72 	# VR2 <- 72
-	VR5 <- not VR0 	# VR5 <- 0
-	VR9 <- 25 	# VR9 <- 25
-	VR4 <- VR4 + 45 	# VR4 <- 49
-	VR2 <- 46 	# VR2 <- 46
-	VR1 <- 16 	# VR1 <- 16
-	VR2 <- 15 	# VR2 <- 15
-	VR5 <- VR6 / VR2 	# VR5 <- 0
-	VR4 <- -19 	# VR4 <- -19
-	VR3 <- VR5 * VR8 	# VR3 <- 0
-	VR1 <- VR5 	# VR1 <- 0
-	VR3 <- -99 	# VR3 <- -99
-	VR8 <- -12 	# VR8 <- -12
-	VR6 <- -57 	# VR6 <- -57
-	VR4 <- -60 	# VR4 <- -60
-	VR7 <- not 61 	# VR7 <- 0
-	VR4 <- not 47 	# VR4 <- 0
-	VR9 <- not 61 	# VR9 <- 0
-	VR4 <- VR5 * VR5 	# VR4 <- 0
-	VR1 <- not VR6 	# VR1 <- 0
-	VR8 <- not 91 	# VR8 <- 0
-	VR8 <- VR8 * VR4 	# VR8 <- 0
-	VR5 <- VR4 - 92 	# VR5 <- -92
-	VR1 <- VR8 / -82 	# VR1 <- 0
-	VR2 <- 59 	# VR2 <- 59
-	VR6 <- VR5 + VR4 	# VR6 <- -92
-	VR9 <- VR0 + -40 	# VR9 <- 8
-	VR3 <- not 28 	# VR3 <- 0
-	VR1 <- -85 	# VR1 <- -85
-	VR6 <- 77 	# VR6 <- 77
-	VR1 <- VR1 	# VR1 <- -85
-	VR0 <- 97 	# VR0 <- 97
-	VR7 <- 76 	# VR7 <- 76
-	VR0 <- 37 	# VR0 <- 37
-	VR1 <- 43 / 64 	# VR1 <- 0
-	VR6 <- -99 	# VR6 <- -99
-	VR8 <- VR6 / 8 	# VR8 <- -13
-	VR9 <- 42 	# VR9 <- 42
-	VR8 <- -31 	# VR8 <- -31
-	VR4 <- 28 	# VR4 <- 28
-	VR4 <- -9 	# VR4 <- -9
-	VR0 <- not 16 	# VR0 <- 0
-	VR9 <- VR1 - VR2 	# VR9 <- -59
-	VR6 <- not 82 	# VR6 <- 0
-	VR9 <- 22 	# VR9 <- 22
-	VR5 <- 84 	# VR5 <- 84
-	VR7 <- -87 	# VR7 <- -87
-	VR4 <- -14 	# VR4 <- -14
-	VR6 <- VR6 * 93 	# VR6 <- 0
-	VR1 <- 10 	# VR1 <- 10
-	VR1 <- VR0 * VR3 	# VR1 <- 0
-	VR2 <- 7 	# VR2 <- 7
-	VR4 <- 29 	# VR4 <- 29
-	VR6 <- -94 	# VR6 <- -94
-	VR9 <- not 79 	# VR9 <- 0
-	VR9 <- -79 + 15 	# VR9 <- -64
-	VR9 <- 79 	# VR9 <- 79
-	VR9 <- VR5 	# VR9 <- 84
-	VR2 <- -4 	# VR2 <- -4
-	VR9 <- -23 - VR6 	# VR9 <- 71
-	VR1 <- -60 	# VR1 <- -60
-	VR3 <- VR7 	# VR3 <- -87
-	VR5 <- not 28 	# VR5 <- 0
-	VR6 <- not 13 	# VR6 <- 0
-	VR9 <- VR2 * VR0 	# VR9 <- 0
-	VR1 <- VR3 	# VR1 <- -87
-	VR7 <- VR1 + VR4 	# VR7 <- -58
-	VR0 <- 85 	# VR0 <- 85
-	VR5 <- -7 	# VR5 <- -7
-	VR8 <- 81 	# VR8 <- 81
-	VR6 <- -85 + 37 	# VR6 <- -48
-	VR5 <- 76 	# VR5 <- 76
-	VR4 <- -1 * 95 	# VR4 <- -95
-	VR4 <- 89 	# VR4 <- 89
-	VR9 <- -29 * VR9 	# VR9 <- 0
-	VR2 <- 54 	# VR2 <- 54
-	VR1 <- not 40 	# VR1 <- 0
-	VR6 <- 60 	# VR6 <- 60
-	VR0 <- VR5 - VR5 	# VR0 <- 0
-	VR8 <- VR8 / 10 	# VR8 <- 8
-	VR9 <- -40 / 35 	# VR9 <- -2
-	VR6 <- -51 	# VR6 <- -51
-	VR7 <- 22 	# VR7 <- 22
-	VR1 <- 68 	# VR1 <- 68
-
-	# VR 0
-	VI0 <- VR0
+PrintInteger:
+	# afiseaza intregul din registru VI0 urmat de linie noua
 	VR0 <- call OutInt
-	loadl VR0 new_line
+	loadl VR0 space
 	VI0 <- VR0
 	VR0 <- call OutString
+	return 0
 
-	# VR 1
-	VI0 <- VR1
-	VR1 <- call OutInt
-	loadl VR1 new_line
-	VI0 <- VR1
-	VR1 <- call OutString
-
-	# VR 2
-	VI0 <- VR2
-	VR2 <- call OutInt
-	loadl VR2 new_line
-	VI0 <- VR2
-	VR2 <- call OutString
-
-	# VR 3
-	VI0 <- VR3
-	VR3 <- call OutInt
-	loadl VR3 new_line
-	VI0 <- VR3
-	VR3 <- call OutString
-
-	# VR 4
+Func1:
+	VR4 <- 8 	# VR4 <- 8
 	VI0 <- VR4
-	VR4 <- call OutInt
-	loadl VR4 new_line
+	VR0 <- call PrintInteger
+
+	VR7 <- VR4 - VR4 	# VR7 <- 0
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR4 <- VR7 - 74 	# VR4 <- -74
 	VI0 <- VR4
-	VR4 <- call OutString
+	VR0 <- call PrintInteger
 
-	# VR 5
-	VI0 <- VR5
-	VR5 <- call OutInt
-	loadl VR5 new_line
-	VI0 <- VR5
-	VR5 <- call OutString
+	VR2 <- -63 	# VR2 <- -63
+	VI0 <- VR2
+	VR0 <- call PrintInteger
 
-	# VR 6
-	VI0 <- VR6
-	VR6 <- call OutInt
-	loadl VR6 new_line
-	VI0 <- VR6
-	VR6 <- call OutString
-
-	# VR 7
-	VI0 <- VR7
-	VR7 <- call OutInt
-	loadl VR7 new_line
-	VI0 <- VR7
-	VR7 <- call OutString
-
-	# VR 8
+	VR8 <- 50 	# VR8 <- 50
 	VI0 <- VR8
-	VR8 <- call OutInt
-	loadl VR8 new_line
-	VI0 <- VR8
-	VR8 <- call OutString
+	VR0 <- call PrintInteger
 
-	# VR 9
+	VR5 <- VR7 / VR8 	# VR5 <- 0
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR3 <- not VR2 	# VR3 <- 0
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR1 <- VR7 * VR8 	# VR1 <- 0
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR3 <- -33 / 8 	# VR3 <- -5
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR3 <- 61 + -37 	# VR3 <- 24
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR9 <- VR2 / -87 	# VR9 <- 0
 	VI0 <- VR9
-	VR9 <- call OutInt
-	loadl VR9 new_line
+	VR0 <- call PrintInteger
+
+	VR5 <- 62 	# VR5 <- 62
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR4 <- 43 	# VR4 <- 43
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR3 <- 14 	# VR3 <- 14
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR3 <- 64 - VR7 	# VR3 <- 64
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR2 <- VR1 - 31 	# VR2 <- -31
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR5 <- -91 	# VR5 <- -91
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR7 <- not -23 	# VR7 <- 0
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR4 <- VR1 * VR4 	# VR4 <- 0
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR7 <- VR1 / -92 	# VR7 <- 0
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR4 <- -26 	# VR4 <- -26
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR1 <- 71 	# VR1 <- 71
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR9 <- -17 	# VR9 <- -17
 	VI0 <- VR9
-	VR9 <- call OutString
+	VR0 <- call PrintInteger
+
+	VR1 <- VR5 / VR5 	# VR1 <- 1
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR2 <- VR8 	# VR2 <- 50
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR2 <- 22 - 78 	# VR2 <- -56
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR3 <- VR1 + VR8 	# VR3 <- 51
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR9 <- 38 	# VR9 <- 38
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR8 <- 35 	# VR8 <- 35
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR5 <- -77 + 36 	# VR5 <- -41
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR4 <- VR7 	# VR4 <- 0
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR6 <- VR8 	# VR6 <- 35
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR6 <- VR1 * -2 	# VR6 <- -2
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR3 <- -25 	# VR3 <- -25
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR2 <- -13 - -91 	# VR2 <- 78
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR1 <- -97 / VR9 	# VR1 <- -3
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR1 <- -41 * VR4 	# VR1 <- 0
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR1 <- 97 	# VR1 <- 97
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR7 <- -9 	# VR7 <- -9
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR3 <- 68 	# VR3 <- 68
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR9 <- 78 	# VR9 <- 78
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR8 <- 10 	# VR8 <- 10
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR2 <- not VR9 	# VR2 <- 0
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR9 <- 19 + -7 	# VR9 <- 12
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR3 <- -38 	# VR3 <- -38
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR5 <- VR6 / VR1 	# VR5 <- -1
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR2 <- 48 	# VR2 <- 48
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR5 <- not VR7 	# VR5 <- 0
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR4 <- not 29 	# VR4 <- 0
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR8 <- VR8 * VR5 	# VR8 <- 0
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR4 <- -17 / -12 	# VR4 <- 1
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR8 <- -62 + VR7 	# VR8 <- -71
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR8 <- VR8 - VR6 	# VR8 <- -69
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR5 <- 55 	# VR5 <- 55
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR8 <- not -10 	# VR8 <- 0
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR2 <- 40 + VR3 	# VR2 <- 2
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR6 <- 36 	# VR6 <- 36
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR5 <- 85 	# VR5 <- 85
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR2 <- -37 	# VR2 <- -37
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR1 <- -33 + 96 	# VR1 <- 63
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR4 <- 86 	# VR4 <- 86
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR8 <- VR9 - VR7 	# VR8 <- 21
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR7 <- 94 / VR8 	# VR7 <- 4
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR9 <- not -17 	# VR9 <- 0
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR1 <- -92 	# VR1 <- -92
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR6 <- -91 	# VR6 <- -91
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR1 <- 79 	# VR1 <- 79
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR4 <- VR2 	# VR4 <- -37
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR3 <- VR2 	# VR3 <- -37
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR6 <- VR9 * VR5 	# VR6 <- 0
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR1 <- 38 	# VR1 <- 38
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR6 <- -71 	# VR6 <- -71
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR8 <- -62 	# VR8 <- -62
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR5 <- VR4 	# VR5 <- -37
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR7 <- VR3 / VR1 	# VR7 <- -1
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR7 <- -99 	# VR7 <- -99
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR6 <- 1 + VR4 	# VR6 <- -36
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR1 <- -16 	# VR1 <- -16
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR3 <- VR1 / VR1 	# VR3 <- 1
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR7 <- -16 	# VR7 <- -16
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR8 <- -33 	# VR8 <- -33
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR6 <- -25 	# VR6 <- -25
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR4 <- 20 + VR8 	# VR4 <- -13
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR4 <- -72 	# VR4 <- -72
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR3 <- VR1 * -2 	# VR3 <- 32
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR8 <- VR9 + -70 	# VR8 <- -70
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR9 <- -1 	# VR9 <- -1
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR3 <- VR3 	# VR3 <- 32
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR9 <- not -73 	# VR9 <- 0
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR3 <- not 18 	# VR3 <- 0
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR3 <- 24 / VR2 	# VR3 <- -1
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR7 <- not VR5 	# VR7 <- 0
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR7 <- 2 	# VR7 <- 2
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR2 <- -17 + -3 	# VR2 <- -20
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR2 <- VR9 * VR2 	# VR2 <- 0
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR3 <- -16 - VR9 	# VR3 <- -16
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR3 <- VR9 / 1 	# VR3 <- 0
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR5 <- 29 	# VR5 <- 29
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR7 <- 7 + VR2 	# VR7 <- 7
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR9 <- 71 	# VR9 <- 71
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR6 <- -6 	# VR6 <- -6
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR1 <- 21 	# VR1 <- 21
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR2 <- -59 	# VR2 <- -59
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR2 <- -84 	# VR2 <- -84
+	VI0 <- VR2
+	VR0 <- call PrintInteger
+
+	VR3 <- 79 	# VR3 <- 79
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR1 <- -94 - VR8 	# VR1 <- -24
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR7 <- 23 	# VR7 <- 23
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR3 <- not VR1 	# VR3 <- 0
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR3 <- 35 	# VR3 <- 35
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR8 <- 51 	# VR8 <- 51
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR1 <- not VR7 	# VR1 <- 0
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR9 <- 35 + VR3 	# VR9 <- 70
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR3 <- 1 	# VR3 <- 1
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR9 <- not VR3 	# VR9 <- 0
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR8 <- -58 	# VR8 <- -58
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR6 <- VR9 	# VR6 <- 0
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR9 <- VR1 * VR9 	# VR9 <- 0
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR5 <- -66 - VR6 	# VR5 <- -66
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR6 <- 20 	# VR6 <- 20
+	VI0 <- VR6
+	VR0 <- call PrintInteger
+
+	VR1 <- 27 	# VR1 <- 27
+	VI0 <- VR1
+	VR0 <- call PrintInteger
+
+	VR8 <- not VR4 	# VR8 <- 0
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR4 <- not VR4 	# VR4 <- 0
+	VI0 <- VR4
+	VR0 <- call PrintInteger
+
+	VR7 <- -11 	# VR7 <- -11
+	VI0 <- VR7
+	VR0 <- call PrintInteger
+
+	VR3 <- VR2 + VR8 	# VR3 <- -84
+	VI0 <- VR3
+	VR0 <- call PrintInteger
+
+	VR5 <- 11 	# VR5 <- 11
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR8 <- 81 	# VR8 <- 81
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR5 <- -66 	# VR5 <- -66
+	VI0 <- VR5
+	VR0 <- call PrintInteger
+
+	VR8 <- VR2 * VR9 	# VR8 <- 0
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	return 0
+
+Func2:
+	# _index = 0
+	VR0 <- 0
+	jumpt VR0 __else_0
+	# continuing on `true` branch
+		VR9 <- -91 / 17 		# VR9 <- -6
+		VI0 <- VR9
+		VR0 <- call PrintInteger
+
+	jump __endif_0
+ __else_0:
+		# _index = 1
+		VR0 <- 0
+		jumpt VR0 __else_1
+		# continuing on `true` branch
+			# _index = 2
+			VR0 <- 0
+			jumpt VR0 __else_2
+			# continuing on `true` branch
+				VR5 <- -5 - -44 				# VR5 <- 39
+				VI0 <- VR5
+				VR0 <- call PrintInteger
+
+			jump __endif_2
+		__else_2:
+				# _index = 3
+				VR0 <- 1
+				jumpt VR0 __else_3
+				# jumped to `else` branch
+					VR5 <- -15 					# VR5 <- -15
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_3
+			__else_3:
+					VR4 <- -57 					# VR4 <- -57
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+			__endif_3:
+				# regs = {4: -57}
+
+				# _index = 4
+				VR0 <- 0
+				jumpt VR0 __else_4
+				# continuing on `true` branch
+					VR8 <- 80 					# VR8 <- 80
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_4
+			__else_4:
+					VR1 <- -21 					# VR1 <- -21
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_4:
+				# regs = {8: 80, 4: -57}
+
+		__endif_2:
+			# regs = {5: 39}
+
+		jump __endif_1
+	__else_1:
+			# _index = 5
+			VR0 <- 1
+			jumpt VR0 __else_5
+			# jumped to `else` branch
+				VR3 <- 97 				# VR3 <- 97
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+			jump __endif_5
+		__else_5:
+				VR9 <- not 66 				# VR9 <- 0
+				VI0 <- VR9
+				VR0 <- call PrintInteger
+
+		__endif_5:
+			# regs = {9: 0}
+
+			# _index = 6
+			VR0 <- 0
+			jumpt VR0 __else_6
+			# continuing on `true` branch
+				VR5 <- not 6 				# VR5 <- 0
+				VI0 <- VR5
+				VR0 <- call PrintInteger
+
+			jump __endif_6
+		__else_6:
+				VR4 <- 87 				# VR4 <- 87
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+		__endif_6:
+			# regs = {9: 0, 5: 0}
+
+			# _index = 7
+			VR0 <- 1
+			jumpf VR0 __else_7
+			# continuing on `true` branch
+				VR9 <- -8 				# VR9 <- -8
+				VI0 <- VR9
+				VR0 <- call PrintInteger
+
+			jump __endif_7
+		__else_7:
+				# _index = 8
+				VR0 <- 0
+				jumpf VR0 __else_8
+				# jumped to `else` branch
+					VR4 <- VR5 * -71 					# VR4 <- 0
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_8
+			__else_8:
+					VR9 <- 54 - 40 					# VR9 <- 14
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_8:
+				# regs = {9: 14, 5: 0}
+
+		__endif_7:
+			# regs = {9: -8, 5: 0}
+
+	__endif_1:
+		# regs = {5: 39}
+
+		# _index = 9
+		VR0 <- 0
+		jumpf VR0 __else_9
+		# jumped to `else` branch
+			VR7 <- VR5 			# VR7 <- 39
+			VI0 <- VR7
+			VR0 <- call PrintInteger
+
+		jump __endif_9
+	__else_9:
+			# _index = 10
+			VR0 <- 0
+			jumpt VR0 __else_10
+			# continuing on `true` branch
+				# _index = 11
+				VR0 <- 1
+				jumpf VR0 __else_11
+				# continuing on `true` branch
+					VR5 <- not VR5 					# VR5 <- 0
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_11
+			__else_11:
+					VR8 <- 68 - VR5 					# VR8 <- 29
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_11:
+				# regs = {5: 0}
+
+				# _index = 12
+				VR0 <- 0
+				jumpf VR0 __else_12
+				# jumped to `else` branch
+					VR7 <- VR5 + VR5 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+				jump __endif_12
+			__else_12:
+					VR5 <- VR5 * VR5 					# VR5 <- 0
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+			__endif_12:
+				# regs = {5: 0}
+
+				# _index = 13
+				VR0 <- 0
+				jumpf VR0 __else_13
+				# jumped to `else` branch
+					VR9 <- not -7 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_13
+			__else_13:
+					VR9 <- -63 * VR5 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_13:
+				# regs = {9: 0, 5: 0}
+
+			jump __endif_10
+		__else_10:
+				# _index = 14
+				VR0 <- 0
+				jumpf VR0 __else_14
+				# jumped to `else` branch
+					VR2 <- 96 					# VR2 <- 96
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_14
+			__else_14:
+					VR8 <- VR5 + VR5 					# VR8 <- 78
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_14:
+				# regs = {8: 78, 5: 39}
+
+				# _index = 15
+				VR0 <- 0
+				jumpt VR0 __else_15
+				# continuing on `true` branch
+					VR6 <- VR5 					# VR6 <- 39
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_15
+			__else_15:
+					VR7 <- 28 					# VR7 <- 28
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_15:
+				# regs = {8: 78, 5: 39, 6: 39}
+
+		__endif_10:
+			# regs = {9: 0, 5: 0}
+
+			# _index = 16
+			VR0 <- 1
+			jumpt VR0 __else_16
+			# jumped to `else` branch
+				# _index = 17
+				VR0 <- 1
+				jumpf VR0 __else_17
+				# continuing on `true` branch
+					VR2 <- VR5 * -93 					# VR2 <- 0
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_17
+			__else_17:
+					VR7 <- VR5 * 11 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_17:
+				# regs = {9: 0, 2: 0, 5: 0}
+
+			jump __endif_16
+		__else_16:
+				VR6 <- 3 				# VR6 <- 3
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+		__endif_16:
+			# regs = {9: 0, 5: 0, 6: 3}
+
+	__endif_9:
+		# regs = {9: 0, 5: 0, 6: 3}
+
+ __endif_0:
+	# regs = {9: -6}
+
+	# _index = 18
+	VR0 <- 1
+	jumpf VR0 __else_18
+	# continuing on `true` branch
+		# _index = 19
+		VR0 <- 1
+		jumpf VR0 __else_19
+		# continuing on `true` branch
+			# _index = 20
+			VR0 <- 0
+			jumpt VR0 __else_20
+			# continuing on `true` branch
+				# _index = 21
+				VR0 <- 1
+				jumpt VR0 __else_21
+				# jumped to `else` branch
+					VR7 <- 93 					# VR7 <- 93
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+				jump __endif_21
+			__else_21:
+					VR1 <- VR9 / VR9 					# VR1 <- 1
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_21:
+				# regs = {9: -6, 1: 1}
+
+			jump __endif_20
+		__else_20:
+				VR2 <- VR9 * VR9 				# VR2 <- 36
+				VI0 <- VR2
+				VR0 <- call PrintInteger
+
+		__endif_20:
+			# regs = {9: -6, 1: 1}
+
+			# _index = 22
+			VR0 <- 0
+			jumpt VR0 __else_22
+			# continuing on `true` branch
+				# _index = 23
+				VR0 <- 1
+				jumpf VR0 __else_23
+				# continuing on `true` branch
+					VR5 <- -75 * VR1 					# VR5 <- -75
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_23
+			__else_23:
+					VR3 <- not -6 					# VR3 <- 0
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_23:
+				# regs = {9: -6, 5: -75, 1: 1}
+
+				# _index = 24
+				VR0 <- 1
+				jumpt VR0 __else_24
+				# jumped to `else` branch
+					VR6 <- -59 					# VR6 <- -59
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_24
+			__else_24:
+					VR5 <- -10 / VR9 					# VR5 <- 1
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+			__endif_24:
+				# regs = {9: -6, 5: 1, 1: 1}
+
+				# _index = 25
+				VR0 <- 0
+				jumpt VR0 __else_25
+				# continuing on `true` branch
+					VR6 <- not VR1 					# VR6 <- 0
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_25
+			__else_25:
+					VR4 <- -30 					# VR4 <- -30
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+			__endif_25:
+				# regs = {9: -6, 5: 1, 6: 0, 1: 1}
+
+			jump __endif_22
+		__else_22:
+				VR4 <- 86 				# VR4 <- 86
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+		__endif_22:
+			# regs = {9: -6, 5: 1, 6: 0, 1: 1}
+
+		jump __endif_19
+	__else_19:
+			# _index = 26
+			VR0 <- 1
+			jumpt VR0 __else_26
+			# jumped to `else` branch
+				# _index = 27
+				VR0 <- 1
+				jumpt VR0 __else_27
+				# jumped to `else` branch
+					VR4 <- VR9 + VR9 					# VR4 <- -12
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_27
+			__else_27:
+					VR8 <- VR9 - 58 					# VR8 <- -64
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_27:
+				# regs = {8: -64, 9: -6}
+
+				# _index = 28
+				VR0 <- 1
+				jumpf VR0 __else_28
+				# continuing on `true` branch
+					VR8 <- -58 					# VR8 <- -58
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_28
+			__else_28:
+					VR1 <- VR8 / -36 					# VR1 <- 1
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_28:
+				# regs = {8: -58, 9: -6}
+
+				# _index = 29
+				VR0 <- 0
+				jumpt VR0 __else_29
+				# continuing on `true` branch
+					VR4 <- not VR9 					# VR4 <- 0
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_29
+			__else_29:
+					VR2 <- -18 					# VR2 <- -18
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+			__endif_29:
+				# regs = {8: -58, 9: -6, 4: 0}
+
+			jump __endif_26
+		__else_26:
+				# _index = 30
+				VR0 <- 0
+				jumpt VR0 __else_30
+				# continuing on `true` branch
+					VR2 <- 60 					# VR2 <- 60
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_30
+			__else_30:
+					VR5 <- 24 					# VR5 <- 24
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+			__endif_30:
+				# regs = {9: -6, 2: 60}
+
+				# _index = 31
+				VR0 <- 1
+				jumpt VR0 __else_31
+				# jumped to `else` branch
+					VR6 <- 17 					# VR6 <- 17
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_31
+			__else_31:
+					VR7 <- not 60 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_31:
+				# regs = {9: -6, 2: 60, 7: 0}
+
+				# _index = 32
+				VR0 <- 1
+				jumpt VR0 __else_32
+				# jumped to `else` branch
+					VR5 <- 62 					# VR5 <- 62
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_32
+			__else_32:
+					VR6 <- VR7 + -80 					# VR6 <- -80
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+			__endif_32:
+				# regs = {9: -6, 2: 60, 6: -80, 7: 0}
+
+		__endif_26:
+			# regs = {9: -6, 2: 60, 6: -80, 7: 0}
+
+			# _index = 33
+			VR0 <- 0
+			jumpf VR0 __else_33
+			# jumped to `else` branch
+				VR6 <- VR2 / 50 				# VR6 <- 1
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+			jump __endif_33
+		__else_33:
+				# _index = 34
+				VR0 <- 0
+				jumpt VR0 __else_34
+				# continuing on `true` branch
+					VR8 <- 89 + VR6 					# VR8 <- 9
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_34
+			__else_34:
+					VR9 <- VR9 * -13 					# VR9 <- 78
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_34:
+				# regs = {8: 9, 9: -6, 2: 60, 6: -80, 7: 0}
+
+				# _index = 35
+				VR0 <- 1
+				jumpf VR0 __else_35
+				# continuing on `true` branch
+					VR9 <- not 70 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_35
+			__else_35:
+					VR9 <- -77 					# VR9 <- -77
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_35:
+				# regs = {8: 9, 9: 0, 2: 60, 6: -80, 7: 0}
+
+				# _index = 36
+				VR0 <- 1
+				jumpf VR0 __else_36
+				# continuing on `true` branch
+					VR5 <- VR9 - VR8 					# VR5 <- -9
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_36
+			__else_36:
+					VR6 <- VR9 + VR9 					# VR6 <- 0
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+			__endif_36:
+				# regs = {2: 60, 5: -9, 6: -80, 7: 0, 8: 9, 9: 0}
+
+		__endif_33:
+			# regs = {2: 60, 5: -9, 6: -80, 7: 0, 8: 9, 9: 0}
+
+			# _index = 37
+			VR0 <- 1
+			jumpf VR0 __else_37
+			# continuing on `true` branch
+				VR1 <- not VR6 				# VR1 <- 0
+				VI0 <- VR1
+				VR0 <- call PrintInteger
+
+			jump __endif_37
+		__else_37:
+				VR6 <- -78 - VR7 				# VR6 <- -78
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+		__endif_37:
+			# regs = {1: 0, 2: 60, 5: -9, 6: -80, 7: 0, 8: 9, 9: 0}
+
+	__endif_19:
+		# regs = {9: -6, 5: 1, 6: 0, 1: 1}
+
+		# _index = 38
+		VR0 <- 1
+		jumpf VR0 __else_38
+		# continuing on `true` branch
+			VR7 <- not 65 			# VR7 <- 0
+			VI0 <- VR7
+			VR0 <- call PrintInteger
+
+		jump __endif_38
+	__else_38:
+			VR7 <- VR6 - 96 			# VR7 <- -96
+			VI0 <- VR7
+			VR0 <- call PrintInteger
+
+	__endif_38:
+		# regs = {9: -6, 7: 0, 5: 1, 6: 0, 1: 1}
+
+		# _index = 39
+		VR0 <- 1
+		jumpt VR0 __else_39
+		# jumped to `else` branch
+			# _index = 40
+			VR0 <- 1
+			jumpt VR0 __else_40
+			# jumped to `else` branch
+				# _index = 41
+				VR0 <- 1
+				jumpf VR0 __else_41
+				# continuing on `true` branch
+					VR4 <- VR6 + VR6 					# VR4 <- 0
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_41
+			__else_41:
+					VR8 <- VR1 + 82 					# VR8 <- 83
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_41:
+				# regs = {1: 1, 4: 0, 5: 1, 6: 0, 7: 0, 9: -6}
+
+				# _index = 42
+				VR0 <- 1
+				jumpt VR0 __else_42
+				# jumped to `else` branch
+					VR2 <- VR6 * VR7 					# VR2 <- 0
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_42
+			__else_42:
+					VR9 <- -70 * VR5 					# VR9 <- -70
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_42:
+				# regs = {1: 1, 4: 0, 5: 1, 6: 0, 7: 0, 9: -70}
+
+				# _index = 43
+				VR0 <- 0
+				jumpf VR0 __else_43
+				# jumped to `else` branch
+					VR8 <- VR5 * VR7 					# VR8 <- 0
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_43
+			__else_43:
+					VR7 <- VR6 * 65 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_43:
+				# regs = {1: 1, 4: 0, 5: 1, 6: 0, 7: 0, 9: -70}
+
+			jump __endif_40
+		__else_40:
+				VR5 <- not VR5 				# VR5 <- 0
+				VI0 <- VR5
+				VR0 <- call PrintInteger
+
+		__endif_40:
+			# regs = {9: -6, 7: 0, 5: 0, 6: 0, 1: 1}
+
+		jump __endif_39
+	__else_39:
+			# _index = 44
+			VR0 <- 0
+			jumpf VR0 __else_44
+			# jumped to `else` branch
+				# _index = 45
+				VR0 <- 1
+				jumpt VR0 __else_45
+				# jumped to `else` branch
+					VR7 <- VR9 * -2 					# VR7 <- 12
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+				jump __endif_45
+			__else_45:
+					VR6 <- 93 					# VR6 <- 93
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+			__endif_45:
+				# regs = {9: -6, 7: 0, 5: 1, 6: 93, 1: 1}
+
+				# _index = 46
+				VR0 <- 1
+				jumpt VR0 __else_46
+				# jumped to `else` branch
+					VR7 <- 59 / VR6 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+				jump __endif_46
+			__else_46:
+					VR9 <- VR7 / 30 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_46:
+				# regs = {9: 0, 7: 0, 5: 1, 6: 93, 1: 1}
+
+				# _index = 47
+				VR0 <- 0
+				jumpt VR0 __else_47
+				# continuing on `true` branch
+					VR8 <- VR1 * 58 					# VR8 <- 58
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_47
+			__else_47:
+					VR5 <- not -16 					# VR5 <- 0
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+			__endif_47:
+				# regs = {1: 1, 5: 1, 6: 93, 7: 0, 8: 58, 9: 0}
+
+			jump __endif_44
+		__else_44:
+				# _index = 48
+				VR0 <- 0
+				jumpf VR0 __else_48
+				# jumped to `else` branch
+					VR9 <- VR1 - -78 					# VR9 <- 79
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_48
+			__else_48:
+					VR4 <- 73 					# VR4 <- 73
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+			__endif_48:
+				# regs = {1: 1, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+		__endif_44:
+			# regs = {1: 1, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+			# _index = 49
+			VR0 <- 1
+			jumpt VR0 __else_49
+			# jumped to `else` branch
+				VR1 <- 16 - 77 				# VR1 <- -61
+				VI0 <- VR1
+				VR0 <- call PrintInteger
+
+			jump __endif_49
+		__else_49:
+				VR1 <- VR1 - VR5 				# VR1 <- 0
+				VI0 <- VR1
+				VR0 <- call PrintInteger
+
+		__endif_49:
+			# regs = {1: 0, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+	__endif_39:
+		# regs = {1: 0, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+	jump __endif_18
+ __else_18:
+		# _index = 50
+		VR0 <- 1
+		jumpt VR0 __else_50
+		# jumped to `else` branch
+			# _index = 51
+			VR0 <- 0
+			jumpf VR0 __else_51
+			# jumped to `else` branch
+				# _index = 52
+				VR0 <- 1
+				jumpf VR0 __else_52
+				# continuing on `true` branch
+					VR5 <- -15 					# VR5 <- -15
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_52
+			__else_52:
+					VR7 <- not VR9 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_52:
+				# regs = {9: -6, 5: -15}
+
+				# _index = 53
+				VR0 <- 0
+				jumpt VR0 __else_53
+				# continuing on `true` branch
+					VR2 <- 46 					# VR2 <- 46
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_53
+			__else_53:
+					VR9 <- VR9 / -91 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_53:
+				# regs = {9: -6, 2: 46, 5: -15}
+
+				# _index = 54
+				VR0 <- 0
+				jumpf VR0 __else_54
+				# jumped to `else` branch
+					VR8 <- not VR2 					# VR8 <- 0
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_54
+			__else_54:
+					VR2 <- -49 					# VR2 <- -49
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+			__endif_54:
+				# regs = {9: -6, 2: -49, 5: -15}
+
+			jump __endif_51
+		__else_51:
+				# _index = 55
+				VR0 <- 0
+				jumpf VR0 __else_55
+				# jumped to `else` branch
+					VR7 <- VR9 - VR9 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+				jump __endif_55
+			__else_55:
+					VR8 <- 75 					# VR8 <- 75
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_55:
+				# regs = {8: 75, 9: -6}
+
+				# _index = 56
+				VR0 <- 1
+				jumpt VR0 __else_56
+				# jumped to `else` branch
+					VR6 <- -57 					# VR6 <- -57
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_56
+			__else_56:
+					VR3 <- 61 / 41 					# VR3 <- 1
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_56:
+				# regs = {8: 75, 9: -6, 3: 1}
+
+		__endif_51:
+			# regs = {8: 75, 9: -6, 3: 1}
+
+		jump __endif_50
+	__else_50:
+			VR3 <- not VR9 			# VR3 <- 0
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+	__endif_50:
+		# regs = {9: -6, 3: 0}
+
+		# _index = 57
+		VR0 <- 1
+		jumpf VR0 __else_57
+		# continuing on `true` branch
+			# _index = 58
+			VR0 <- 1
+			jumpf VR0 __else_58
+			# continuing on `true` branch
+				# _index = 59
+				VR0 <- 1
+				jumpt VR0 __else_59
+				# jumped to `else` branch
+					VR3 <- -5 - -12 					# VR3 <- 7
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+				jump __endif_59
+			__else_59:
+					VR9 <- not VR9 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_59:
+				# regs = {9: 0, 3: 0}
+
+				# _index = 60
+				VR0 <- 0
+				jumpf VR0 __else_60
+				# jumped to `else` branch
+					VR6 <- 47 					# VR6 <- 47
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_60
+			__else_60:
+					VR2 <- VR3 - VR3 					# VR2 <- 0
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+			__endif_60:
+				# regs = {9: 0, 2: 0, 3: 0}
+
+			jump __endif_58
+		__else_58:
+				# _index = 61
+				VR0 <- 0
+				jumpf VR0 __else_61
+				# jumped to `else` branch
+					VR6 <- 73 					# VR6 <- 73
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_61
+			__else_61:
+					VR4 <- -36 					# VR4 <- -36
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+			__endif_61:
+				# regs = {9: -6, 3: 0, 4: -36}
+
+				# _index = 62
+				VR0 <- 1
+				jumpf VR0 __else_62
+				# continuing on `true` branch
+					VR2 <- VR3 					# VR2 <- 0
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_62
+			__else_62:
+					VR3 <- VR3 + VR9 					# VR3 <- -6
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_62:
+				# regs = {9: -6, 2: 0, 3: 0, 4: -36}
+
+				# _index = 63
+				VR0 <- 1
+				jumpt VR0 __else_63
+				# jumped to `else` branch
+					VR2 <- not VR2 					# VR2 <- 1
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_63
+			__else_63:
+					VR5 <- VR2 + 96 					# VR5 <- 96
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+			__endif_63:
+				# regs = {9: -6, 2: 0, 3: 0, 4: -36, 5: 96}
+
+		__endif_58:
+			# regs = {9: 0, 2: 0, 3: 0}
+
+			# _index = 64
+			VR0 <- 0
+			jumpt VR0 __else_64
+			# continuing on `true` branch
+				VR9 <- not VR3 				# VR9 <- 1
+				VI0 <- VR9
+				VR0 <- call PrintInteger
+
+			jump __endif_64
+		__else_64:
+				VR2 <- VR2 * VR2 				# VR2 <- 0
+				VI0 <- VR2
+				VR0 <- call PrintInteger
+
+		__endif_64:
+			# regs = {9: 1, 2: 0, 3: 0}
+
+		jump __endif_57
+	__else_57:
+			VR1 <- -78 - VR9 			# VR1 <- -72
+			VI0 <- VR1
+			VR0 <- call PrintInteger
+
+	__endif_57:
+		# regs = {9: 1, 2: 0, 3: 0}
+
+ __endif_18:
+	# regs = {1: 0, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+	# _index = 65
+	VR0 <- 1
+	jumpt VR0 __else_65
+	# jumped to `else` branch
+		VR3 <- 87 		# VR3 <- 87
+		VI0 <- VR3
+		VR0 <- call PrintInteger
+
+	jump __endif_65
+ __else_65:
+		# _index = 66
+		VR0 <- 1
+		jumpt VR0 __else_66
+		# jumped to `else` branch
+			# _index = 67
+			VR0 <- 0
+			jumpf VR0 __else_67
+			# jumped to `else` branch
+				# _index = 68
+				VR0 <- 1
+				jumpf VR0 __else_68
+				# continuing on `true` branch
+					VR5 <- -72 + VR6 					# VR5 <- -72
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_68
+			__else_68:
+					VR6 <- VR9 - VR4 					# VR6 <- -79
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+			__endif_68:
+				# regs = {1: 0, 4: 73, 5: -72, 6: 0, 7: 0, 9: -6}
+
+				# _index = 69
+				VR0 <- 0
+				jumpf VR0 __else_69
+				# jumped to `else` branch
+					VR9 <- -27 					# VR9 <- -27
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_69
+			__else_69:
+					VR1 <- VR9 					# VR1 <- -6
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_69:
+				# regs = {1: -6, 4: 73, 5: -72, 6: 0, 7: 0, 9: -6}
+
+			jump __endif_67
+		__else_67:
+				VR2 <- VR1 * VR4 				# VR2 <- 0
+				VI0 <- VR2
+				VR0 <- call PrintInteger
+
+		__endif_67:
+			# regs = {1: 0, 2: 0, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+		jump __endif_66
+	__else_66:
+			# _index = 70
+			VR0 <- 1
+			jumpf VR0 __else_70
+			# continuing on `true` branch
+				# _index = 71
+				VR0 <- 1
+				jumpt VR0 __else_71
+				# jumped to `else` branch
+					VR9 <- VR6 * 98 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_71
+			__else_71:
+					VR1 <- not VR4 					# VR1 <- 0
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_71:
+				# regs = {1: 0, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+				# _index = 72
+				VR0 <- 0
+				jumpt VR0 __else_72
+				# continuing on `true` branch
+					VR2 <- -94 					# VR2 <- -94
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_72
+			__else_72:
+					VR9 <- -57 					# VR9 <- -57
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_72:
+				# regs = {1: 0, 2: -94, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+				# _index = 73
+				VR0 <- 0
+				jumpt VR0 __else_73
+				# continuing on `true` branch
+					VR1 <- 85 					# VR1 <- 85
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_73
+			__else_73:
+					VR2 <- 44 * VR6 					# VR2 <- 0
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+			__endif_73:
+				# regs = {1: 85, 2: -94, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+			jump __endif_70
+		__else_70:
+				VR8 <- VR7 * VR9 				# VR8 <- 0
+				VI0 <- VR8
+				VR0 <- call PrintInteger
+
+		__endif_70:
+			# regs = {1: 85, 2: -94, 4: 73, 5: 1, 6: 0, 7: 0, 9: -6}
+
+			# _index = 74
+			VR0 <- 0
+			jumpf VR0 __else_74
+			# jumped to `else` branch
+				VR4 <- -50 				# VR4 <- -50
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+			jump __endif_74
+		__else_74:
+				VR9 <- not VR1 				# VR9 <- 0
+				VI0 <- VR9
+				VR0 <- call PrintInteger
+
+		__endif_74:
+			# regs = {1: 85, 2: -94, 4: 73, 5: 1, 6: 0, 7: 0, 9: 0}
+
+	__endif_66:
+		# regs = {1: 85, 2: -94, 4: 73, 5: 1, 6: 0, 7: 0, 9: 0}
+
+ __endif_65:
+	# regs = {1: 85, 2: -94, 4: 73, 5: 1, 6: 0, 7: 0, 9: 0}
+
+	return 0
+
+Func3:
+	# _index = 75
+	VR8 <- -19 + -56 	# VR8 <- -75
+	VI0 <- VR8
+	VR0 <- call PrintInteger
+
+	VR0 <- not VR8
+	jumpf VR0 __else_75
+	# jumped to `else` branch
+		VR9 <- VR8 		# VR9 <- -75
+		VI0 <- VR9
+		VR0 <- call PrintInteger
+
+	jump __endif_75
+ __else_75:
+		# _index = 76
+		VR9 <- 32 		# VR9 <- 32
+		VI0 <- VR9
+		VR0 <- call PrintInteger
+
+		VR0 <- not VR9
+		jumpt VR0 __else_76
+		# continuing on `true` branch
+			VR2 <- 21 			# VR2 <- 21
+			VI0 <- VR2
+			VR0 <- call PrintInteger
+
+		jump __endif_76
+	__else_76:
+			VR3 <- 56 			# VR3 <- 56
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+	__endif_76:
+		# regs = {8: -75, 9: 32, 2: 21}
+
+		# _index = 77
+		VR4 <- -15 		# VR4 <- -15
+		VI0 <- VR4
+		VR0 <- call PrintInteger
+
+		VR0 <- not VR4
+		jumpt VR0 __else_77
+		# continuing on `true` branch
+			# _index = 78
+			VR3 <- -60 + 41 			# VR3 <- -19
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+			VR0 <- VR3
+			jumpf VR0 __else_78
+			# continuing on `true` branch
+				VR4 <- 5 				# VR4 <- 5
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+			jump __endif_78
+		__else_78:
+				# _index = 79
+				VR6 <- -24 				# VR6 <- -24
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR6
+				jumpt VR0 __else_79
+				# continuing on `true` branch
+					VR8 <- 40 * 1 					# VR8 <- 40
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_79
+			__else_79:
+					VR8 <- -26 					# VR8 <- -26
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_79:
+				# regs = {2: 21, 3: -19, 4: -15, 6: -24, 8: 40, 9: 32}
+
+				# _index = 80
+				VR6 <- 54 + VR8 				# VR6 <- 94
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+				VR0 <- VR6
+				jumpt VR0 __else_80
+				# jumped to `else` branch
+					VR4 <- 96 					# VR4 <- 96
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_80
+			__else_80:
+					VR5 <- 61 					# VR5 <- 61
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+			__endif_80:
+				# regs = {2: 21, 3: -19, 4: -15, 5: 61, 6: 94, 8: 40, 9: 32}
+
+				# _index = 81
+				VR5 <- VR8 + VR2 				# VR5 <- 61
+				VI0 <- VR5
+				VR0 <- call PrintInteger
+
+				VR0 <- VR5
+				jumpt VR0 __else_81
+				# jumped to `else` branch
+					VR4 <- VR5 - VR4 					# VR4 <- 76
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_81
+			__else_81:
+					VR1 <- VR8 / 82 					# VR1 <- 0
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_81:
+				# regs = {1: 0, 2: 21, 3: -19, 4: -15, 5: 61, 6: 94, 8: 40, 9: 32}
+
+		__endif_78:
+			# regs = {8: -75, 9: 32, 2: 21, 3: -19, 4: 5}
+
+			# _index = 82
+			VR9 <- -7 			# VR9 <- -7
+			VI0 <- VR9
+			VR0 <- call PrintInteger
+
+			VR0 <- not VR9
+			jumpt VR0 __else_82
+			# continuing on `true` branch
+				VR6 <- 46 * -2 				# VR6 <- -92
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+			jump __endif_82
+		__else_82:
+				VR3 <- 2 / VR2 				# VR3 <- 0
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+		__endif_82:
+			# regs = {2: 21, 3: -19, 4: 5, 6: -92, 8: -75, 9: -7}
+
+		jump __endif_77
+	__else_77:
+			VR4 <- VR4 / VR4 			# VR4 <- 1
+			VI0 <- VR4
+			VR0 <- call PrintInteger
+
+	__endif_77:
+		# regs = {2: 21, 3: -19, 4: 5, 6: -92, 8: -75, 9: -7}
+
+ __endif_75:
+	# regs = {2: 21, 3: -19, 4: 5, 6: -92, 8: -75, 9: -7}
+
+	# _index = 83
+	VR9 <- -33 - VR9 	# VR9 <- -26
+	VI0 <- VR9
+	VR0 <- call PrintInteger
+
+	VR0 <- VR9
+	jumpt VR0 __else_83
+	# jumped to `else` branch
+		# _index = 84
+		VR6 <- VR6 - VR6 		# VR6 <- 0
+		VI0 <- VR6
+		VR0 <- call PrintInteger
+
+		VR0 <- not VR6
+		jumpt VR0 __else_84
+		# jumped to `else` branch
+			# _index = 85
+			VR6 <- not VR8 			# VR6 <- 0
+			VI0 <- VR6
+			VR0 <- call PrintInteger
+
+			VR0 <- not VR6
+			jumpf VR0 __else_85
+			# continuing on `true` branch
+				VR3 <- VR6 				# VR3 <- 0
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+			jump __endif_85
+		__else_85:
+				VR3 <- -69 				# VR3 <- -69
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+		__endif_85:
+			# regs = {2: 21, 3: 0, 4: 5, 6: 0, 8: -75, 9: -26}
+
+		jump __endif_84
+	__else_84:
+			# _index = 86
+			VR9 <- not VR2 			# VR9 <- 0
+			VI0 <- VR9
+			VR0 <- call PrintInteger
+
+			VR0 <- not VR9
+			jumpf VR0 __else_86
+			# continuing on `true` branch
+				VR8 <- -18 				# VR8 <- -18
+				VI0 <- VR8
+				VR0 <- call PrintInteger
+
+			jump __endif_86
+		__else_86:
+				VR7 <- VR9 - 69 				# VR7 <- -69
+				VI0 <- VR7
+				VR0 <- call PrintInteger
+
+		__endif_86:
+			# regs = {2: 21, 3: -19, 4: 5, 6: 0, 8: -18, 9: 0}
+
+			# _index = 87
+			VR3 <- VR6 + VR9 			# VR3 <- 0
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+			VR0 <- VR3
+			jumpf VR0 __else_87
+			# jumped to `else` branch
+				VR4 <- 58 				# VR4 <- 58
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+			jump __endif_87
+		__else_87:
+				# _index = 88
+				VR6 <- VR9 + VR8 				# VR6 <- -18
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR6
+				jumpt VR0 __else_88
+				# continuing on `true` branch
+					VR1 <- not -87 					# VR1 <- 0
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_88
+			__else_88:
+					VR1 <- -82 					# VR1 <- -82
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_88:
+				# regs = {1: 0, 2: 21, 3: 0, 4: 5, 6: -18, 8: -18, 9: 0}
+
+		__endif_87:
+			# regs = {1: 0, 2: 21, 3: 0, 4: 5, 6: -18, 8: -18, 9: 0}
+
+			# _index = 89
+			VR2 <- -45 - VR3 			# VR2 <- -45
+			VI0 <- VR2
+			VR0 <- call PrintInteger
+
+			VR0 <- VR2
+			jumpt VR0 __else_89
+			# jumped to `else` branch
+				# _index = 90
+				VR4 <- VR2 * VR1 				# VR4 <- 0
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+				VR0 <- VR4
+				jumpt VR0 __else_90
+				# continuing on `true` branch
+					VR8 <- VR8 / VR6 					# VR8 <- 1
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_90
+			__else_90:
+					VR7 <- not VR8 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_90:
+				# regs = {1: 0, 2: -45, 3: 0, 4: 0, 6: -18, 8: 1, 9: 0}
+
+				# _index = 91
+				VR3 <- VR9 * 68 				# VR3 <- 0
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+				VR0 <- VR3
+				jumpt VR0 __else_91
+				# continuing on `true` branch
+					VR8 <- 39 					# VR8 <- 39
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_91
+			__else_91:
+					VR3 <- 15 * VR9 					# VR3 <- 0
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_91:
+				# regs = {1: 0, 2: -45, 3: 0, 4: 0, 6: -18, 8: 39, 9: 0}
+
+			jump __endif_89
+		__else_89:
+				VR3 <- not 76 				# VR3 <- 0
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+		__endif_89:
+			# regs = {1: 0, 2: -45, 3: 0, 4: 5, 6: -18, 8: -18, 9: 0}
+
+	__endif_84:
+		# regs = {1: 0, 2: -45, 3: 0, 4: 5, 6: -18, 8: -18, 9: 0}
+
+		# _index = 92
+		VR4 <- VR8 * VR9 		# VR4 <- 0
+		VI0 <- VR4
+		VR0 <- call PrintInteger
+
+		VR0 <- VR4
+		jumpt VR0 __else_92
+		# continuing on `true` branch
+			# _index = 93
+			VR4 <- 74 			# VR4 <- 74
+			VI0 <- VR4
+			VR0 <- call PrintInteger
+
+			VR0 <- VR4
+			jumpf VR0 __else_93
+			# continuing on `true` branch
+				# _index = 94
+				VR1 <- VR1 * -15 				# VR1 <- 0
+				VI0 <- VR1
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR1
+				jumpf VR0 __else_94
+				# continuing on `true` branch
+					VR1 <- -53 - VR9 					# VR1 <- -53
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_94
+			__else_94:
+					VR6 <- not -77 					# VR6 <- 0
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+			__endif_94:
+				# regs = {1: -53, 2: -45, 3: 0, 4: 74, 6: -18, 8: -18, 9: 0}
+
+				# _index = 95
+				VR7 <- -13 				# VR7 <- -13
+				VI0 <- VR7
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR7
+				jumpf VR0 __else_95
+				# jumped to `else` branch
+					VR9 <- 74 					# VR9 <- 74
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_95
+			__else_95:
+					VR3 <- 35 / 59 					# VR3 <- 0
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_95:
+				# regs = {1: -53, 2: -45, 3: 0, 4: 74, 6: -18, 7: -13, 8: -18, 9: 0}
+
+			jump __endif_93
+		__else_93:
+				VR6 <- VR8 + -68 				# VR6 <- -86
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+		__endif_93:
+			# regs = {1: -53, 2: -45, 3: 0, 4: 74, 6: -18, 7: -13, 8: -18, 9: 0}
+
+			# _index = 96
+			VR3 <- VR9 			# VR3 <- 0
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+			VR0 <- VR3
+			jumpf VR0 __else_96
+			# jumped to `else` branch
+				VR6 <- -92 				# VR6 <- -92
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+			jump __endif_96
+		__else_96:
+				# _index = 97
+				VR2 <- 7 				# VR2 <- 7
+				VI0 <- VR2
+				VR0 <- call PrintInteger
+
+				VR0 <- VR2
+				jumpt VR0 __else_97
+				# jumped to `else` branch
+					VR4 <- 45 					# VR4 <- 45
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_97
+			__else_97:
+					VR3 <- -66 					# VR3 <- -66
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_97:
+				# regs = {1: -53, 2: 7, 3: -66, 4: 74, 6: -18, 7: -13, 8: -18, 9: 0}
+
+				# _index = 98
+				VR3 <- 86 				# VR3 <- 86
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR3
+				jumpt VR0 __else_98
+				# continuing on `true` branch
+					VR2 <- 47 					# VR2 <- 47
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_98
+			__else_98:
+					VR1 <- VR1 + VR6 					# VR1 <- -71
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_98:
+				# regs = {1: -53, 2: 47, 3: 86, 4: 74, 6: -18, 7: -13, 8: -18, 9: 0}
+
+				# _index = 99
+				VR1 <- -90 				# VR1 <- -90
+				VI0 <- VR1
+				VR0 <- call PrintInteger
+
+				VR0 <- VR1
+				jumpf VR0 __else_99
+				# continuing on `true` branch
+					VR4 <- -40 					# VR4 <- -40
+					VI0 <- VR4
+					VR0 <- call PrintInteger
+
+				jump __endif_99
+			__else_99:
+					VR7 <- VR3 / 51 					# VR7 <- 1
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_99:
+				# regs = {1: -90, 2: 47, 3: 86, 4: -40, 6: -18, 7: -13, 8: -18, 9: 0}
+
+		__endif_96:
+			# regs = {1: -90, 2: 47, 3: 86, 4: -40, 6: -18, 7: -13, 8: -18, 9: 0}
+
+			# _index = 100
+			VR7 <- 32 			# VR7 <- 32
+			VI0 <- VR7
+			VR0 <- call PrintInteger
+
+			VR0 <- VR7
+			jumpt VR0 __else_100
+			# jumped to `else` branch
+				VR9 <- VR9 + VR4 				# VR9 <- -40
+				VI0 <- VR9
+				VR0 <- call PrintInteger
+
+			jump __endif_100
+		__else_100:
+				# _index = 101
+				VR9 <- -43 				# VR9 <- -43
+				VI0 <- VR9
+				VR0 <- call PrintInteger
+
+				VR0 <- VR9
+				jumpf VR0 __else_101
+				# continuing on `true` branch
+					VR3 <- VR1 / 6 					# VR3 <- -15
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+				jump __endif_101
+			__else_101:
+					VR8 <- VR2 + -42 					# VR8 <- 5
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_101:
+				# regs = {1: -90, 2: 47, 3: -15, 4: -40, 6: -18, 7: 32, 8: -18, 9: -43}
+
+				# _index = 102
+				VR4 <- -18 				# VR4 <- -18
+				VI0 <- VR4
+				VR0 <- call PrintInteger
+
+				VR0 <- VR4
+				jumpf VR0 __else_102
+				# continuing on `true` branch
+					VR5 <- VR3 					# VR5 <- -15
+					VI0 <- VR5
+					VR0 <- call PrintInteger
+
+				jump __endif_102
+			__else_102:
+					VR1 <- -48 + VR7 					# VR1 <- -16
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_102:
+				# regs = {1: -90, 2: 47, 3: -15, 4: -18, 5: -15, 6: -18, 7: 32, 8: -18, 9: -43}
+
+				# _index = 103
+				VR8 <- VR8 - VR1 				# VR8 <- 72
+				VI0 <- VR8
+				VR0 <- call PrintInteger
+
+				VR0 <- VR8
+				jumpt VR0 __else_103
+				# jumped to `else` branch
+					VR1 <- VR6 / -61 					# VR1 <- 0
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_103
+			__else_103:
+					VR7 <- not VR4 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_103:
+				# regs = {1: -90, 2: 47, 3: -15, 4: -18, 5: -15, 6: -18, 7: 0, 8: 72, 9: -43}
+
+		__endif_100:
+			# regs = {1: -90, 2: 47, 3: -15, 4: -18, 5: -15, 6: -18, 7: 0, 8: 72, 9: -43}
+
+		jump __endif_92
+	__else_92:
+			# _index = 104
+			VR3 <- VR3 + -11 			# VR3 <- -11
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+			VR0 <- not VR3
+			jumpt VR0 __else_104
+			# continuing on `true` branch
+				# _index = 105
+				VR2 <- 59 - VR1 				# VR2 <- 59
+				VI0 <- VR2
+				VR0 <- call PrintInteger
+
+				VR0 <- VR2
+				jumpf VR0 __else_105
+				# continuing on `true` branch
+					VR6 <- 51 					# VR6 <- 51
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+				jump __endif_105
+			__else_105:
+					VR9 <- VR1 * -27 					# VR9 <- 0
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_105:
+				# regs = {1: 0, 2: 59, 3: -11, 4: 0, 6: 51, 8: -18, 9: 0}
+
+				# _index = 106
+				VR3 <- 16 				# VR3 <- 16
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+				VR0 <- VR3
+				jumpf VR0 __else_106
+				# continuing on `true` branch
+					VR1 <- VR1 + -24 					# VR1 <- -24
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_106
+			__else_106:
+					VR3 <- VR2 / 53 					# VR3 <- 1
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_106:
+				# regs = {1: -24, 2: 59, 3: 16, 4: 0, 6: 51, 8: -18, 9: 0}
+
+			jump __endif_104
+		__else_104:
+				# _index = 107
+				VR3 <- VR9 + VR4 				# VR3 <- 0
+				VI0 <- VR3
+				VR0 <- call PrintInteger
+
+				VR0 <- VR3
+				jumpf VR0 __else_107
+				# jumped to `else` branch
+					VR8 <- 55 					# VR8 <- 55
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_107
+			__else_107:
+					VR1 <- VR8 					# VR1 <- -18
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_107:
+				# regs = {1: -18, 2: -45, 3: 0, 4: 0, 6: -18, 8: -18, 9: 0}
+
+				# _index = 108
+				VR5 <- VR4 * 48 				# VR5 <- 0
+				VI0 <- VR5
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR5
+				jumpf VR0 __else_108
+				# continuing on `true` branch
+					VR1 <- 23 					# VR1 <- 23
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_108
+			__else_108:
+					VR3 <- VR5 * 57 					# VR3 <- 0
+					VI0 <- VR3
+					VR0 <- call PrintInteger
+
+			__endif_108:
+				# regs = {1: 23, 2: -45, 3: 0, 4: 0, 5: 0, 6: -18, 8: -18, 9: 0}
+
+				# _index = 109
+				VR8 <- -2 				# VR8 <- -2
+				VI0 <- VR8
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR8
+				jumpf VR0 __else_109
+				# jumped to `else` branch
+					VR2 <- 5 					# VR2 <- 5
+					VI0 <- VR2
+					VR0 <- call PrintInteger
+
+				jump __endif_109
+			__else_109:
+					VR8 <- not -53 					# VR8 <- 0
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+			__endif_109:
+				# regs = {1: 23, 2: -45, 3: 0, 4: 0, 5: 0, 6: -18, 8: 0, 9: 0}
+
+		__endif_104:
+			# regs = {1: -24, 2: 59, 3: 16, 4: 0, 6: 51, 8: -18, 9: 0}
+
+			# _index = 110
+			VR3 <- VR9 + 86 			# VR3 <- 86
+			VI0 <- VR3
+			VR0 <- call PrintInteger
+
+			VR0 <- not VR3
+			jumpt VR0 __else_110
+			# continuing on `true` branch
+				VR6 <- not 31 				# VR6 <- 0
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+			jump __endif_110
+		__else_110:
+				VR2 <- VR8 				# VR2 <- -18
+				VI0 <- VR2
+				VR0 <- call PrintInteger
+
+		__endif_110:
+			# regs = {1: -24, 2: 59, 3: 86, 4: 0, 6: 0, 8: -18, 9: 0}
+
+			# _index = 111
+			VR9 <- -11 			# VR9 <- -11
+			VI0 <- VR9
+			VR0 <- call PrintInteger
+
+			VR0 <- VR9
+			jumpf VR0 __else_111
+			# continuing on `true` branch
+				# _index = 112
+				VR5 <- -98 				# VR5 <- -98
+				VI0 <- VR5
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR5
+				jumpf VR0 __else_112
+				# jumped to `else` branch
+					VR7 <- -8 					# VR7 <- -8
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+				jump __endif_112
+			__else_112:
+					VR6 <- -8 					# VR6 <- -8
+					VI0 <- VR6
+					VR0 <- call PrintInteger
+
+			__endif_112:
+				# regs = {1: -24, 2: 59, 3: 86, 4: 0, 5: -98, 6: -8, 8: -18, 9: -11}
+
+				# _index = 113
+				VR1 <- -72 				# VR1 <- -72
+				VI0 <- VR1
+				VR0 <- call PrintInteger
+
+				VR0 <- VR1
+				jumpf VR0 __else_113
+				# continuing on `true` branch
+					VR8 <- -63 					# VR8 <- -63
+					VI0 <- VR8
+					VR0 <- call PrintInteger
+
+				jump __endif_113
+			__else_113:
+					VR1 <- 92 					# VR1 <- 92
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_113:
+				# regs = {1: -72, 2: 59, 3: 86, 4: 0, 5: -98, 6: -8, 8: -63, 9: -11}
+
+			jump __endif_111
+		__else_111:
+				# _index = 114
+				VR8 <- 91 				# VR8 <- 91
+				VI0 <- VR8
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR8
+				jumpf VR0 __else_114
+				# jumped to `else` branch
+					VR9 <- 63 					# VR9 <- 63
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+				jump __endif_114
+			__else_114:
+					VR7 <- VR9 / VR1 					# VR7 <- 0
+					VI0 <- VR7
+					VR0 <- call PrintInteger
+
+			__endif_114:
+				# regs = {1: -24, 2: 59, 3: 86, 4: 0, 6: 0, 7: 0, 8: 91, 9: -11}
+
+		__endif_111:
+			# regs = {1: -72, 2: 59, 3: 86, 4: 0, 5: -98, 6: -8, 8: -63, 9: -11}
+
+	__endif_92:
+		# regs = {1: -90, 2: 47, 3: -15, 4: -18, 5: -15, 6: -18, 7: 0, 8: 72, 9: -43}
+
+		# _index = 115
+		VR8 <- -32 / VR3 		# VR8 <- 2
+		VI0 <- VR8
+		VR0 <- call PrintInteger
+
+		VR0 <- VR8
+		jumpf VR0 __else_115
+		# continuing on `true` branch
+			VR4 <- -22 			# VR4 <- -22
+			VI0 <- VR4
+			VR0 <- call PrintInteger
+
+		jump __endif_115
+	__else_115:
+			VR5 <- 98 			# VR5 <- 98
+			VI0 <- VR5
+			VR0 <- call PrintInteger
+
+	__endif_115:
+		# regs = {1: -90, 2: 47, 3: -15, 4: -22, 5: -15, 6: -18, 7: 0, 8: 2, 9: -43}
+
+	jump __endif_83
+ __else_83:
+		# _index = 116
+		VR7 <- -64 		# VR7 <- -64
+		VI0 <- VR7
+		VR0 <- call PrintInteger
+
+		VR0 <- not VR7
+		jumpf VR0 __else_116
+		# jumped to `else` branch
+			VR8 <- not VR3 			# VR8 <- 0
+			VI0 <- VR8
+			VR0 <- call PrintInteger
+
+		jump __endif_116
+	__else_116:
+			# _index = 117
+			VR7 <- VR2 + -1 			# VR7 <- 20
+			VI0 <- VR7
+			VR0 <- call PrintInteger
+
+			VR0 <- not VR7
+			jumpf VR0 __else_117
+			# jumped to `else` branch
+				# _index = 118
+				VR7 <- not VR6 				# VR7 <- 0
+				VI0 <- VR7
+				VR0 <- call PrintInteger
+
+				VR0 <- not VR7
+				jumpf VR0 __else_118
+				# continuing on `true` branch
+					VR1 <- not 79 					# VR1 <- 0
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_118
+			__else_118:
+					VR9 <- -41 					# VR9 <- -41
+					VI0 <- VR9
+					VR0 <- call PrintInteger
+
+			__endif_118:
+				# regs = {1: 0, 2: 21, 3: -19, 4: 5, 6: -92, 7: 0, 8: -75, 9: -26}
+
+				# _index = 119
+				VR6 <- 5 - VR1 				# VR6 <- 5
+				VI0 <- VR6
+				VR0 <- call PrintInteger
+
+				VR0 <- VR6
+				jumpf VR0 __else_119
+				# continuing on `true` branch
+					VR1 <- 5 					# VR1 <- 5
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+				jump __endif_119
+			__else_119:
+					VR1 <- 40 					# VR1 <- 40
+					VI0 <- VR1
+					VR0 <- call PrintInteger
+
+			__endif_119:
+				# regs = {1: 5, 2: 21, 3: -19, 4: 5, 6: 5, 7: 0, 8: -75, 9: -26}
+
+			jump __endif_117
+		__else_117:
+				VR8 <- VR6 / VR8 				# VR8 <- 1
+				VI0 <- VR8
+				VR0 <- call PrintInteger
+
+		__endif_117:
+			# regs = {2: 21, 3: -19, 4: 5, 6: -92, 7: 20, 8: 1, 9: -26}
+
+	__endif_116:
+		# regs = {2: 21, 3: -19, 4: 5, 6: -92, 7: 20, 8: 1, 9: -26}
+
+ __endif_83:
+	# regs = {2: 21, 3: -19, 4: 5, 6: -92, 7: 20, 8: 1, 9: -26}
 
 	return 0
 
 Main:
 	VR0 <- call Func1
+	loadl VR0 new_line
+	VI0 <- VR0
+	VR0 <- call OutString
+	loadl VR0 new_line
+	VI0 <- VR0
+	VR0 <- call OutString
+
+	VR0 <- call Func2
+	loadl VR0 new_line
+	VI0 <- VR0
+	VR0 <- call OutString
+	loadl VR0 new_line
+	VI0 <- VR0
+	VR0 <- call OutString
+
+	VR0 <- call Func3
+	loadl VR0 new_line
+	VI0 <- VR0
+	VR0 <- call OutString
+
 	return 0
 
 .data
 	new_line: DS "\n\0"
-
+	space: DS " \0"
