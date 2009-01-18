@@ -9,7 +9,7 @@ class Register(object):
 			self.number = vr
 		elif vi is not None:
 			assert 0 <= vi < MAX_REGISTER_INDEX
-			self.number = vi + MAX_REGISTER_INDEX
+			self.number = - 1 - vi
 		else:
 			self.number = None
 
@@ -21,12 +21,12 @@ class Register(object):
 		return address + 4
 
 	def isgeneral(self):
-		return self.number < MAX_REGISTER_INDEX
+		return self.number >= 0
 
 	def __str__(self):
 		if self.isgeneral():
 			return 'vr%d' % self.number
-		return 'vi%d' % (self.number - MAX_REGISTER_INDEX)
+		return 'vi%d' % (- 1 - self.number)
 
 	def __repr__(self):
 		return str(self)
@@ -75,4 +75,11 @@ def VR(number):
 
 def VI(number):
 	return Register(vi=number)
+
+
+def normalize(integer):
+	integer = integer & 0xffffffff
+	if integer & 0x80000000:
+		return int(integer - 0x100000000)
+	return integer
 
