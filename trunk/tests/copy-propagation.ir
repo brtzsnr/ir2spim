@@ -19,142 +19,79 @@ Func:
 	VR10 <- call PrintInteger
 
 	# propagate 20
-	VR8 <- VR20
-	VR0 <- 3 + VR8
-	VI0 <- VR0
+	VR3 <- VR20
+	VR1 <- 5 + VR3
+	VI0 <- VR1
 	VR10 <- call PrintInteger
-	VR1 <- VR8
-	VR5 <- VR8 + 2
-	VI0 <- VR5
-	VR10 <- call PrintInteger
-	VR3 <- 7 + VR1
-	VI0 <- VR3
-	VR10 <- call PrintInteger
-	VR0 <- VR1 + VR1
-	VI0 <- VR0
-	VR10 <- call PrintInteger
-	VR6 <- VR1 + VR1
+	VR0 <- VR3
+	VR4 <- VR3
+	VR6 <- VR4 + VR3
 	VI0 <- VR6
 	VR10 <- call PrintInteger
-	VR4 <- VR8 + 7
-	VI0 <- VR4
+	VR1 <- 7 + VR3
+	VI0 <- VR1
 	VR10 <- call PrintInteger
-	VR4 <- VR1 + VR1
-	VI0 <- VR4
+	VR6 <- 6 + VR4
+	VI0 <- VR6
 	VR10 <- call PrintInteger
-	VR5 <- VR1 + VR1
-	VI0 <- VR5
+	VR6 <- VR3 + 3
+	VI0 <- VR6
 	VR10 <- call PrintInteger
-	VR9 <- VR8
-	VR4 <- 7 + VR9
-	VI0 <- VR4
+	VR8 <- VR4 + 8
+	VI0 <- VR8
 	VR10 <- call PrintInteger
+	VR7 <- VR0
+	VR2 <- VR4
+	VR1 <- VR3 + 3
+	VI0 <- VR1
+	VR10 <- call PrintInteger
+	VR1 <- 3 + VR2
+	VI0 <- VR1
+	VR10 <- call PrintInteger
+	VR1 <- VR0
+	VR8 <- 8 + VR0
+	VI0 <- VR8
+	VR10 <- call PrintInteger
+	VR9 <- 3 + VR0
+	VI0 <- VR9
+	VR10 <- call PrintInteger
+	VR8 <- 2 + VR1
+	VI0 <- VR8
+	VR10 <- call PrintInteger
+	VR8 <- VR1
+	VR5 <- VR3
+	VR9 <- VR2
 	VR6 <- VR9
-	VR4 <- 9 + VR6
-	VI0 <- VR4
+
+	VR20 <- VR20 + 1
+	VI0 <- VR20
 	VR10 <- call PrintInteger
-	VR7 <- 2 + VR1
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR4 <- VR6 + 9
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR0 <- VR9 + 1
-	VI0 <- VR0
-	VR10 <- call PrintInteger
-	VR5 <- 7 + VR1
-	VI0 <- VR5
-	VR10 <- call PrintInteger
-	VR0 <- VR8 + VR6
-	VI0 <- VR0
-	VR10 <- call PrintInteger
-	VR4 <- VR1 + 5
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR4 <- VR1 + VR9
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR2 <- VR1
-	VR5 <- VR6
-	VR7 <- VR1 + 3
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR0 <- VR9 + VR9
-	VI0 <- VR0
-	VR10 <- call PrintInteger
-	VR3 <- VR5 + 3
-	VI0 <- VR3
-	VR10 <- call PrintInteger
-	VR7 <- VR6 + 9
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR3 <- 1 + VR8
-	VI0 <- VR3
-	VR10 <- call PrintInteger
-	VR4 <- VR9 + 1
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR4 <- 5 + VR8
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR0 <- 5 + VR5
-	VI0 <- VR0
-	VR10 <- call PrintInteger
-	VR3 <- VR9
-	VR7 <- VR6 + 7
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR4 <- VR8 + 9
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR0 <- VR5 + 1
-	VI0 <- VR0
-	VR10 <- call PrintInteger
-	VR4 <- VR9 + VR6
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR0 <- VR6
-	VR7 <- VR8 + 9
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR4 <- VR6
-	VR7 <- VR3 + 1
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR2 + 8
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR5 + 2
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- 7 + VR3
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR5 + VR1
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR0 + VR8
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR9 + VR8
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- 2 + VR3
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR3 + VR9
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- 4 + VR2
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- 6 + VR4
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR4 + VR5
-	VI0 <- VR7
-	VR10 <- call PrintInteger
-	VR7 <- VR8
+
+	VR10 <- VR20
+	__loop_20:
+		VR0 <- VR0 + 0
+		VR0 <- VR0 + VR20
+		VR1 <- VR1 + 1
+		VR1 <- VR1 + VR20
+		VR2 <- VR2 + 2
+		VR2 <- VR2 + VR20
+		VR3 <- VR3 + 3
+		VR3 <- VR3 + VR20
+		VR4 <- VR4 + 4
+		VR4 <- VR4 + VR20
+		VR5 <- VR5 + 5
+		VR5 <- VR5 + VR20
+		VR6 <- VR6 + 6
+		VR6 <- VR6 + VR20
+		VR7 <- VR7 + 7
+		VR7 <- VR7 + VR20
+		VR8 <- VR8 + 8
+		VR8 <- VR8 + VR20
+		VR9 <- VR9 + 9
+		VR9 <- VR9 + VR20
+	VR10 <- VR10 - 1
+	jumpt VR10 __loop_20
+
 
 	# Using all registers
 	VI0 <- VR0
@@ -168,78 +105,92 @@ Func:
 	VI8 <- VR8
 	VI9 <- VR9
 	VR10 <- call PrintInteger
-
 	# propagate 21
-	VR1 <- VR21
-	VR9 <- VR1 + 6
+	VR5 <- VR21
+	VR7 <- 8 + VR5
+	VI0 <- VR7
+	VR10 <- call PrintInteger
+	VR9 <- VR5 + VR5
 	VI0 <- VR9
 	VR10 <- call PrintInteger
-	VR3 <- 9 + VR1
-	VI0 <- VR3
-	VR10 <- call PrintInteger
-	VR0 <- VR1
-	VR7 <- VR1
-	VR3 <- VR0
-	VR8 <- VR7
-	VR4 <- VR8 + VR7
+	VR4 <- VR5 + 7
 	VI0 <- VR4
 	VR10 <- call PrintInteger
-	VR6 <- VR3 + VR3
-	VI0 <- VR6
-	VR10 <- call PrintInteger
-	VR4 <- VR1 + 2
-	VI0 <- VR4
-	VR10 <- call PrintInteger
-	VR9 <- VR7 + 3
-	VI0 <- VR9
-	VR10 <- call PrintInteger
-	VR9 <- 1 + VR8
-	VI0 <- VR9
-	VR10 <- call PrintInteger
-	VR6 <- VR7 + VR1
-	VI0 <- VR6
-	VR10 <- call PrintInteger
-	VR6 <- VR1 + VR3
-	VI0 <- VR6
-	VR10 <- call PrintInteger
-	VR6 <- 5 + VR0
-	VI0 <- VR6
-	VR10 <- call PrintInteger
-	VR2 <- VR3 + VR3
+	VR2 <- 1 + VR5
 	VI0 <- VR2
 	VR10 <- call PrintInteger
+	VR6 <- VR5
+	VR0 <- VR6 + 5
+	VI0 <- VR0
+	VR10 <- call PrintInteger
+	VR7 <- VR6 + 2
+	VI0 <- VR7
+	VR10 <- call PrintInteger
+	VR4 <- VR5 + VR5
+	VI0 <- VR4
+	VR10 <- call PrintInteger
+	VR8 <- VR6 + 6
+	VI0 <- VR8
+	VR10 <- call PrintInteger
+	VR8 <- VR5
+	VR2 <- 1 + VR6
+	VI0 <- VR2
+	VR10 <- call PrintInteger
+	VR7 <- VR5
 	VR9 <- VR8 + 8
 	VI0 <- VR9
 	VR10 <- call PrintInteger
-	VR2 <- VR7
-	VR4 <- VR3
-	VR5 <- VR8
-	VR6 <- VR1 + VR8
-	VI0 <- VR6
+	VR4 <- VR5
+	VR0 <- VR4 + VR5
+	VI0 <- VR0
 	VR10 <- call PrintInteger
-	VR6 <- 6 + VR5
-	VI0 <- VR6
+	VR0 <- 1 + VR8
+	VI0 <- VR0
 	VR10 <- call PrintInteger
-	VR9 <- VR7 + 9
+	VR0 <- VR6
+	VR9 <- VR5 + VR0
 	VI0 <- VR9
 	VR10 <- call PrintInteger
-	VR6 <- VR5 + 8
-	VI0 <- VR6
+	VR9 <- VR0
+	VR3 <- VR0
+	VR1 <- VR4
+	VR2 <- VR7 + 3
+	VI0 <- VR2
 	VR10 <- call PrintInteger
-	VR9 <- VR1 + VR7
-	VI0 <- VR9
+	VR2 <- 2 + VR5
+	VI0 <- VR2
 	VR10 <- call PrintInteger
-	VR6 <- VR8 + VR7
-	VI0 <- VR6
+	VR2 <- VR9
+
+	VR21 <- VR21 + 1
+	VI0 <- VR21
 	VR10 <- call PrintInteger
-	VR9 <- 4 + VR5
-	VI0 <- VR9
-	VR10 <- call PrintInteger
-	VR6 <- VR3
-	VR9 <- 6 + VR4
-	VI0 <- VR9
-	VR10 <- call PrintInteger
-	VR9 <- VR6
+
+	VR10 <- VR21
+	__loop_21:
+		VR0 <- VR0 + 0
+		VR0 <- VR0 + VR21
+		VR1 <- VR1 + 1
+		VR1 <- VR1 + VR21
+		VR2 <- VR2 + 2
+		VR2 <- VR2 + VR21
+		VR3 <- VR3 + 3
+		VR3 <- VR3 + VR21
+		VR4 <- VR4 + 4
+		VR4 <- VR4 + VR21
+		VR5 <- VR5 + 5
+		VR5 <- VR5 + VR21
+		VR6 <- VR6 + 6
+		VR6 <- VR6 + VR21
+		VR7 <- VR7 + 7
+		VR7 <- VR7 + VR21
+		VR8 <- VR8 + 8
+		VR8 <- VR8 + VR21
+		VR9 <- VR9 + 9
+		VR9 <- VR9 + VR21
+	VR10 <- VR10 - 1
+	jumpt VR10 __loop_21
+
 
 	# Using all registers
 	VI0 <- VR0
@@ -253,40 +204,39 @@ Func:
 	VI8 <- VR8
 	VI9 <- VR9
 	VR10 <- call PrintInteger
-
 	return 0
 
 Main:
-	VR10 <- 80
+	VR10 <- 9
 	VI0 <- VR10
-	VR10 <- 28
+	VR10 <- 10
 	VI1 <- VR10
 	VR10 <- call Func
 	loadl VR10 new_line
 	VI0 <- VR10
 	VR10 <- call OutString
 
-	VR10 <- 82
+	VR10 <- 7
 	VI0 <- VR10
-	VR10 <- 46
+	VR10 <- 38
 	VI1 <- VR10
 	VR10 <- call Func
 	loadl VR10 new_line
 	VI0 <- VR10
 	VR10 <- call OutString
 
-	VR10 <- 76
+	VR10 <- 42
 	VI0 <- VR10
+	VR10 <- 54
+	VI1 <- VR10
+	VR10 <- call Func
+	loadl VR10 new_line
+	VI0 <- VR10
+	VR10 <- call OutString
+
 	VR10 <- 49
-	VI1 <- VR10
-	VR10 <- call Func
-	loadl VR10 new_line
 	VI0 <- VR10
-	VR10 <- call OutString
-
-	VR10 <- 85
-	VI0 <- VR10
-	VR10 <- 32
+	VR10 <- 70
 	VI1 <- VR10
 	VR10 <- call Func
 	loadl VR10 new_line

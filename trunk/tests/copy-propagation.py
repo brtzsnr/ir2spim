@@ -61,16 +61,57 @@ def propagate(reg):
 	print >> irone
 	print >> irtwo
 
+	# invalidam registrul propagat
+	# valoare nu se poate propaga mai departe
+	# iar definitiile VR0 .. VR9 trebuie pastrate
+	# XXX pun pariu ca se gaseste un student care tine cont
+	# ca exista mai multe copii in viata si-mi propaga una
+	# dintre ele mai departe
+	print >> irone, '\tVR%d <- VR%d + 1' % (reg, reg)
+	print >> irone, '\tVI0 <- VR%d' % reg
+	print >> irone, '\tVR10 <- call PrintInteger'
+
+	print >> irtwo, '\tVR%d <- VR%d + 1' % (reg, reg)
+	print >> irtwo, '\tVI0 <- VR%d' % reg
+	print >> irtwo, '\tVR10 <- call PrintInteger'
+
+	print >> irone
+	print >> irtwo
+
+	# facem un loop care incrementeaza cu registrul de intrare
+	# fiecare din cele 10 registre pentru a nu putea propaga copia
+	print >> irone, '\tVR10 <- VR%d' % reg  # fara loop unrolling
+	print >> irone, '\t__loop_%d:' % reg
+	for i in xrange(10):
+		print >> irone, '\t\tVR%d <- VR%d + %d' % (i, i, i)  # registrele se modifica independent
+		print >> irone, '\t\tVR%d <- VR%d + VR%d' % (i, i, reg)   # fara loop unrolling
+	print >> irone, '\tVR10 <- VR10 - 1'
+	print >> irone, '\tjumpt VR10 __loop_%d' % reg
+	print >> irone
+
+
+	print >> irtwo, '\tVR10 <- VR%d' % reg  # fara loop unrolling
+	print >> irtwo, '\t__loop_%d:' % reg
+	for i in xrange(10):
+		print >> irtwo, '\t\tVR%d <- VR%d + %d' % (i, i, i)  # registrele se modifica independent
+		print >> irtwo, '\t\tVR%d <- VR%d + VR%d' % (i, i, reg)   # fara loop unrolling
+	print >> irtwo, '\tVR10 <- VR10 - 1'
+	print >> irtwo, '\tjumpt VR10 __loop_%d' % reg
+	print >> irtwo
+
+	print >> irone
+	print >> irtwo
+
+
 	# utilizam registrii
 	print >> irone, '\t# Using all registers'
 	print >> irtwo, '\t# Using all registers'
 	for i in xrange(10):
 		print >> irone, '\tVI%d <- VR%d' % (i, i)
 		print >> irtwo, '\tVI%d <- VR%d' % (i, i)
+
 	print >> irone, '\tVR10 <- call PrintInteger'
 	print >> irtwo, '\tVR10 <- call PrintInteger'
-	print >> irone
-	print >> irtwo
 
 
 def main():
