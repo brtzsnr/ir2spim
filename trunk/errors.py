@@ -24,4 +24,7 @@ class SegmentationFault(IndexError):
 		self.address = address
 
 	def __str__(self):
-		return 'Segmentation fault at address 0x%80X' % address
+		return 'Segmentation fault at address 0x%08X' % self.address
+
+	def __repr__(self):
+		return str(self)

@@ -4,6 +4,7 @@ import errors
 import array
 import logging
 import operator
+import operand
 
 
 class Memory(object):
@@ -39,14 +40,14 @@ class Memory(object):
 			size += len(s)
 
 		# relocates sections and compute label locations
-		start = (1 << 32) - size
+		start = 0
 		for s in self.__sections.itervalues():
 			logging.debug('relocating section `%s` at 0x%08X', s.name, start)
 			s.gatherLabels(self.labels, start)
 			start += len(s)
 
 		# writes labels location and copies memory
-		start = (1 << 32) - size
+		start = 0
 		for s in self.__sections.itervalues():
 			s.writeLabels(self.labels)
 			self.store(s.memory, start)
@@ -130,8 +131,8 @@ class Memory(object):
 	def locationToLabel(self, address):
 		if self.__locations is None:
 			self.__locations = {}
-			for label, address in self.labels.iteritems():
-				self.__locations.setdefault(address, []).append(label)
+			for label, label_address in self.labels.iteritems():
+				self.__locations.setdefault(label_address, []).append(label)
 		return self.__locations.get(address, [])
 
 	def loadByte(self, address):
@@ -145,7 +146,7 @@ class Memory(object):
 
 	def loadWord(self, address):
 		# XXX improve, this is just a quick hack
-		return (
+		return operand.normalize(
 				+ (self.loadByte(address + 0) << 0x00)
 				+ (self.loadByte(address + 1) << 0x08)
 				+ (self.loadByte(address + 2) << 0x10)

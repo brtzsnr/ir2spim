@@ -242,8 +242,7 @@ class Program(object):
 
 		# stores destination
 		if dest is not None:
-			dest = dest & 0xffffffff
-			self.registers[instr[1]] = dest
+			self.registers[instr[1]] = operand.normalize(dest)
 
 
 def disassemble(memory, address):
