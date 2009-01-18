@@ -204,7 +204,9 @@ class Program(object):
 		elif mnem == '*':
 			dest = instr[2] * instr[3]
 		elif mnem == '/':
-			dest = instr[2] / instr[3]
+			# for negative numbers / does not have same result as Java
+			# work around
+			dest = abs(instr[2]) / abs(instr[3]) * sign(instr[2]) * sign(instr[3])
 		elif mnem == '<':
 			dest = int(instr[2] < instr[3])
 		elif mnem == '<=':
