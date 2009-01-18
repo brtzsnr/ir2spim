@@ -38,9 +38,9 @@ def printRandomOperation(reg, depth=1):
 
 	# eliminam codul optimizat cu peephole
 	if op == 'mov' and dst == src0[0]:
-		return printRandomOperation(reg)
+		return printRandomOperation(reg, depth)
 	if op == '/' and 0 == src1[0]:
-		return printRandomOperation(reg)
+		return printRandomOperation(reg, depth)
 
 	# printam destinatia
 	print '\t' * depth, 'VR%d <-' % dst,
@@ -78,6 +78,7 @@ def printRandomOperation(reg, depth=1):
 
 
 def printRegister(register, depth):
+	# makes last definition of register invariant by printing it :D
 	print '\t' * depth, 'VI0 <- VR%d' % register
 	print '\t' * depth, 'VR0 <- call PrintInteger'
 	print
@@ -104,14 +105,16 @@ def Func2(regs, branch, depth=1):
 	global _index, _max_depth
 
 	if random.randint(depth, _max_depth) == depth:
-		printRandomOperation(regs, depth)
+		print '\t' * depth, 'VR0 <- %d' % random.randint(range[0], range[1])
+		print '\t' * depth, 'VI0 <- VR0'
+		print '\t' * depth, 'VR0 <- call PrintInteger'
 		return regs
 
 	for i in xrange(0, random.randint(1, 3)):
 		id = _index
 		_index += 1
 
-		print '\t' * depth, '# _index =', id
+		print '\t' * depth, '# basic block', id, '; depth', depth
 		which = branch(regs, depth)
 		temp = copy.copy(regs)
 
@@ -146,12 +149,25 @@ def Func2(regs, branch, depth=1):
 def branch2(regs, depth):
 	which = random.randint(0, 1)
 	print '\t' * depth, 'VR0 <- %d' % which
-
 	return which
 
 
 def branch3(regs, depth):
-	dst = printRandomOperation(regs, depth)
+	# genereaza valorile initiale pentru registri
+	for i in xrange(1, 10):
+		regs[i] = random.randint(range[0], range[1])
+		print '\t'* depth, 'VR%d <- %d' % (i, regs[i])
+		print '\t'* depth, 'VI%d <- VR%d' % (i, i)
+
+	# toate atribuirile de mai sus devin variante
+	print '\t'* depth, 'VR0 <- call Nothing'
+	print
+
+
+	for i in xrange(random.randint(5, 15)):
+		dst = printRandomOperation(regs, depth)
+
+	dst = random.randint(1, 9)
 	which = bool(regs[dst])
 
 	if random.randint(0, 1):
@@ -172,6 +188,11 @@ if __name__ == '__main__':
 	print '\t', 'loadl VR0 space'
 	print '\t', 'VI0 <- VR0'
 	print '\t', 'VR0 <- call OutString'
+	print '\t', 'return 0'
+	print
+
+	print 'Nothing:'
+	print '\t', '# does nothing'
 	print '\t', 'return 0'
 	print
 
