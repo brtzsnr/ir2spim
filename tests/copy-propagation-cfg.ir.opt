@@ -1,0 +1,669 @@
+.code
+Assign1:
+    VR100 <- VI0
+    return VR100
+    
+PrintInteger:
+    VR100 <- call OutInt
+    loadl VR100 space
+    VI0 <- VR100
+    VR100 <- call OutString
+    return 0
+    
+Nothing:
+    return 0
+    
+Loop:
+    VR20 <- VI0
+    VR20 <- VR20 + 1
+    VR21 <- VI1
+    VR21 <- VR21 + 1
+    VR22 <- VI2
+    VR22 <- VR22 + 1
+    VR23 <- VI3
+    VR23 <- VR23 + 1
+    VR24 <- VI4
+    VR24 <- VR24 + 1
+    VR25 <- VI5
+    VR25 <- VR25 + 1
+    VR26 <- VI6
+    VR26 <- VR26 + 1
+    VR27 <- VI7
+    VR27 <- VR27 + 1
+    VR28 <- VI8
+    VR28 <- VR28 + 1
+    VR29 <- VI9
+    VR29 <- VR29 + 1
+    VR30 <- VI10
+    VR30 <- VR30 + 1
+    VR31 <- VI11
+    VR31 <- VR31 + 1
+    VR32 <- VI12
+    VR32 <- VR32 + 1
+    VR33 <- VI13
+    VR33 <- VR33 + 1
+    VR34 <- VI14
+    VR34 <- VR34 + 1
+    VR35 <- VI15
+    VR35 <- VR35 + 1
+    VR36 <- VI16
+    VR36 <- VR36 + 1
+    VR37 <- VI17
+    VR37 <- VR37 + 1
+    VR38 <- VI18
+    VR38 <- VR38 + 1
+    VR39 <- VI19
+    VR39 <- VR39 + 1
+    
+    # printing([32, 33, 34, 35, 36, 37, 38, 39, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+    VI0 <- VR32
+    VR100 <- call PrintInteger
+    VI0 <- VR33
+    VR100 <- call PrintInteger
+    VI0 <- VR34
+    VR100 <- call PrintInteger
+    VI0 <- VR35
+    VR100 <- call PrintInteger
+    VI0 <- VR36
+    VR100 <- call PrintInteger
+    VI0 <- VR37
+    VR100 <- call PrintInteger
+    VI0 <- VR38
+    VR100 <- call PrintInteger
+    VI0 <- VR39
+    VR100 <- call PrintInteger
+    VI0 <- VR20
+    VR100 <- call PrintInteger
+    VI0 <- VR21
+    VR100 <- call PrintInteger
+    VI0 <- VR22
+    VR100 <- call PrintInteger
+    VI0 <- VR23
+    VR100 <- call PrintInteger
+    VI0 <- VR24
+    VR100 <- call PrintInteger
+    VI0 <- VR25
+    VR100 <- call PrintInteger
+    VI0 <- VR26
+    VR100 <- call PrintInteger
+    VI0 <- VR27
+    VR100 <- call PrintInteger
+    VI0 <- VR28
+    VR100 <- call PrintInteger
+    VI0 <- VR29
+    VR100 <- call PrintInteger
+    VI0 <- VR30
+    VR100 <- call PrintInteger
+    VI0 <- VR31
+    VR100 <- call PrintInteger
+    # cfg loop 0
+    VR80 <- 3
+    VI0 <- VR80
+    VR80 <- call Assign1
+    
+    __for_start_0:
+    jumpf VR80 __for_end_0
+        # propagate(regs = [21, 27],
+        #          other = ['VR32', 'VR33', 'VR34', 'VR35', 'VR36', 'VR37', 'VR38', 'VR39', 'VR20', 'VR22', 'VR23', 'VR24', 'VR25', 'VR26', 'VR28', 'VR29', 'VR30', 'VR31', 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        VR95 <- VR21
+        VR100 <- VR35 + VR21
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR92 <- VR21
+        VR100 <- VR31 + VR21
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR90 <- VR21
+        VR99 <- VR27
+        VR100 <- VR21 + VR33
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR100 <- VR21 + VR21
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR96 <- VR21
+        VR100 <- VR21 + VR27
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR100 <- VR20 + VR21
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR98 <- VR27
+        VR100 <- VR22 + VR27
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR100 <- VR21 + VR21
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR100 <- VR21 + VR32
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR100 <- VR21 + VR35
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        VR93 <- VR27
+        VR97 <- VR21
+        VR94 <- VR27
+        VR100 <- VR38 + VR27
+        VI0 <- VR100
+        VR100 <- call PrintInteger
+        
+        # using(xrange(90, 100))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_3:
+        jumpf VR100 __loop_end_3
+            VR90 <- VR90 + 91
+            VR90 <- VR90 + VR100
+            VR91 <- VR91 + 92
+            VR91 <- VR91 + VR100
+            VR92 <- VR92 + 93
+            VR92 <- VR92 + VR100
+            VR93 <- VR93 + 94
+            VR93 <- VR93 + VR100
+            VR94 <- VR94 + 95
+            VR94 <- VR94 + VR100
+            VR95 <- VR95 + 96
+            VR95 <- VR95 + VR100
+            VR96 <- VR96 + 97
+            VR96 <- VR96 + VR100
+            VR97 <- VR97 + 98
+            VR97 <- VR97 + VR100
+            VR98 <- VR98 + 99
+            VR98 <- VR98 + VR100
+            VR99 <- VR99 + 100
+            VR99 <- VR99 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_3
+        __loop_end_3:
+        
+        VI90 <- VR90
+        VI91 <- VR91
+        VI92 <- VR92
+        VI93 <- VR93
+        VI94 <- VR94
+        VI95 <- VR95
+        VI96 <- VR96
+        VI97 <- VR97
+        VI98 <- VR98
+        VI99 <- VR99
+        VR100 <- call Nothing
+        
+        # using([21, 27])
+        VR100 <- 5
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_4:
+        jumpf VR100 __loop_end_4
+            VR21 <- VR21 + 22
+            VR21 <- VR21 + VR100
+            VR27 <- VR27 + 28
+            VR27 <- VR27 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_4
+        __loop_end_4:
+        
+        VI21 <- VR21
+        VI27 <- VR27
+        VR100 <- call Nothing
+        
+        # cfg loop 1
+        VR81 <- 3
+        VI0 <- VR81
+        VR81 <- call Assign1
+        
+        __for_start_1:
+        jumpf VR81 __for_end_1
+            # propagate(regs = [36, 38, 21, 22, 27, 28],
+            #          other = ['VR32', 'VR33', 'VR34', 'VR35', 'VR37', 'VR39', 'VR20', 'VR23', 'VR24', 'VR25', 'VR26', 'VR29', 'VR30', 'VR31', 1, 2, 3, 4, 5, 6, 7, 8, 9])
+            VR99 <- VR38
+            VR100 <- VR38 + VR38
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR100 <- VR30 + VR38
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR90 <- VR21
+            VR91 <- VR22
+            VR96 <- VR28
+            VR100 <- VR21 + VR23
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR92 <- VR21
+            VR93 <- VR21
+            VR97 <- VR28
+            VR100 <- VR28 + VR21
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR100 <- VR22 + VR39
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR94 <- VR22
+            VR100 <- VR21 + VR28
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR100 <- 5 + VR22
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR100 <- VR28 + VR33
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR95 <- VR27
+            VR100 <- VR22 + VR28
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR100 <- 1 + VR27
+            VI0 <- VR100
+            VR100 <- call PrintInteger
+            VR98 <- VR36
+            
+            # using(xrange(90, 100))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_5:
+            jumpf VR100 __loop_end_5
+                VR90 <- VR90 + 91
+                VR90 <- VR90 + VR100
+                VR91 <- VR91 + 92
+                VR91 <- VR91 + VR100
+                VR92 <- VR92 + 93
+                VR92 <- VR92 + VR100
+                VR93 <- VR93 + 94
+                VR93 <- VR93 + VR100
+                VR94 <- VR94 + 95
+                VR94 <- VR94 + VR100
+                VR95 <- VR95 + 96
+                VR95 <- VR95 + VR100
+                VR96 <- VR96 + 97
+                VR96 <- VR96 + VR100
+                VR97 <- VR97 + 98
+                VR97 <- VR97 + VR100
+                VR98 <- VR98 + 99
+                VR98 <- VR98 + VR100
+                VR99 <- VR99 + 100
+                VR99 <- VR99 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_5
+            __loop_end_5:
+            
+            VI90 <- VR90
+            VI91 <- VR91
+            VI92 <- VR92
+            VI93 <- VR93
+            VI94 <- VR94
+            VI95 <- VR95
+            VI96 <- VR96
+            VI97 <- VR97
+            VI98 <- VR98
+            VI99 <- VR99
+            VR100 <- call Nothing
+            
+            # using([36, 38, 21, 22, 27, 28])
+            VR100 <- 5
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_6:
+            jumpf VR100 __loop_end_6
+                VR36 <- VR36 + 37
+                VR36 <- VR36 + VR100
+                VR38 <- VR38 + 39
+                VR38 <- VR38 + VR100
+                VR21 <- VR21 + 22
+                VR21 <- VR21 + VR100
+                VR22 <- VR22 + 23
+                VR22 <- VR22 + VR100
+                VR27 <- VR27 + 28
+                VR27 <- VR27 + VR100
+                VR28 <- VR28 + 29
+                VR28 <- VR28 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_6
+            __loop_end_6:
+            
+            VI36 <- VR36
+            VI38 <- VR38
+            VI21 <- VR21
+            VI22 <- VR22
+            VI27 <- VR27
+            VI28 <- VR28
+            VR100 <- call Nothing
+            
+            # cfg loop 2
+            VR82 <- 3
+            VI0 <- VR82
+            VR82 <- call Assign1
+            
+            __for_start_2:
+            jumpf VR82 __for_end_2
+                # propagate(regs = [32, 36, 38, 39, 21, 22, 23, 25, 27, 28, 30],
+                #          other = ['VR33', 'VR34', 'VR35', 'VR37', 'VR20', 'VR24', 'VR26', 'VR29', 'VR31', 1, 2, 3, 4, 5, 6, 7, 8, 9])
+                VR95 <- VR21
+                VR98 <- VR23
+                VR100 <- VR23 + VR23
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR91 <- VR23
+                VR100 <- VR26 + VR23
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR100 <- VR31 + VR21
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR100 <- 8 + VR23
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR90 <- VR27
+                VR100 <- VR23 + VR23
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR100 <- VR21 + VR37
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR100 <- VR31 + VR21
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR100 <- VR23 + VR24
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR99 <- VR32
+                VR92 <- VR36
+                VR100 <- 6 + VR32
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR96 <- VR39
+                VR100 <- VR21 + VR23
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                # using((90,))
+                VR100 <- 0
+                VI0 <- VR100
+                VR100 <- call Assign1
+                
+                __loop_start_7:
+                jumpf VR100 __loop_end_7
+                    VR90 <- VR90 + 91
+                    VR90 <- VR90 + VR100
+                VR100 <- VR100 - 1
+                jump __loop_start_7
+                __loop_end_7:
+                
+                VI90 <- VR90
+                VR100 <- call Nothing
+                
+                VR90 <- VR21
+                VR100 <- VR32 + VR23
+                VI0 <- VR100
+                VR100 <- call PrintInteger
+                VR93 <- VR28
+                
+                # using(xrange(90, 100))
+                VR100 <- 0
+                VI0 <- VR100
+                VR100 <- call Assign1
+                
+                __loop_start_8:
+                jumpf VR100 __loop_end_8
+                    VR90 <- VR90 + 91
+                    VR90 <- VR90 + VR100
+                    VR91 <- VR91 + 92
+                    VR91 <- VR91 + VR100
+                    VR92 <- VR92 + 93
+                    VR92 <- VR92 + VR100
+                    VR93 <- VR93 + 94
+                    VR93 <- VR93 + VR100
+                    VR94 <- VR94 + 95
+                    VR94 <- VR94 + VR100
+                    VR95 <- VR95 + 96
+                    VR95 <- VR95 + VR100
+                    VR96 <- VR96 + 97
+                    VR96 <- VR96 + VR100
+                    VR97 <- VR97 + 98
+                    VR97 <- VR97 + VR100
+                    VR98 <- VR98 + 99
+                    VR98 <- VR98 + VR100
+                    VR99 <- VR99 + 100
+                    VR99 <- VR99 + VR100
+                VR100 <- VR100 - 1
+                jump __loop_start_8
+                __loop_end_8:
+                
+                VI90 <- VR90
+                VI91 <- VR91
+                VI92 <- VR92
+                VI93 <- VR93
+                VI94 <- VR94
+                VI95 <- VR95
+                VI96 <- VR96
+                VI97 <- VR97
+                VI98 <- VR98
+                VI99 <- VR99
+                VR100 <- call Nothing
+                
+                # using([32, 36, 38, 39, 21, 22, 23, 25, 27, 28, 30])
+                VR100 <- 5
+                VI0 <- VR100
+                VR100 <- call Assign1
+                
+                __loop_start_9:
+                jumpf VR100 __loop_end_9
+                    VR32 <- VR32 + 33
+                    VR32 <- VR32 + VR100
+                    VR36 <- VR36 + 37
+                    VR36 <- VR36 + VR100
+                    VR38 <- VR38 + 39
+                    VR38 <- VR38 + VR100
+                    VR39 <- VR39 + 40
+                    VR39 <- VR39 + VR100
+                    VR21 <- VR21 + 22
+                    VR21 <- VR21 + VR100
+                    VR22 <- VR22 + 23
+                    VR22 <- VR22 + VR100
+                    VR23 <- VR23 + 24
+                    VR23 <- VR23 + VR100
+                    VR25 <- VR25 + 26
+                    VR25 <- VR25 + VR100
+                    VR27 <- VR27 + 28
+                    VR27 <- VR27 + VR100
+                    VR28 <- VR28 + 29
+                    VR28 <- VR28 + VR100
+                    VR30 <- VR30 + 31
+                    VR30 <- VR30 + VR100
+                VR100 <- VR100 - 1
+                jump __loop_start_9
+                __loop_end_9:
+                
+                VI32 <- VR32
+                VI36 <- VR36
+                VI38 <- VR38
+                VI39 <- VR39
+                VI21 <- VR21
+                VI22 <- VR22
+                VI23 <- VR23
+                VI25 <- VR25
+                VI27 <- VR27
+                VI28 <- VR28
+                VI30 <- VR30
+                VR100 <- call Nothing
+                
+                # printing([32, 36, 38, 39, 21, 22, 23, 25, 27, 28, 30])
+                VR32 <- VR32 + 1
+                VI0 <- VR32
+                VR100 <- call PrintInteger
+                VR36 <- VR36 + 1
+                VI0 <- VR36
+                VR100 <- call PrintInteger
+                VR38 <- VR38 + 1
+                VI0 <- VR38
+                VR100 <- call PrintInteger
+                VR39 <- VR39 + 1
+                VI0 <- VR39
+                VR100 <- call PrintInteger
+                VR21 <- VR21 + 1
+                VI0 <- VR21
+                VR100 <- call PrintInteger
+                VR22 <- VR22 + 1
+                VI0 <- VR22
+                VR100 <- call PrintInteger
+                VR23 <- VR23 + 1
+                VI0 <- VR23
+                VR100 <- call PrintInteger
+                VR25 <- VR25 + 1
+                VI0 <- VR25
+                VR100 <- call PrintInteger
+                VR27 <- VR27 + 1
+                VI0 <- VR27
+                VR100 <- call PrintInteger
+                VR28 <- VR28 + 1
+                VI0 <- VR28
+                VR100 <- call PrintInteger
+                VR30 <- VR30 + 1
+                VI0 <- VR30
+                VR100 <- call PrintInteger
+                loadl VR100 new_line
+                VI0 <- VR100
+                VR100 <- call OutString
+                
+            VR82 <- VR82 - 1
+            jump __for_start_2
+            __for_end_2:
+            
+            # printing([36, 38, 21, 22, 27, 28])
+            VR36 <- VR36 + 1
+            VI0 <- VR36
+            VR100 <- call PrintInteger
+            VR38 <- VR38 + 1
+            VI0 <- VR38
+            VR100 <- call PrintInteger
+            VR21 <- VR21 + 1
+            VI0 <- VR21
+            VR100 <- call PrintInteger
+            VR22 <- VR22 + 1
+            VI0 <- VR22
+            VR100 <- call PrintInteger
+            VR27 <- VR27 + 1
+            VI0 <- VR27
+            VR100 <- call PrintInteger
+            VR28 <- VR28 + 1
+            VI0 <- VR28
+            VR100 <- call PrintInteger
+            loadl VR100 new_line
+            VI0 <- VR100
+            VR100 <- call OutString
+            
+        VR81 <- VR81 - 1
+        jump __for_start_1
+        __for_end_1:
+        
+        # printing([21, 27])
+        VR21 <- VR21 + 1
+        VI0 <- VR21
+        VR100 <- call PrintInteger
+        VR27 <- VR27 + 1
+        VI0 <- VR27
+        VR100 <- call PrintInteger
+        loadl VR100 new_line
+        VI0 <- VR100
+        VR100 <- call OutString
+        
+    VR80 <- VR80 - 1
+    jump __for_start_0
+    __for_end_0:
+    
+    return 0
+    
+Main:
+    VR100 <- 15
+    VI0 <- VR100
+    VR100 <- 28
+    VI1 <- VR100
+    VR100 <- 35
+    VI2 <- VR100
+    VR100 <- 49
+    VI3 <- VR100
+    VR100 <- 53
+    VI4 <- VR100
+    VR100 <- 66
+    VI5 <- VR100
+    VR100 <- 72
+    VI6 <- VR100
+    VR100 <- 87
+    VI7 <- VR100
+    VR100 <- 98
+    VI8 <- VR100
+    VR100 <- 103
+    VI9 <- VR100
+    VR100 <- 116
+    VI10 <- VR100
+    VR100 <- 128
+    VI11 <- VR100
+    VR100 <- 131
+    VI12 <- VR100
+    VR100 <- 141
+    VI13 <- VR100
+    VR100 <- 155
+    VI14 <- VR100
+    VR100 <- 169
+    VI15 <- VR100
+    VR100 <- 179
+    VI16 <- VR100
+    VR100 <- 189
+    VI17 <- VR100
+    VR100 <- 198
+    VI18 <- VR100
+    VR100 <- 203
+    VI19 <- VR100
+    VR100 <- call Loop
+    
+    VR100 <- 12
+    VI0 <- VR100
+    VR100 <- 28
+    VI1 <- VR100
+    VR100 <- 39
+    VI2 <- VR100
+    VR100 <- 44
+    VI3 <- VR100
+    VR100 <- 57
+    VI4 <- VR100
+    VR100 <- 61
+    VI5 <- VR100
+    VR100 <- 77
+    VI6 <- VR100
+    VR100 <- 83
+    VI7 <- VR100
+    VR100 <- 94
+    VI8 <- VR100
+    VR100 <- 108
+    VI9 <- VR100
+    VR100 <- 112
+    VI10 <- VR100
+    VR100 <- 122
+    VI11 <- VR100
+    VR100 <- 134
+    VI12 <- VR100
+    VR100 <- 144
+    VI13 <- VR100
+    VR100 <- 153
+    VI14 <- VR100
+    VR100 <- 164
+    VI15 <- VR100
+    VR100 <- 177
+    VI16 <- VR100
+    VR100 <- 184
+    VI17 <- VR100
+    VR100 <- 191
+    VI18 <- VR100
+    VR100 <- 203
+    VI19 <- VR100
+    VR100 <- call Loop
+    
+    return 0
+    
+.data
+    new_line: DS "\n\0"
+    space: DS " \0"
