@@ -6,7 +6,10 @@ Func:
 	VR4 <- 4
 
 	jumpf VR10 if_
-	VR1 <- 0
+
+	VR1 <- VR10
+	VR1 <- VR1 + 2
+	VR0 <- call OutInt
 
 	label: VR2 <- VR4 + VR10
 	if_: VR4 <- VR2 + VR10
