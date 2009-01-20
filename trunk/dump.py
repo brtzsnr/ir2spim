@@ -10,7 +10,6 @@ program = _program.Program()
 program.linkAll(sys.argv[1:])
 
 try:
-	program.run()
+	program.memory.dump(0, 1 << 32)
 except errors.ProgramAbortError, e:
 	print >> sys.stderr, e
-	sys.exit(int(e.exit_code))

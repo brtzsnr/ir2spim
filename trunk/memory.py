@@ -91,7 +91,7 @@ class Memory(object):
 			if base_address + i + 16 <= start: continue
 
 			# prints new lines & coordinates
-			print '0x%8X' % (i + base_address),
+			print '0x%08X' % (i + base_address),
 
 			for j in xrange(16):
 				# prints separators
@@ -121,9 +121,12 @@ class Memory(object):
 		start_id = start >> Memory.CHUNK_BITS
 		end_id = (end - 1) >> Memory.CHUNK_BITS
 
-		for chunk_id in xrange(start_id, end_id + 1):
+		chunks = sorted(self.__chunks)
+
+		for chunk_id in chunks:
 			# XXX improve (do not iterate through all possible chunks)
-			self._dump_chunk(chunk_id, start, end)
+			if start_id <= chunk_id <= end_id:
+				self._dump_chunk(chunk_id, start, end)
 
 	def labelToLocation(self, label):
 		return self.labels[label]
