@@ -42,13 +42,14 @@ def constantPropagate(values, start, stop, steps):
 
 			values[src] = values[dst]
 			one('VR%d <- VR%d', src, dst)
-			one('VR101 <- VR101 + VR%d', src)
-
 			two('VR%d <- %d', src, values[dst])
-			two('VR101 <- VR101 + %d', values[src])
 
-			all('VI0 <- VR101')
-			all('VR100 <- call PrintInteger')
+			if values[src] != 0:
+				one('VR101 <- VR101 + VR%d', src)
+				two('VR101 <- VR101 + %d', values[src])
+
+				all('VI0 <- VR101')
+				all('VR100 <- call PrintInteger')
 
 		all('')
 		steps -= 1
