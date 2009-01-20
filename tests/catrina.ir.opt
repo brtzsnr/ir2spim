@@ -1,0 +1,442 @@
+.code
+
+Assign1:
+	VR100 <- VI0
+	return VR100
+
+
+PrintInteger:
+	VR100 <- call OutInt
+	loadl VR100 space
+	VI0 <- VR100
+	VR100 <- call OutString
+	return 0
+
+
+Nothing:
+	return 0
+
+
+Func:
+	VR18 <- 0
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR20 <- 0
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	VR17 <- 0
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	VR21 <- 0
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	jumpf VR18 __else_0
+	VR23 <- 0
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR22 <- 299
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR23 <- 363
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jumpf VR21 __else_1
+	VR21 <- 724
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR19 <- 724
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	VR21 <- 847
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR19 <- 0
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	jumpf VR20 __else_2
+	VR23 <- 711
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR20 <- VR21
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	jump __endif_2
+	__else_2: VR18 <- 602
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR17 <- 522
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	__endif_2: jump __endif_1
+	VR19 <- VR22
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	VR16 <- VR17
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	jump __endif_3
+	__endif_3: VR22 <- 680
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR21 __else_4
+	VR17 <- 697
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	jump __endif_4
+	__else_4: VR21 <- 0
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR18 <- 621
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	__endif_4: VR16 <- 407
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	VR16 <- 60
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	jumpf VR22 __else_5
+	VR16 <- 283
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	jump __endif_5
+	__else_5: VR21 <- 985
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	__endif_5: __endif_1: VR18 <- VR23
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	jumpf VR17 __else_6
+	VR17 <- VR18
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	VR22 <- 0
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR18 <- VR19
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR22 <- VR21
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR19 __else_7
+	VR21 <- 708
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR16 <- 0
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	jump __endif_7
+	__else_7: VR18 <- 38
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR16 <- VR23
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	__endif_7: jump __endif_6
+	__else_6: VR19 <- 144
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	VR18 <- VR20
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR18 <- 144
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	jumpf VR20 __else_8
+	VR21 <- VR20
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR22 <- VR18
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jump __endif_8
+	__endif_8: __endif_6: VR18 <- VR20
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR22 <- 0
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR20 __else_9
+	VR23 <- 0
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR17 <- 0
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	VR19 <- VR21
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	jumpf VR21 __else_10
+	VR18 <- 895
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR17 <- 203
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	jump __endif_10
+	__else_10: VR17 <- 20
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	__endif_10: jump __endif_9
+	__else_9: VR22 <- VR17
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR23 <- 418
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jumpf VR19 __else_11
+	VR19 <- VR23
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	jump __endif_11
+	__else_11: VR23 <- VR18
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR23 <- VR21
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	__endif_11: VR22 <- 579
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR20 <- 967
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	jumpf VR20 __else_12
+	VR23 <- VR16
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR18 <- 406
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	jump __endif_12
+	__endif_12: __endif_9: jump __endif_0
+	__else_0: VR16 <- 0
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	VR23 <- 0
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR23 <- 246
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR22 <- 0
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR20 __else_13
+	VR23 <- VR18
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR21 <- 209
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR21 <- 0
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	jumpf VR17 __else_14
+	VR23 <- 599
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jump __endif_14
+	__else_14: VR22 <- 423
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR17 <- 28
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	__endif_14: jump __endif_13
+	__else_13: VR22 <- 321
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR19 <- 0
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	VR19 <- 415
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	jumpf VR17 __else_15
+	VR17 <- 233
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	VR22 <- VR18
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jump __endif_15
+	__else_15: VR22 <- 415
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	__endif_15: VR22 <- VR23
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR23 <- 426
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jumpf VR23 __else_16
+	VR22 <- 0
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jump __endif_16
+	__endif_16: __endif_13: VR18 <- 727
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR19 <- 0
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	jumpf VR18 __else_17
+	VR23 <- VR18
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR20 <- 956
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	jumpf VR18 __else_18
+	VR18 <- 0
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	jump __endif_18
+	__else_18: VR16 <- 845
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	__endif_18: jump __endif_17
+	VR18 <- VR20
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR18 <- VR23
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	jump __endif_19
+	__else_19: VR23 <- 145
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	__endif_19: VR20 <- VR19
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	VR23 <- 404
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jumpf VR23 __else_20
+	VR22 <- VR19
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jump __endif_20
+	__endif_20: VR16 <- VR23
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	jumpf VR21 __else_21
+	VR23 <- 0
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR23 <- 539
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jump __endif_21
+	__else_21: VR21 <- 795
+	VI0 <- VR21
+	VR100 <- call PrintInteger
+	VR23 <- 795
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	__endif_21: __endif_17: VR23 <- 252
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	VR16 <- 0
+	VI0 <- VR16
+	VR100 <- call PrintInteger
+	jumpf VR19 __else_22
+	VR18 <- 40
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR18 <- VR20
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR18 <- 846
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR23 <- 0
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jumpf VR19 __else_23
+	VR20 <- VR22
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	VR19 <- 36
+	VI0 <- VR19
+	VR100 <- call PrintInteger
+	jump __endif_23
+	__else_23: VR20 <- VR23
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	VR18 <- 0
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	__endif_23: VR17 <- 74
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	VR22 <- 807
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR17 __else_24
+	VR17 <- VR23
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	VR23 <- 25
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jump __endif_24
+	__endif_24: jump __endif_22
+	__else_22: VR20 <- VR23
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	VR22 <- VR18
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	VR22 <- VR23
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR23 __else_25
+	VR17 <- VR18
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	jump __endif_25
+	__else_25: VR20 <- 0
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	__endif_25: VR22 <- 0
+	VI0 <- VR22
+	VR100 <- call PrintInteger
+	jumpf VR16 __else_26
+	VR17 <- 966
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	jump __endif_26
+	__else_26: VR20 <- VR22
+	VI0 <- VR20
+	VR100 <- call PrintInteger
+	__endif_26: VR23 <- VR19
+	VI0 <- VR23
+	VR100 <- call PrintInteger
+	jumpf VR18 __else_27
+	VR17 <- 0
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	jump __endif_27
+	__else_27: VR18 <- VR19
+	VI0 <- VR18
+	VR100 <- call PrintInteger
+	VR17 <- 711
+	VI0 <- VR17
+	VR100 <- call PrintInteger
+	__endif_27: __endif_22: __endif_0: return 0
+
+
+Main:
+	VR100 <- call Func
+	loadl VR100 new_line
+	VI0 <- VR100
+	VR100 <- call OutString
+	return 0
+
+
+.data
+	new_line: DS "\n\0"
+	space: DS " \0"

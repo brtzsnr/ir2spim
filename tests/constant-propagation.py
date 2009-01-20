@@ -24,7 +24,7 @@ def constantPropagate(values, start, stop, steps):
 					break
 
 			if values[dst] is not None:
-				# src este redefinit, trebuie sa nu pierdem definitia
+				# dst este redefinit, trebuie sa nu pierdem definitia
 				use((dst, ))
 
 			all('VR%d <- %d', dst, values[dst])
