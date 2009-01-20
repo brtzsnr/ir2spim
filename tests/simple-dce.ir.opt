@@ -1,0 +1,10 @@
+.code
+
+Func:
+	return 0
+
+Main:
+	VR0 <- call Func
+	return VR0
+
+.data
