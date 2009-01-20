@@ -1,15 +1,17 @@
-#! /usr/bin/python
-
-# VR100 registru temporar
-# VR90 ... VR99 registrii folositi pentru copiere
-
 import random
 
-irone = open('copy-propagation-cfg.ir', 'wt')
-irtwo = open('copy-propagation-cfg.ir.opt', 'wt')
+irone = None
+irtwo = None
 irnul = open('/dev/null', 'wt')
+
 index = 0
 depth = 1
+
+
+def iropen(name):
+	global irone, irtwo
+	irone = open('%s.ir' % name, 'wt')
+	irtwo = open('%s.ir.opt' % name, 'wt')
 
 
 def write(file, format, *args):
@@ -186,6 +188,14 @@ def use(regs, steps=0):
 	all('')
 
 
+def printRegs(regs):
+	for r in regs:
+		all('VI0 <- VR%d', r)
+		all('VR100 <- call PrintInteger')
+	all('loadl VR100 new_line')
+	all('VI0 <- VR100')
+	all('VR100 <- call OutString')
+
 
 def propagate(regs, other, steps):
 	all('# propagate(regs = %s,', regs)
@@ -270,113 +280,3 @@ def propagate(regs, other, steps):
 	use(xrange(90, 100))
 
 
-def loop():
-	dec()
-	all('Loop:')
-	inc()
-
-	# avem 3 bucle imbricate
-	# tata specifica locul unde sunt folositi
-	where = {}
-	for i in xrange(20, 40):
-		where[i] = random.randint(0, 3)  # nivelul la care este definit registru in bucle
-		all('VR%d <- VI%d', i, i - 20)  # copiaza intrarea
-		all('VR%d <- VR%d + 1', i, i)  # nu mai poate face copy propagation pe VI
-
-	all('')
-	all('# printing(%s)', where.keys())
-	for r in where:
-		all('VI0 <- VR%d', r)
-		all('VR100 <- call PrintInteger')
-
-
-	# lista de labeluri
-	label = [unique() for i in xrange(3)]
-
-	for i in xrange(3):
-		all('# cfg loop %d', i)
-
-		# propaga copierea doar pentru registrii care nu sunt
-		# definiti intr-o bucla imbricata
-		regs = [r for r in where if where[r] <= i]
-		other = ['VR%d' % r for r in where if where[r] > i]
-		other.extend(range(1, 10))
-
-		# headerul functiei
-		assign1(80 + i, '3')
-		all('')
-		all('__for_start_%d:', label[i])
-		all('jumpf VR%d __for_end_%d', 80 + i, label[i])
-		inc()
-
-		propagate(regs, other, 20)
-		use(regs, 5)
-
-	for i in xrange(2, -1, -1):
-		regs = [r for r in where if where[r] <= i]
-		# other = ['VR%d' % r for r in where if where[r] > i]
-		# other.extend(range(1, 10))
-
-		# incrementing all registers defined here
-		all('# printing(%s)', regs)
-		for r in regs:
-			all('VR%d <- VR%d + 1', r, r)
-			all('VI0 <- VR%d', r)
-			all('VR100 <- call PrintInteger')
-
-		# prints a new line
-		all('loadl VR100 new_line')
-		all('VI0 <- VR100')
-		all('VR100 <- call OutString')
-		all('')
-
-		# footerul functiei
-		dec()
-		all('VR%d <- VR%d - 1', 80 + i, 80 + i)
-		all('jump __for_start_%d', label[i])
-		all('__for_end_%d:', label[i])
-		all('')
-
-
-	all('return 0')
-	all('')
-
-
-def main():
-	dec()
-	all('.code')
-	inc()
-	library()
-
-	loop()
-
-	dec()
-	all('Main:')
-	inc()
-
-	for i in xrange(20):
-		all('VR100 <- %d%d', i + 1, random.randint(1, 9))
-		all('VI%d <- VR100', i)
-	all('VR100 <- call Loop')
-	all('')
-
-	for i in xrange(20):
-		all('VR100 <- %d%d', i + 1, random.randint(1, 9))
-		all('VI%d <- VR100', i)
-	all('VR100 <- call Loop')
-	all('')
-
-	all('return 0')
-	all('')
-
-	# .data
-	dec()
-	all('.data')
-	inc()
-	all('new_line: DS "\\n\\0"')
-	all('space: DS " \\0"')
-
-
-
-if __name__ == '__main__':
-	main()
