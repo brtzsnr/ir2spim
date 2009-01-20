@@ -23,6 +23,9 @@ def constantPropagate(values, start, stop, steps):
 					values[dst] = temp
 					break
 
+			if values[dst] is not None:
+				# src este redefinit, trebuie sa nu pierdem definitia
+				use((dst, ))
 
 			all('VR%d <- %d', dst, values[dst])
 			all('VI0 <- VR%d', dst)
