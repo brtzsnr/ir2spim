@@ -9,6 +9,7 @@ Func:
 
 	VR1 <- VR10
 	VR1 <- VR1 + 2
+	VI0 <- VR1
 	VR0 <- call OutInt
 
 	label: VR2 <- VR4 + VR10
