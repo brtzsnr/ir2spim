@@ -7,7 +7,6 @@ from lib import *
 def constantPropagate(values, start, stop, steps):
 	# valorile registrilor
 
-
 	# all('# constantPropagate(%s, %d, %d, %d)', values, start, stop, steps)
 	while steps > 0:
 		dst = random.choice(values.keys())
@@ -37,11 +36,18 @@ def constantPropagate(values, start, stop, steps):
 			else:
 				continue
 
+			if values[src] is not None:
+				# src este redefinit, trebuie sa nu pierdem definitia
+				use((src, ))
 
 			values[src] = values[dst]
 			one('VR%d <- VR%d', src, dst)
+			one('VR101 <- VR101 + VR%d', src)
+
+			two('VR101 <- VR101 + %d', values[src])
 			two('VR%d <- %d', src, values[dst])
-			all('VI0 <- VR%d', src)
+
+			all('VI0 <- VR101')
 			all('VR100 <- call PrintInteger')
 
 		all('')
@@ -57,12 +63,13 @@ def Func1():
 
 	regs = dict([(i, None) for i in xrange(16, 32)])
 	constantPropagate(regs, 16, 32, 200)
+	use(regs.iterkeys())
 
 	all('return 0')
 	all('')
 
 
-_max_depth = 3
+_max_depth = 2
 _values = dict([(i, None) for i in xrange(16, 24)])
 
 
@@ -80,7 +87,7 @@ def Func2(depth=0):
 			if _values[which] is not None:
 				break
 
-		constantPropagate(_values, 0, 1, random.randint(1, 2))
+		constantPropagate(_values, 0, 1, random.randint(1, 4))
 
 		saved = copy.copy(_values)
 		branch_then(which, _values[which])
@@ -112,7 +119,10 @@ if __name__ == '__main__':
 	all('Func:')
 	inc()
 
+	all('VR101 <- VI0')
 	Func2()
+	use(_values.iterkeys())
+
 	all('return 0')
 	all('')
 
@@ -122,10 +132,21 @@ if __name__ == '__main__':
 	all('Main:')
 	inc()
 
+	all('VR100 <- %d', random.randint(0, 999))
+	all('VI0 <- VR100')
 	all('VR100 <- call Func')
 	all('loadl VR100 new_line')
 	all('VI0 <- VR100')
 	all('VR100 <- call OutString')
+	all('')
+
+	all('VR100 <- %d', random.randint(0, 999))
+	all('VI0 <- VR100')
+	all('VR100 <- call Func')
+	all('loadl VR100 new_line')
+	all('VI0 <- VR100')
+	all('VR100 <- call OutString')
+	all('')
 
 	all('return 0')
 	all('')
