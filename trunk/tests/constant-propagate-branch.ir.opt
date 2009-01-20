@@ -15,44 +15,64 @@ Nothing:
     
 Func:
     VR101 <- VI0
-    # using((19,))
+    # using((20,))
     VR100 <- 0
     VI0 <- VR100
     VR100 <- call Assign1
     
     __loop_start_0:
     jumpf VR100 __loop_end_0
-        VR19 <- VR19 + 20
-        VR19 <- VR19 + VR100
+        VR20 <- VR20 + 21
+        VR20 <- VR20 + VR100
     VR100 <- VR100 - 1
     jump __loop_start_0
     __loop_end_0:
     
-    VI19 <- VR19
+    VI20 <- VR20
     VR100 <- call Nothing
     
-    VR19 <- 0
-    VI0 <- VR19
+    VR20 <- 492
+    VI0 <- VR20
     VR100 <- call PrintInteger
     
-    # using((18,))
+    # using((21,))
     VR100 <- 0
     VI0 <- VR100
     VR100 <- call Assign1
     
     __loop_start_1:
     jumpf VR100 __loop_end_1
-        VR18 <- VR18 + 19
-        VR18 <- VR18 + VR100
+        VR21 <- VR21 + 22
+        VR21 <- VR21 + VR100
     VR100 <- VR100 - 1
     jump __loop_start_1
     __loop_end_1:
     
-    VI18 <- VR18
+    VI21 <- VR21
     VR100 <- call Nothing
     
-    VR18 <- 0
-    VI0 <- VR18
+    VR21 <- 0
+    VI0 <- VR21
+    VR100 <- call PrintInteger
+    
+    # using((16,))
+    VR100 <- 0
+    VI0 <- VR100
+    VR100 <- call Assign1
+    
+    __loop_start_2:
+    jumpf VR100 __loop_end_2
+        VR16 <- VR16 + 17
+        VR16 <- VR16 + VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_2
+    __loop_end_2:
+    
+    VI16 <- VR16
+    VR100 <- call Nothing
+    
+    VR16 <- 211
+    VI0 <- VR16
     VR100 <- call PrintInteger
     
     # using((17,))
@@ -60,53 +80,33 @@ Func:
     VI0 <- VR100
     VR100 <- call Assign1
     
-    __loop_start_2:
-    jumpf VR100 __loop_end_2
+    __loop_start_3:
+    jumpf VR100 __loop_end_3
         VR17 <- VR17 + 18
         VR17 <- VR17 + VR100
     VR100 <- VR100 - 1
-    jump __loop_start_2
-    __loop_end_2:
+    jump __loop_start_3
+    __loop_end_3:
     
     VI17 <- VR17
     VR100 <- call Nothing
     
-    VR17 <- 442
+    VR17 <- 0
     VI0 <- VR17
     VR100 <- call PrintInteger
     
-        # using((21,))
-        VR100 <- 0
-        VI0 <- VR100
-        VR100 <- call Assign1
-        
-        __loop_start_20:
-        jumpf VR100 __loop_end_20
-            VR21 <- VR21 + 22
-            VR21 <- VR21 + VR100
-        VR100 <- VR100 - 1
-        jump __loop_start_20
-        __loop_end_20:
-        
-        VI21 <- VR21
-        VR100 <- call Nothing
-        
-        VR21 <- 693
-        VI0 <- VR21
-        VR100 <- call PrintInteger
-        
         # using((20,))
         VR100 <- 0
         VI0 <- VR100
         VR100 <- call Assign1
         
-        __loop_start_21:
-        jumpf VR100 __loop_end_21
+        __loop_start_18:
+        jumpf VR100 __loop_end_18
             VR20 <- VR20 + 21
             VR20 <- VR20 + VR100
         VR100 <- VR100 - 1
-        jump __loop_start_21
-        __loop_end_21:
+        jump __loop_start_18
+        __loop_end_18:
         
         VI20 <- VR20
         VR100 <- call Nothing
@@ -115,46 +115,184 @@ Func:
         VI0 <- VR20
         VR100 <- call PrintInteger
         
-        # using((16,))
+        # using((18,))
         VR100 <- 0
         VI0 <- VR100
         VR100 <- call Assign1
         
-        __loop_start_22:
-        jumpf VR100 __loop_end_22
-            VR16 <- VR16 + 17
-            VR16 <- VR16 + VR100
+        __loop_start_19:
+        jumpf VR100 __loop_end_19
+            VR18 <- VR18 + 19
+            VR18 <- VR18 + VR100
         VR100 <- VR100 - 1
-        jump __loop_start_22
-        __loop_end_22:
+        jump __loop_start_19
+        __loop_end_19:
         
-        VI16 <- VR16
+        VI18 <- VR18
         VR100 <- call Nothing
         
-        VR16 <- 0
-        VI0 <- VR16
+        VR18 <- 883
+        VI0 <- VR18
         VR100 <- call PrintInteger
         
-        VR22 <- 0
-        
-            # using((18,))
+            # using((23,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_23:
+            jumpf VR100 __loop_end_23
+                VR23 <- VR23 + 24
+                VR23 <- VR23 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_23
+            __loop_end_23:
+            
+            VI23 <- VR23
+            VR100 <- call Nothing
+            
+            VR23 <- 309
+            VI0 <- VR23
+            VR100 <- call PrintInteger
+            
+            # using((20,))
             VR100 <- 0
             VI0 <- VR100
             VR100 <- call Assign1
             
             __loop_start_24:
             jumpf VR100 __loop_end_24
-                VR18 <- VR18 + 19
-                VR18 <- VR18 + VR100
+                VR20 <- VR20 + 21
+                VR20 <- VR20 + VR100
             VR100 <- VR100 - 1
             jump __loop_start_24
             __loop_end_24:
             
+            VI20 <- VR20
+            VR100 <- call Nothing
+            
+            VR20 <- 902
+            VI0 <- VR20
+            VR100 <- call PrintInteger
+            
+        # using((18,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_25:
+        jumpf VR100 __loop_end_25
+            VR18 <- VR18 + 19
+            VR18 <- VR18 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_25
+        __loop_end_25:
+        
+        VI18 <- VR18
+        VR100 <- call Nothing
+        
+        VR18 <- 179
+        VI0 <- VR18
+        VR100 <- call PrintInteger
+        
+            # using((19,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_29:
+            jumpf VR100 __loop_end_29
+                VR19 <- VR19 + 20
+                VR19 <- VR19 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_29
+            __loop_end_29:
+            
+            VI19 <- VR19
+            VR100 <- call Nothing
+            
+            VR19 <- 493
+            VI0 <- VR19
+            VR100 <- call PrintInteger
+            
+            # using((18,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_30:
+            jumpf VR100 __loop_end_30
+                VR18 <- VR18 + 19
+                VR18 <- VR18 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_30
+            __loop_end_30:
+            
             VI18 <- VR18
             VR100 <- call Nothing
             
-            VR18 <- 693
-            VR101 <- VR101 + 693
+            VR18 <- 844
+            VI0 <- VR18
+            VR100 <- call PrintInteger
+            
+        # using((22,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_31:
+        jumpf VR100 __loop_end_31
+            VR22 <- VR22 + 23
+            VR22 <- VR22 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_31
+        __loop_end_31:
+        
+        VI22 <- VR22
+        VR100 <- call Nothing
+        
+        VR22 <- 0
+        VI0 <- VR22
+        VR100 <- call PrintInteger
+        
+        # using((18,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_32:
+        jumpf VR100 __loop_end_32
+            VR18 <- VR18 + 19
+            VR18 <- VR18 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_32
+        __loop_end_32:
+        
+        VI18 <- VR18
+        VR100 <- call Nothing
+        
+        VR18 <- 0
+        VI0 <- VR18
+        VR100 <- call PrintInteger
+        
+            # using((23,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_36:
+            jumpf VR100 __loop_end_36
+                VR23 <- VR23 + 24
+                VR23 <- VR23 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_36
+            __loop_end_36:
+            
+            VI23 <- VR23
+            VR100 <- call Nothing
+            
+            VR23 <- 211
+            VR101 <- VR101 + 211
             VI0 <- VR101
             VR100 <- call PrintInteger
             
@@ -163,28 +301,602 @@ Func:
             VI0 <- VR100
             VR100 <- call Assign1
             
-            __loop_start_25:
-            jumpf VR100 __loop_end_25
+            __loop_start_37:
+            jumpf VR100 __loop_end_37
                 VR22 <- VR22 + 23
                 VR22 <- VR22 + VR100
             VR100 <- VR100 - 1
-            jump __loop_start_25
-            __loop_end_25:
+            jump __loop_start_37
+            __loop_end_37:
             
             VI22 <- VR22
             VR100 <- call Nothing
             
-            VR22 <- 247
-            VI0 <- VR22
+            VR22 <- 211
+            VR101 <- VR101 + 211
+            VI0 <- VR101
             VR100 <- call PrintInteger
             
-    # using(<dictionary-keyiterator object at 0xb7cdd760>)
+    # using((16,))
     VR100 <- 0
     VI0 <- VR100
     VR100 <- call Assign1
     
-    __loop_start_28:
-    jumpf VR100 __loop_end_28
+    __loop_start_38:
+    jumpf VR100 __loop_end_38
+        VR16 <- VR16 + 17
+        VR16 <- VR16 + VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_38
+    __loop_end_38:
+    
+    VI16 <- VR16
+    VR100 <- call Nothing
+    
+    VR16 <- 498
+    VI0 <- VR16
+    VR100 <- call PrintInteger
+    
+    # using((16,))
+    VR100 <- 0
+    VI0 <- VR100
+    VR100 <- call Assign1
+    
+    __loop_start_39:
+    jumpf VR100 __loop_end_39
+        VR16 <- VR16 + 17
+        VR16 <- VR16 + VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_39
+    __loop_end_39:
+    
+    VI16 <- VR16
+    VR100 <- call Nothing
+    
+    VR16 <- 288
+    VI0 <- VR16
+    VR100 <- call PrintInteger
+    
+    # using((18,))
+    VR100 <- 0
+    VI0 <- VR100
+    VR100 <- call Assign1
+    
+    __loop_start_40:
+    jumpf VR100 __loop_end_40
+        VR18 <- VR18 + 19
+        VR18 <- VR18 + VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_40
+    __loop_end_40:
+    
+    VI18 <- VR18
+    VR100 <- call Nothing
+    
+    VR18 <- 902
+    VR101 <- VR101 + 902
+    VI0 <- VR101
+    VR100 <- call PrintInteger
+    
+        # using((22,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_42:
+        jumpf VR100 __loop_end_42
+            VR22 <- VR22 + 23
+            VR22 <- VR22 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_42
+        __loop_end_42:
+        
+        VI22 <- VR22
+        VR100 <- call Nothing
+        
+        VR22 <- 902
+        VR101 <- VR101 + 902
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((19,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_43:
+        jumpf VR100 __loop_end_43
+            VR19 <- VR19 + 20
+            VR19 <- VR19 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_43
+        __loop_end_43:
+        
+        VI19 <- VR19
+        VR100 <- call Nothing
+        
+        VR19 <- 288
+        VR101 <- VR101 + 288
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((16,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_44:
+        jumpf VR100 __loop_end_44
+            VR16 <- VR16 + 17
+            VR16 <- VR16 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_44
+        __loop_end_44:
+        
+        VI16 <- VR16
+        VR100 <- call Nothing
+        
+        VR16 <- 0
+        
+            # using((20,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_47:
+            jumpf VR100 __loop_end_47
+                VR20 <- VR20 + 21
+                VR20 <- VR20 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_47
+            __loop_end_47:
+            
+            VI20 <- VR20
+            VR100 <- call Nothing
+            
+            VR20 <- 211
+            VR101 <- VR101 + 211
+            VI0 <- VR101
+            VR100 <- call PrintInteger
+            
+            # using((23,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_48:
+            jumpf VR100 __loop_end_48
+                VR23 <- VR23 + 24
+                VR23 <- VR23 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_48
+            __loop_end_48:
+            
+            VI23 <- VR23
+            VR100 <- call Nothing
+            
+            VR23 <- 2
+            VI0 <- VR23
+            VR100 <- call PrintInteger
+            
+        # using((16,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_49:
+        jumpf VR100 __loop_end_49
+            VR16 <- VR16 + 17
+            VR16 <- VR16 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_49
+        __loop_end_49:
+        
+        VI16 <- VR16
+        VR100 <- call Nothing
+        
+        VR16 <- 902
+        VR101 <- VR101 + 902
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+            # using((22,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_52:
+            jumpf VR100 __loop_end_52
+                VR22 <- VR22 + 23
+                VR22 <- VR22 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_52
+            __loop_end_52:
+            
+            VI22 <- VR22
+            VR100 <- call Nothing
+            
+            VR22 <- 0
+            VI0 <- VR22
+            VR100 <- call PrintInteger
+            
+        # using((17,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_53:
+        jumpf VR100 __loop_end_53
+            VR17 <- VR17 + 18
+            VR17 <- VR17 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_53
+        __loop_end_53:
+        
+        VI17 <- VR17
+        VR100 <- call Nothing
+        
+        VR17 <- 339
+        VI0 <- VR17
+        VR100 <- call PrintInteger
+        
+        # using((18,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_54:
+        jumpf VR100 __loop_end_54
+            VR18 <- VR18 + 19
+            VR18 <- VR18 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_54
+        __loop_end_54:
+        
+        VI18 <- VR18
+        VR100 <- call Nothing
+        
+        VR18 <- 0
+        VI0 <- VR18
+        VR100 <- call PrintInteger
+        
+            # using((20,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_56:
+            jumpf VR100 __loop_end_56
+                VR20 <- VR20 + 21
+                VR20 <- VR20 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_56
+            __loop_end_56:
+            
+            VI20 <- VR20
+            VR100 <- call Nothing
+            
+            VR20 <- 2
+            VR101 <- VR101 + 2
+            VI0 <- VR101
+            VR100 <- call PrintInteger
+            
+            # using((18,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_57:
+            jumpf VR100 __loop_end_57
+                VR18 <- VR18 + 19
+                VR18 <- VR18 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_57
+            __loop_end_57:
+            
+            VI18 <- VR18
+            VR100 <- call Nothing
+            
+            VR18 <- 2
+            VR101 <- VR101 + 2
+            VI0 <- VR101
+            VR100 <- call PrintInteger
+            
+    # using((22,))
+    VR100 <- 0
+    VI0 <- VR100
+    VR100 <- call Assign1
+    
+    __loop_start_76:
+    jumpf VR100 __loop_end_76
+        VR22 <- VR22 + 23
+        VR22 <- VR22 + VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_76
+    __loop_end_76:
+    
+    VI22 <- VR22
+    VR100 <- call Nothing
+    
+    VR22 <- 2
+    VR101 <- VR101 + 2
+    VI0 <- VR101
+    VR100 <- call PrintInteger
+    
+    # using((17,))
+    VR100 <- 0
+    VI0 <- VR100
+    VR100 <- call Assign1
+    
+    __loop_start_77:
+    jumpf VR100 __loop_end_77
+        VR17 <- VR17 + 18
+        VR17 <- VR17 + VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_77
+    __loop_end_77:
+    
+    VI17 <- VR17
+    VR100 <- call Nothing
+    
+    VR17 <- 2
+    VR101 <- VR101 + 2
+    VI0 <- VR101
+    VR100 <- call PrintInteger
+    
+        # using((19,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_79:
+        jumpf VR100 __loop_end_79
+            VR19 <- VR19 + 20
+            VR19 <- VR19 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_79
+        __loop_end_79:
+        
+        VI19 <- VR19
+        VR100 <- call Nothing
+        
+        VR19 <- 2
+        VR101 <- VR101 + 2
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((21,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_80:
+        jumpf VR100 __loop_end_80
+            VR21 <- VR21 + 22
+            VR21 <- VR21 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_80
+        __loop_end_80:
+        
+        VI21 <- VR21
+        VR100 <- call Nothing
+        
+        VR21 <- 2
+        VR101 <- VR101 + 2
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((16,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_81:
+        jumpf VR100 __loop_end_81
+            VR16 <- VR16 + 17
+            VR16 <- VR16 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_81
+        __loop_end_81:
+        
+        VI16 <- VR16
+        VR100 <- call Nothing
+        
+        VR16 <- 2
+        VR101 <- VR101 + 2
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((17,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_82:
+        jumpf VR100 __loop_end_82
+            VR17 <- VR17 + 18
+            VR17 <- VR17 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_82
+        __loop_end_82:
+        
+        VI17 <- VR17
+        VR100 <- call Nothing
+        
+        VR17 <- 924
+        VI0 <- VR17
+        VR100 <- call PrintInteger
+        
+        # using((17,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_83:
+        jumpf VR100 __loop_end_83
+            VR17 <- VR17 + 18
+            VR17 <- VR17 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_83
+        __loop_end_83:
+        
+        VI17 <- VR17
+        VR100 <- call Nothing
+        
+        VR17 <- 2
+        VR101 <- VR101 + 2
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((18,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_84:
+        jumpf VR100 __loop_end_84
+            VR18 <- VR18 + 19
+            VR18 <- VR18 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_84
+        __loop_end_84:
+        
+        VI18 <- VR18
+        VR100 <- call Nothing
+        
+        VR18 <- 0
+        VI0 <- VR18
+        VR100 <- call PrintInteger
+        
+            # using((18,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_88:
+            jumpf VR100 __loop_end_88
+                VR18 <- VR18 + 19
+                VR18 <- VR18 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_88
+            __loop_end_88:
+            
+            VI18 <- VR18
+            VR100 <- call Nothing
+            
+            VR18 <- 456
+            VI0 <- VR18
+            VR100 <- call PrintInteger
+            
+        # using((18,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_89:
+        jumpf VR100 __loop_end_89
+            VR18 <- VR18 + 19
+            VR18 <- VR18 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_89
+        __loop_end_89:
+        
+        VI18 <- VR18
+        VR100 <- call Nothing
+        
+        VR18 <- 2
+        VR101 <- VR101 + 2
+        VI0 <- VR101
+        VR100 <- call PrintInteger
+        
+        # using((17,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_90:
+        jumpf VR100 __loop_end_90
+            VR17 <- VR17 + 18
+            VR17 <- VR17 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_90
+        __loop_end_90:
+        
+        VI17 <- VR17
+        VR100 <- call Nothing
+        
+        VR17 <- 0
+        VI0 <- VR17
+        VR100 <- call PrintInteger
+        
+        # using((17,))
+        VR100 <- 0
+        VI0 <- VR100
+        VR100 <- call Assign1
+        
+        __loop_start_91:
+        jumpf VR100 __loop_end_91
+            VR17 <- VR17 + 18
+            VR17 <- VR17 + VR100
+        VR100 <- VR100 - 1
+        jump __loop_start_91
+        __loop_end_91:
+        
+        VI17 <- VR17
+        VR100 <- call Nothing
+        
+        VR17 <- 527
+        VI0 <- VR17
+        VR100 <- call PrintInteger
+        
+            # using((16,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_93:
+            jumpf VR100 __loop_end_93
+                VR16 <- VR16 + 17
+                VR16 <- VR16 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_93
+            __loop_end_93:
+            
+            VI16 <- VR16
+            VR100 <- call Nothing
+            
+            VR16 <- 527
+            VR101 <- VR101 + 527
+            VI0 <- VR101
+            VR100 <- call PrintInteger
+            
+            # using((18,))
+            VR100 <- 0
+            VI0 <- VR100
+            VR100 <- call Assign1
+            
+            __loop_start_94:
+            jumpf VR100 __loop_end_94
+                VR18 <- VR18 + 19
+                VR18 <- VR18 + VR100
+            VR100 <- VR100 - 1
+            jump __loop_start_94
+            __loop_end_94:
+            
+            VI18 <- VR18
+            VR100 <- call Nothing
+            
+            VR18 <- 0
+            VI0 <- VR18
+            VR100 <- call PrintInteger
+            
+    # using(<dictionary-keyiterator object at 0xb7c24760>)
+    VR100 <- 0
+    VI0 <- VR100
+    VR100 <- call Assign1
+    
+    __loop_start_114:
+    jumpf VR100 __loop_end_114
         VR16 <- VR16 + 17
         VR16 <- VR16 + VR100
         VR17 <- VR17 + 18
@@ -202,22 +914,22 @@ Func:
         VR23 <- VR23 + 24
         VR23 <- VR23 + VR100
     VR100 <- VR100 - 1
-    jump __loop_start_28
-    __loop_end_28:
+    jump __loop_start_114
+    __loop_end_114:
     
     VR100 <- call Nothing
     
     return 0
     
 Main:
-    VR100 <- 521
+    VR100 <- 403
     VI0 <- VR100
     VR100 <- call Func
     loadl VR100 new_line
     VI0 <- VR100
     VR100 <- call OutString
     
-    VR100 <- 821
+    VR100 <- 199
     VI0 <- VR100
     VR100 <- call Func
     loadl VR100 new_line
