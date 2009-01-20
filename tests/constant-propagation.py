@@ -9,21 +9,34 @@ def constantPropagate(values, start, stop, steps):
 
 
 	# all('# constantPropagate(%s, %d, %d, %d)', values, start, stop, steps)
-	for i in xrange(steps):
+	while steps > 0:
 		dst = random.choice(values.keys())
 
 		if values.get(dst) is None or random.randint(0, 1):
 			# atribuim o constanta
-			values[dst] = random.randint(start, stop)
+			# values[dst] = random.randint(start, stop)
+			while True:
+				temp = 0
+				if random.randint(0, 1):
+					temp = random.randint(1, 999)
+
+				if temp != values[dst]:
+					values[dst] = temp
+					break
+
+
 			all('VR%d <- %d', dst, values[dst])
 			all('VI0 <- VR%d', dst)
 			all('VR100 <- call PrintInteger')
 		else:
 			# copiem un registru
-			while True:
+			for i in xrange(len(values)):
 				src = random.choice(values.keys())
-				if src != dst:
+				if values[src] != values[dst]:
 					break
+			else:
+				continue
+
 
 			values[src] = values[dst]
 			one('VR%d <- VR%d', src, dst)
@@ -32,6 +45,8 @@ def constantPropagate(values, start, stop, steps):
 			all('VR100 <- call PrintInteger')
 
 		all('')
+		steps -= 1
+
 
 
 def Func1():
@@ -47,7 +62,7 @@ def Func1():
 	all('')
 
 
-_max_depth = 4
+_max_depth = 3
 _values = dict([(i, None) for i in xrange(16, 24)])
 
 
@@ -59,7 +74,7 @@ def Func2(depth=0):
 	if depth == _max_depth:
 		return
 
-	for i in xrange(random.randint(1, 4)):
+	for i in xrange(random.randint(1, 3)):
 		while True:
 			which = random.choice(_values.keys())
 			if _values[which] is not None:
@@ -86,7 +101,7 @@ def Func2(depth=0):
 
 
 if __name__ == '__main__':
-	iropen('constant-propagate-branch-long')
+	iropen('constant-propagate-branch')
 
 	all('.code')
 	library()
