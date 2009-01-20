@@ -1,0 +1,54 @@
+.code
+
+Nothing:
+	return 0
+
+Func1:
+	VR1 <- 5
+	VI0 <- VR1
+	VR9 <- call Nothing
+
+	# definitie irelevanta
+	VR1 <- 5
+	VI0 <- VR1
+	VR9 <- call Nothing
+
+	return 0
+
+Func2:
+	VR2 <- VI0
+
+	VR1 <- VR2
+	VI0 <- VR1
+	VR9 <- call Nothing
+
+	# definitie irelevanta
+	VR1 <- VR2
+	VI0 <- VR1
+	VR9 <- call Nothing
+
+	return 0
+
+
+Func3:
+	VR0 <- VI0
+
+	# definitie irelevanta
+	VR0 <- VR0
+
+	return 0
+
+Main:
+	VR0 <- call Func1
+
+	VI0 <- VR0
+	VR0 <- call Func2
+
+	VI0 <- VR0
+	VR0 <- call Func2
+
+	return 0
+
+.data
+
+

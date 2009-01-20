@@ -7,7 +7,7 @@ Func:
 	VR1 <- 5
 	VI0 <- VR1
 	VR0 <- call Nothing
-	return VR5
+	return VR1
 
 Main:
 	VR0 <- call Func

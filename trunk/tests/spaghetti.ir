@@ -1,0 +1,28 @@
+.code
+
+Func:
+	VR10 <- VI0
+	VR2 <- 1
+	VR4 <- 4
+
+	jumpf VR10 if_
+	VR1 <- 0
+
+	label: VR2 <- VR4 + VR10
+	if_: VR4 <- VR2 + VR10
+
+	VR10 <- VR10 - 1
+	VI0 <- VR10
+	VR0 <- call OutInt
+
+	jumpt VR10 label
+
+	return VR2
+
+Main:
+	VR0 <- 10
+	VI0 <- VR0
+	VR0 <- call Func
+	return 0
+
+.data
