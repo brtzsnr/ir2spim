@@ -1,0 +1,57 @@
+.code
+
+Func:
+VR0 <- VI0
+VR1 <- 0
+VI0 <- VR1
+VR1 <- call OutInt
+VI0 <- VR0
+VR1 <- call OutInt
+VI0 <- VR0
+VR1 <- call OutInt
+VI0 <- VR0
+VR1 <- call OutInt
+VI0 <- VR0
+VR1 <- call OutInt
+VR1 <- 0
+VI0 <- VR1
+VR1 <- call OutInt
+VR1 <- 1
+VI0 <- VR1
+VR1 <- call OutInt
+VR1 <- 0
+VI0 <- VR1
+VR1 <- call OutInt
+VR1 <- 0 - VR0
+VI0 <- VR1
+VR1 <- call OutInt
+VR1 <- 0 - VR0
+VI0 <- VR1
+VR1 <- call OutInt
+VR1 <- VR0 / VR0
+VI0 <- VR1
+VR1 <- call OutInt
+return 0
+
+
+Main:
+VR0 <- -10
+VI0 <- VR0
+VR0 <- call Func
+VR0 <- -1
+VI0 <- VR0
+VR0 <- call Func
+VR0 <- 0
+VI0 <- VR0
+VR0 <- call Func
+VR0 <- 1
+VI0 <- VR0
+VR0 <- call Func
+VR0 <- 10
+VI0 <- VR0
+VR0 <- call Func
+return 0
+
+
+.data
+

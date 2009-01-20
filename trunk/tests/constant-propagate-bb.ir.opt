@@ -818,7 +818,7 @@ Func1:
     return 0
     
 Main:
-    VR100 <- call Func2
+    VR100 <- call Func1
     loadl VR100 new_line
     VI0 <- VR100
     VR100 <- call OutString

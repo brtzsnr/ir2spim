@@ -1,0 +1,104 @@
+    .code
+Assign1:
+    VR100 <- VI0
+    return VR100
+    
+PrintInteger:
+    VR100 <- call OutInt
+    loadl VR100 space
+    VI0 <- VR100
+    VR100 <- call OutString
+    return 0
+    
+Nothing:
+    return 0
+    
+Func:
+    VR23 <- 1
+    VI0 <- VR23
+    VR100 <- call PrintInteger
+    
+    VR20 <- 0
+    VI0 <- VR20
+    VR100 <- call PrintInteger
+    
+        VR19 <- 1
+        VI0 <- VR19
+        VR100 <- call PrintInteger
+        
+        VR22 <- 0
+        VI0 <- VR22
+        VR100 <- call PrintInteger
+        
+        VR18 <- 0
+        VI0 <- VR18
+        VR100 <- call PrintInteger
+        
+            VR17 <- 0
+            VI0 <- VR17
+            VR100 <- call PrintInteger
+            
+            VR21 <- 0
+            VI0 <- VR21
+            VR100 <- call PrintInteger
+            
+                VR16 <- 0
+                VI0 <- VR16
+                VR100 <- call PrintInteger
+                
+                VR17 <- 1
+                VI0 <- VR17
+                VR100 <- call PrintInteger
+                
+                VR16 <- 0
+                VI0 <- VR16
+                VR100 <- call PrintInteger
+                
+                    VR18 <- 0
+                    VI0 <- VR18
+                    VR100 <- call PrintInteger
+                    
+                    VR16 <- 0
+                    VI0 <- VR16
+                    VR100 <- call PrintInteger
+                    
+            VR23 <- 0
+            VI0 <- VR23
+            VR100 <- call PrintInteger
+            
+            VR21 <- 0
+            VI0 <- VR21
+            VR100 <- call PrintInteger
+            
+                VR23 <- 0
+                VI0 <- VR23
+                VR100 <- call PrintInteger
+                
+                VR21 <- 0
+                VI0 <- VR21
+                VR100 <- call PrintInteger
+                
+                VR19 <- 0
+                VI0 <- VR19
+                VR100 <- call PrintInteger
+                
+                VR22 <- 0
+                VI0 <- VR22
+                VR100 <- call PrintInteger
+                
+                    VR16 <- 1
+                    VI0 <- VR16
+                    VR100 <- call PrintInteger
+                    
+    return 0
+    
+Main:
+    VR100 <- call Func
+    loadl VR100 new_line
+    VI0 <- VR100
+    VR100 <- call OutString
+    return 0
+    
+.data
+    new_line: DS "\n\0"
+    space: DS " \0"

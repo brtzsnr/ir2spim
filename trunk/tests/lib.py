@@ -54,10 +54,9 @@ def branch_then(reg, which):
 	#  True -> jump not taken
 	#  False -> jump taken
 
-	branch_stack.append((unique(), which, irtwo))
+	branch_stack.append((unique(), bool(which), irtwo))
 	label = branch_stack[-1][0]
 	which = branch_stack[-1][1]
-
 
 	if which is None:
 		# nu se poate optimiza jumpul
@@ -67,8 +66,8 @@ def branch_then(reg, which):
 		f = one
 
 	f('jumpf VR%d __else_%d', reg, label)
-	inc()
 	f('# true %d', label)
+	inc()
 
 	if which is False:
 		# facem jumpul => then moare
@@ -89,8 +88,8 @@ def branch_else():
 	f('')
 	f('jump __endif_%d', label)
 	f('__else_%d:', label)
-	inc()
 	f('# false %d', label)
+	inc()
 
 	if which is True:
 		# nu facem jumpul => else moare
@@ -108,6 +107,8 @@ def branch_endif():
 
 	if which is None: f = all
 	else: f = one
+
+	dec()
 
 	dec()
 	f('')
