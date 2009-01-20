@@ -58,29 +58,22 @@ def branch_then(reg, which):
 	label = branch_stack[-1][0]
 	which = branch_stack[-1][1]
 
+
 	if which is None:
-		# nu se poate optimiza ramura
-		if random.choice((False, True)):
-			all('VR100 <- not VR%d', reg)
-			all('jumpt VR100 __else_%d', label)
-		else:
-			all('jumpf VR%d __else_%d', reg, label)
+		# nu se poate optimiza jumpul
+		f = all
+	else:
+		# se poate optimiza jumpul
+		f = one
 
-		inc()
-		all('# true %d', label)
-		return
+	f('jumpf VR%d __else_%d', reg, label)
+	inc()
+	f('# true %d', label)
 
-	if random.choice((False, True)):
-		# putem sa optimizam ramura
-		one('VR100 <- not VR%d', reg)
-		one('jumpt VR100 __else_%d', label)
-
-		inc()
-		all('# true %d', label)
-
-	if which is True:
+	if which is False:
 		# facem jumpul => then moare
 		irtwo = irnul
+
 
 
 def branch_else():
