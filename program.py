@@ -1,4 +1,5 @@
 import sys
+import os
 import logging
 import traceback
 
@@ -51,7 +52,7 @@ class Program(object):
 
 	def linkAll(self, files):
 		"""Links all files from command line & library"""
-		self.compile('library.ir')
+		self.compile(os.path.join(os.path.dirname(sys.argv[0]), 'library.ir'))
 		for file in files:
 			self.compile(file)
 		self.link()
@@ -284,7 +285,6 @@ def disassemble(memory, address):
 	return address, instruction
 
 
-
-
-
+def sign(a):
+	return (-1, 1)[a < 0]
 
