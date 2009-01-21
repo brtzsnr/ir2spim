@@ -1,0 +1,131 @@
+    .code
+Assign1:
+    VR100 <- VI0
+    return VR100
+    
+PrintInteger:
+    VR100 <- call OutInt
+    loadl VR100 space
+    VI0 <- VR100
+    VR100 <- call OutString
+    return 0
+    
+Nothing:
+    return 0
+    
+Func:
+    VR2000 <- 1
+    VR2001 <- VR2000
+    VR2002 <- VR2001
+    VR2003 <- VR2001
+    VR2004 <- VR2000
+    VR2005 <- VR2004
+    VR2006 <- VR2000
+    VR2007 <- 8
+    VR2008 <- 9
+    VR2009 <- 10
+    VR2010 <- 11
+    VR2011 <- 12
+    VR2012 <- 13
+    VR2013 <- 14
+    VR2014 <- 15
+    VR2015 <- 16
+    VR2016 <- VR2011
+    VR2017 <- 18
+    VR2018 <- 19
+    VR2019 <- VR2013
+    VR2020 <- 21
+    VR2021 <- VR2004
+    VR2022 <- 23
+    VR2023 <- VR2022
+    VR2024 <- 25
+    
+    load VR0 [VR2000, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2001, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2002, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2003, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2004, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2005, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2006, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2007, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2008, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2009, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2010, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2011, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2012, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2013, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2014, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2015, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2016, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2017, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2018, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2019, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2020, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2021, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2022, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2023, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    load VR0 [VR2024, 20]
+    VI0 <- VR0
+    VR0 <- call PrintInteger
+    
+    return 0
+    
+Main:
+    VR100 <- call Func
+    loadl VR100 new_line
+    VI0 <- VR100
+    VR100 <- call OutString
+    
+    return 0
+    
+.data
+    new_line: DS "\n\0"
+    space: DS " \0"

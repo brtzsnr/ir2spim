@@ -66,7 +66,7 @@ def Func1():
 	inc()
 
 	regs = [1, ]
-	num = 100
+	num = 25
 	all('VR2000 <- 1')
 
 	for i in xrange(1, num):
@@ -81,8 +81,14 @@ def Func1():
 			# atribui o valoare
 			all('VR%d <- %d', 2000 + i, i + 1)
 			regs.append(i + 1)
+	all('')
 
-	use(list(xrange(2000, 2000 + num)), steps=5)
+	# use(list(xrange(2000, 2000 + num)), steps=5)
+	for i in xrange(0, num):
+		all('load VR0 [VR%d, 20]', 2000 + i)
+		all('VI0 <- VR0')
+		all('VR0 <- call PrintInteger')
+	all('')
 
 	all('return 0')
 	all('')
@@ -127,7 +133,7 @@ def Func2(depth=0):
 
 
 if __name__ == '__main__':
-	iropen('short-constant-propagate-bb')
+	iropen('simple-constant-propagate-bb')
 
 	all('.code')
 	library()
