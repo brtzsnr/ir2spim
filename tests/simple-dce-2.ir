@@ -16,16 +16,17 @@ Func1:
 	return 0
 
 Func2:
-	VR2 <- VI0
-
-	VR1 <- VR2
-	VI0 <- VR1
-	VR9 <- call Nothing
+	VR0 <- VI0
+	VR1 <- VR0 + 1
 
 	# definitie irelevanta
-	VR1 <- VR2
+	VR0 <- VI0
+	VR1 <- VR0 - 1
+
 	VI0 <- VR1
-	VR9 <- call Nothing
+	VR0 <- call OutInt
+	VI0 <- VR2
+	VR0 <- call OutInt
 
 	return 0
 
@@ -37,6 +38,8 @@ Func3:
 	VR0 <- VR0
 
 	return 0
+
+
 
 Main:
 	VR0 <- call Func1

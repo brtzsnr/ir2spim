@@ -65,9 +65,24 @@ def Func1():
 	all('Func:')
 	inc()
 
-	regs = dict([(i, None) for i in xrange(16, 32)])
-	constantPropagate(regs, 16, 32, 200)
-	use(regs.iterkeys())
+	regs = [1, ]
+	num = 100
+	all('VR2000 <- 1')
+
+	for i in xrange(1, num):
+		if random.randint(0, 1):
+			# propag un registru
+			src = random.randint(0, i - 1)
+			regs.append(regs[src])
+
+			one('VR%d <- VR%d', 2000 + i, 2000 + src)
+			two('VR%d <- %d', 2000 + i, regs[-1])
+		else:
+			# atribui o valoare
+			all('VR%d <- %d', 2000 + i, i + 1)
+			regs.append(i + 1)
+
+	use(list(xrange(2000, 2000 + num)), steps=5)
 
 	all('return 0')
 	all('')
@@ -112,23 +127,23 @@ def Func2(depth=0):
 
 
 if __name__ == '__main__':
-	iropen('constant-propagate-branch')
+	iropen('short-constant-propagate-bb')
 
 	all('.code')
 	library()
 
-	# Func1()
+	Func1()
 
-	dec()
-	all('Func:')
-	inc()
+	# dec()
+	# all('Func:')
+	# inc()
 
-	all('VR101 <- VI0')
-	Func2()
-	use(_values.iterkeys())
+	# all('VR101 <- VI0')
+	# Func2()
+	# use(_values.iterkeys())
 
-	all('return 0')
-	all('')
+	# all('return 0')
+	# all('')
 
 
 	# Main
@@ -136,21 +151,21 @@ if __name__ == '__main__':
 	all('Main:')
 	inc()
 
-	all('VR100 <- %d', random.randint(0, 999))
-	all('VI0 <- VR100')
+	#all('VR100 <- %d', random.randint(0, 999))
+	#all('VI0 <- VR100')
 	all('VR100 <- call Func')
 	all('loadl VR100 new_line')
 	all('VI0 <- VR100')
 	all('VR100 <- call OutString')
 	all('')
 
-	all('VR100 <- %d', random.randint(0, 999))
-	all('VI0 <- VR100')
-	all('VR100 <- call Func')
-	all('loadl VR100 new_line')
-	all('VI0 <- VR100')
-	all('VR100 <- call OutString')
-	all('')
+	#all('VR100 <- %d', random.randint(0, 999))
+	#all('VI0 <- VR100')
+	#all('VR100 <- call Func')
+	#all('loadl VR100 new_line')
+	#all('VI0 <- VR100')
+	#all('VR100 <- call OutString')
+	#all('')
 
 	all('return 0')
 	all('')

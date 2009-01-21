@@ -167,7 +167,7 @@ def use(regs, steps=0):
 	# foloseste toate definitiile de mai sus
 	for r in regs:
 		all('VR%d <- VR%d + %d', r, r, r + 1)
-		all('VR%d <- VR%d + VR100', r, r)
+		all('VR%d <- VR%d - VR100', r, r)
 
 	dec()
 	all('VR100 <- VR100 - 1')
@@ -176,9 +176,12 @@ def use(regs, steps=0):
 	all('')
 
 	# definitiile de mai sus trebuie folosite
+	#for r in regs:
+		#all('VI%d <- VR%d', r, r)
+	#all('VR100 <- call Nothing')
 	for r in regs:
-		all('VI%d <- VR%d', r, r)
-	all('VR100 <- call Nothing')
+		all('VI0 <- VR%d', r)
+		all('VR100 <- call PrintInteger')
 	all('')
 
 
