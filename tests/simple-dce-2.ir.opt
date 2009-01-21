@@ -22,7 +22,7 @@ Func2:
 
 	# definitie irelevanta
 	# VR0 <- VI0
-	VR1 <- VR0 - 1
+	VR2 <- VR0 - 1
 
 	VI0 <- VR1
 	VR0 <- call OutInt
