@@ -13,190 +13,527 @@ PrintInteger:
 Nothing:
     return 0
     
-Func1:
-    VR18 <- 20
-    VI0 <- VR18
-    VR100 <- call PrintInteger
+Func:
+    VR2000 <- 1
+    VR2001 <- 2
+    VR2002 <- 2
+    VR2003 <- 4
+    VR2004 <- 1
+    VR2005 <- 6
+    VR2006 <- 6
+    VR2007 <- 1
+    VR2008 <- 1
+    VR2009 <- 2
+    VR2010 <- 4
+    VR2011 <- 12
+    VR2012 <- 2
+    VR2013 <- 6
+    VR2014 <- 2
+    VR2015 <- 1
+    VR2016 <- 17
+    VR2017 <- 18
+    VR2018 <- 17
+    VR2019 <- 17
+    VR2020 <- 2
+    VR2021 <- 22
+    VR2022 <- 18
+    VR2023 <- 24
+    VR2024 <- 17
+    VR2025 <- 2
+    VR2026 <- 6
+    VR2027 <- 17
+    VR2028 <- 29
+    VR2029 <- 2
+    VR2030 <- 17
+    VR2031 <- 32
+    VR2032 <- 17
+    VR2033 <- 34
+    VR2034 <- 18
+    VR2035 <- 1
+    VR2036 <- 37
+    VR2037 <- 38
+    VR2038 <- 39
+    VR2039 <- 1
+    VR2040 <- 41
+    VR2041 <- 42
+    VR2042 <- 2
+    VR2043 <- 1
+    VR2044 <- 45
+    VR2045 <- 42
+    VR2046 <- 41
+    VR2047 <- 2
+    VR2048 <- 49
+    VR2049 <- 50
+    VR2050 <- 38
+    VR2051 <- 52
+    VR2052 <- 2
+    VR2053 <- 52
+    VR2054 <- 55
+    VR2055 <- 2
+    VR2056 <- 2
+    VR2057 <- 2
+    VR2058 <- 59
+    VR2059 <- 55
+    VR2060 <- 61
+    VR2061 <- 39
+    VR2062 <- 59
+    VR2063 <- 41
+    VR2064 <- 17
+    VR2065 <- 66
+    VR2066 <- 66
+    VR2067 <- 68
+    VR2068 <- 2
+    VR2069 <- 70
+    VR2070 <- 32
+    VR2071 <- 59
+    VR2072 <- 73
+    VR2073 <- 74
+    VR2074 <- 75
+    VR2075 <- 76
+    VR2076 <- 77
+    VR2077 <- 41
+    VR2078 <- 1
+    VR2079 <- 80
+    VR2080 <- 81
+    VR2081 <- 1
+    VR2082 <- 2
+    VR2083 <- 66
+    VR2084 <- 85
+    VR2085 <- 86
+    VR2086 <- 39
+    VR2087 <- 88
+    VR2088 <- 89
+    VR2089 <- 90
+    VR2090 <- 91
+    VR2091 <- 1
+    VR2092 <- 42
+    VR2093 <- 94
+    VR2094 <- 95
+    VR2095 <- 2
+    VR2096 <- 97
+    VR2097 <- 98
+    VR2098 <- 17
+    VR2099 <- 100
+    # using([2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060, 2061, 2062, 2063, 2064, 2065, 2066, 2067, 2068, 2069, 2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077, 2078, 2079, 2080, 2081, 2082, 2083, 2084, 2085, 2086, 2087, 2088, 2089, 2090, 2091, 2092, 2093, 2094, 2095, 2096, 2097, 2098, 2099])
+    VR100 <- 5
+    VI0 <- VR100
+    VR100 <- call Assign1
     
-    VR16 <- 20
-    VI0 <- VR16
-    VR100 <- call PrintInteger
+    __loop_start_0:
+    jumpf VR100 __loop_end_0
+        VR2000 <- VR2000 + 2001
+        VR2000 <- VR2000 - VR100
+        VR2001 <- VR2001 + 2002
+        VR2001 <- VR2001 - VR100
+        VR2002 <- VR2002 + 2003
+        VR2002 <- VR2002 - VR100
+        VR2003 <- VR2003 + 2004
+        VR2003 <- VR2003 - VR100
+        VR2004 <- VR2004 + 2005
+        VR2004 <- VR2004 - VR100
+        VR2005 <- VR2005 + 2006
+        VR2005 <- VR2005 - VR100
+        VR2006 <- VR2006 + 2007
+        VR2006 <- VR2006 - VR100
+        VR2007 <- VR2007 + 2008
+        VR2007 <- VR2007 - VR100
+        VR2008 <- VR2008 + 2009
+        VR2008 <- VR2008 - VR100
+        VR2009 <- VR2009 + 2010
+        VR2009 <- VR2009 - VR100
+        VR2010 <- VR2010 + 2011
+        VR2010 <- VR2010 - VR100
+        VR2011 <- VR2011 + 2012
+        VR2011 <- VR2011 - VR100
+        VR2012 <- VR2012 + 2013
+        VR2012 <- VR2012 - VR100
+        VR2013 <- VR2013 + 2014
+        VR2013 <- VR2013 - VR100
+        VR2014 <- VR2014 + 2015
+        VR2014 <- VR2014 - VR100
+        VR2015 <- VR2015 + 2016
+        VR2015 <- VR2015 - VR100
+        VR2016 <- VR2016 + 2017
+        VR2016 <- VR2016 - VR100
+        VR2017 <- VR2017 + 2018
+        VR2017 <- VR2017 - VR100
+        VR2018 <- VR2018 + 2019
+        VR2018 <- VR2018 - VR100
+        VR2019 <- VR2019 + 2020
+        VR2019 <- VR2019 - VR100
+        VR2020 <- VR2020 + 2021
+        VR2020 <- VR2020 - VR100
+        VR2021 <- VR2021 + 2022
+        VR2021 <- VR2021 - VR100
+        VR2022 <- VR2022 + 2023
+        VR2022 <- VR2022 - VR100
+        VR2023 <- VR2023 + 2024
+        VR2023 <- VR2023 - VR100
+        VR2024 <- VR2024 + 2025
+        VR2024 <- VR2024 - VR100
+        VR2025 <- VR2025 + 2026
+        VR2025 <- VR2025 - VR100
+        VR2026 <- VR2026 + 2027
+        VR2026 <- VR2026 - VR100
+        VR2027 <- VR2027 + 2028
+        VR2027 <- VR2027 - VR100
+        VR2028 <- VR2028 + 2029
+        VR2028 <- VR2028 - VR100
+        VR2029 <- VR2029 + 2030
+        VR2029 <- VR2029 - VR100
+        VR2030 <- VR2030 + 2031
+        VR2030 <- VR2030 - VR100
+        VR2031 <- VR2031 + 2032
+        VR2031 <- VR2031 - VR100
+        VR2032 <- VR2032 + 2033
+        VR2032 <- VR2032 - VR100
+        VR2033 <- VR2033 + 2034
+        VR2033 <- VR2033 - VR100
+        VR2034 <- VR2034 + 2035
+        VR2034 <- VR2034 - VR100
+        VR2035 <- VR2035 + 2036
+        VR2035 <- VR2035 - VR100
+        VR2036 <- VR2036 + 2037
+        VR2036 <- VR2036 - VR100
+        VR2037 <- VR2037 + 2038
+        VR2037 <- VR2037 - VR100
+        VR2038 <- VR2038 + 2039
+        VR2038 <- VR2038 - VR100
+        VR2039 <- VR2039 + 2040
+        VR2039 <- VR2039 - VR100
+        VR2040 <- VR2040 + 2041
+        VR2040 <- VR2040 - VR100
+        VR2041 <- VR2041 + 2042
+        VR2041 <- VR2041 - VR100
+        VR2042 <- VR2042 + 2043
+        VR2042 <- VR2042 - VR100
+        VR2043 <- VR2043 + 2044
+        VR2043 <- VR2043 - VR100
+        VR2044 <- VR2044 + 2045
+        VR2044 <- VR2044 - VR100
+        VR2045 <- VR2045 + 2046
+        VR2045 <- VR2045 - VR100
+        VR2046 <- VR2046 + 2047
+        VR2046 <- VR2046 - VR100
+        VR2047 <- VR2047 + 2048
+        VR2047 <- VR2047 - VR100
+        VR2048 <- VR2048 + 2049
+        VR2048 <- VR2048 - VR100
+        VR2049 <- VR2049 + 2050
+        VR2049 <- VR2049 - VR100
+        VR2050 <- VR2050 + 2051
+        VR2050 <- VR2050 - VR100
+        VR2051 <- VR2051 + 2052
+        VR2051 <- VR2051 - VR100
+        VR2052 <- VR2052 + 2053
+        VR2052 <- VR2052 - VR100
+        VR2053 <- VR2053 + 2054
+        VR2053 <- VR2053 - VR100
+        VR2054 <- VR2054 + 2055
+        VR2054 <- VR2054 - VR100
+        VR2055 <- VR2055 + 2056
+        VR2055 <- VR2055 - VR100
+        VR2056 <- VR2056 + 2057
+        VR2056 <- VR2056 - VR100
+        VR2057 <- VR2057 + 2058
+        VR2057 <- VR2057 - VR100
+        VR2058 <- VR2058 + 2059
+        VR2058 <- VR2058 - VR100
+        VR2059 <- VR2059 + 2060
+        VR2059 <- VR2059 - VR100
+        VR2060 <- VR2060 + 2061
+        VR2060 <- VR2060 - VR100
+        VR2061 <- VR2061 + 2062
+        VR2061 <- VR2061 - VR100
+        VR2062 <- VR2062 + 2063
+        VR2062 <- VR2062 - VR100
+        VR2063 <- VR2063 + 2064
+        VR2063 <- VR2063 - VR100
+        VR2064 <- VR2064 + 2065
+        VR2064 <- VR2064 - VR100
+        VR2065 <- VR2065 + 2066
+        VR2065 <- VR2065 - VR100
+        VR2066 <- VR2066 + 2067
+        VR2066 <- VR2066 - VR100
+        VR2067 <- VR2067 + 2068
+        VR2067 <- VR2067 - VR100
+        VR2068 <- VR2068 + 2069
+        VR2068 <- VR2068 - VR100
+        VR2069 <- VR2069 + 2070
+        VR2069 <- VR2069 - VR100
+        VR2070 <- VR2070 + 2071
+        VR2070 <- VR2070 - VR100
+        VR2071 <- VR2071 + 2072
+        VR2071 <- VR2071 - VR100
+        VR2072 <- VR2072 + 2073
+        VR2072 <- VR2072 - VR100
+        VR2073 <- VR2073 + 2074
+        VR2073 <- VR2073 - VR100
+        VR2074 <- VR2074 + 2075
+        VR2074 <- VR2074 - VR100
+        VR2075 <- VR2075 + 2076
+        VR2075 <- VR2075 - VR100
+        VR2076 <- VR2076 + 2077
+        VR2076 <- VR2076 - VR100
+        VR2077 <- VR2077 + 2078
+        VR2077 <- VR2077 - VR100
+        VR2078 <- VR2078 + 2079
+        VR2078 <- VR2078 - VR100
+        VR2079 <- VR2079 + 2080
+        VR2079 <- VR2079 - VR100
+        VR2080 <- VR2080 + 2081
+        VR2080 <- VR2080 - VR100
+        VR2081 <- VR2081 + 2082
+        VR2081 <- VR2081 - VR100
+        VR2082 <- VR2082 + 2083
+        VR2082 <- VR2082 - VR100
+        VR2083 <- VR2083 + 2084
+        VR2083 <- VR2083 - VR100
+        VR2084 <- VR2084 + 2085
+        VR2084 <- VR2084 - VR100
+        VR2085 <- VR2085 + 2086
+        VR2085 <- VR2085 - VR100
+        VR2086 <- VR2086 + 2087
+        VR2086 <- VR2086 - VR100
+        VR2087 <- VR2087 + 2088
+        VR2087 <- VR2087 - VR100
+        VR2088 <- VR2088 + 2089
+        VR2088 <- VR2088 - VR100
+        VR2089 <- VR2089 + 2090
+        VR2089 <- VR2089 - VR100
+        VR2090 <- VR2090 + 2091
+        VR2090 <- VR2090 - VR100
+        VR2091 <- VR2091 + 2092
+        VR2091 <- VR2091 - VR100
+        VR2092 <- VR2092 + 2093
+        VR2092 <- VR2092 - VR100
+        VR2093 <- VR2093 + 2094
+        VR2093 <- VR2093 - VR100
+        VR2094 <- VR2094 + 2095
+        VR2094 <- VR2094 - VR100
+        VR2095 <- VR2095 + 2096
+        VR2095 <- VR2095 - VR100
+        VR2096 <- VR2096 + 2097
+        VR2096 <- VR2096 - VR100
+        VR2097 <- VR2097 + 2098
+        VR2097 <- VR2097 - VR100
+        VR2098 <- VR2098 + 2099
+        VR2098 <- VR2098 - VR100
+        VR2099 <- VR2099 + 2100
+        VR2099 <- VR2099 - VR100
+    VR100 <- VR100 - 1
+    jump __loop_start_0
+    __loop_end_0:
     
-    VR31 <- 24
-    VI0 <- VR31
+    VI0 <- VR2000
     VR100 <- call PrintInteger
-    
-    VR27 <- 26
-    VI0 <- VR27
+    VI0 <- VR2001
     VR100 <- call PrintInteger
-    
-    VR26 <- 24
-    VI0 <- VR26
+    VI0 <- VR2002
     VR100 <- call PrintInteger
-    
-    VR30 <- 26
-    VI0 <- VR30
+    VI0 <- VR2003
     VR100 <- call PrintInteger
-    
-    VR29 <- 20
-    VI0 <- VR29
+    VI0 <- VR2004
     VR100 <- call PrintInteger
-    
-    VR16 <- 20
-    VI0 <- VR16
+    VI0 <- VR2005
     VR100 <- call PrintInteger
-    
-    VR26 <- 18
-    VI0 <- VR26
+    VI0 <- VR2006
     VR100 <- call PrintInteger
-    
-    VR25 <- 25
-    VI0 <- VR25
+    VI0 <- VR2007
     VR100 <- call PrintInteger
-    
-    VR24 <- 31
-    VI0 <- VR24
+    VI0 <- VR2008
     VR100 <- call PrintInteger
-    
-    VR30 <- 29
-    VI0 <- VR30
+    VI0 <- VR2009
     VR100 <- call PrintInteger
-    
-    VR23 <- 28
-    VI0 <- VR23
+    VI0 <- VR2010
     VR100 <- call PrintInteger
-    
-    VR24 <- 18
-    VI0 <- VR24
+    VI0 <- VR2011
     VR100 <- call PrintInteger
-    
-    VR31 <- 29
-    VI0 <- VR31
+    VI0 <- VR2012
     VR100 <- call PrintInteger
-    
-    VR29 <- 32
-    VI0 <- VR29
+    VI0 <- VR2013
     VR100 <- call PrintInteger
-    
-    VR26 <- 29
-    VI0 <- VR26
+    VI0 <- VR2014
     VR100 <- call PrintInteger
-    
-    VR23 <- 20
-    VI0 <- VR23
+    VI0 <- VR2015
     VR100 <- call PrintInteger
-    
-    VR25 <- 32
-    VI0 <- VR25
+    VI0 <- VR2016
     VR100 <- call PrintInteger
-    
-    VR26 <- 25
-    VI0 <- VR26
+    VI0 <- VR2017
     VR100 <- call PrintInteger
-    
-    VR31 <- 32
-    VI0 <- VR31
+    VI0 <- VR2018
     VR100 <- call PrintInteger
-    
-    VR31 <- 23
-    VI0 <- VR31
+    VI0 <- VR2019
     VR100 <- call PrintInteger
-    
-    VR18 <- 18
-    VI0 <- VR18
+    VI0 <- VR2020
     VR100 <- call PrintInteger
-    
-    VR16 <- 26
-    VI0 <- VR16
+    VI0 <- VR2021
     VR100 <- call PrintInteger
-    
-    VR28 <- 31
-    VI0 <- VR28
+    VI0 <- VR2022
     VR100 <- call PrintInteger
-    
-    VR24 <- 20
-    VI0 <- VR24
+    VI0 <- VR2023
     VR100 <- call PrintInteger
-    
-    VR26 <- 18
-    VI0 <- VR26
+    VI0 <- VR2024
     VR100 <- call PrintInteger
-    
-    VR16 <- 18
-    VI0 <- VR16
+    VI0 <- VR2025
     VR100 <- call PrintInteger
-    
-    VR22 <- 32
-    VI0 <- VR22
+    VI0 <- VR2026
     VR100 <- call PrintInteger
-    
-    VR21 <- 21
-    VI0 <- VR21
+    VI0 <- VR2027
     VR100 <- call PrintInteger
-    
-    VR17 <- 18
-    VI0 <- VR17
+    VI0 <- VR2028
     VR100 <- call PrintInteger
-    
-    VR24 <- 20
-    VI0 <- VR24
+    VI0 <- VR2029
     VR100 <- call PrintInteger
-    
-    VR24 <- 32
-    VI0 <- VR24
+    VI0 <- VR2030
     VR100 <- call PrintInteger
-    
-    VR30 <- 21
-    VI0 <- VR30
+    VI0 <- VR2031
     VR100 <- call PrintInteger
-    
-    VR25 <- 21
-    VI0 <- VR25
+    VI0 <- VR2032
     VR100 <- call PrintInteger
-    
-    VR21 <- 32
-    VI0 <- VR21
+    VI0 <- VR2033
     VR100 <- call PrintInteger
-    
-    VR19 <- 32
-    VI0 <- VR19
+    VI0 <- VR2034
     VR100 <- call PrintInteger
-    
-    VR17 <- 28
-    VI0 <- VR17
+    VI0 <- VR2035
     VR100 <- call PrintInteger
-    
-    VR20 <- 16
-    VI0 <- VR20
+    VI0 <- VR2036
     VR100 <- call PrintInteger
-    
-    VR26 <- 21
-    VI0 <- VR26
+    VI0 <- VR2037
     VR100 <- call PrintInteger
-    
-    VR28 <- 21
-    VI0 <- VR28
+    VI0 <- VR2038
     VR100 <- call PrintInteger
-    
-    VR21 <- 16
-    VI0 <- VR21
+    VI0 <- VR2039
     VR100 <- call PrintInteger
-    
-    VR20 <- 30
-    VI0 <- VR20
+    VI0 <- VR2040
     VR100 <- call PrintInteger
-    
-    VR26 <- 32
-    VI0 <- VR26
+    VI0 <- VR2041
+    VR100 <- call PrintInteger
+    VI0 <- VR2042
+    VR100 <- call PrintInteger
+    VI0 <- VR2043
+    VR100 <- call PrintInteger
+    VI0 <- VR2044
+    VR100 <- call PrintInteger
+    VI0 <- VR2045
+    VR100 <- call PrintInteger
+    VI0 <- VR2046
+    VR100 <- call PrintInteger
+    VI0 <- VR2047
+    VR100 <- call PrintInteger
+    VI0 <- VR2048
+    VR100 <- call PrintInteger
+    VI0 <- VR2049
+    VR100 <- call PrintInteger
+    VI0 <- VR2050
+    VR100 <- call PrintInteger
+    VI0 <- VR2051
+    VR100 <- call PrintInteger
+    VI0 <- VR2052
+    VR100 <- call PrintInteger
+    VI0 <- VR2053
+    VR100 <- call PrintInteger
+    VI0 <- VR2054
+    VR100 <- call PrintInteger
+    VI0 <- VR2055
+    VR100 <- call PrintInteger
+    VI0 <- VR2056
+    VR100 <- call PrintInteger
+    VI0 <- VR2057
+    VR100 <- call PrintInteger
+    VI0 <- VR2058
+    VR100 <- call PrintInteger
+    VI0 <- VR2059
+    VR100 <- call PrintInteger
+    VI0 <- VR2060
+    VR100 <- call PrintInteger
+    VI0 <- VR2061
+    VR100 <- call PrintInteger
+    VI0 <- VR2062
+    VR100 <- call PrintInteger
+    VI0 <- VR2063
+    VR100 <- call PrintInteger
+    VI0 <- VR2064
+    VR100 <- call PrintInteger
+    VI0 <- VR2065
+    VR100 <- call PrintInteger
+    VI0 <- VR2066
+    VR100 <- call PrintInteger
+    VI0 <- VR2067
+    VR100 <- call PrintInteger
+    VI0 <- VR2068
+    VR100 <- call PrintInteger
+    VI0 <- VR2069
+    VR100 <- call PrintInteger
+    VI0 <- VR2070
+    VR100 <- call PrintInteger
+    VI0 <- VR2071
+    VR100 <- call PrintInteger
+    VI0 <- VR2072
+    VR100 <- call PrintInteger
+    VI0 <- VR2073
+    VR100 <- call PrintInteger
+    VI0 <- VR2074
+    VR100 <- call PrintInteger
+    VI0 <- VR2075
+    VR100 <- call PrintInteger
+    VI0 <- VR2076
+    VR100 <- call PrintInteger
+    VI0 <- VR2077
+    VR100 <- call PrintInteger
+    VI0 <- VR2078
+    VR100 <- call PrintInteger
+    VI0 <- VR2079
+    VR100 <- call PrintInteger
+    VI0 <- VR2080
+    VR100 <- call PrintInteger
+    VI0 <- VR2081
+    VR100 <- call PrintInteger
+    VI0 <- VR2082
+    VR100 <- call PrintInteger
+    VI0 <- VR2083
+    VR100 <- call PrintInteger
+    VI0 <- VR2084
+    VR100 <- call PrintInteger
+    VI0 <- VR2085
+    VR100 <- call PrintInteger
+    VI0 <- VR2086
+    VR100 <- call PrintInteger
+    VI0 <- VR2087
+    VR100 <- call PrintInteger
+    VI0 <- VR2088
+    VR100 <- call PrintInteger
+    VI0 <- VR2089
+    VR100 <- call PrintInteger
+    VI0 <- VR2090
+    VR100 <- call PrintInteger
+    VI0 <- VR2091
+    VR100 <- call PrintInteger
+    VI0 <- VR2092
+    VR100 <- call PrintInteger
+    VI0 <- VR2093
+    VR100 <- call PrintInteger
+    VI0 <- VR2094
+    VR100 <- call PrintInteger
+    VI0 <- VR2095
+    VR100 <- call PrintInteger
+    VI0 <- VR2096
+    VR100 <- call PrintInteger
+    VI0 <- VR2097
+    VR100 <- call PrintInteger
+    VI0 <- VR2098
+    VR100 <- call PrintInteger
+    VI0 <- VR2099
     VR100 <- call PrintInteger
     
     return 0
     
 Main:
-    VR100 <- call Func1
+    VR100 <- call Func
     loadl VR100 new_line
     VI0 <- VR100
     VR100 <- call OutString
+    
     return 0
     
 .data
