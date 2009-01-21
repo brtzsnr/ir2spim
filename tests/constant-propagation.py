@@ -85,8 +85,8 @@ def Func1():
 
 	# use(list(xrange(2000, 2000 + num)), steps=5)
 	for i in xrange(0, num):
-		all('load VR0 [VR%d, 20]', 2000 + i)
-		all('VI0 <- VR0')
+		all('load VR%d [VR%d, 19]', 2000 + i, 2000 + i)
+		all('VI0 <- VR%d', 2000 + i)
 		all('VR0 <- call PrintInteger')
 	all('')
 
