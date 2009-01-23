@@ -1,0 +1,160 @@
+.code
+PrintInteger:
+	VR100 <- call OutInt
+	loadl VR100 space
+	VI0 <- VR100
+	VR100 <- call OutString
+	return 0
+
+Nothing:
+	return 0
+
+Assign1:
+	VR100 <- VI0
+	return VR100
+
+
+Func:
+	VR2000 <- 1
+	VR2001 <- VR2000
+	VR2002 <- 3
+	VR2003 <- VR2002
+	VR2004 <- VR2002
+	VR2005 <- VR2000
+	VR2006 <- VR2002
+	VR2007 <- VR2005
+	VR2008 <- VR2000
+	VR2009 <- VR2006
+	VR2010 <- VR2000
+	VR2011 <- VR2006
+	VR2012 <- 13
+	VR2013 <- VR2011
+	VR2014 <- 15
+	VR2015 <- 16
+	VR2016 <- 17
+	VR2017 <- VR2010
+	VR2018 <- 19
+	VR2019 <- 20
+	VR2020 <- 21
+	VR2021 <- VR2013
+	VR2022 <- 23
+	VR2023 <- VR2017
+	VR2024 <- VR2023
+
+
+	VI0 <- VR2000
+	VR2000 <- call Assign1
+	VI0 <- VR2000
+	VR0 <- call PrintInteger
+	VI0 <- VR2001
+	VR2001 <- call Assign1
+	VI0 <- VR2001
+	VR0 <- call PrintInteger
+	VI0 <- VR2002
+	VR2002 <- call Assign1
+	VI0 <- VR2002
+	VR0 <- call PrintInteger
+	VI0 <- VR2003
+	VR2003 <- call Assign1
+	VI0 <- VR2003
+	VR0 <- call PrintInteger
+	VI0 <- VR2004
+	VR2004 <- call Assign1
+	VI0 <- VR2004
+	VR0 <- call PrintInteger
+	VI0 <- VR2005
+	VR2005 <- call Assign1
+	VI0 <- VR2005
+	VR0 <- call PrintInteger
+	VI0 <- VR2006
+	VR2006 <- call Assign1
+	VI0 <- VR2006
+	VR0 <- call PrintInteger
+	VI0 <- VR2007
+	VR2007<- call Assign1
+	VI0 <- VR2007
+	VR0 <- call PrintInteger
+	VI0 <- VR2008
+	VR2008 <- call Assign1
+	VI0 <- VR2008
+	VR0 <- call PrintInteger
+	VI0 <- VR2009
+	VR2009 <- call Assign1
+	VI0 <- VR2009
+	VR0 <- call PrintInteger
+	VI0 <- VR2010
+	VR2010 <- call Assign1
+	VI0 <- VR2010
+	VR0 <- call PrintInteger
+	VI0 <- VR2011
+	VR2011 <- call Assign1
+	VI0 <- VR2011
+	VR0 <- call PrintInteger
+	VI0 <- VR2012
+	VR2012 <- call Assign1
+	VI0 <- VR2012
+	VR0 <- call PrintInteger
+	VI0 <- VR2013
+	VR2013 <- call Assign1
+	VI0 <- VR2013
+	VR0 <- call PrintInteger
+	VI0 <- VR2014
+	VR2014 <- call Assign1
+	VI0 <- VR2014
+	VR0 <- call PrintInteger
+	VI0 <- VR2015
+	VR2015 <- call Assign1
+	VI0 <- VR2015
+	VR0 <- call PrintInteger
+	VI0 <- VR2016
+	VR2016 <- call Assign1
+	VI0 <- VR2016
+	VR0 <- call PrintInteger
+	VI0 <- VR2017
+	VR2017 <- call Assign1
+	VI0 <- VR2017
+	VR0 <- call PrintInteger
+	VI0 <- VR2018
+	VR2018 <- call Assign1
+	VI0 <- VR2018
+	VR0 <- call PrintInteger
+	VI0 <- VR2019
+	VR2019 <- call Assign1
+	VI0 <- VR2019
+	VR0 <- call PrintInteger
+	VI0 <- VR2020
+	VR2020 <- call Assign1
+	VI0 <- VR2020
+	VR0 <- call PrintInteger
+	VI0 <- VR2021
+	VR2021 <- call Assign1
+	VI0 <- VR2021
+	VR0 <- call PrintInteger
+	VI0 <- VR2022
+	VR2022 <- call Assign1
+	VI0 <- VR2022
+	VR0 <- call PrintInteger
+	VI0 <- VR2023
+	VR2023 <- call Assign1
+	VI0 <- VR2023
+	VR0 <- call PrintInteger
+	VI0 <- VR2024
+	VR2024 <- call Assign1
+	VI0 <- VR2024
+	VR0 <- call PrintInteger
+
+	return 0
+
+Main:
+	VR100 <- call Func
+	loadl VR100 new_line
+	VI0 <- VR100
+	VR100 <- call OutString
+
+	return 0
+
+.data
+	new_line: DS "\n\0"
+	space: DS " \0"
+
+
