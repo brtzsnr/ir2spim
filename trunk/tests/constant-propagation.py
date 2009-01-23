@@ -94,6 +94,51 @@ def Func1():
 	all('')
 
 
+def Func3():
+	# copy propagation, BB
+	dec()
+	all('Func3:')
+	inc()
+
+	num = 25
+
+	all('VR0 <- VI0')
+
+	for i in xrange(0, num):
+		all('VR%d <- VR0 + %d', 1000 + i, i + 1);
+
+	regs = [0, ]
+	all('VR%d <- VR%d', 2000, 1000)
+
+	for i in xrange(1, num):
+		if random.randint(0, 1):
+			# propag un registru
+			src = random.randint(0, i - 1)
+			regs.append(regs[src])
+
+			one('VR%d <- VR%d', 2000 + i, 2000 + src)
+			two('VR%d <- VR%d', 2000 + i, 1000 + regs[-1])
+		else:
+			# atribui o valoare
+			all('VR%d <- VR%d', 2000 + i, 1000 + i)
+			regs.append(i)
+	all('')
+
+	# use(list(xrange(2000, 2000 + num)), steps=5)
+	for i in xrange(0, num):
+		all('VI0 <- VR%d', 1000 + i)
+		all('VR%d <- call Assign1', 1000 + i)
+		all('VI0 <- VR%d', 2000 + i)
+		all('VR%d <- call Assign1', 2000 + i)
+		all('VI0 <- VR%d', 2000 + i)
+		all('VI1 <- VR%d', 1000 + i)
+		all('VR0 <- call PrintInteger')
+	all('')
+
+	all('return 0')
+	all('')
+
+
 _max_depth = 2
 _values = dict([(i, None) for i in xrange(16, 24)])
 
@@ -133,12 +178,12 @@ def Func2(depth=0):
 
 
 if __name__ == '__main__':
-	iropen('simple-constant-propagate-bb')
+	iropen('simple-copy-propagate-bb')
 
 	all('.code')
 	library()
 
-	Func1()
+	Func3()
 
 	# dec()
 	# all('Func:')
@@ -157,9 +202,10 @@ if __name__ == '__main__':
 	all('Main:')
 	inc()
 
-	#all('VR100 <- %d', random.randint(0, 999))
-	#all('VI0 <- VR100')
-	all('VR100 <- call Func')
+	# all('VR100 <- %d', random.randint(0, 999))
+	all('VR100 <- 10')
+	all('VI0 <- VR100')
+	all('VR100 <- call Func3')
 	all('loadl VR100 new_line')
 	all('VI0 <- VR100')
 	all('VR100 <- call OutString')
