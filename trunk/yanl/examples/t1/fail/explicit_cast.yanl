@@ -1,0 +1,17 @@
+# incorrect casts
+program gigi;
+
+var
+        c:char;
+        i:integer;
+        b:boolean;
+        r:real;
+
+begin
+        r := (real)b;
+
+        b := (boolean)r;
+        b := (boolean)c;
+        
+        c := (char)b;
+end.

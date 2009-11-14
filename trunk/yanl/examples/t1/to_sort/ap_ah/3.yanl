@@ -1,0 +1,4 @@
+program x;
+begin
+z:=3
+end;

@@ -1,0 +1,25 @@
+program x;
+var t:integer;
+	c:char;
+	b:boolean;
+	r:real;
+    array_real:array[0..45] of integer;
+
+function z(u:integer):integer
+begin
+z:=u;
+end;
+
+procedure zz
+var z:real;
+begin
+repeat until (z=2)
+end;
+
+begin
+b:=(boolean)t;
+b:=(boolean)b;
+r:=(real)r;
+r:=(real)t;
+r:=(real)array_real;
+end.

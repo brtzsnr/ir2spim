@@ -1,0 +1,26 @@
+program me;
+type IList = object
+value:integer;
+next:ref Ilist;
+  procedure foreach( function pred(integer):boolean;
+                        procedure action(integer))
+  begin
+     if pred(value) then action(value);
+     if not isNull(next) then next.foreach(pred, action);
+  end;
+end;
+
+function sumIfPositive(aList:ref IList):integer
+var s:integer;
+begin
+   if isNull(aList) then sum := 0
+   else
+   begin
+      s:=0;
+      aList.foreach(function(v:integer):boolean v > 0,
+                    procedure(v:integer) s := s + v);
+      sum:=s;
+   end;
+end; 
+begin(*main*)
+end.

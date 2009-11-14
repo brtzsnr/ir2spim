@@ -1,0 +1,46 @@
+(* array mania *)
+program references04;
+
+var
+	i, j: integer;
+	
+	vv: array[1..10] of boolean;
+	vp: array[1..10] of ref boolean;
+	pv: ref array[1..10] of boolean;
+	pp: ref array[1..10] of ref boolean;
+	
+	vvv: array[1..10] of array[1..15] of real;
+	vvp: array[1..10] of array[1..15] of ref real;
+	vpv: array[1..10] of ref array[1..15] of real;
+	vpp: array[1..10] of ref array[1..15] of ref real;
+	pvv: ref array[1..10] of array[1..15] of real;
+	pvp: ref array[1..10] of array[1..15] of ref real;
+	ppv: ref array[1..10] of ref array[1..15] of real;
+	ppp: ref array[1..10] of ref array[1..15] of ref real;
+
+begin
+	i := 1;
+	repeat
+		vv[i] := false;
+		vp[i] := ref vv[i];
+		pv := ref vv;			# pv will point to vv
+		pv := vv;				# values copy from vv to vv
+		pv[i] := vp[i];			# actually it does vv[i] := vv[i]
+		vp[i] := pv[i];			# idem
+		vp[i] := ref pv[i];		# vp[i] will point to pv[i]
+		pp := ref vp;			# pp will point to vp
+		pp[i] := ref vv[i];		# pp[i] will point to vv[i]
+		pp[i] := pv[i];			# what's at the addres pointed by de pp[i] will receive the value from pv[i]
+		pp[i] := pp[i];			# does nothing, just useless casts
+		i := i + 1;
+	until i > 10;
+	
+	i := 1;
+	j := 1;
+	repeat
+		repeat
+			# to be continued
+		until j > 15;
+	until i > 10
+	
+end.

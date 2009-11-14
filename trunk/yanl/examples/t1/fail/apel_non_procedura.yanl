@@ -1,0 +1,15 @@
+# Nu orice simbol poate fi folosit ca o procedura
+
+program dude;
+var a:integer;
+    b:real;
+
+function f(z:integer):integer
+begin
+  b(2,3,4);
+  f:=1;
+end;
+
+begin
+  writeinteger(20);
+end.

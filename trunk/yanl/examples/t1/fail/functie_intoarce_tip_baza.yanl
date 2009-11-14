@@ -1,0 +1,13 @@
+# Functiile au voie sa intoarca numai tipuri de baza
+
+program dude;
+var a:integer;
+
+function f(b:integer):array[1..5] of integer
+begin
+  f:=b+1;
+end;
+
+begin
+  writeinteger(20);
+end.

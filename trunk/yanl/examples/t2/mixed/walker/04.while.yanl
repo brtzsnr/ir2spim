@@ -1,0 +1,8 @@
+program test4; # tests while and a simple assignment; Yanl 1.0+
+var a: integer;
+begin
+	a := -1;	# line 4
+	a := a + 1;
+	while a <= 10 do
+		a := a + 1
+end.

@@ -1,0 +1,39 @@
+program me;
+function falsefun:boolean
+begin
+   falsefun:=false;
+end;
+
+function letter_a (function pred    : boolean):char
+begin
+   if pred then
+   else;
+   letter_a := 'a';
+end;
+
+
+function f (function g (function    : boolean):char):real
+begin
+   g ( falsefun );
+   g ( function : boolean true );
+   f:=1
+end; 
+
+function h (function g (function  (integer)  : boolean):char):real
+begin
+   g ( function ( x : integer) : boolean x=0 );
+   h:=1
+end; 
+
+function i (asdf :integer; function g (function  (function (integer) :integer )  : boolean):char):real
+begin
+   g ( function ( function inc (integer):integer ) : boolean inc(1)=2);
+   i:=asdf;
+end; 
+
+
+begin (* main *)
+   letter_a(function :boolean false);
+   f (letter_a);
+   
+end.

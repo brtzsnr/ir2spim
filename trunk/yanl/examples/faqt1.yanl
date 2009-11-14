@@ -1,0 +1,14 @@
+1. #### Cum intrerup programul? Cum arunc o exceptie in ANTLR?
+	Mostenesti o clasa din 'RuntimeException' si arunci o exceptie
+	de tipul clasei tale. ANTLR recunoaste dar nu produce cod pentru
+	clauze 'throws'.
+
+1. #### Cum detectez sfarsitul de fisier?
+	Folosesti token-ul special EOF.
+
+1. #### Primesc 'warning' la o structura de tipul 'if-then-else'.
+	E corect. Problema se numeste 'dandling-else'. Potrivirea lui 'if' se
+	face cu cel mai indepartat 'else'. Optiunea greedy e folosita pentru
+	siguranta. Din textul laboratorului:
+
+	<pre> statement: IF expression THEN statement (options { greedy = true; } : ELSE statement)?;</pre>

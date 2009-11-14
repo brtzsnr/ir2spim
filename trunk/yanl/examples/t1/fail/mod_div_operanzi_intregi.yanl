@@ -1,0 +1,14 @@
+# La mod/div, ambii operanzi trebuie sa fie intregi
+
+program dude;
+var x,y:boolean;
+
+function g(x:boolean):boolean
+begin
+  g:=not x;
+end;
+
+begin
+ if ((30 mod (not g(false))) <> 0) then
+	   writestring("not ok");
+end.

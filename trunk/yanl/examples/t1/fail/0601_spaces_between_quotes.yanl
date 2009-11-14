@@ -1,0 +1,5 @@
+program me;
+var s:array[1..7] of char;
+begin
+s:="asdf" "jkl";
+end.

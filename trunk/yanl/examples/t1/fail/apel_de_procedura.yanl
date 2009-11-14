@@ -1,0 +1,17 @@
+# Nu orice simbol poate fi folosit ca variabila / functie
+
+program dude;
+var a:integer;
+
+procedure b
+begin
+end;
+
+function f(z:integer):integer
+begin
+  f:=b+1;
+end;
+
+begin
+  writeinteger(20);
+end.

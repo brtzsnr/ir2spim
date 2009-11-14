@@ -1,0 +1,13 @@
+# Doi identificatori globali nu pot avea acelasi nume
+
+program dude;
+var a:integer;
+
+function a(b:integer):integer
+begin
+  a:=b+1;
+end;
+
+begin
+ writeinteger(a(20));
+end.

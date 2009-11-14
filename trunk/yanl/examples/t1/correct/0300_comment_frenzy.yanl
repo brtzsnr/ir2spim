@@ -1,0 +1,10 @@
+program gigi;
+
+var
+	a : integer (* this is sparta!! ********);
+	
+begin
+# a line comment
+	a := (* the number 10 in hexa.*)16;
+	(*) if you > see then else ;*) a := 1
+end.

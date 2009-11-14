@@ -1,0 +1,10 @@
+# Comparatiile se fac numai intre numere (nu au sens intre char-uri, pt ca nu stim encoding-ul, si nici intre
+# boolean, pt ca nu stim cum sunt reprezentate intern)
+# Alexandru: test discutabil
+
+program dude;
+var x,y:char;
+begin
+	if (x<y) then
+			writestring("this is not ok");
+end.

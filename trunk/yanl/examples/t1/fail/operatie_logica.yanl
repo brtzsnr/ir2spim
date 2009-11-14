@@ -1,0 +1,8 @@
+# La operatii logice, ambii operanzi trebuie sa fie de tipul boolean.
+
+program dude;
+var x:integer;
+begin
+   if (true and x) then
+			   writestring("not ok");
+end.

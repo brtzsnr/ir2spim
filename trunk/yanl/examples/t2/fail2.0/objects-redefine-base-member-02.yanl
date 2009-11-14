@@ -1,0 +1,25 @@
+(* polymorphism *)
+program objects02;
+
+type deriv = object (base)
+   crawl: integer;  # eroare: se redefineste un membru al clasei parinte
+end;
+
+type base = object
+	i: integer; 
+procedure crawl  # eroare, crawl definit anterior ca intreg
+	begin
+	end;
+end;
+
+var
+	x: ref base;
+	y: ref deriv;
+	
+begin
+	new(y);
+	y.i := 1;
+	x := ref y;
+	x.crawl;		# call deriv.crawl
+	dispose(y);
+end.

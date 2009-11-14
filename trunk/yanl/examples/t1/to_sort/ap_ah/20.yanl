@@ -1,0 +1,10 @@
+program x;
+var t:integer;
+    array_real:array[0..45] of real;
+function z(u:integer):integer
+begin
+z:=u;
+end;
+begin
+array_real[array_real[4]]:=8;
+end.

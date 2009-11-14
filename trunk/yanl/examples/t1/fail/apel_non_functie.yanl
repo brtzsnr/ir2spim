@@ -1,0 +1,14 @@
+# Nu orice simbol poate fi folosit ca o functie
+
+program dude;
+var a:integer;
+    b:real;
+
+function f(z:integer):integer
+begin
+  f:=b(3)+1;
+end;
+
+begin
+  writeinteger(20);
+end.

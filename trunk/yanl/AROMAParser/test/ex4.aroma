@@ -1,0 +1,104 @@
+; Example: table of pointers to functions:
+;
+; Compute integer arithmetic operations on numbers
+; Input "3.0+1.5" ; Output: "4.00"
+;
+; Some variables and temporaries are stored on stack
+
+.code
+  ldr sp,=$FFFFFFF0
+  sub sp,sp,9  ; space for operands
+
+  bl readReal
+  ftosid r0,d0
+  str r0,[sp,#1] 
+  
+  bl readCharacter
+  strb r0,[sp]  ; operator
+  
+  bl readReal
+  ftosid r0,d0
+  str r0,[sp,#5]
+  
+  ; iterate through a table of operands and functions
+  ldrb r0,[sp]
+  
+  ; while loop: iterate through the array
+  
+  mov r3,0
+  ldr r5,=_array
+loop:
+  ldrb r2,[r5]
+  cmp r2,r0  ; operator = table[i].operator ?
+  bne next
+  b found
+  
+next:  
+  add r3,r3,1
+  add r5,r5,5
+  cmp r3,8
+  bge notfound 
+  b loop
+  
+notfound:  
+  ldr r0,=_t1
+  mov r1,255
+  bl writeString
+  b end
+found:
+  ldr r0,[sp,#1]	  ; load operand1
+  ldr r1,[sp,#5] ; load operand2
+  ldr r4,[r5,#1]  ; operation - table[i].operation
+  bl r4 ; operation(operand1, operand2)
+  
+  fsitod d0,r0
+  bl writeReal
+
+end:
+
+  add sp,sp,9
+  mov lr,0
+  b lr
+
+; The functions
+_xadd:
+  add r0,r0,r1
+  b lr
+_xsub:
+  sub r0,r0,r1
+  b lr
+_xmul:
+  mul r0,r0,r1
+  b lr
+_xand:
+  and r0,r0,r1
+  b lr
+_xorr:
+  orr r0,r0,r1
+  b lr
+_xeor:
+  eor r0,r0,r1
+  b lr
+  
+.data
+_array:
+  db '+'
+  dw _xadd
+  db '-'
+  dw _xsub
+  db '*'
+  dw _xmul
+  db '/'
+  dw _div
+  db '%'
+  dw _mod
+  db '&'
+  dw _xand
+  db '|'
+  dw _xorr
+  db '^'
+  dw _xeor
+_t1:
+  db "Operator not found"
+  db 0
+  

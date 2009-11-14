@@ -1,0 +1,18 @@
+program x;
+var t:integer;
+    array_real:array[0..45] of integer;
+
+function z(u:integer):integer
+begin
+z:=u;
+end;
+
+procedure zz
+var z:real;
+begin
+if true then ;else
+end;
+
+begin
+array_real[array_real[z(array_real[5])]]:=8;
+end.

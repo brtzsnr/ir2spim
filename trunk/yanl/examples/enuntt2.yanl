@@ -1,0 +1,572 @@
+# Tema 2
+
+Sa va implementa in limbajul Java un compilator care citeste un fisier in limbajul YANL si genereaza un fisier in limbajul de asamblare AROMA; ambele limbaje sunt descrise mai jos.
+
+Implementarea trebuie sa foloseasca Java (v1.5 sau mai mica), ANTLR v3.
+
+Compilatorul trebuie sa poata fi apelat din linia de comanda folosind sintaxa:
+
+	java YANLCompiler file.yanl -o file.aroma
+
+Fisierul README trebuie sa contina modalitatea de compilare si rulare. Pentru compilare accept proiecte Eclipse, scripturi ANT, Make, comenzi shell. Pachetul trebuie sa contina sursele (Java, .G), si, optional, un .jar care ruleaza aplicatia direct. Puteti folosi bibiliotecile standard din Java 1.5 si ANTLR v3 runtime.
+
+Pentru 70 puncte : se va implementa corect varianta de limbaj YANL 1.1.
+
+Pentru 100 puncte: se vor implementa corect extensiile orientate obiect YANL 2.0.
+
+Pentru 100+ puncte: se vor implementa functiile anonime din YANL 2.1.
+
+**Deadline-ul pentru aceasta tema este 15 Aprilie, ora 7:00 AM.**
+
+Un exemplu de fisier YANL si programul in limbaj de asamblare asociat:
+
+[[enuntt2/ex1.yanl]]
+	
+
+[[enuntt2/ex1.aroma]]
+
+Tema 2 este conceputa pentru o echipa de doua persoane. Tema trebuie predata de o singura persoana din echipa, si se acorda un singur punctaj, care va fi primit de catre ambii membri ai echipei. Este important sa va formati echipele si sa le inscrieti.
+
+* Inscrierile se fac online, la adresa <http://spreadsheets.google.com/viewform?key=p4rUTcXvfef5U_9-LT_68Pw>, pana pe 30 martie, inclusiv
+* Lista cu echipele deja inscrise se poate gasi la <http://spreadsheets.google.com/ccc?key=p4rUTcXvfef5U_9-LT_68Pw>.
+
+**Atentie!** Termenul de inscriere a fost depasit! Ultimele echipe sunt rugate sa se inscrie cat de repede posibil.
+
+Optiunea nu este disponibila pentru studentii din anul 4.
+
+Doar pentru studentii din anul 5: Daca este dificil sa gasiti un partener de echipa, puteti lucra individual. Cei care lucreaza individual vor trebui si ei sa se inscrie online la adresa de mai sus, mentionand acest lucru, si sa implementeze, pentru 100p, doar versiunea de limbaj YANL 1.1.
+
+Optiunea nu este disponibila pentru studentii din anul 4.
+ 
+## Completari si adaugiri
+
+31 martie - Exemple YANL1.1 si 2.0. Accesle la memorie nu trebuie aliniate. Variabilele globale sunt ascunse de variabile locale si campuri.
+
+28 martie - YANL 2.0: Folosirea tipului this. Tipurile pot fi folosite inainte de a fi definite, atat timp cat nu se obtin dependinte circulare. New si Dispose pot aloca si elibera memorie pentru valori de orice tip. Numarul si tipul parametrilor raman neschimbate la suprascrierea functiilor in obiectele derivate. Atribuiri catre null. YANL 2.1: Functii anonime definite in interiorul altor functii anonime.
+
+25 martie - Explicatii suplimentare despre tipuri, atribuiri si referinte in YANL 2.0
+
+24 martie - Instructiunea de atribuire se aplica si obiectelor. Exemplul ex1 corectat. Tipurile sunt declarate inainte de sectiunea de variabile din programul principal. Declaratiile de obiecte sunt terminate cu caracterul ';'. Parametrii functiilor sunt separati prin caracterul ';'. Valoarea intoarsa de o functie, sau componenta unui array poate fi de orice tip (YANL 2.0).
+
+**********
+
+## Limbajul YANL 1.1 (trebuie implementat pentru a porni de la 70% din punctaj)
+
+YANL 1.1 este o extensie a limbajului YANL de la tema anterioara, cu urmatoarele modificari:
+
+* Tipul `integer` reprezinta intregi cu semn pe 32 de biti
+
+* Tipul `real` reprezinta numere floating point, IEEE754, pe 64 de biti
+
+* Un sir de caractere este o constanta de tip `array[1..n] of char`, unde n este numarul de caractere ASCII, inclusiv caracterul 0 de terminare. Urmatorul cod este valid:
+
+		var
+			arr: array[1..6] of char;
+		begin
+			arr := "Hello";
+		end.
+
+
+* Sunt permise casturi explicite intre tipurile `integer`, `real` si `char`. Castul de la `integer` la `real` este implicit.
+
+* Exista un nou cuvant cheie: `ref`.
+
+* Parametrii functiilor si procedurilor, inclusiv array-uri, sunt transmisi implicit prin valoare.
+
+* Pentru a transmite un parametru prin referinta se foloseste constructia `param: ref type`, ca in exemplul urmator:
+
+		function sqrt(number:real, errorCode: ref integer): real
+		
+		procedure printNumbers(numbers: ref array[1..50] of integer)
+
+
+* Functia de biblioteca `writeString` primeste parametrul prin referinta.
+
+* In interiorul unei functii sau proceduri sunt accesibile atat variabilele locale, cat si cele declarate in programul principal.
+
+Exemple de programe scrise in limbajul YANL 1.1:
+
+* [[t2/test_oficial/hello]] - traditionalul "Hello World!"
+* [[t2/test_oficial/AsciiTable]] - afiseaza o tabela de caractere ASCII. Exemplu de program simplu, cu afisare si conversii de tip.
+* [[t2/test_oficial/Sine]] - calculul functiei sin. Exemplu de folosire a numerelor reale.
+* [[t2/test_oficial/BubbleSort]] - sortarea unui array.
+* [[t2/test_oficial/String]] - cauta si inlocuieste un subsir in alt sir. Exemplu de folosire a sirurilor de caractere, de structuri de control si conditii complexe.
+* [[t2/test_oficial/Average]] - calculeaza media si distributia valorilor unui array, pe care o afiseaza grafic. Exemplu de folosire a operatiilor aritmetice si comparatiilor.
+* [[t2/test_oficial/QuickSort]] - sortarea unui array. Exemplu de functii recursive.
+* [[t2/test_oficial/Calculator]] - calculator de expresii aritmetice. Exemplu de parser LL(1) cu functii mutual recursive.
+
+**********
+
+## Limbajul YANL 2.0 - extensii obiectuale (trebuie implementat pentru a porni de la 100% din punctaj)
+
+YANL 2.0 este o extensie a limbajului 1.1, cu urmatoarele adaugiri:
+
+* Noi cuvinte cheie: `type`, `object`, `null`.
+
+### Referinte
+* Tipul referinta este un tip derivat: un obiect de tipul `ref type` contine o referinta la un obiect de tipul `type`.
+
+* Instructiunea `reference := ref my_object` memoreaza in variabila numita *reference* o referinta catre *my_object*. Operatorul `:= ref` are aceeasi precedenta cu `:=`. Atat *reference*, cat si *my_object* trebuie sa fie expresii carora li se poate atribui o valoare ("lvalue"). Tipul lui *reference* trebuie să fie compatibil cu `ref my_object`.
+
+* O referinta catre un obiect poate fi folosita in toate locurile in care poate aparea acel obiect.
+
+* Obiectul special `null` este compatibil cu toate tipurile de referinte. Este recomandat ca, la implementare, o referinta catre `null` sa aiba valoare 0. Nu este specificat comportamentul unei expresii in genul `null := my_object`, se poate implementa oricum (eroare, instructiune vida, etc).
+
+* Functia predefinita `isNull(reference)` intoarce `true` doar daca *reference* este o referinta catre `null` (are tipul `ref my_type` si i-a fost asignata valoarea `null` inainte).
+
+* Nu trebuie suportate referinte la referinte. Se accepta orice comportament al compilatorului intr-un astfel de caz, de exemplu `ppi : ref ref integer` (evident, nu si un crash).
+
+		var
+			x: array [1..10] of integer;
+			px: ref integer;
+		
+		function invert(arr: ref array[1..10] of integer)
+		begin
+			arr[0] := px - arr[0];
+		end;
+		
+		begin
+			px := ref null;  # px este o referinta catre null;
+			x[0] := 10;
+			x[10] := 20;
+			px := ref x[10]; # px primeste o referinta catre x[10]
+			px := px + 1;    # x[10] este incrementat
+			invert(x);       # parametrul arr primeste o referinta la x
+		end.
+
+### Obiecte
+* Tipul obiect este o colectie de variabile (campuri), functii si proceduri (metode). Tipurile sunt declarate inainte de sectiunea de variabile din programul principal. Sintaxa unui tip obiect este:
+
+		type className = object
+			fieldName : fieldType;
+			...	       
+			procedure proc(...)
+			begin
+				...
+			end;
+			...
+			function func(...):...
+			begin
+				...
+			end;
+			...
+		end;
+
+* Ordinea campurilor este fixata. Întâi apar membrii (fără a fi introduși de *var*), apoi metodele. (<http://cs.pub.ro/~pt/forum/viewtopic.php?f=4&t=66>)
+
+* Metodele unui obiect au un parametru ascuns, `this`, ce contine o referinta catre obiectul pe care aceste metode sunt aplicate. This poate fi folosit in cod la fel ca orice parametru al functiei. Ramane la latitudinea implementarii comportamentul programului in cazul in care un argument (sau variabila locala) are numele `this`.
+
+* Campurile unui obiect pot fi accesate folosind sintaxa: `obiect.field` sau `reference.field`.
+
+* Metodele unui obiect pot fi apelate folosind sintaxa `object.method(...)` sau `reference.method(...)`. Regulile privind formatul parametrilor de la procedurile si functiile non-obiectuale se aplica si aici.
+
+* In interiorul unei metode, campurile obiectului de care apartine metoda pot fi accesate direct, fara a mai folosi constructia `object.`.
+
+* Campurile si metodele pot fi apelate inainte de a fi definite.
+
+* Se pot declara si folosi variabile, campuri si apela metode ale unor obiecte ce nu au fost inca definite.
+Un exemplu de folosire a obiectelor:
+
+* Tipul campurilor obiectelor poate fi oricare, mai putin tipuri care duc la reprezentari infinite ale obiectelor (includeri recursive de obiecte). Sunt interzise tipuri ca:
+
+		(*includere recursiva a tipului care se defineste*)
+		type a = object
+			x: a;
+		end;
+
+	sau:
+
+		(*includere indirect recursiva a tipurilor care se definesc*)
+		type a = object
+			x: b;
+		end;
+		
+		type b = object
+			x: a;
+		end;
+
+
+Un exemplu de folosire a obiectelor:
+
+		type Person = object
+			name: array[1..30] of char;
+			age: integer;
+			procedure getOlder
+			begin
+				this.age := age + 2;		(*1 get older with 2 years*)
+				age := this.age - 1			(*2 only get older with 1 year*)	
+			end;
+			function getAge:integer
+			begin
+				getAge := age				(*3 does this.getAge := age work?*)
+			end;
+		end;
+		var aPerson:Person;
+		begin
+			aPerson.age := 20;
+			aPerson.getOlder;
+			writeInteger(aPerson.getAge)
+		end.
+
+* Instructiunea de atribuire functioneaza cu valori de tipul obiect. La o atribuire `a := b`, valorile campurilor lui `b` sunt atribuite campurilor lui `a`.
+
+* Se pot declara obiecte derivate ce mostenesc alte obiecte, cu sintaxa:
+
+		type className = object (baseClass)
+
+* Toate metodele unui obiect sunt virtuale si pot fi suprascrise in obiectele derivate.
+
+* In implementarea unei metode intr-un obiect derivat, se pot chema metodele obiectului de baza cu sintaxa `baseClass.methodName` (clasa de baza, punct, nume de metoda).
+
+* O referinta la un obiect derivat este compatibila cu tipul referinta la obiectul de baza.
+
+Un exemplu de folosire a mostenirii:
+
+		type Shape = object
+			procedure draw
+			begin
+			end;
+		end;
+		
+		
+		
+		type Point = object(Shape)
+			x, y: integer;
+			procedure draw
+			begin
+				Shape.draw;
+				setPixel(x, y)
+			end;
+		end;
+		
+		
+		
+		var
+			p: Point;
+			r: ref Shape;
+		  
+		begin
+		   p.x := 1; p.y := 2;
+		   r := ref p;
+		   r.Draw    # se apeleaza Point.draw
+		end.
+
+* Alocare dinamică de memorie: procedurile New(reference) și Dispose(reference) pot aloca/elibera memorie dinamică pentru orice tip de referințe (referințe la `integer`, `char`, `boolean`, `real`, `array`-uri sau obiecte).
+
+		var
+			p : ref Point;
+			r : ref Shape;		
+		begin
+			New(p);    # se aloca un obiect de tip Point
+			p.x = 1; p.y = 2;
+			r := ref p;
+			r.Draw;    # se apeleaza Point.draw;
+			Dispose(p);
+		end.
+
+### Tipuri
+
+* Tipurile YANL 2.0 pot fi tipuri de baza sau tipuri compuse
+	* tipurile de baza sunt aceleasi de la YANL 1.x : `char`, `integer`, `real`, `boolean`
+	* tipurile compuse sunt: tablou, obiect si referinta.
+
+* Sintaxa declaratiei unui tip tablou este: `array [start .. stop] of tip`, unde `start` si `stop` sunt numere intregi, `start` <= `stop`, si `tip` este orice tip (de baza, `array`, `object`).
+
+* Sintaxa declaratiei unui tip referinta este: `ref tip`, unde `tip` poate fi orice tip (de baza, `array`, `object`).
+
+* Campurile unui obiect pot avea orice tip. 
+
+* Atat parametrii unei proceduri sau functii, cat si valoarea intoarsa de o functie pot fi de orice tip.
+
+* Tipurile pot fi folosite inainte de a fi definite. In acest mod, un obiect poate contine o referinta catre un obiect de acelasi tip pentru implementarea structurilor dinamice de date - liste sau arbori:
+
+		type IntList = object
+			value: integer;
+			next: ref IntList;
+		end;
+
+* Un exemplu care pune intr-un obiect o referinta la el insusi:
+
+		type t = object
+			x : ref t;
+			procedure selfReference
+			begin
+				this.x := ref this
+			end;
+		end;
+
+* Nu se admit dependinte circulare in declararea tipurilor:
+
+		type a = object
+			x : b
+		end;
+		
+		type b = object
+			x : a   # ERROR: b contains an a containing another b ...
+		end;
+
+### Atribuiri si evaluarea expresiilor
+
+* YANL 2.0 are doua instructiuni de atribuire: atribuirea simpla, `:=` <del>si atribuirea de referinte, `:= ref`</del> (consideram `ref` drept operator unar, asociativ dreapta, ca si conversiile explicite de tipuri, minus unar sau `not`; spre deosebire de acestea, trebuie mentionat, cum apare mai sus, ca `ref ref tip` nu este obligatoriu de implementat).
+
+* Atribuirea simpla este de tipul `lvalue := expresie`, in timp ce atribuirea de referinte este de tipul `ref_lvalue := lvalue`, unde `expresie`, `lvalue` si `ref_lvalue` sunt tipuri de expresii, ce difera in rezultatul evaluarii lor.
+
+* Rezultatul evaluarii unei expresii simple este o valoare. Rezultatul evaluarii unei expresii `lvalue` este o constructie careia i se poate atribui o valoare. Rezultatul evaluarii unei expresii `ref_lvalue` este o variabila de tip referinta.
+
+* In decursul evaluarii oricarui tip de expresie, aparitia unei referinte se inlocuieste cu variabila referita.
+
+		var
+			x: ref array[0..10] of ref integer;
+		begin
+			x[1] := 1;			# x[1] este un lvalue, se evalueaza la o variabila integer.
+			x[2] := ref x[1];	# x[2] este un ref_lvalue, se evalueaza la o variabila ref integer.
+								# x[1] este un lvalue, se evalueaza la o variabila integer
+			x[1] := x[2] + 1	# x[1] este un lvalue, se evalueaza la o variabila integer.
+								# x[2] + 1 este o expresie simpla, se evalueaza la o valoare de tip integer.
+		end.
+
+In exemplul de mai sus, x este o "referinta catre un array de 11 elemente, fiecare element avand tipul referinta catre o variabila de tip `integer`."
+
+"`x[1] := 1`" este o atribuire simpla, si "`x[1]`" se evalueaza conform regulilor din lvalue: "variabila de tip integer, a carei referinta se gaseste pe pozitia 1 din `array`-ul referit de `x`."
+
+"`x[2] := ref x[1]`" este o atribuire de referinte, si semantica ei este "variabilei de tip `ref integer`, de pe pozitia 2 din `array`-ul referit de `x`, va contine o referinta catre obiectul de tip `integer`, actualmente referit de pozitia 1 din `arrayul` referit de `x`."
+
+In fine, "`x[1] := x[2] + 1`" este o atribuire de referinte, si semantica ei este "variabila de tip `integer`, referita de pozitia 1 din `array`-ul referit de `x`, va contine valoarea obiectul de tip `integer`, referit de pozitia 2 din `array`-ul referit de `x`, la care se adauga 1."
+
+O semantica asemanatoare se poate obtine in limbajul `C` folosind urmatorul cod:
+
+		int *(*x)[11];
+		*((*x)[1]) = 1;
+		(*x)[2] = &(*((*x)[1]));
+		*((*x)[1]) = *((*x)[2]) + 1;
+
+* La apelarea unei functii, parametrii care au un tip referinta primesc valorile conform semanticii atribuirii de referinte, `:= ref ...`. Parametrii care nu au un tip referinta primesc valorile conform semanticii atribuirii simple, `:=`.
+
+		var
+			y, z: integer;
+		function increment(x: integer, rx: ref integer)
+		begin
+			rx := x + 1
+		end;
+
+		begin
+			y := 0;
+			increment(y, z) # se evalueaza la fel ca x := y; rx := ref z;
+		end.
+
+Exemple de programe scrise in limbajul YANL 2.0:
+
+* [[t2/test_oficial_2.0/EASTDisplay]] - un parser LL(1) pentru expresii aritmetice, care afiseaza arborele sintactic.
+* [[t2/test_oficial_2.0/EInterpreter]] - un evaluator de expresii aritmetice, bazat pe parserul EAST.
+* [[t2/test_oficial_2.0/ECompiler]] - un compilator bazat pe parserul EAST, ce genereaza cod AROMA ce evalueaza o expresie.
+
+**********
+ 
+## Limbajul YANL 2.1 - functii anonime (implementarea lui pentru punctaj bonus peste 100%)
+
+YANL 2.1 este o extensie a limbajului 2.0, cu urmatoarele adaugiri:
+
+* O functie sau procedura poate avea ca parametri referinte la o alta functie sau procedura, cu urmatoarea sintaxa:
+
+		function paramFunc(type[, type...]): type
+		function paramFunc: type
+		procedure paramProc(type[, type...])
+		procedure paramProc
+
+* Nu este obligatoriu (dar nici interzis) sa numim parametrii formali ai parametrilor subprogramelor. Urmatoarele sunt echivalente, a doua nu e obligatorie:
+
+		procedure paramProc(integer)   (* forma care trebuie suportata de toate implementarile *)
+		procedure paramProc(a:integer) (* forma care poate fi optional implementata *)
+
+* O referinta catre o procedura poate fi apelata cu aceeasi sintaxa ca un apel standard de procedura.
+
+* Referintele catre proceduri pot fi transmise ca parametri mai departe, dar *nu* pot fi atribuite unor variabile. Asta inseamna ca la apelul unui subprogram dat prin parametru, contextul in care acesta a fost definit este valid (nu trebuie implementat un closure complet care isi salveaza separat si un context).
+
+		type IList = object
+			value: integer;
+			next: ref Ilist;
+			procedure foreach( function  pred(integer): boolean,
+		                     procedure action(integer) )
+			begin
+				if pred(value) then action(value);
+				if not isNull(next) then next.foreach(pred, action);
+			end;
+		end;
+
+* La apelul unei functii, un parametru de tip functie/procedura poate fi initializat in-place cu urmatoarea sintaxa:
+
+		function(param: type[, param: type...]): type expression
+		function: type expression
+		procedure(param: type[, param: type...]) statement
+		procedure statement
+
+* Constructia de mai sus creaza implicit o noua functie sau procedura.
+
+* Tipul Expresiei trebuie sa fie compatibil cu tipul intors de `paramFunc` și valoarea expresiei este returnata de functia respectiva.
+
+* Expresia sau instructiunea pot contine variabile globale, variabile locale, campuri ale obiectului curent, si parametri declarati in sintaxa de mai sus.
+
+		function sumIfPositive(ref IList aList):integer;
+		var
+			s:integer;
+		begin
+			if isNull(aList) then 
+				sum := 0
+			else begin
+				s:=0;
+				aList.foreach( function(v:integer):boolean    v > 0,
+							   procedure(v:integer)           s := s + v );
+				sum:=s
+			end
+		end;
+
+* In cazul functiilor anonime definite in interiorul altor functii anonime, comportamentul compilatorului nu este specificat. Implementarea lor este optionala.
+
+**********
+
+## Arhitectura setului de instructiuni AROMA
+
+AROMA este un limbaj de asamblare asemanator, dar nu identic, cu setul de instructiuni al procesoarelor ARM.
+
+Un fisier AROMA este alcatuit din doua sectiuni.
+
+	   .code
+	     Instructiuni AROMA
+	   .data
+	     Directive de stocare a datelor
+
+Atat zona de date cat si cea de cod pot contine etichete ("label"). O eticheta este un identificator ce cuprinde litere, cifre si caracterul _, si nu incepe cu o cifra. Valoarea etichetei este adresa instructiunii sau directivei imediat urmatoare. Sintaxa unei etichete este:
+
+	   Label:
+
+In limbajul de asamblare AROMA nu se face diferenta intre literele mici si mari.
+
+Constantele numerice sunt zecimale, reale sau hexazecimale. Constantele hexazecimale sunt reprezentate ca $numar (de exemplu $FFFF). Caracterele si sirurile de caractere sunt ASCII.
+
+### Modelul de executie - memoria si registri
+
+O masina AROMA are un set de registri generali pentru calcule cu numere intregi, de 32 de biti, si un set de registri floating point de 64 biti.
+
+Registrii intregi sunt numerotati de la R0 la R14. Registrul R13 poate fi adresat si cu numele de SP, si este in mod conventional pointer la stiva. Registrul R14 poate fi adresat si cu numele de LR, si este folosit pentru transmiterea adresei de intoarcere din subrutine.
+
+Registrii floating point sunt numerotati de la D0 la D7.
+
+Suplimentar, un simulator AROMA suporta un set nelimitat de registri intregi, numerotati incepand cu VR0, si un set nelimitat de registri floating point, numerotati incepand cu VD0.
+
+Memoria este liniara, adresabila pe 32 de biti, si impartita in pagini de cod si date. Nu se permite incarcarea datelor din zona de cod, nici executia codului din zona de date.
+
+### Setul de instructiuni
+
+In descrierea mnemonicilor urmatoare, Rx corespunde oricarui registru R sau VR, si Dx corespunde oricarui registru D sau VD.
+
+#### Instructiuni aritmetice pe numere intregi:
+
+In instructiunile urmatoare, oper poate fi un registru Rx, sau un numar intre 0 si 255.
+
+* *`MOV Rx, oper`* -> `Rx = oper`
+* *`ADD Rx, Ry, oper`* -> `Rx = Ry + oper`
+* *`SUB Rx, Ry, oper`* -> `Rx = Ry - oper`
+* *`MUL Rx, Ry, Rz`* -> `Rx = Ry * Rz`
+* *`AND Rx, Ry, oper`* -> `Rx = Ry and oper` (operatie pe biti)
+* *`ORR Rx, Ry, oper`* -> `Rx = Ry or oper` (operatie pe biti)
+* *`EOR Rx, Ry, oper`* -> `Rx = Ry xor oper`
+* *`MVN Rx, oper`* -> `Rx = not oper`
+* *`CMP Rx, oper`* -> Compara `Rx` cu `oper`. Comparatiile se fac pe numere intregi cu semn. Rezultatul comparatiei este folosit de instructiunile conditionale de salt.
+
+#### Instructiuni de salt:
+
+* *B label* -> Salt la adresa label
+* *BEQ label* -> Salt la adresa label, daca rezultatul ultimei comparatii este =
+* *BNE label* -> Salt la adresa label, daca rezultatul ultimei comparatii este <>
+* *BGE label* -> Salt la adresa label, daca rezultatul ultimei comparatii este >=
+* *BLT label* -> Salt la adresa label, daca rezultatul ultimei comparatii este <
+* *BGT label* -> Salt la adresa label, daca rezultatul ultimei comparatii este >
+* *BLE label* -> Salt la adresa label, daca rezultatul ultimei comparatii este <=
+* *B Rx* -> Salt la adresa din registrul Rx
+* BL label* -> Apel de subrutina: salveaza adresa instructiunii urmatoare in registrul LR, apoi salt la adresa label.
+* BL Rx* -> Salveaza adresa instructiunii urmatoare in registrul LR, apoi salt la adresa din registrul Rx.
+
+#### Instructiuni de citire si scriere in memorie:
+
+* *LDR Rx, =value* -> Rx = value, unde value este un numar pe 32 de biti, un label, sau label + numar.
+* *LDR Rx, [Ry, #number]* -> Rx = Memory(Ry + number). Se citesc 4 bytes de la adresa specificata.
+* *STR Rx, [Ry, #number]* -> Memory(Ry + number) = Rx. Se scriu 4 bytes la adresa specificata.
+* *LDRB Rx, [Ry, #number]* -> Rx = Memory(Ry + number). Se citeste 1 byte de la adresa specificata. Restul bitilor din registru sunt 0.
+* *STRB Rx, [Ry, #number]* -> Memory(Ry + number) = Rx. Se scrie 1 bytes la adresa specificata (cel mai putin semnificativ).
+
+Instructiunile de mai sus se pot scrie in format simplificat, daca deplasamentul este 0; de exemplu
+
+        LDR Rx, [Ry]
+
+este echivalent cu
+
+        LDR Rx, [Ry,#0]
+
+#### Instructiuni pe numere floating point:
+
+* *FCPYD Dx, Dy* -> Dx = Dy
+* *FADDD Dx, Dy, Dz* -> Dx = Dy + Dz
+* *FSUBD Dx, Dy, Dz* -> Dx = Dy - Dz
+* *FMULD Dx, Dy, Dz* -> Dx = Dy * Dz
+* *FDIVD Dx, Dy, Dz* -> Dx = Dy / Dz
+* *FCMPD Dx, Dy* -> Compara Dx cu Dy. Rezultatul comparatiei este folosit de instructiunile conditionale de salt.
+* *FSITOD Dx, Rx* -> Dx = (real)Rx
+* *FTOSID Rx, Dx* -> Rx = (integer)Dx
+* *FLDD Dx, [Rx, #number]* -> Dx = Memory(Rx + number). Se citesc 8 bytes de la adresa specificata. Este permisa adresarea simplificata cand number = 0.
+* *FSTD Dx, [Rx, #number]* -> Memory(xy + number) = Dx. Se scriu 8 bytes la adresa specificata. Este permisa adresarea simplificata cand number = 0.
+
+#### Directivele de stocare a datelor
+
+* *DB number* -> (1 byte) Memoreaza un numar intre 0 .. 255
+* *DB 'char'* -> (1 byte) Memoreaza un caracter ASCII
+* *DB "string"* -> (Lungimea  sirului) Memoreaza un sir de caracter ASCII. Sirul nu include un eventual caracter NUL de terminare.
+* *DW number* -> (4 bytes) Memoreaza un numar intreg
+* *DW label* -> (4 bytes) Memoreaza valoarea unui label
+* *DD number* -> (8 bytes) Memoreaza un numar real.
+* *DS number* -> (number bytes) Aloca un spatiu de memorie neintializat.
+              
+### Mediul de executie - YANL runtime
+
+Executia instructiunilor incepe cu prima linie din sectiunea .code si se termina atunci cand executia programului ajunge la adresa 0.
+
+La executia unui program YANL, memoria este impartia astfel:
+
+* 0 - 0x0FFF FFFF : zona neutilizata.
+
+* 0x1000 0000 - 0x1FFF FFFF : zona de cod (.code)
+
+* 0x2000 0000 - 0x3FFF FFFF : zona de date statice (.data)
+
+* 0x4000 0000 - 0x7FFF FFFF : zona date alocate dinamic (.heap)
+
+* 0x8000 0000 - 0xFFFF FFF0 : zona de stiva (.stack)
+
+La intrarea in program, registrii (inclusiv SP) sunt neinitializati.
+
+#### Reprezentarea datelor
+
+* *Integer* - intreg cu semn reprezentat pe 32 de biti.
+* *Char* - caracter ASCII reprezentat pe 8 biti.
+* *Boolean* - true = 1, false = 0
+* *Real* - numar floating point reprezentat pe 64 de biti.
+
+Referintele si adresele (pointeri) sunt reprezentate pe 32 de biti.
+
+#### Functii de runtime
+
+Suportul de executie YANL contine un numar de functii predefinite. Numele lor poate fi tratat ca oricare alt label.
+
+Functiile runtime nu modifica decat registrii R0 - R7, R12, D0 - D3.
+
+* *_div (R0, R1) : R0* -> R0 = R0 / R1
+* *_mod (R0, R1) : R0* -> R0 = R0 mod R1
+* *_new (R0) : R0* -> Aloca in .heap un spatiu de dimensiune R0. Intoarce o referinta la spatiul alocat.
+* *_dispose(R0)* -> Elibereaza spatiul referit de R0
+* *writeInteger(R0)* -> Afiseaza un intreg memorat in R0
+* *writeCharacter(R0)* -> Afiseaza un caracter ASCII memorat in cel mai putin semnificativ byte din R0
+* *writeBoolean(R0)* -> Afiseaza "true" daca R0 <> 0, "false" daca R0 = 0.
+* *writeString(R0, R1)* -> Afiseaza un sir de caractere ASCII incepand de la adresa referita de R0. Afiseaza caracterele pana cand intalneste un caracter NUL sau numarul de caractere afisate depaseste R1.
+* *writeReal(D0)* -> Afiseaza un numar floating point memorat in D0
+* *readInteger:R0* -> Citeste un intreg si il memoreaza in R0
+* *readCharacter:R0* -> Citeste un caracter si memoreaza codul sau ASCII in R0.
+* *readReal:D0* -> Citeste un numar floating point si il memoreaza in D0.

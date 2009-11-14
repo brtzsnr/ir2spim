@@ -1,0 +1,19 @@
+program x;
+var t:real;
+    array_real:array[0..45] of integer;
+
+function z:integer
+begin
+z:=2;
+end;
+
+procedure zz
+var z:real;
+begin
+repeat until (z=2)
+end;
+
+begin
+t:=2+-4;
+t:=327680;
+end.

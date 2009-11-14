@@ -1,0 +1,90 @@
+program Calculator;
+(* Calculator simplu pentru intregi. Adunari, scaderi, inmultiri, impartiri si paranteze.
+ * Foloseste un parser LL(1). *)
+
+var
+  token : char;
+
+function evalAddExpression : real
+var
+  sum : real;
+  op : char;
+begin
+  sum := evalMulExpression;
+  while (token='+') or (token='-') do
+  begin
+    op := token;
+    token := readCharacter;
+    if op='+' then
+      sum := sum + evalMulExpression
+    else
+      sum := sum - evalMulExpression;    
+  end;
+  evalAddExpression := sum;
+end;
+
+function evalMulExpression : real
+var
+  prod : real;
+  op : char;
+begin
+  prod := evalOperand;
+  while (token='*') or (token='-') do
+  begin
+    op := token;
+    token := readCharacter;
+    if op='*' then
+      prod := prod * evalOperand
+    else
+      prod := prod / evalOperand;    
+  end;
+  evalMulExpression := prod;
+end;
+
+function evalOperand : real
+begin
+  if token='(' then
+  begin
+    token := readCharacter;
+    evalOperand := evalAddExpression;
+    if readCharacter <> ')' then
+      writeString ("Eroare: lipseste ')' ! ");
+    token := readCharacter;
+  end
+  else
+    evalOperand := evalInteger;
+end;
+  
+function integerValue(c:char) : integer
+(* Converteste un caracter la intreg, intoarce -1 in caz de eroare *)
+begin
+  if (c < '0') or (c > '9') then 
+    integerValue := -1
+  else
+    integerValue := (integer)c - (integer)'0';
+end;
+  
+function evalInteger : real
+var
+  n, x : integer;
+begin
+  n := integerValue(token);
+  if n < 0 then
+    writeString("Eroare: lipseste un numar!");
+  
+  token := readCharacter;
+  x := integerValue(token);
+  while x >= 0 do
+  begin
+    n := n * 10 + x;
+    token := readCharacter;
+    x := integerValue(token);
+  end;
+
+  evalInteger := n;
+end;
+
+begin
+  token := readCharacter;
+  writeReal(evalAddExpression);
+end.

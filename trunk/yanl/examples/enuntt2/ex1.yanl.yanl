@@ -1,0 +1,18 @@
+    program sum;
+    var
+      x,y:integer;
+      
+    procedure writelnInteger(i:integer)
+    begin
+      writeInteger(i);
+      writeCharacter((char)10);
+    end;
+      
+    begin
+      writeString("X=");
+      x=readInteger;
+      writeString("Y=");
+      y=readInteger;
+      writeString("X+Y=");
+      writeInteger(X+Y);
+    end.

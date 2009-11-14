@@ -1,0 +1,10 @@
+program test10;	# checks an array expression
+var a: array[1..10] of integer;
+	i, j: integer;
+begin
+	i := a[2];
+	i := a[1][2];	# line 6 - error - STDIN(6, 6): type mismatch error; got INTEGER while expecting ARRAY
+	i := a[1][2][3];	#line 7 - error - STDIN(7, 6): type mismatch error; got INTEGER while expecting ARRAY
+	i := b[4];	# line 8 - error - STDIN(8, 6): b could not be resolved to a valid declaration
+	i := j[1]	# line 9 - error - STDIN(9, 6): type mismatch error; got INTEGER while expecting ARRAY
+end.

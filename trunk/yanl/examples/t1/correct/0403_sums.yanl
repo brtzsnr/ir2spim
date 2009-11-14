@@ -1,0 +1,10 @@
+program sums;
+var a,b,c,d:integer;
+begin
+  a := a + b + c + d;
+  a := a - b - c - d;
+  a := - a - b - c - d;
+  a := -a;
+  a := -c -- d -- a -- b;
+end.
+

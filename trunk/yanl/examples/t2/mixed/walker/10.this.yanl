@@ -1,0 +1,15 @@
+program test10;	# hammers at ``this" keyword
+type t = object
+	a: ref t;	# line 3
+	procedure hammer
+	begin
+		a := ref this;
+		this.a := ref this;	# line 7
+		this.a := ref this.a;	# line 8
+		this := a
+	end;
+end;
+var a: t;
+begin
+	a.hammer	# line 14
+end.

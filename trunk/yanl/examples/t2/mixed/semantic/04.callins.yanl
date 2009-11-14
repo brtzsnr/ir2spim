@@ -1,0 +1,8 @@
+program test04;	# test CALL insertion for an uber simple expression
+var a: integer;
+function x: integer begin x := 1 end;
+function y(x: integer): integer begin y := 1 end;
+begin 
+	a := x;	# line 6 - ok - invent a CALL label before x
+	a := y	# line 7 - error - STDIN(7, 6): function y takes 1 argument, none given
+end.

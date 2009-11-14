@@ -1,0 +1,9 @@
+program x;
+var t:real;
+function z(u:char):real
+begin
+z:=t;
+end;
+begin
+t:=z
+end.

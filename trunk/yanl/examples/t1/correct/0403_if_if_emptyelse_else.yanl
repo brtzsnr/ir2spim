@@ -1,0 +1,9 @@
+program me;
+var a:integer;
+begin 
+if true then 
+    if true then 
+        a:=2 
+    else 
+else a:=1
+end.

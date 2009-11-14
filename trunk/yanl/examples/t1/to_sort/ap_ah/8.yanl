@@ -1,0 +1,8 @@
+program x;
+var t:real;
+function z:real
+begin
+end;
+begin
+t:=z
+end.

@@ -1,0 +1,61 @@
+program QuickSort;
+
+var 
+  array_to_sort : array[0..99] of integer;
+  len, i : integer;
+
+procedure qSort (a : ref array[0..99] of integer; start, stop: integer)
+var
+  pivot, from, to, tmp : integer;
+begin
+  if start < stop then
+  begin
+    from := start;
+    to := stop;
+    pivot := a[start];
+    while from < to do
+    if a[from + 1] < pivot then
+      begin
+      a[from] := a[from + 1];
+      from := from + 1;
+      end
+    else
+      begin
+      tmp := a[to];
+      a[to] := a[from + 1];
+      a[from + 1] := tmp;
+      to := to - 1;
+      end;
+    a[from] := pivot;
+    qSort(a, start, from - 1);
+    qSort(a, from + 1, stop);
+  end;
+end;
+
+begin
+   repeat 
+     writeString("Numarul de elemente:");
+     len := readInteger;
+   until len > 0 and len <= 100;
+
+   i := 0;   
+   while (i<len) do
+   begin
+      writeString("Elementul ");
+      writeInteger(i + 1);
+      writeCharacter(':');      
+      array_to_sort[i] := readInteger;
+      i := i + 1;
+   end;
+
+   qSort(array_to_sort, 0, len-1);
+
+   writeString("Sirul sortat: ");  
+   i := 0;   
+   while (i < len) do
+   begin
+      writeInteger(array_to_sort[i]);
+      writeCharacter(' ');
+      i := i + 1;
+   end
+end.

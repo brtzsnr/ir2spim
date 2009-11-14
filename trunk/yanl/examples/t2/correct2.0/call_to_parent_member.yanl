@@ -1,0 +1,33 @@
+program bubblesort;
+
+type a_type = object
+	b : b_type;
+end;
+
+type b_type_parent = object
+	procedure y(t:integer)
+	begin
+	end;
+end;
+
+type b_type_parent2 = object(b_type_parent)
+end;
+
+type b_type = object(b_type_parent2)
+	a : ref a_type; (* nu e dependinta circulara, nu trebuie eroare *)
+	
+	procedure x(t:integer)
+	begin
+	      b_type_parent2.y(30);
+	end;
+end;
+
+var tmp: b_type;
+
+procedure razvan(x:integer)
+begin
+end;
+
+begin
+	razvan(30);
+end.

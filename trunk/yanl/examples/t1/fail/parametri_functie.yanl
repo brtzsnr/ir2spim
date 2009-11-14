@@ -1,0 +1,12 @@
+# Parametrii unei functii nu au voie sa aiba nume identice cu variabilele ei
+
+program dude;
+
+function f(t:integer):boolean
+var t:integer;
+begin
+ f:=true;
+end;
+
+begin
+end.
