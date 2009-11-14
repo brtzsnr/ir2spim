@@ -1,0 +1,11 @@
+# Parametrii unei functii nu au voie sa aiba ca nume cuvinte rezervate
+
+program dude;
+
+function f(program:integer):boolean
+begin
+ f:=true;
+end;
+
+begin
+end.

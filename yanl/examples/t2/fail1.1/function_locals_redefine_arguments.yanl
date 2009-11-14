@@ -1,0 +1,10 @@
+program me;
+
+function f(a : integer):integer
+var a : integer;
+begin
+   f:=1;
+end;
+
+begin
+end.

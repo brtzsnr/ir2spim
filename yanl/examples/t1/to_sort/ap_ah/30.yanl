@@ -1,0 +1,18 @@
+program x;
+var t:integer;
+    array_real:array[0..45] of integer;
+
+function z(u:integer):integer
+begin
+z:=u;
+end;
+
+procedure zz
+var z:real;
+begin
+repeat until (z=2)
+end;
+
+begin
+t:=2--4;
+end.

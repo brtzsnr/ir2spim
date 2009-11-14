@@ -1,0 +1,11 @@
+program test05;	# test CALL insertion for a deeper expression
+type obj = object
+	function x: integer begin x := 1 end;
+	function y(a, b: integer): integer begin y := a end;
+end;
+var a: integer;
+	b: obj;
+begin 
+	a := b.x;	# line 9 - ok - invent a CALL label before x
+	a := b.y(1, 0)	# line 10 - ok
+end.

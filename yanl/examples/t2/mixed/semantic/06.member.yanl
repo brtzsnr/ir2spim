@@ -1,0 +1,12 @@
+program test06; # tests succes for member function search, for field, fail for non-member
+type obj = object
+	w: integer;
+	function x: integer begin x := 1 end;
+end;
+var a: obj;
+	i: integer;
+begin
+	i := a.x;	# line 9 - should insert a CALL before x, and succeed
+	i := a.w;	# line 10 - success for w
+	i := a.y	# line 11 - error - STDIN(11, 8): class obj doesn't have a member function/variable called y
+end.

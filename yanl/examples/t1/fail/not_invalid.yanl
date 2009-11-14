@@ -1,0 +1,8 @@
+# Avem voie sa aplicam not numai pt expresii boolene
+
+program dude;
+var x:integer;
+begin
+	if (not (x+3)) then
+			writestring("This shouldn't be working");
+end.

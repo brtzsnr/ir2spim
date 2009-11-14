@@ -1,0 +1,10 @@
+program me;
+var x:integer;
+    y,z:integer;
+    w:real;
+    c:char;
+var a, b:real;
+var q, e:integer;
+  i,j:boolean;
+begin
+end.

@@ -1,0 +1,12 @@
+program me;
+
+type mutual_recursive_a = object
+   b: mutual_recursive_b;
+end;
+
+type mutual_recursive_b = object
+   a: mutual_recursive_a;
+end;
+
+begin
+end.

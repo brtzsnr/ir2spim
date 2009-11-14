@@ -1,0 +1,10 @@
+program x;
+var t:integer;
+function z(u:integer):integer
+begin
+z:=u;
+end;
+begin
+if z(t)<45 and true then
+	t:=z(t)+t+z(z(t));
+end.

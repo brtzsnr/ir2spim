@@ -1,0 +1,353 @@
+program EInterpreter;
+(* Expression Interpreter
+ * Parser pentru expresii aritmentice intregi. 
+ * Adunari, scaderi, inmultiri, impartiri si paranteze.
+ * Accepta variabile de tipul $1, $2.
+ * Spatiile sunt ignorate.
+ * Citeste de la intrare expresia, apoi valorile variabilelor (numere reale).
+ * Evalueaza expresia si afiseaza rezultatul.
+ * De exemplu, pentru datele de intrare:
+ *   1 + ($1 + 5) * $2
+ *   3
+ *   6
+ * ...rezultatul este 49 = 1+(3+5)*6. *)
+ 
+(********* Lexer *********)
+
+(* Tokenii sunt caractere, spatiile sunt ignorate *)
+type Tokenizer = object
+    currentToken : char;
+    firstTime : boolean;
+    
+  procedure init
+  begin
+    firstTime := true;
+  end;
+  
+  function lookAhead : char
+  begin
+    if firstTime then lookAhead := nextToken;
+    firstTime := false;
+    lookAhead := currentToken;
+  end;
+  
+  function nextToken : char
+  begin
+    repeat
+      currentToken := readChar;
+    until currentToken <> ' '; # Ignora spatiile
+    nextToken := currentToken;
+  end;
+    
+  function readChar : char  # Functia trebuie reimplementata
+  begin
+    readChar := (char)0;
+  end;
+end;
+
+(* un Tokenizer care citeste date de la intrare *)
+type StdinTokenizer = object(Tokenizer)
+  function readChar : char
+  begin
+    readChar := readCharacter;
+  end;
+end;
+
+(********* Syntax tree *********)
+
+type Expression = object
+   procedure destroy
+   begin
+     dispose(this);
+   end;
+   procedure initVars
+   begin
+   end;
+   function evaluate:real
+   begin
+     evaluate := 0.0;
+   end;
+end;
+
+type Constant = object(Expression)
+  value : integer;
+  function evaluate:real
+  begin
+    evaluate := value;
+  end;
+end;
+  
+type Variable = object(Expression)
+  index : integer;
+  procedure initVars
+  begin
+    vars.set(index, 0.0);
+  end;
+  function evaluate:real
+  begin
+    evaluate := vars.get(index);
+  end;
+end;
+
+type Operation = object(Expression)
+  oper1, oper2 : ref Expression;
+  
+  procedure destroy
+  begin
+    oper1.destroy;
+    oper2.destroy;
+    Expression.destroy;
+  end;
+  
+  procedure init(o1,o2: ref Expression)
+  begin
+    oper1 := ref o1;
+    oper2 := ref o2;
+  end;
+
+  procedure initVars
+  begin
+    oper1.initVars;
+    oper2.initVars;
+  end;
+
+end;
+
+type Addition = object(Operation)
+  function evaluate:real
+  begin
+    evaluate := oper1.evaluate + oper2.evaluate;
+  end;
+end;
+
+type Subtraction = object(Operation)
+  function evaluate:real
+  begin
+    evaluate := oper1.evaluate - oper2.evaluate;
+  end;
+end;
+
+type Multiplication = object(Operation)
+  function evaluate:real
+  begin
+    evaluate := oper1.evaluate * oper2.evaluate;
+  end;
+end;
+
+type Division = object(Operation)
+  function evaluate:real
+  begin
+    evaluate := oper1.evaluate / oper2.evaluate;
+  end;
+end;
+
+(********* Variables *********)
+type Variables = object
+  memory:array[1..100] of real;
+  max:integer;
+  procedure init
+  begin
+    max:=0;
+  end;
+  procedure set(idx:integer; v:real)
+  begin
+    if idx>=1 and idx<=100 then
+    begin
+      memory[idx] := v;
+      if max<idx then max:=idx;
+    end
+  end;
+  function get(idx:integer):real
+  begin
+    if idx<1 or idx>100 then
+      get:=0.0
+    else
+      get:=memory[idx];
+  end;
+end;
+
+var
+  e : ref Expression;
+  input : StdinTokenizer;
+  vars : Variables;
+  i :integer;
+
+(********* Parser *********)
+
+function newOperation(op:char) : ref Operation
+var
+  ea: ref Addition;
+  es: ref Subtraction;
+  em: ref Multiplication;
+  ed: ref Division;
+begin
+  if op='+' then
+  begin
+    new(ea); newOperation := ref ea;
+  end
+  else 
+    if op='-' then
+    begin
+      new(es); newOperation := ref es;
+    end
+    else
+      if op='*' then
+      begin
+        new(em); newOperation := ref em;      
+      end
+      else
+      begin
+        new(ed); newOperation := ref ed;      
+      end;
+end;
+
+function parseAddExpression(stream: ref Tokenizer) : ref Expression
+var
+  e, r : ref Expression;
+  x: ref Operation;
+  op: char;  
+begin
+  e := ref parseMulExpression(stream); # e poate fi null in caz de eroare la parsare
+  
+  while not isNull(e) and (stream.LookAhead='+' or stream.LookAhead='-') do
+  begin
+    op := stream.nextToken;
+    r := ref parseMulExpression(stream); 
+    if isNull(r) then
+    begin
+      e.destroy; e := ref null;
+    end
+    else
+      begin
+        x := ref newOperation(op);
+        x.init(e, r);
+        e:= ref x;
+      end;
+  end;
+  parseAddExpression := ref e;
+end;
+
+function parseMulExpression(stream: ref Tokenizer) : ref Expression
+var
+  e, r : ref Expression;
+  x: ref Operation;
+  op: char;  
+begin
+  e := ref parseOperand(stream); # e poate fi null in caz de eroare la parsare
+  
+  while not isNull(e) and (stream.LookAhead='*' or stream.LookAhead='/') do
+  begin
+    op := stream.nextToken;
+    r := ref parseOperand(stream); 
+    if isNull(r) then
+    begin
+      e.destroy; e := ref null;
+    end
+    else
+      begin
+        x := ref newOperation(op);
+        x.init(e, r);
+        e:= ref x;
+      end;
+  end;
+  parseMulExpression := ref e;
+end;
+
+function parseOperand(stream: ref Tokenizer) : ref Expression
+var
+  e : ref Expression;
+  ev : ref Variable;
+  ec : ref Constant; 
+  c : char;
+begin
+
+  (* Operand := (  expresie ) *)  
+  if stream.lookAhead = '(' then
+  begin
+    c := stream.nextToken;
+    e := ref parseAddExpression(stream);
+    if not isNull(e) then
+    begin
+      if stream.nextToken <> ')' then
+      begin
+        writeString ("Eroare: lipseste ')' ! ");
+        e.destroy; e:= ref null;
+      end;      
+    end
+  end
+  else
+
+    (* Operand := $ variabila *)  
+    if stream.lookAhead = '$' then
+    begin
+      c := stream.nextToken;
+      if not isDigit(stream.lookAhead) then
+      begin
+        writeString ("Eroare: lipseste numarul variabilei ! ");
+        e:= ref null;
+      end
+      else
+      begin
+        new(ev);
+        ev.index := evalInteger(stream);
+        e := ref ev;
+      end;
+    end
+    else 
+
+      (* Operand := constanta *)  
+      if isDigit(stream.lookAhead) then
+      begin
+        new(ec);
+        ec.value := evalInteger(stream);
+        e := ref ec;
+      end
+      else
+      begin
+        writeString("Eroare: lipseste un operand! ");
+        e:= ref null;
+      end;      
+  
+  parseOperand := ref e;
+end;
+
+function isDigit(c:char) : boolean
+begin
+  isDigit := (c >= '0') and (c <= '9');
+end;
+  
+function toInt(c:char) : integer
+begin
+  toInt := (integer)c - (integer)'0';
+end;
+  
+function evalInteger(stream:ref Tokenizer) : integer
+var
+  n : integer;
+begin
+  n := 0;
+  while isDigit(stream.lookAhead) do
+    n := n * 10 + toInt(stream.nextToken);
+  evalInteger := n;
+end;
+
+begin
+  input.init;
+  vars.init;
+  e := ref parseAddExpression(input);
+  e.initVars;
+  
+  (* Citeste valorile variabilelor *)
+  i := 1;
+  while i<vars.max do
+  begin
+    vars.memory[i] := readReal;
+    i := i + 1;
+  end;
+  
+  if not isNull(e) then
+  begin
+    writeReal(e.evaluate);
+    e.destroy;
+  end
+end.

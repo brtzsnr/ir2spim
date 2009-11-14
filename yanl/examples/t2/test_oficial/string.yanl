@@ -1,0 +1,113 @@
+program String;
+
+(* Diverse operatii cu siruri *)
+
+var
+  s : array[1..100] of char;
+  
+(* Citeste un sir de caractere de la intrare *)
+procedure readString(str: ref array[1..100] of char)
+var
+  idx : integer;
+  input : char;
+  finished : boolean;
+begin
+  finished := false;
+  idx := 1;
+  repeat
+    input := readCharacter;
+    if input <> (char)10 then
+    begin
+      str[idx] := input;
+      idx := idx + 1;
+    end
+    else
+      finished := true; # End of line      
+  until finished or idx = 100;
+  str[idx] := (char)0.0; # Terminatorul de sfarsit de fisier
+end;
+
+function endOfString(c:char):boolean
+begin
+  endOfString := c = ' ' xor (integer)c = 0;
+end;
+
+function length(str: ref array[1..10] of char) : integer
+var
+  l : integer;
+begin
+  l := 0;
+  while (l<10) and not endOfString(str[l+1]) do
+    l := l + 1;
+  length := l;
+end;
+
+(* Inlocuieste o secventa cu alta intr-un sir. 
+ * Secventa se termina cu caracterul 0 sau spatiu.
+ * Functia intoarce numarul de inlocuiri *)
+function replace(str: ref array[1..100] of char; 
+  pattern, replacement: array[1..10] of char) : integer 
+var
+  input: array[1..100] of char;
+  src, dst : integer;
+  si, di, repLen : integer;
+  match : boolean;
+  matchCount : integer;
+begin
+  matchCount := 0;
+  input := str;
+  repLen := length(replacement);
+  src := 1; dst := 1;
+  while (src <= 100) and (real)(input[src]) <> 0.0 do
+  begin
+    (* Cauta pattern in pozitia curenta *)
+    if pattern[1] = input[src] then
+    begin
+      si := 2;
+      match := true;
+      while (si <= 10) and not endOfString(pattern[si]) and match do
+        if pattern[si] <> input[src + si - 1] then
+          match := false
+        else
+          si := si + 1;
+    end
+    else
+      match := false;
+      
+    if match then
+    begin
+      (* Inlocuieste aparitia in sir. Lungimea sirului inlocuit e si - 1. *)
+      src := src + si - 1;
+      
+      di := 1;
+      while (dst < 100) and (di <= repLen) do
+      begin
+        str[dst] := replacement[di];
+        dst := dst + 1;
+        di := di + 1;        
+      end;
+      
+      matchCount := matchCount + 1;
+    end
+    else
+    begin
+      (* Copiaza un singur caracter *)
+      str[dst] := input[src];
+      dst := dst + (integer)(dst < 100);
+      src := src + 1;
+    end;
+  end; 
+  str[dst] := (char) 0;
+  replace := matchCount;
+end;
+
+(* Citeste un sir si inlocuieste "bye" cu "hello" *)
+
+begin
+  readString(s);  
+  writeString("Replacements performed: ");
+  writeBoolean((boolean)replace(s, "bye      ", "hello    "));
+  writeCharacter((char)10);
+  writeString(s);
+  writeCharacter((char)10);
+end.

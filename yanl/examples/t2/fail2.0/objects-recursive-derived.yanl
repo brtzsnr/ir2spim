@@ -1,0 +1,9 @@
+program me;
+type derivat = object(baza)
+end;
+
+type baza = object(derivat)
+end;
+
+begin
+end.

@@ -1,0 +1,23 @@
+program me;
+var v:integer;
+    v:real;
+function f:integer
+var v:integer;
+begin
+end;
+
+function f:char
+begin
+end;
+procedure mata
+begin
+end;
+begin
+a:= -77 * 66+33*11;
+a:= 1---3;
+begin;
+end;
+a[1---2]:=3---4;
+c:='A';
+d:=''';
+end.

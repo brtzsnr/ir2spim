@@ -1,0 +1,8 @@
+# writeString trebuie apelat cu parametru array de oricate elemente of char
+
+program dude;
+var a:array[20..50] of integer;
+begin
+	writestring("ok");
+	writestring(a);
+end.

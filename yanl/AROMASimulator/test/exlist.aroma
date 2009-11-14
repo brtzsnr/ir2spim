@@ -1,0 +1,191 @@
+; Example: objects and memory management
+;
+; Read numbers until encountering 0
+; Make a list of odd numbers and a list of even numbers
+; Delete even numbers
+; Add more numbers until 0
+; Sum them all
+
+; Objects are similar to:
+;
+; type node = object
+;   next: ref node;
+;   value: integer;
+;   end;
+;
+; var
+;   oddlist,evenlist: ref node;
+;
+.code
+  ldr sp,=$FFFFFFF0
+  
+; repeat
+;   x:= readInteger;
+;   if (x and 1) = 0 then evenlist := ref add(x,evenlist);
+;   else oddlist := ref add(x,oddlist);
+; until x = 0;
+
+  mov vr0, 0  ; oddlist
+  mov vr1, 0  ; evenlist
+_l1:
+  bl readInteger
+  mov vr2, r0 ; x
+  
+  and vr3,vr2,1
+  cmp vr3,0
+  bne _l2
+  
+  mov r0,vr2
+  mov r1,vr1
+  bl _fnc_add
+  mov vr1, r0
+  b _l3
+
+_l2:
+  mov r0,vr2
+  mov r1,vr0
+  bl _fnc_add
+  mov vr0, r0
+  b _l3
+
+_l3:
+  
+  cmp vr2, 0
+  bne _l1
+
+;
+;
+; delete(evenlist);
+
+ mov r0, vr1
+ bl _fnc_delete
+ 
+;
+; repeat
+;   x:= readInteger;
+;   oddlist := ref add(x,oddlist);
+; until x = 0;
+
+_l4:
+  bl readInteger
+  mov vr2, r0 ; x
+
+  mov r0,vr2
+  mov r1,vr0
+  bl _fnc_add
+  mov vr0, r0
+  
+  cmp vr2, 0
+  bne _l4
+  
+; writeInteger(sum(oddlist))
+
+  mov r0,vr0
+  bl _fnc_sum
+  bl writeInteger
+  
+  mov lr,0
+  b lr
+
+; function add(x:integer, n:ref node): ref node;
+; var y:ref node
+;
+; new(y);
+; y.value =x ;
+; y.next = n ;
+; add:=y;
+
+_fnc_add:
+  sub sp,sp,16
+  str vr0,[sp]
+  str vr1,[sp,#4]
+  str vr2,[sp,#8]
+  str lr, [sp,#12]
+
+  mov vr0,r0
+  mov vr1,r1
+  
+  mov r0,8 ; new(y);
+  bl _new
+  mov vr2,r0
+  str vr0,[vr2] ; y.value =x ;
+  str vr1,[vr2,#4] ; y.next = n ;
+  
+  mov r0,vr2
+
+  ldr vr0,[sp]
+  ldr vr1,[sp,#4]
+  ldr vr2,[sp,#8]
+  ldr lr, [sp,#12]
+  add sp,sp,16
+  b lr
+
+; function delete(l:ref node)
+; var n:ref node
+; 
+; if not isNull(l) then
+;   n:=ref l.next;
+;   dispose(l);
+;   delete(n);
+
+_fnc_delete:
+  sub sp,sp,12
+  str vr0,[sp]
+  str vr1,[sp,#4]
+  str lr,[sp,#8]
+
+  mov vr0,r0
+  cmp vr0,0 ; if not isNull(l) then
+  beq _l5  
+  
+  ldr vr1,[vr0,#4] ;   n:=ref l.next;
+  
+  mov r0,vr0
+  bl _dispose
+  
+  mov r0,vr1
+  bl _fnc_delete
+  
+_l5:
+  ldr vr0,[sp]
+  ldr vr1,[sp,#4]
+  ldr lr,[sp,#8]
+  add sp,sp,12
+  b lr
+
+; function sum(l:ref node)
+; 
+; if not isNull(l) then
+;   sum:= l.value + sum(l.next)
+; else
+;   sum:=0;
+
+_fnc_sum:
+  sub sp,sp,12
+  str vr0,[sp]
+  str vr1,[sp,#4]
+  str lr,[sp,#8]
+
+  mov vr0,r0
+  cmp vr0,0
+  beq _l6
+  
+  ldr vr1,[vr0] ; l.value
+  
+  ldr r0,[vr0,#4] ; l.next
+  bl _fnc_sum
+  
+  add r0, r0, vr1  
+  b _l7
+
+_l6:
+ mov r0,0
+
+_l7:
+  ldr vr0,[sp]
+  ldr vr1,[sp,#4]
+  ldr lr,[sp,#8]
+  add sp,sp,12
+  b lr
+  
+.data

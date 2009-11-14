@@ -1,0 +1,94 @@
+program Average;
+
+(* Calculeaza media unei serii de numere intregi. Afiseaza grafic distributia. *)
+var
+  data : array[0..99] of integer;
+  min, max, i, j : integer;
+  len, sum, bucket : integer;
+  distrib : array[0..10] of integer;
+  
+procedure writeIfEqual(avg, median:real)
+begin
+  if avg = median then 
+    writeString(" - distributie simetrica!")
+  else 
+    if avg <= (median + 0.001) and avg >= (median - 0.001) then
+      writeString("- probabil distributie simetrica.")
+    else
+      if avg > median then
+        writeString("- distributie superioara.")
+      else
+        writeString("- distributie inferioara.");
+end;
+  
+begin
+   repeat 
+     writeString("Numarul de elemente:");
+     len := readInteger;
+   until len > 0 and len <= 100;
+
+   i := 0;   
+   while (i<len) do
+   begin
+      writeString("Elementul ");
+      writeInteger(i + 1);
+      writeCharacter(':');      
+      data[i] := readInteger;
+      i := i + 1;
+   end;
+   
+   if len>0 then
+   begin
+     min := data[i]; max := data[i]; sum := 0;
+     i := 0;   
+     while (i<len) do
+     begin
+       if data[i] < min then min := data[i];
+       if data[i] > max then max := data[i];
+       sum := sum + data[i];
+       i := i + 1;
+     end;
+     
+     writeString("Media: "); writeReal(sum / len); 
+     writeIfEqual(sum / len, (min + max)/2);
+     writeCharacter((char)10);
+  
+     if max > min then
+     begin
+       # Un grafic ASCII cu distributia valorilor
+       i := 0;   
+       while (i<=10) do
+       begin
+         distrib[i] := 0;
+         i := i + 1;
+       end;
+
+       i := 0;   
+       while (i<len) do
+       begin
+         bucket := ((data[i] - min) * 10) div (max - min);
+         distrib[bucket] := distrib[bucket] + 1;
+         i := i + 1;
+       end;
+
+       # Un "bar-chart" cu valori pana in 20 caractere inaltime
+       i := 0;   
+       while (i<=20) do
+       begin
+         j := 0;
+         while (j<=10) do
+         begin
+           if ((distrib[j] * 20) div len) < (20 - i) then
+             writeCharacter(' ')
+           else           
+             writeCharacter('*');
+           writeCharacter(' ');
+           j:=j+1;
+         end;
+         i := i + 1;         
+         writeCharacter((char)10);
+       end;
+     end;
+      
+   end;     
+end.

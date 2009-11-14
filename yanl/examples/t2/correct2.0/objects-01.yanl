@@ -1,0 +1,15 @@
+(* object with reference to itself *)
+program objects01;
+
+type x = object
+	myself: ref x;
+    procedure setMyself
+    begin
+		myself := ref this;
+		this.myself := ref this;
+		myself := ref null;
+	end;
+end;
+
+begin
+end.

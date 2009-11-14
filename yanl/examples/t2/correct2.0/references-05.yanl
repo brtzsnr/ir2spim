@@ -1,0 +1,48 @@
+(* function returns reference to an array of references to array of objects *)
+program references05;
+
+type t = object
+	member: integer;
+end;
+
+var
+	zerg: t;
+	zelot: ref t;
+	n: integer;
+	p: ref integer;
+
+function f (a: integer): ref array[1..10] of ref array[1..15] of t
+var
+   v: ref array[1..10] of ref array[1..15] of t;
+   i: integer;
+begin
+	if a = 1 then
+		begin
+			new(v);				# alloc an array of 10 refs, store the address in v
+           i := 1;
+			repeat
+				new(v[i]);		# alloc an array of 15 t objects, store address in v[i]
+				v[i][(2+i*3) mod 15 + 1].member := g(i);
+				i := i + 1;
+			until i > 10;
+			f := ref v;
+		end
+	else
+       f:=ref null;
+end;
+
+function g (b: real): integer
+begin
+	g := 1;
+end;
+
+begin
+	f(0)[3][6+7].member := 4;
+	zerg := f(75)[33][45];				# field values copy, no boundary checking at compile time
+	zelot := ref f(1)[2][3];			# reference copy
+	n := f(1)[2][3].member;
+	p := ref f(1)[2][3].member;
+	dispose(f(1));
+	dispose(f(1)[4]);
+	# memory leaks, but who gives a shit ?
+end.

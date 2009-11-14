@@ -1,0 +1,4 @@
+program array_of_array;
+var x:array[1..2]of array[2..4] of int;
+begin
+end.

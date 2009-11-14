@@ -1,0 +1,87 @@
+1. #### Exista simulator de AROMA?
+Da. (Todo: insert link)
+
+1. #### Se poate face casturi intre referinte?
+Nu se cere sa se implementeze asa ceva.
+
+1. #### Se poate face casturi intre tipuri obiect?
+Nu.
+
+1. #### Tipul obiect suporta operatorul **=** (egalitate) ? Cum trebuie implementat?
+Nu se cere sa se implementeze operatorul relational "=". De exemplu `if obiectA = obiectB then ...` nu este valid.
+
+1. #### Tipul obiect suporta operatorul **:=** (atribuire) ? Cum trebuie implementat?
+Insa instructiunea de atribuire **:=** trebuie implementata pentru toate tipurile, inclusiv *object*. Semantica este
+de copiere a valorilor campurilor lui "obiectB" in "obiectA". (citeste [[enuntul|enuntT2]]).
+In lvalue := expr , se evalueaza expresia din stanga si se obtine un obiect. Se evalueaza expresia din dreapta, si se obtine o valoare. Obiectului ii este atribuita valoarea respectiva. In evaluarea partii din stanga, cat si a partii din dreapta, toate referintele se inlocuiesc cu obiectele referite (pointerii sunt dereferentiati) (<http://cs.pub.ro/~pt/forum/viewtopic.php?f=4&t=62&st=0&sk=t&sd=a&start=10>)
+
+1. #### Tipul referinta suporta operatorul **:= ref** (atribuire de referinte) ? Cum trebuie implementat?
+In `lvalueref := ref` lvalue, se evalueaza expresia din stanga si se obtine un obiect de tip referinta. Se evalueaza expresia din dreapta, si se obtine un obiect. Referintei din stanga ii este atribuita adresa obiectului din dreapta.
+In evaluarea partii din dreapta, toate referintele sunt inlocuite cu obiectele. Aceeasi regula se aplica si la evaluarea partii din stanga, cu exceptia ultimei operatii - astfel incat, in final, in stanga vom ramane intotdeauna cu o referinta, iar in dreapta cu un obiect. (<http://cs.pub.ro/~pt/forum/viewtopic.php?f=4&t=62&st=0&sk=t&sd=a&start=10>)
+
+1. #### Este corect *ref ref integer*?
+Este legal, dar **nu** functioneaza. Textul temei este ambiguu in aceasta privinta, prin urmare nu trebuie suportate o
+astfel de sintaxa. Parserul nu ar trebuie sa dea eroare la analiza de tipuri: daca *type* e un tip valid, *ref type*
+e un tip valid, deci si *ref ref type* e un tip valid.
+
+1. #### Functiile pot returna obiecte? Dar array-uri? Dar alte functii?
+Functiile pot returna abiecte si vectori, dar nu si alte functii.
+
+1. #### Se pot defini obiecte in cadrul altor obiecte?
+Nu.
+
+1. #### Unde se face definierea de noi tipuri de obiecte?
+Dupa "program" si inainte de zona de declarare de variabile. (citeste [[enuntul|enuntT2]]).
+
+1. #### Se pot suprascrie si variabilele in obiectele derivate?
+Nu.
+
+1. #### YANL suport mostenire multipla?
+Citez: "doamne-fereste, nu :D". (citeste [[enuntul|enuntT2]]).
+
+1. #### Ce trebuie verificat pentru obiecte?
+1) Dependinte circulare de mostenire<br>
+2) Dependinte circulare de date membre<br>
+(exemplu: o clasa include ca membru o data<br> 
+3) Override cu parametrii diferiti la functii/proceduri<br>
+4) Override cu tip returnat diferit la functii<br>
+5) Override de variabile cu tip diferit de cel din clasa de baza<br>
+6) Variabile care au acelasi nume cu un tip (sau cu alt obiect)<br>
+
+1. #### O functie care returneaza clasa A poate returna o subclasa a acesteia?
+Nu direct pentru ca ar implica un cast de obiecte. Se poate face in schimb cu referinte.
+<hr>
+
+1. #### Cum copiez din *R0* in *R1*?
+Solutie simpla: `add R1, R0, 0`
+
+1. #### Cum castez intre real si alt tip?
+Cast real - integer cu FSITOD/FTOSID apoi cast in continuare la char/boolean (daca e cazul)
+
+1. #### Cum schimb semnul unui real din VD0?
+ <pre>mov VR0, 0
+ fsitod VD1, VR0
+ fsubd VD2, VD1, VD0</pre>
+
+1. #### Sintaxa Yanl pentru caractere și stringuri se pastreaza si pentru AROMA?
+Da, doar ca in AROMA sirurile nu includ 0 (caracterul implicit). Exemplu:
+
+ <pre>DB "I love ""PT""!"
+ DB 0</pre>
+
+1. #### Cum atribui unui registru intreg (*R0*) o valoare pe 32 biti?
+ <pre>LDR R0, =$babecafe</pre>
+
+1. #### Cum atribui unui registru intreg (*R1*) o valoare de la o anumita adresa (*R0*)?
+ <pre>LDR R0, =$add2e55
+ LDR R1, [R0]</pre>
+
+1. #### Cum atribui unui registru real (*D0*) o valoare?
+Complicat. AROMA nu suporta o instructiune ca cea de mai sus. O idee ar fi asta:
+ <pre>.code
+      LDR R0, =blah
+      FLDD D0, [R0]
+ .data
+ blah:
+      DD 6.66</pre>
+

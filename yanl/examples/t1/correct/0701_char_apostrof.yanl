@@ -1,0 +1,5 @@
+program me;
+var c:char;
+begin
+c:='''
+end.

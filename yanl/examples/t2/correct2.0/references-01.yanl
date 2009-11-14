@@ -1,0 +1,12 @@
+(* := ref px, where px of type ref *)
+
+program references01;
+
+var a: integer;
+	px, py, pz: ref integer;
+
+begin
+	px := ref a;
+	py := ref px;	# px cast to integer
+	pz := ref py;	# py cast to integer
+end.

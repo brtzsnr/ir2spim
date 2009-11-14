@@ -1,0 +1,35 @@
+# Functiile si procedurile trebuie apelate cu parametri de tipul corect, sau convertibili la tipul corect.
+
+program dude;
+var a:array[3..20] of char;
+    b:array[3..20] of integer;
+    x:integer;
+				y:real;
+				
+procedure t(b:array[3..20] of real)
+var i: integer;
+begin
+ i := 3;
+	repeat
+	    writereal(b[i]);
+					i := i + 1;
+	until i = 21;
+end;
+
+procedure tt(b:array[3..20] of real)
+var i: integer;
+begin
+ i := 3;
+	while (i < 20) do
+	begin
+	    writereal(b[i]);
+					i := i + 1;
+	end;
+end;
+				
+begin
+    writestring(a); # asta merge
+				writereal(x); # asta merge
+				t(b); # si asta merge# Alexandru: discutabil, nu se face conversie intre arrayuri
+				tt(a); # asta nu mai merge
+end.

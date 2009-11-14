@@ -1,0 +1,7 @@
+program test5; # tests a function call; Yanl 1.0+
+var a: integer;
+function getNext(x: integer): integer begin getNext := x + 1 end;	# line 3
+begin
+	a := getNext(1336);	# line 5
+	writeinteger(a)
+end.

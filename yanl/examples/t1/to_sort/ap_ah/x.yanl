@@ -1,0 +1,35 @@
+program heading;
+var x:integer;
+begin
+	if true then
+		x:=1
+	else
+		x:=2
+
+	;
+
+	if false then
+	if false then
+	if false then
+	if false then
+	else
+	else
+	else
+	else
+
+	;
+
+	if false then else
+	if false then else
+	if false then else
+	if false then else
+
+	;
+
+
+	if true then
+	if true then
+	if true then
+	if true then
+
+end.

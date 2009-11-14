@@ -1,0 +1,61 @@
+; Example: bit manipulation 
+;
+; For the upper/lower case test, use 65 / 97 (upper case / lower case 'A')
+
+
+
+.code
+  ldr sp,=$FFFFFFF0
+  
+  bl readInteger
+  mov vr0, r0  ; x := readInteger;
+  
+  ldr r0,=_t1 ; "true" if number is odd, "false" if it is even
+  ldr r0,[r0]
+  mvn r0,r0
+  and r0,vr0,r0
+  bl writeBoolean ; true if non zero
+  bl writeln;
+  
+  fsitod vd0,vr0 ; writeReal(x + -1.5);
+  ldr r0, =_t2
+  fldd vd1,[r0]
+  faddd d0,vd0,vd1
+  bl writeReal
+  bl writeln;
+   
+  mvn r0,255
+  and r0,r0,vr0 ; writeInteger(x & 0xffffff00)
+  bl writeInteger
+  bl writeln
+  
+  orr r0,vr0,$80; writeInteger(x | 0x80);
+  bl writeInteger
+  bl writeln
+
+  ; write lower case and upper case
+  mov r0,vr0
+  bl writeCharacter
+  eor r0,vr0,$20 
+  bl writeCharacter
+  bl writeln
+
+  mov lr,0
+  b lr
+
+writeln:
+  sub sp,sp,4
+  str lr,[sp]
+  
+  mov r0,10
+  bl writeCharacter
+  
+  ldr lr,[sp]
+  add sp,sp,4
+  b lr
+  
+.data
+_t1:
+  dw -2
+_t2:
+  dd -1.5

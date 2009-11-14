@@ -1,0 +1,29 @@
+(* polymorphism *)
+program objects02;
+
+type deriv = object (base)
+	i: integer;
+    procedure crawl
+	begin
+		i := 2;
+	end;
+end;
+
+type base = object
+	j: integer;
+    procedure crawl
+	begin
+	end;
+end;
+
+var
+	x: ref base;
+	y: ref deriv;
+	
+begin
+	new(y);
+	y.i := 1;
+	x := ref y;
+	x.crawl;		# call deriv.crawl
+	dispose(y);
+end.

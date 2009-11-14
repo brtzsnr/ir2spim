@@ -1,0 +1,22 @@
+1. ### Intai si intai citeste **[[README]]**.
+
+1. ### Daca vrei sa folosesti git am scris un mic tutorial **[[tutorial|tut_git]]**.
+
+1. ### [[Sesiune_de_creat_teste|sesiune_testeT2]] pentru tema 2: sambata si duminica (5 si 6 aprilie). 
+
+1. ### Tema 2 (termen limita: 15 Aprilie, ora 7:00 AM)
+ * [[Enunt|enuntT2]], [original](http://cs.pub.ro/~pt/index.php?section=Teme&file=Tema2)
+ * [[Teste|t2]]
+ * [[FAQ|faqT2]]
+
+1. ### Tema 1
+ * [[Enunt|enuntT1]], [original](http://cs.pub.ro/~pt/index.php?section=Teme&file=Tema1)
+ * [[Teste|t1]]
+ * [[FAQ|faqT1]]
+
+1. ### Altele
+ * canal irc: **[#upb-pt](irc://irc.quakenet.org/upb-pt) @ irc.quakenet.org**
+ * [arhiva completa](/cgi-bin/gitweb.cgi?p=pt/ikiwiki/.git;a=snapshot;sf=tgz)
+ * [vedere din browser a arhivei](/cgi-bin/gitweb.cgi?p=pt/ikiwiki/.git)
+ * `$ git clone git://anaconda.cs.pub.ro:10001/pt/ikiwiki/.git`
+ * [Aroma](http://anaconda.cs.pub.ro/cgi-bin/gitweb.cgi?p=pt/ikiwiki/.git;a=blob_plain;f=misc/aroma.vim;hb=HEAD) vim syntax file: 

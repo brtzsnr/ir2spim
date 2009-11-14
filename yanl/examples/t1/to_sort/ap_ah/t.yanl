@@ -1,0 +1,5 @@
+program x;
+var x:real;
+begin
+x:=3 .3;
+end.

@@ -1,0 +1,55 @@
+
+program BubbleSort;
+
+var 
+		array_to_sort : array[1..100] of integer;
+		len, i : integer;
+
+procedure bubbleSort (a : array[1..100] of integer; len : integer)
+var
+		i, j, temp : integer;
+		swapped : boolean;
+begin
+
+		 repeat
+			 i:=1; swapped := false;
+			 while i < len do
+			 begin
+			 			if a[i] > a[i+1] then
+			 			begin
+			 					 temp := a[i];
+			 					 a[i] := a[i+1];
+			 					 a[i+1] := temp;
+			 					 swapped := true;
+			 			end;
+						i := i+1
+			 end (* END DO *)
+		 until not swapped;
+end;
+
+begin
+		 writeString("Numarul de elemente");
+		 len := readInteger;
+
+		 i := 1;
+		 
+		 while (i<=len) do
+		 begin
+		 			writeString("Elementul ");
+		 			writeInteger(i);
+		 			
+		 			array_to_sort[i] := readInteger
+		 end;
+
+		 bubbleSort(array_to_sort, len);
+
+		 writeString("Sirul sortat");
+		 
+		 i := 1;
+		 
+		 while (i <= len) do
+		 begin
+		 			writeInteger(array_to_sort[i]);
+		 end
+
+end.

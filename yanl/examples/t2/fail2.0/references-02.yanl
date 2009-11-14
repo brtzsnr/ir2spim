@@ -1,0 +1,17 @@
+(* := ref v, where v is an array or ref array *)
+program references02;
+
+var v: array[1..10] of integer;
+	pv: ref array[1..10] of integer;
+	pw: ref array[1..11] of integer;
+	pz: ref array[1..10] of real;
+
+begin
+	pv := ref v;
+	pv := ref pv;	# right side ref pv, cast to array
+	pw := ref v;	# incompatible types
+	pw := ref pv;	# idem
+	pz := ref v;	# idem
+	pz := ref pv;	# idem
+	pz := ref pw;	# idem	
+end.

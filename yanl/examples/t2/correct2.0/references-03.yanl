@@ -1,0 +1,26 @@
+(* this and ref mangle *)
+program references03;
+
+type t = object
+	x: ref t;
+	
+	procedure constructor
+	begin
+		this.x := ref this;		
+		x := ref x;				# 1
+		this.x := ref x;		# 2
+		x := ref this.x;		# 3
+		this.x := ref this.x;	# 4
+		# 1,2,3,4 do same thing
+	end;
+end;
+
+
+var
+	zum: t;
+	zumzum: ref t;
+
+begin
+	zum.constructor;
+	zumzum := ref zum;
+end.

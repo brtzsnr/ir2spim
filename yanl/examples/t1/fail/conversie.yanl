@@ -1,0 +1,10 @@
+# O atribuire cu LHS = variabila trebuie sa aiba RHS convertibil la tipul variabilei
+
+program dude;
+var x,y:char;
+begin
+	 if (x<>y) then
+		begin
+				x := (3.14 + 20 * (1 + 9 - 4));
+		end;
+end.
