@@ -1,7 +1,0 @@
-program qwerty;
-var a:integer;
-	b:integer;
-	a:real;
-
-begin
-end.

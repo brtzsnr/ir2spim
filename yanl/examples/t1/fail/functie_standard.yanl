@@ -1,7 +1,0 @@
-# writeString trebuie apelat cu exact un parametru
-
-program dude;
-begin
-	writestring("ok");
-	writestring("not", "ok");
-end.

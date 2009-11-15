@@ -1,4 +1,0 @@
-program TEST3;
-begin
-	writeString("She said ""This is Sparta!!11oneone"" and then she left."); # Meanwhil...
-end.

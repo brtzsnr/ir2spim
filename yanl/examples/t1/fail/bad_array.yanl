@@ -1,6 +1,0 @@
-# Range min pt un array trebuie sa fie <= range max.
-
-program dude;
-var x:array[3..2] of integer;
-begin
-end.

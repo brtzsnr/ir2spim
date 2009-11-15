@@ -1,8 +1,0 @@
-program x;
-var z:real;
-function z:real
-begin
-end;
-begin
-z:=3
-end.

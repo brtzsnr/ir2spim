@@ -1,9 +1,0 @@
-program test7;	# tests a comparison; Yanl 1.0+
-var a: boolean;
-	x: array[1..10] of integer;
-begin
-	x[1] := 1;	# line 5
-	x[2] := 2;
-	x[3] := 3;
-	a := x[1] > x[2] or (x[3] mod 2) = 1	# line 8
-end.

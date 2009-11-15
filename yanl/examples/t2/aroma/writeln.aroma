@@ -1,6 +1,0 @@
-.code
-    LDR R0, =0
-    B R0
-    
-.data
-
