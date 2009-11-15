@@ -1,4 +1,4 @@
-CLASSPATH=.:antlr-3.1.1.jar
+CLASSPATH=antlr-3.1.1.jar
 
 ir2spim: parser
 

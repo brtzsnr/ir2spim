@@ -13,7 +13,6 @@ tokens {
     ASSIGN = '<-';
     CALL = 'call';
     LOAD = 'load';
-    LOADL = 'loadl';
     LOADB = 'loadb';
     STORE = 'store';
     STOREB = 'storeb';
@@ -21,7 +20,7 @@ tokens {
     JUMPT = 'jumpt';
     JUMPF = 'jumpf';
     RETURN = 'return';
-    NOT = 'not';
+    NOT = '~';
     CODE = '.code';
     DATA = '.data';
     DW = 'DW';
@@ -55,8 +54,14 @@ code_statement
     | load
     | submit
     | io
+	| directive
     ;
 
+directive
+	: '.function' STRING ',' INTEGER ',' INTEGER
+	| '.end'
+	;
+	
 assignment
     // ANTLR doesn't understand dynamic languages (like python)
     // very well and complains when colapsing the below rules
@@ -72,17 +77,17 @@ assignment
     | vr '<-' first=operator e=('+'|'-'|'*'|'/'|'<'|'<='|'=') second=operator {
         self.__code.encode($e.text, $vr.value, $first.value, $second.value)
     }
-    | vr '<-' e='not' operator {
-        self.__code.encode($e.text, $vr.value, $operator.value)
+    | vr '<-' e='~' operator {
+        self.__code.encode('not', $vr.value, $operator.value)
     }
     ;
 
 call
-    : result=vr '<-' e='call' register=vr {
-        self.__code.encode($e.text, $result.value, $register.value)
+    : e='call' register=vr {
+        self.__code.encode($e.text, $register.value)
     }
-    | result=vr '<-' e='call' method=METHOD {
-        self.__code.encode($e.text, $result.value, operand.Label($method.text))
+    | e='call' method=LABEL {
+        self.__code.encode($e.text, operand.Label($method.text))
     }
     ;
 
@@ -97,20 +102,20 @@ jump
 
 
 label
-    : l=(METHOD | LABEL) ':' {
+    : l=LABEL ':' {
         self.__code.addLabel($l.text)
     }
     ;
 
 load
-    : e='loadl' vr where=(METHOD | LABEL) {
-        self.__code.encode($e.text, $vr.value, operand.Label($where.text))
+    : vr '<-' where=LABEL {
+        self.__code.encode('loadl', $vr.value, operand.Label($where.text))
     }
     ;
 
 submit
-    : e='return' operator {
-        self.__code.encode($e.text, $operator.value)
+    : e='return' {
+        self.__code.encode($e.text)
     }
     ;
 
@@ -131,9 +136,10 @@ data
 
 data_statement
     : DW i=INTEGER { self.__data.storeWord(int($i.text)) }
-    | DL l=(METHOD | LABEL) { self.__data.storeLabel($l.text) }
-    | DS s=STRING { self.__data.storeString($s.text) }
-    | DB i=INTEGER { self.__data.storeZero(int($i.text)) }
+    | DL l=LABEL { self.__data.storeLabel($l.text) }
+    | DB s=STRING { self.__data.storeString($s.text) }
+    | DB i=INTEGER { self.__data.storeByte(int($i.text)) }
+    | DS i=INTEGER { self.__data.storeZero(int($i.text)) }
     | l=LABEL ':' { self.__data.addLabel($l.text) }
     ;
 
@@ -171,8 +177,7 @@ VR: 'VR' UNSIGNED;
 VI: 'VI' UNSIGNED;
 INTEGER: ('-')? UNSIGNED;
 
-METHOD: ('A'..'Z')       ('A'..'Z' | 'a'..'z' | '0'..'9' | '_')*;
-LABEL:  ('a'..'z' | '_') ('A'..'Z' | 'a'..'z' | '0'..'9' | '_')*;
+LABEL:  ('A'..'Z' | 'a'..'z' | '_') ('A'..'Z' | 'a'..'z' | '0'..'9' | '_' | '.')*;
 
 WHITESPACE: (' ' | '\t') { $channel = HIDDEN; };
 NEWLINE: ('\r')? ('\n') { $channel = HIDDEN; };

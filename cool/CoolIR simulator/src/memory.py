@@ -155,4 +155,5 @@ class Memory(object):
 				+ (self.loadByte(address + 2) << 0x10)
 				+ (self.loadByte(address + 3) << 0x18))
 
-
+	def storeWord(self, value, address):
+		self.store((value & 0xFF,(value>>8) & 0xFF,(value>>16) & 0xFF,(value>>24) & 0xFF),address)

@@ -22,6 +22,55 @@ InInt:
 InString:
 	jump library_loop
 
+Object.copy:
+    VR0 <- VI0
+    VI0 <- VR0
+	return
+
+Object.abort:
+    jump Abort
+
+Object.type_name:
+    return
+	
+IO.out_int:
+    VR0 <- VI1
+	load VR0 [VR0,12]
+	VI0 <- VR0
+	call OutInt
+	return
+	
+IO.out_string:
+	return
+
+IO.in_int:
+	return
+
+IO.in_string:
+	return
+	
+_dispatch_abort:
+    jump Abort
+	
+Main:
+	VR0 <- Main_protObj
+	VI0 <- VR0
+	call Main.main
+	jump Abort
+	
 .data
 InString_Buffer:
 	DB 1024
+
+# Int prototype
+Int_protObj:
+    DW 1
+    DW 4
+    DL Object_dispatch
+    DW 0
+
+Object_dispatch:
+    DL Object.abort
+    DL Object.copy
+    DL Object.type_name
+ 
