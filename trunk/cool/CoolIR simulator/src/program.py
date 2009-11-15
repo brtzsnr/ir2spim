@@ -14,7 +14,7 @@ import operand
 DEFAULT_REGISTER_VALUE = 0xa3a3a3a3
 
 # reserved registers VR12...VR15
-VR_IP = operand.Register(12)
+VR_IP = operand.Register(1<<30)
 
 # decodes all posible opcodes for (ie. a lookup table)
 _opcodes = {}
@@ -85,28 +85,28 @@ class Program(object):
 		else:
 			self.__dict__[attr] = value
 
-	def __call(self, address, destination):
+	def __call(self, address):
 		"""Makes a call to `address` storing result in destination"""
-		frame = [destination, []]
+		frame = []
 		for register, value in self.registers.iteritems():
 			# TODO: improve speed/memory by storing only modified
 			# registers since last call
 			if register.isgeneral():
-				frame[1].append((register, value))
+				frame.append((register, value))
 
 		self.__stack.append(frame)
 		self.__ip = address
 
-	def __return(self, value):
+	def __return(self):
 		"""Returns from current function restoring registers"""
 		frame = self.__stack.pop()
 
 		# restores registers
-		self.registers = dict(frame[1])
-		# self.registers.update(frame[1])
+		#self.registers = dict(frame)
+		self.registers.update(frame)
 
 		# stores result to destination register
-		self.registers[frame[0]] = value
+		#self.registers[frame[0]] = value
 
 	def __libraryCall(self):
 		"""If this is a library call, executes the call, and returns True.
@@ -119,7 +119,7 @@ class Program(object):
 			value = self.__registerValue(operand.VI(0))
 			sys.stdout.write(str(value))
 
-			self.__return(0)
+			self.__return()
 			return True
 
 		if self.__ip == self.memory.labelToLocation('OutString'):
@@ -133,7 +133,7 @@ class Program(object):
 				sys.stdout.write(chr(byte))
 				address += 1
 
-			self.__return(0)
+			self.__return()
 			return True
 
 		return False
@@ -215,7 +215,7 @@ class Program(object):
 		elif mnem == '=':
 			dest = int(instr[2] == instr[3])
 		elif mnem == 'not':
-			dest = int(not(instr[2]))
+			dest = ~(instr[2])
 		elif mnem == 'loadl':
 			dest = instr[2]
 		elif mnem == 'load':
@@ -237,9 +237,9 @@ class Program(object):
 		elif mnem == 'storeb':
 			self.memory.storeWord(instr[2], address=instr[3] + instr[4])
 		elif mnem == 'call':
-			self.__call(instr[2], instr[1])
+			self.__call(instr[2])
 		elif mnem == 'return':
-			self.__return(instr[2])
+			self.__return()
 		else:
 			raise errors.OpcodeError('Unknown mnemonic `%s`' % mnem)
 

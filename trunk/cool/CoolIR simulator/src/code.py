@@ -40,10 +40,9 @@ mnemonics = {
 	'jumpt': (False,
 		(operand.Register,),
 		(operand.Label,)),
-	'call': (True,
-		(operand.Register, operand.Label,)),
-	'return': (False,
-		(operand.Register, operand.Integer,)),
+	'call': (False,
+		(operand.Register,operand.Label,)),
+	'return': (False,),
 	'load': (True,
 		(operand.Register,),
 		(operand.Integer,)),
@@ -119,6 +118,10 @@ def decodeOpcode(opcode):
 	# arguments
 	bit = 0x80
 	for i in xrange(1, len(meta)):
+		# No params
+		if len(meta[i]) == 0:
+			continue
+
 		# only one type
 		if len(meta[i]) == 1:
 			result.append(meta[i][0])

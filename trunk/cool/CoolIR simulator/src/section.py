@@ -49,6 +49,14 @@ class Section(object):
 		assert temp == 0 or temp == -1, (
 				'%d is out of range (32bit signed/unsigned integers required)' % word)
 
+	def storeByte(self, word, address=None):
+		"""Stores an word at a given `address`. if `address` is None
+		appends the word"""
+
+		if address is None:
+			address = len(self.memory)
+			self.memory.extend([word & 0xff])
+
 	def addLabel(self, label):
 		assert label not in self.__labels, 'Duplicate label `%s`' % label
 		self.__labels[label] = len(self.memory)
