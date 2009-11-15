@@ -1,0 +1,34 @@
+# @2009 Lavinia Dragusin
+
+.code
+Func:
+	VR3 <- VI0
+	VR4 <- VR3 + 2
+	VR1 <- 7
+
+	# constant propagation
+	# unreachable code elimination
+	# jumpt always taken because VR1 != 0
+	jumpt VR1 _tlabel
+		_flabel:
+		VR2 <- 7 * VR3
+		jump _end
+		_tlabel:
+		VR2 <- 2 + VR4
+	_end:
+
+	VI0 <- VR1
+	VR0 <- call OutInt
+
+	VI0 <- VR2
+	VR0 <- call OutInt
+	return 0
+
+Main:
+	VR0 <- 3
+	VI0 <- VR0
+	VR0 <- call Func
+	return 0
+
+.data
+
