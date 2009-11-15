@@ -51,11 +51,11 @@ def parseArgs(line):
 		# dump [start [end]]
 		start = 0
 		if len(line) >= 2:
-			start = _convert(_program.memory, line[1])
+			start = _convertAddress(_program.memory, line[1])
 			end = start + memory.Memory.CHUNK_SIZE
 
 			if len(line) >= 3:
-				end = _convert(_program.memory, line[2])
+				end = _convertAddress(_program.memory, line[2])
 		else:
 			end = 1 << 32
 

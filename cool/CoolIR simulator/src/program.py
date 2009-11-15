@@ -10,11 +10,15 @@ import memory
 import parser
 import errors
 import operand
+import array
 
 DEFAULT_REGISTER_VALUE = 0xa3a3a3a3
 
-# reserved registers VR12...VR15
-VR_IP = operand.Register(1<<30)
+# Hackish register numbering scheme
+# 0.. : VR
+# -1 : IP
+# -2 .. : VI
+VR_IP = operand.Register(ip=-1)
 
 # decodes all posible opcodes for (ie. a lookup table)
 _opcodes = {}
@@ -35,6 +39,11 @@ class Program(object):
 	def __registerValue(self, register):
 		"""Returns value stored for `register`"""
 		return self.registers.get(register, DEFAULT_REGISTER_VALUE)
+		
+	def __callReturnValue(self, value):
+		"""Saves the value in VI0 and executes a return."""
+		self.registers[operand.VI(0)] = operand.normalize(value)
+		self.__return()
 
 	def compile(self, filename):
 		"""Compiles a new file"""
@@ -65,11 +74,11 @@ class Program(object):
 		#	[(IP, destination register, [list saved registers])]
 		self.__stack = [
 				# to be read as: store result in VI0 and jump to `Abort`
-				(operand.VI(0), [(VR_IP, self.memory.labelToLocation('Abort'))])
+				(operand.VI(0), [(VR_IP, self.memory.labelToLocation('__abort__'))])
 			]
 
 		self.registers = {}
-		self.registers[VR_IP] = self.memory.labelToLocation('Main')
+		self.registers[VR_IP] = self.memory.labelToLocation('__start')
 
 		logging.info('program restarted')
 
@@ -112,30 +121,51 @@ class Program(object):
 		"""If this is a library call, executes the call, and returns True.
 		This file should be in sync with `library.ir`"""
 
-		if self.__ip == self.memory.labelToLocation('Abort'):
+		if self.__ip == self.memory.labelToLocation('__alloc__'):
+			size = self.__registerValue(operand.VI(0))
+			self.__callReturnValue(self.memory.alloc(size))
+			return True
+
+		if self.__ip == self.memory.labelToLocation('__abort__'):
 			raise errors.ProgramAbortError(self.__registerValue(operand.VI(0)))
 
-		if self.__ip == self.memory.labelToLocation('OutInt'):
+		if self.__ip == self.memory.labelToLocation('__outInt__'):
 			value = self.__registerValue(operand.VI(0))
 			sys.stdout.write(str(value))
 
 			self.__return()
 			return True
 
-		if self.__ip == self.memory.labelToLocation('OutString'):
+		if self.__ip == self.memory.labelToLocation('__outString__'):
 			address = self.__registerValue(operand.VI(0))
+			size = self.__registerValue(operand.VI(1))
 
-			while True:
+			for i in range(size):
 				byte = self.memory.loadByte(address)
 				if byte == 0:
 					break
-
 				sys.stdout.write(chr(byte))
 				address += 1
 
 			self.__return()
 			return True
 
+		if self.__ip == self.memory.labelToLocation('__inInt__'):
+			self.__callReturnValue(int(sys.stdin.readline()[:-1]))
+			return True
+
+		if self.__ip == self.memory.labelToLocation('__inString__'):
+			inputData = sys.stdin.readline()[:-1]
+			size = len(inputData)
+			address = self.memory.alloc(size)
+			mblock = array.array('B')
+			mblock.fromstring(inputData)
+			self.memory.store(mblock, address)
+			self.registers[operand.VI(0)] = address
+			self.registers[operand.VI(1)] = size
+			self.__return()
+			return True
+			
 		return False
 
 	def __printInstruction(self, ip, instruction):

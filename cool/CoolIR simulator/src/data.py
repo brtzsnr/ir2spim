@@ -10,7 +10,7 @@ class Data(section.Section):
 		assert string[0] == '"' and string[-1] == '"', 'String must be enclosed in quotes'
 		#assert string.endswith('\\0"'), 'String must end in \\0'
 
-		string = string[1:-3]  # cuts first & final quote & \\0
+		string = string[1:-1]  # cuts first & final quote & \\0
 		string = string.replace('""', '"')  # converts "" in "
 
 		string = string.replace('\\n', '\n')
