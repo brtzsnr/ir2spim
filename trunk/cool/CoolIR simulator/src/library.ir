@@ -1,66 +1,495 @@
-# library code
-# Most (if not all) of the functions are meant to
-# have special meaning.
+# CoolIR Runtime library
 
+# Predefined functions - these are intrinsics implemented in the simulator
+##########################################################################
 .code
 
-library_loop:
-	jump library_loop
+__library_loop__:
+	jump __library_loop__
 
-Abort:
-	jump library_loop
+# __alloc__: allocate a chunk of memory
+# Input: VI0 <- size to allocate in bytes
+# Output: VI0 <- the allocated address
+__alloc__:
+	jump __library_loop__
+	
+# __alloc__: stops interpreter
+# Input: VI0 <- error code for the O/S
+__abort__:
+	jump __library_loop__
 
-OutInt:
-	jump library_loop
+# __outInt__: print an integer
+# Input: VI0 <- value
+__outInt__:
+	jump __library_loop__
 
-OutString:
-	jump library_loop
+# __outString__: print a string
+# Input: VI0 <- string address
+#        VI1 <- size in bytes
+__outString__:
+	jump __library_loop__
 
-InInt:
-	jump library_loop
+# __inInt__: read an integer
+# Output: VI0 <- value
+__inInt__:
+	jump __library_loop__
 
-InString:
-	jump library_loop
+# __inInt__: read a string
+# Output: VI0 <- address of the string
+#         VI1 <- size of the string
+__inString__:
+	jump __library_loop__
 
+# The COOL runtime
+#########################
+# Startup code
+__start:
+	VR0 <- Main_protObj
+	VI0 <- VR0
+	call Object.copy
+	VR0 <- VI0
+	
+	VI0 <- VR0
+	call Main_init
+
+	VI0 <- VR0
+	call Main.main
+	VR2 <- VI0
+	
+	VR0 <- __str_term_msg
+	VR1 <- 35
+	VI0 <- VR0
+	VI1 <- VR1
+	call __outString__
+	
+	VI0 <- VR2
+	call __abort__
+
+#########################
 Object.copy:
     VR0 <- VI0
-    VI0 <- VR0
+	load VR1 [VR0, 4] # Object size
+	VR5 <- VR1 * 4    # VR1 = size in words; VR5 = size in bytes
+
+	VI0 <- VR5       # Allocate memory
+	call __alloc__
+	VR2 <- VI0       # VR2 = target
+	
+	VR3 <- VR2       # Copy data from VR0 to VR2, VR3 = ptr
+__loc1:
+    VR4 <- 0 < VR1
+	jumpf VR4 __loc2
+	load VR4 [VR0, 0]
+	store VR4 [VR3, 0]
+	VR1 <- VR1 - 1
+	VR0 <- VR0 + 4
+	VR3 <- VR3 + 4
+	jump __loc1
+	
+__loc2:	
+    VI0 <- VR2
 	return
 
+######################
 Object.abort:
-    jump Abort
+	VR5 <- VI0
+	VR0 <- __str_abort_msg
+	VR1 <- 24
+	VI0 <- VR0
+	VI1 <- VR1
+	call __outString__
+	
+	load VR0 [VR5, 0]
+	VR0 <- VR0 * 4
+	VR1 <- class_nameTab
+	VR1 <- VR0 + VR1
+	load VR1 [VR1, 0]
+	VR2 <- 0
+	VI0 <- VR2
+	VI1 <- VR1
+	call IO.out_string
 
+	VR0 <- __str_nl_msg
+	VR1 <- 1
+	VI0 <- VR0
+	VI1 <- VR1
+	call __outString__
+
+	VR0 <- 0
+	VI0 <- VR0
+	call __abort__
+
+######################
 Object.type_name:
+	VR0 <- VI0	
+	load VR0 [VR0, 0]
+	VR0 <- VR0 * 4
+	VR1 <- class_nameTab
+	VR1 <- VR0 + VR1
+	load VR1 [VR1, 0]
+	VI0 <- VR1
     return
 	
+######################
+String.length:
+	VR0 <- VI0
+	load VR0 [VR0, 12]
+	VI0 <- VR0
+	return
+
+######################
+# Helper: allocate a string of given size
+# Input: VI0 <- size
+# Output: VI0 <- the new string
+__allocString:
+	VR0 <- VI0
+	VR10 <- VR0 + 4      	# Size in words including padding
+	VR10 <- VR10 / 4
+	VR10 <- VR10 + 4    	# Add header
+	VR11 <- VR10 * 4    	# Size in bytes
+	VI0 <- VR11	      		# Alloc the object
+	call __alloc__
+	VR1 <- VI0            
+	
+	VR2 <- 3              	# Type id
+	store VR2 [VR1,0]
+	store VR10 [VR1,4]		# Object size
+	VR2 <- String_dispatch  # Dispatch
+	store VR2 [VR1,8]		
+	
+	VR2 <- Int_protObj      # Actual size in bytes - box an integer
+	VI0 <- VR2
+	call Object.copy
+	VR2 <- VI0
+	store VR0 [VR2,12]
+	store VR2 [VR1,12]
+	
+	VR20 <- VR0 + 16   		# Add padding - skip header and string size
+	VR20 <- VR20 + VR1
+	VR21 <- VR1 + VR11  	# How much padding is required
+	VR2 <- 0				# Fill with zeroes
+__la1:
+	store VR2 [VR20,0]
+	VR20 <- VR20 + 1
+	VR3 <- VR20 = VR21
+	jumpf VR3 __la1
+		
+	VI0 <- VR1
+	return
+
+# Helper: copy memory bytes, non-overlapping
+# Input: VI0 <- size
+#        VI1 <- from
+#        VI2 <- to
+__copyBytes:
+	VR0 <- VI0
+	VR1 <- VI1
+	VR2 <- VI2
+	
+__cb0:
+	VR3 <- 0 < VR0
+	jumpf VR3 __cb1
+	
+	loadb VR3 [VR1,0]
+	storeb VR3 [VR2,0] 
+	
+	VR0 <- VR0 - 1
+	VR1 <- VR1 + 1
+	VR2 <- VR2 + 1
+	jump __cb0
+	
+__cb1:
+	return
+
+###############
+String.concat:
+    VR0 <- VI0
+    VR1 <- VI1
+
+	load VR2 [VR0, 12]    # size of the 1st string
+	load VR3 [VR2, 12]
+	load VR2 [VR1, 12]    # size of the 2nd string
+	load VR4 [VR2, 12]
+	VR5 <- VR3 + VR4
+	
+	# allocate new string
+	VI0 <- VR5
+	call __allocString
+	VR10 <- VI0
+	
+	# copy 1st string
+	VR6 <- VR0 + 16
+	VR7 <- VR10 + 16
+	VI0 <- VR3
+	VI1 <- VR6
+	VI2 <- VR7
+	call __copyBytes
+
+	# copy 2nd string
+	VR6 <- VR1 + 16
+	VR7 <- VR7 + VR3
+	VI0 <- VR4
+	VI1 <- VR6
+	VI2 <- VR7
+	call __copyBytes
+	
+    VI0 <- VR10
+	return
+	
+######################
+String.substr:
+	VR0 <- VI0
+	VR1 <- VI1
+	VR2 <- VI2
+	
+	load VR1 [VR1,12]  		# Unbox the start position
+	load VR2 [VR2,12]   	# Unbox the length
+
+	VR10 <- VR1 < 0 		# Is the start position positive?
+	jumpf VR10 __ss3
+	VR1 <- 0
+__ss3:
+
+	VR10 <- VR2 < 0 		# Is the length positive?
+	jumpf VR10 __ss4
+	VR2 <- 0
+__ss4:
+	
+	load VR3 [VR0, 12]		# Compute maximum length
+	load VR3 [VR3, 12]
+	
+	VR10 <- VR1 < VR3 			# Is the start position inside the string?
+	jumpt VR10 __ss1
+	VR2 <- 0				# if not, return an empty string
+__ss1:
+
+	VR4 <- VR1 + VR2      	# Does the end position go past the end of the string?
+	VR10 <- VR4 <= VR3
+	jumpt VR10 __ss2
+	VR2 <- VR3 - VR1   		# If yes, return the remaining string
+__ss2:
+
+	# allocate new string
+	VI0 <- VR2
+	call __allocString
+	VR5 <- VI0
+
+	# copy substring
+	VR6 <- VR0 + 16			# from self + header + start
+	VR6 <- VR6 + VR1
+	VR7 <- VR5 + 16			# to new string + header
+	VI0 <- VR2
+	VI1 <- VR6
+	VI2 <- VR7
+	call __copyBytes
+
+	VI0 <- VR5
+	return
+	
+######################
 IO.out_int:
+    VR1 <- VI0
     VR0 <- VI1
 	load VR0 [VR0,12]
 	VI0 <- VR0
-	call OutInt
-	return
+	call __outInt__
 	
+	VI0 <- VR1
+	return
+
+######################	
 IO.out_string:
+    VR1 <- VI0
+	VR10 <- VI1
+	load VR11 [VR10, 12]
+	load VR12 [VR11, 12]
+	VR10 <- VR10 + 16
+	VI0 <- VR10
+	VI1 <- VR12
+	call __outString__
+
+	VI0 <- VR1
 	return
 
+######################
 IO.in_int:
+	call __inInt__			# Read a value
+	VR0 <- VI0
+	
+	VR2 <- Int_protObj      # Box it
+	VI0 <- VR2
+	call Object.copy
+	VR2 <- VI0
+	store VR0 [VR2,12]
+
+	VI0 <- VR2				# Return the boxed object
 	return
 
+######################
 IO.in_string:
+	call __inString__		# Read the plain data from standard input
+	VR0 <- VI0
+	VR1 <- VI1
+	
+	VI0 <- VR1				# allocate a new string to hold that data
+	call __allocString
+	VR2 <- VI0
+	
+	# copy the data into the object
+	VR3 <- VR2 + 16
+	VI0 <- VR1
+	VI1 <- VR0
+	VI2 <- VR3
+	call __copyBytes	
+	
+	VI0 <- VR2
 	return
 	
+######################
+equality_test:
+	VR0 <- VI0			# 1
+	VR1 <- VI1     		# 2
+	VR2 <- VI2			# Object 1
+	VR3 <- VI3     		# Object 2
+	
+	load VR4 [VR2,0]	# typeof (object 1)
+	load VR5 [VR3,0]	# typeof (object 2)
+	VR10 <- VR4 = VR5
+	jumpf VR10 __et0
+	
+	VR10 <- VR4 = 3		# String?
+	jumpt VR10 __et2
+
+	VR10 <- VR4 = 1		# Int or Bool?
+	jumpt VR10 __et3
+	VR10 <- VR4 = 2		# if not, basic type compare failed
+	jumpf VR10 __et0
+
+__et3:					# compare numeric values
+	load VR4 [VR2,12]
+	load VR5 [VR3,12]
+	VR10 <- VR4 = VR5
+	jumpt VR10 __et1
+	jump __et0
+	
+__et2:					# compare string lengths
+	load VR4 [VR2,12]
+	load VR4 [VR4,12]
+	load VR5 [VR3,12]
+	load VR5 [VR5,12]
+	VR10 <- VR4 = VR5
+	jumpf VR10 __et0	# if different, strings are different
+	
+	VR2 <- VR2 + 16     # compare actual string content
+	VR3 <- VR3 + 16
+__et4:
+	VR10 <- 0 < VR4
+	jumpf VR10 __et1			# reached the end of the strings, no differences
+	
+	loadb VR6 [VR2,0]
+	loadb VR7 [VR3,0]
+	VR10 <- VR6 = VR7
+	jumpf VR10 __et0			# fail, if a difference is found
+	
+	VR4 <- VR4 - 1
+	VR2 <- VR2 + 1
+	VR3 <- VR3 + 1
+	jump __et4
+	
+__et1:
+	VI0 <- VR0			# compare ok
+	return
+
+__et0:
+	VI0 <- VR1			# compare failed
+	return
+	
+######################
 _dispatch_abort:
-    jump Abort
+	VR0 <- VI0			# File name
+	VR1 <- VI1     		# Line number 
+	VR2 <- 0
 	
-Main:
-	VR0 <- Main_protObj
+	VI0 <- VR2			# Print file name
+	VI1 <- VR0
+	call IO.out_string
+
+	VR10 <- __str_colon_msg	# Print ':'
+	VR11 <- 1
+	VI0 <- VR10
+	VI1 <- VR11
+	call __outString__
+	
+	VI0 <- VR2			# Print line number
+	VI1 <- VR1
+	call IO.out_int
+
+	VR10 <- __str_dispatch_msg	# Print error message
+	VR11 <- 20
+	VI0 <- VR10
+	VI1 <- VR11
+	call __outString__
+	
+    call __abort__
+		
+######################
+_case_abort:
+	VR0 <- VI0			# Self
+	VR2 <- 0
+	
+	VR10 <- __str_cabort_msg	# Print error message
+	VR11 <- 37
+	VI0 <- VR10
+	VI1 <- VR11
+	call __outString__
+
+	load VR1 [VR0,8]			# Call self.type_name()
+	load VR1 [VR1,8]
 	VI0 <- VR0
-	call Main.main
-	jump Abort
+	call VR1
+	VR1 <- VI0
 	
+	VI0 <- VR2					# Print the resulting name
+	VI1 <- VR1
+	call IO.out_string
+
+	VR10 <- __str_nl_msg	# Print EOL
+	VR11 <- 1
+	VI0 <- VR10
+	VI1 <- VR11
+	call __outString__
+	
+    call __abort__
+
+######################
+_case_abort2:
+	VR0 <- VI0			# File name
+	VR1 <- VI1     		# Line number 
+	VR2 <- 0
+	
+	VI0 <- VR2			# Print file name
+	VI1 <- VR0
+	call IO.out_string
+
+	VR10 <- __str_colon_msg	# Print ':'
+	VR11 <- 1
+	VI0 <- VR10
+	VI1 <- VR11
+	call __outString__
+	
+	VI0 <- VR2			# Print line number
+	VI1 <- VR1
+	call IO.out_int
+
+	VR10 <- __str_cabort_msg2	# Print error message
+	VR11 <- 33
+	VI0 <- VR10
+	VI1 <- VR11
+	call __outString__
+    call __abort__
+
+######################
 .data
-InString_Buffer:
-	DB 1024
 
 # Int prototype
 Int_protObj:
@@ -68,9 +497,67 @@ Int_protObj:
     DW 4
     DL Object_dispatch
     DW 0
-
+#########################
+# String prototype
+String_protObj:
+    DW 3
+    DW 5
+    DL String_dispatch
+	DL Int_protObj    # String size 0
+    DS 4
+#########################
+# Bool prototype
+bool_const0:
+    DW 2
+    DW 4
+    DL Object_dispatch
+    DW 0
+#########################
+# Dispatch tables for basic classes
 Object_dispatch:
     DL Object.abort
     DL Object.copy
     DL Object.type_name
- 
+#########################
+String_dispatch:
+    DL Object.abort
+    DL Object.copy
+    DL Object.type_name
+    DL String.concat
+    DL String.length
+    DL String.substr
+#########################
+#Error messages
+__str_term_msg:
+	DB "COOL program successfully executed\n"	# 35 chars
+	DB 0
+
+__str_abort_msg:
+	DB "Abort called from class "				# 24 chars
+	DB 0
+	DS 3
+
+__str_colon_msg:								# 1 char
+	DB ":"
+	DB 0
+	DS 2
+
+__str_nl_msg:								# 1 char
+	DB "\n"
+	DB 0
+	DS 2
+	
+__str_dispatch_msg:
+	DB ": Dispatch to void.\n"					# 20 chars
+	DB 0
+	DS 3
+		
+__str_cabort_msg:
+	DB "No match in case statement for Class "	# 37 chars
+	DB 0
+	DS 2
+	
+__str_cabort_msg2:
+	DB "Match on void in case statement.\n"		# 33
+	DB 0
+	DS 2

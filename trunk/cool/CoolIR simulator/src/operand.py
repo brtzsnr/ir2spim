@@ -1,7 +1,12 @@
 MAX_REGISTER_INDEX = 1 << 31
 
+# Hackish register numbering scheme
+# 0.. : VR
+# -1 : IP
+# -2 .. : VI
+
 class Register(object):
-	def __init__(self, vr=None, vi=None):
+	def __init__(self, vr=None, vi=None, ip=None):
 		assert vr is None or vi is None
 
 		if vr is not None:
@@ -9,9 +14,9 @@ class Register(object):
 			self.number = vr
 		elif vi is not None:
 			assert 0 <= vi < MAX_REGISTER_INDEX
-			self.number = - 1 - vi
+			self.number = - 2 - vi
 		else:
-			self.number = None
+			self.number = ip
 
 	def store(self, section):
 		section.storeWord(self.number)
@@ -21,12 +26,12 @@ class Register(object):
 		return address + 4
 
 	def isgeneral(self):
-		return self.number >= 0
+		return self.number >= -1
 
 	def __str__(self):
 		if self.isgeneral():
 			return 'vr%d' % self.number
-		return 'vi%d' % (- 1 - self.number)
+		return 'vi%d' % (- 2 - self.number)
 
 	def __repr__(self):
 		return str(self)

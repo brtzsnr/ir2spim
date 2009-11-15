@@ -18,6 +18,8 @@ class Memory(object):
 
 		self.labels = {}
 		self.__locations = None  # inverse of the above
+		
+		self.limit = 0 # top limit of memory, including .code, .data and heap
 
 	def addSection(self, section):
 		assert self.__sections is not None, 'Cannot add more sections because link done.'
@@ -38,6 +40,7 @@ class Memory(object):
 		size = 0
 		for s in self.__sections.itervalues():
 			size += len(s)
+		self.limit = size;
 
 		# relocates sections and compute label locations
 		start = 0
@@ -55,6 +58,12 @@ class Memory(object):
 
 		self.__sections = None
 		logging.info('Link done')
+		
+	def alloc(self, size):
+		address = self.limit
+		# TODO: check limit against a hard maximum
+		self.limit += size
+		return address
 
 	def store(self, bytes, address):
 		offset = 0
