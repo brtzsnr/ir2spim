@@ -359,112 +359,112 @@ str_const15:
 	DW	5
 	DL	String_dispatch
 	DL	int_const0
-	DB	0	
+	DS	4
 str_const14:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const4
 	DB	"Main"
-	DB	0	
+	DS	4
 str_const13:
 	DW	3
 	DW	5
 	DL	String_dispatch
 	DL	int_const1
 	DB	"IO"
-	DB	0	
+	DS	2
 str_const12:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const5
 	DB	"String"
-	DB	0	
+	DS	2
 str_const11:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const4
 	DB	"Bool"
-	DB	0	
+	DS	4
 str_const10:
 	DW	3
 	DW	5
 	DL	String_dispatch
 	DL	int_const6
 	DB	"Int"
-	DB	0	
+	DS	1
 str_const9:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const5
 	DB	"Object"
-	DB	0	
+	DS	2
 str_const8:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const7
 	DB	"_prim_slot"
-	DB	0	
+	DS	2
 str_const7:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const8
 	DB	"SELF_TYPE"
-	DB	0	
+	DS	3
 str_const6:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const8
 	DB	"_no_class"
-	DB	0	
+	DS	3
 str_const5:
 	DW	3
 	DW	8
 	DL	String_dispatch
 	DL	int_const9
 	DB	"<basic class>"
-	DB	0	
+	DS	3
 str_const4:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const10
 	DB	"continue"
-	DB	0	
+	DS	4
 str_const3:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const4
 	DB	"halt"
-	DB	0	
+	DS	4
 str_const2:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const11
 	DB	" is prime.\n"
-	DB	0	
+	DS	1
 str_const1:
 	DW	3
 	DW	10
 	DL	String_dispatch
 	DL	int_const12
 	DB	"2 is trivially prime.\n"
-	DB	0	
+	DS	2
 str_const0:
 	DW	3
 	DW	11
 	DL	String_dispatch
 	DL	int_const13
 	DB	"_tests/advanced/primes.cl"
-	DB	0	
+	DS	3
 int_const13:
 	DW	1
 	DW	4

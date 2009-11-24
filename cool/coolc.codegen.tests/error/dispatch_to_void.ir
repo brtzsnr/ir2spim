@@ -113,91 +113,91 @@ str_const12:
 	DW	5
 	DL	String_dispatch
 	DL	int_const0
-	DB	0	
+	DS	4
 str_const11:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const1
 	DB	"Main"
-	DB	0	
+	DS	4
 str_const10:
 	DW	3
 	DW	5
 	DL	String_dispatch
 	DL	int_const2
 	DB	"A"
-	DB	0	
+	DS	3
 str_const9:
 	DW	3
 	DW	5
 	DL	String_dispatch
 	DL	int_const3
 	DB	"IO"
-	DB	0	
+	DS	2
 str_const8:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const4
 	DB	"String"
-	DB	0	
+	DS	2
 str_const7:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const1
 	DB	"Bool"
-	DB	0	
+	DS	4
 str_const6:
 	DW	3
 	DW	5
 	DL	String_dispatch
 	DL	int_const5
 	DB	"Int"
-	DB	0	
+	DS	1
 str_const5:
 	DW	3
 	DW	6
 	DL	String_dispatch
 	DL	int_const4
 	DB	"Object"
-	DB	0	
+	DS	2
 str_const4:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const6
 	DB	"_prim_slot"
-	DB	0	
+	DS	2
 str_const3:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const7
 	DB	"SELF_TYPE"
-	DB	0	
+	DS	3
 str_const2:
 	DW	3
 	DW	7
 	DL	String_dispatch
 	DL	int_const7
 	DB	"_no_class"
-	DB	0	
+	DS	3
 str_const1:
 	DW	3
 	DW	8
 	DL	String_dispatch
 	DL	int_const8
 	DB	"<basic class>"
-	DB	0	
+	DS	3
 str_const0:
 	DW	3
 	DW	13
 	DL	String_dispatch
 	DL	int_const9
 	DB	"_tests/error/dispatch_to_void.cl"
-	DB	0	
+	DS	4
 int_const9:
 	DW	1
 	DW	4
