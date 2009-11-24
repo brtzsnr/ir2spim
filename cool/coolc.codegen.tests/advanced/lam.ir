@@ -161,7 +161,7 @@ dispatch_notvoid0:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 46
+	## begin new - line 46
 	VR1	<-	VarList_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -202,7 +202,7 @@ dispatch_notvoid1:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 47
+	## begin new - line 47
 	VR1	<-	Lambda_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -280,7 +280,7 @@ dispatch_notvoid3:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 49
+	## begin new - line 49
 	VR1	<-	LambdaList_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -299,7 +299,7 @@ LambdaList.add:
 	VR2	<-	VI2
 	VR3	<-	VI3
 	## begin dispatch - line 51
-	## new begin - line 51
+	## begin new - line 51
 	VR4	<-	LambdaListNE_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -496,7 +496,7 @@ LambdaListRef.reset:
 	## store rhs in VR1 to attribute nextNum
 	store	VR1 [VR0, 12]
 	## begin assign - line 86
-	## new begin - line 86
+	## begin new - line 86
 	VR1	<-	LambdaList_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -733,7 +733,7 @@ dispatch_notvoid11:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 23
+	## begin new - line 23
 	VR1	<-	Variable_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -774,7 +774,7 @@ dispatch_notvoid12:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 24
+	## begin new - line 24
 	VR1	<-	VarList_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -791,7 +791,7 @@ VarList.add:
 	VR0	<-	VI0
 	VR1	<-	VI1
 	## begin dispatch - line 25
-	## new begin - line 25
+	## begin new - line 25
 	VR2	<-	VarListNE_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -1140,7 +1140,7 @@ Term.var:
 	VR0	<-	VI0
 	VR1	<-	VI1
 	## begin let - line 340
-	## new begin - line 340
+	## begin new - line 340
 	VR3	<-	Variable_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -1191,7 +1191,7 @@ Term.lam:
 	VR1	<-	VI1
 	VR2	<-	VI2
 	## begin let - line 345
-	## new begin - line 345
+	## begin new - line 345
 	VR4	<-	Lambda_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -1245,7 +1245,7 @@ Term.app:
 	VR1	<-	VI1
 	VR2	<-	VI2
 	## begin let - line 350
-	## new begin - line 350
+	## begin new - line 350
 	VR4	<-	App_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -1871,7 +1871,7 @@ dispatch_notvoid42:
 	## let var done in VR2
 	## begin let - line 390
 	## create a let variable - not in the original source
-	## new begin - line 390
+	## begin new - line 390
 	VR3	<-	Expr_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -1883,19 +1883,14 @@ loop_start0:
 	## not operator - line 392
 	VR4	<-	VR2
 	## create the result object - not in the original source
-	## new begin - line 392
+	## begin new - line 392
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
 	call Object.copy
 	VR5	<-	VI0
 	call Bool_init
 	load	VR6 [VR4, 12]
-	jumpt	VR6 not_true0
-	VR6	<-	1
-	jump	not_end0
-not_true0:
-	VR6	<-	0
-not_end0:
+	VR6	<-	1 - VR6
 	store	VR6 [VR5, 12]
 	VR4	<-	VR5
 	## condition in VR4, load effective value into VR5
@@ -1933,7 +1928,7 @@ dispatch_notvoid43:
 	## begin if-then-else - line 395
 	## = operator - line 395
 	## create the result object - not in the original source
-	## new begin - line 395
+	## begin new - line 395
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -2399,7 +2394,7 @@ Main.gen_code:
 	VR1	<-	VI1
 	## begin let - line 434
 	## begin dispatch - line 434
-	## new begin - line 434
+	## begin new - line 434
 	VR3	<-	LambdaListRef_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -2673,7 +2668,7 @@ dispatch_notvoid66:
 	call	_dispatch_abort
 dispatch_notvoid67:
 	## actual parameter 1
-	## new begin - line 444
+	## begin new - line 444
 	VR4	<-	VarList_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -2750,19 +2745,14 @@ dispatch_notvoid69:
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## create the result object - not in the original source
-	## new begin - line 446
+	## begin new - line 446
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
 	call Object.copy
 	VR4	<-	VI0
 	call Bool_init
 	load	VR5 [VR3, 12]
-	jumpt	VR5 not_true1
-	VR5	<-	1
-	jump	not_end1
-not_true1:
-	VR5	<-	0
-not_end1:
+	VR5	<-	1 - VR5
 	store	VR5 [VR4, 12]
 	VR3	<-	VR4
 	## condition in VR3, load effective value into VR4
@@ -4824,7 +4814,7 @@ Variable.substitute:
 	## begin if-then-else - line 170
 	## = operator - line 170
 	## create the result object - not in the original source
-	## new begin - line 170
+	## begin new - line 170
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -4899,7 +4889,7 @@ ite_false2:
 	## not operator - line 178
 	## = operator - line 178
 	## create the result object - not in the original source
-	## new begin - line 178
+	## begin new - line 178
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -4935,19 +4925,14 @@ dispatch_notvoid143:
 	VR5	<-	VR5	=	VR6
 	store	VR5 [VR4, 12]
 	## create the result object - not in the original source
-	## new begin - line 178
+	## begin new - line 178
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
 	call Object.copy
 	VR5	<-	VI0
 	call Bool_init
 	load	VR6 [VR4, 12]
-	jumpt	VR6 not_true2
-	VR6	<-	1
-	jump	not_end2
-not_true2:
-	VR6	<-	0
-not_end2:
+	VR6	<-	1 - VR6
 	store	VR6 [VR5, 12]
 	VR4	<-	VR5
 ite_end2:
@@ -5350,7 +5335,7 @@ Lambda.substitute:
 	## begin if-then-else - line 231
 	## = operator - line 231
 	## create the result object - not in the original source
-	## new begin - line 231
+	## begin new - line 231
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -5404,7 +5389,7 @@ dispatch_notvoid156:
 	VR3	<-	VR4
 	## let var new_body in VR3
 	## begin let - line 235
-	## new begin - line 235
+	## begin new - line 235
 	VR5	<-	Lambda_protObj
 	VI0	<-	VR5
 	call Object.copy
@@ -6362,7 +6347,7 @@ dispatch_notvoid184:
 	VR2	<-	VR3
 	## let var new_fun in VR2
 	## begin let - line 302
-	## new begin - line 302
+	## begin new - line 302
 	VR4	<-	App_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -6494,7 +6479,7 @@ dispatch_notvoid187:
 	VR4	<-	VR5
 	## let var new_arg in VR4
 	## begin let - line 310
-	## new begin - line 310
+	## begin new - line 310
 	VR6	<-	App_protObj
 	VI0	<-	VR6
 	call Object.copy

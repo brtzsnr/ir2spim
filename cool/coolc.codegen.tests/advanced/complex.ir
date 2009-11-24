@@ -52,7 +52,7 @@ Main.main:
 	VR0	<-	VI0
 	## begin let - line 3
 	## begin dispatch - line 3
-	## new begin - line 3
+	## begin new - line 3
 	VR2	<-	Complex_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -95,7 +95,7 @@ dispatch_notvoid0:
 	## begin if-then-else - line 4
 	## = operator - line 4
 	## create the result object - not in the original source
-	## new begin - line 4
+	## begin new - line 4
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -261,7 +261,7 @@ Complex.init:
 	VR2	<-	VI2
 	## = operator - line 18
 	## create the result object - not in the original source
-	## new begin - line 18
+	## begin new - line 18
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -273,7 +273,7 @@ Complex.init:
 	store	VR4 [VR3, 12]
 	## = operator - line 19
 	## create the result object - not in the original source
-	## new begin - line 19
+	## begin new - line 19
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -296,7 +296,7 @@ Complex.print:
 	## begin if-then-else - line 25
 	## = operator - line 25
 	## create the result object - not in the original source
-	## new begin - line 25
+	## begin new - line 25
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -492,7 +492,7 @@ Complex.reflect_0:
 	VR0	<-	VI0
 	## = operator - line 33
 	## create the result object - not in the original source
-	## new begin - line 33
+	## begin new - line 33
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -506,7 +506,7 @@ Complex.reflect_0:
 	store	VR2 [VR1, 12]
 	## = operator - line 34
 	## create the result object - not in the original source
-	## new begin - line 34
+	## begin new - line 34
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -530,7 +530,7 @@ Complex.reflect_X:
 	VR0	<-	VI0
 	## = operator - line 41
 	## create the result object - not in the original source
-	## new begin - line 41
+	## begin new - line 41
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -554,7 +554,7 @@ Complex.reflect_Y:
 	VR0	<-	VI0
 	## = operator - line 48
 	## create the result object - not in the original source
-	## new begin - line 48
+	## begin new - line 48
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy

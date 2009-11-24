@@ -102,7 +102,7 @@ loop_start1:
 	## begin if-then-else - line 53
 	## < operator - line 53
 	## create the result object - not in the original source
-	## new begin - line 53
+	## begin new - line 53
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -127,7 +127,7 @@ ite_false0:
 	## begin if-then-else - line 55
 	## = operator - line 55
 	## create the result object - not in the original source
-	## new begin - line 55
+	## begin new - line 55
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -178,7 +178,7 @@ loop_end1:
 	## begin if-then-else - line 63
 	## < operator - line 63
 	## create the result object - not in the original source
-	## new begin - line 63
+	## begin new - line 63
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -275,7 +275,7 @@ ite_end2:
 	## begin if-then-else - line 74
 	## <= operator - line 74
 	## create the result object - not in the original source
-	## new begin - line 74
+	## begin new - line 74
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
 	call Object.copy

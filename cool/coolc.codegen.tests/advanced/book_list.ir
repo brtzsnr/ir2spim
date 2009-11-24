@@ -80,7 +80,7 @@ Main.main:
 	VR0	<-	VI0
 	## begin let - line 115
 	## begin dispatch - line 116
-	## new begin - line 116
+	## begin new - line 116
 	VR2	<-	Book_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -120,7 +120,7 @@ dispatch_notvoid0:
 	## let var a_book in VR1
 	## begin let - line 119
 	## begin dispatch - line 120
-	## new begin - line 120
+	## begin new - line 120
 	VR3	<-	Article_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -164,7 +164,7 @@ dispatch_notvoid1:
 	## begin assign - line 125
 	## begin dispatch - line 125
 	## begin dispatch - line 125
-	## new begin - line 125
+	## begin new - line 125
 	VR3	<-	Nil_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -503,7 +503,7 @@ BookList.cons:
 	VR0	<-	VI0
 	VR1	<-	VI1
 	## begin let - line 52
-	## new begin - line 52
+	## begin new - line 52
 	VR3	<-	Cons_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -580,7 +580,7 @@ dispatch_notvoid13:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 61
+	## begin new - line 61
 	VR1	<-	Book_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -621,7 +621,7 @@ dispatch_notvoid14:
 	call VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	## new begin - line 67
+	## begin new - line 67
 	VR1	<-	BookList_protObj
 	VI0	<-	VR1
 	call Object.copy

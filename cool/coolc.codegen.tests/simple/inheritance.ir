@@ -37,7 +37,7 @@ P_init:
 	## store rhs in VR1 to attribute i
 	store	VR1 [VR0, 12]
 	## begin assign - line 5
-	## new begin - line 5
+	## begin new - line 5
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -54,7 +54,7 @@ Main_init:
 	VR0	<-	VI0
 	call	Object_init
 	## begin assign - line 32
-	## new begin - line 32
+	## begin new - line 32
 	VR1	<-	C_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -63,7 +63,7 @@ Main_init:
 	## store rhs in VR1 to attribute c
 	store	VR1 [VR0, 12]
 	## begin assign - line 33
-	## new begin - line 33
+	## begin new - line 33
 	VR1	<-	P_protObj
 	VI0	<-	VR1
 	call Object.copy

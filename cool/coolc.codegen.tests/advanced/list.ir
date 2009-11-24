@@ -141,7 +141,7 @@ List.cons:
 	VR0	<-	VI0
 	VR1	<-	VI1
 	## begin dispatch - line 50
-	## new begin - line 50
+	## begin new - line 50
 	VR2	<-	Cons_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -461,7 +461,7 @@ Main.main:
 	## begin dispatch - line 128
 	## begin dispatch - line 128
 	## begin dispatch - line 128
-	## new begin - line 128
+	## begin new - line 128
 	VR1	<-	List_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -639,19 +639,14 @@ dispatch_notvoid15:
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## create the result object - not in the original source
-	## new begin - line 129
+	## begin new - line 129
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
 	call Object.copy
 	VR2	<-	VI0
 	call Bool_init
 	load	VR3 [VR1, 12]
-	jumpt	VR3 not_true0
-	VR3	<-	1
-	jump	not_end0
-not_true0:
-	VR3	<-	0
-not_end0:
+	VR3	<-	1 - VR3
 	store	VR3 [VR2, 12]
 	VR1	<-	VR2
 	## condition in VR1, load effective value into VR2

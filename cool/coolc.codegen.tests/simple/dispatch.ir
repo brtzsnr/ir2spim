@@ -32,7 +32,7 @@ P_init:
 	VR0	<-	VI0
 	call	Object_init
 	## begin assign - line 4
-	## new begin - line 4
+	## begin new - line 4
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -49,7 +49,7 @@ Main_init:
 	VR0	<-	VI0
 	call	Object_init
 	## begin assign - line 38
-	## new begin - line 38
+	## begin new - line 38
 	VR1	<-	C_protObj
 	VI0	<-	VR1
 	call Object.copy

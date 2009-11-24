@@ -60,7 +60,7 @@ dispatch_notvoid0:
 	## actual parameter 1
 	## begin dispatch - line 4
 	## begin dispatch - line 4
-	## new begin - line 4
+	## begin new - line 4
 	VR2	<-	Object_protObj
 	VI0	<-	VR2
 	call Object.copy
