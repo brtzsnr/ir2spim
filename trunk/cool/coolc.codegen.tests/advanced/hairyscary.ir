@@ -32,7 +32,7 @@ Main_init:
 	VR0	<-	VI0
 	call	Object_init
 	## begin assign - line 55
-	## new begin - line 55
+	## begin new - line 55
 	VR1	<-	Bazz_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -41,7 +41,7 @@ Main_init:
 	## store rhs in VR1 to attribute a
 	store	VR1 [VR0, 12]
 	## begin assign - line 56
-	## new begin - line 56
+	## begin new - line 56
 	VR1	<-	Foo_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -50,7 +50,7 @@ Main_init:
 	## store rhs in VR1 to attribute b
 	store	VR1 [VR0, 16]
 	## begin assign - line 57
-	## new begin - line 57
+	## begin new - line 57
 	VR1	<-	Razz_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -59,7 +59,7 @@ Main_init:
 	## store rhs in VR1 to attribute c
 	store	VR1 [VR0, 20]
 	## begin assign - line 58
-	## new begin - line 58
+	## begin new - line 58
 	VR1	<-	Bar_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -107,7 +107,7 @@ case0_tag8:
 	jumpt	VR3 case0_tag7
 	VR3	<-	9 < VR2
 	jumpt	VR3 case0_tag7
-	## new begin - line 41
+	## begin new - line 41
 	VR2	<-	Bar_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -119,7 +119,7 @@ case0_tag7:
 	jumpt	VR3 case0_tag6
 	VR3	<-	9 < VR2
 	jumpt	VR3 case0_tag6
-	## new begin - line 42
+	## begin new - line 42
 	VR2	<-	Razz_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -131,7 +131,7 @@ case0_tag6:
 	jumpt	VR3 case0_error
 	VR3	<-	9 < VR2
 	jumpt	VR3 case0_error
-	## new begin - line 40
+	## begin new - line 40
 	VR2	<-	Foo_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -217,7 +217,7 @@ case1_tag8:
 	jumpt	VR3 case1_tag7
 	VR3	<-	9 < VR2
 	jumpt	VR3 case1_tag7
-	## new begin - line 5
+	## begin new - line 5
 	VR2	<-	Bar_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -229,7 +229,7 @@ case1_tag7:
 	jumpt	VR3 case1_error
 	VR3	<-	9 < VR2
 	jumpt	VR3 case1_error
-	## new begin - line 6
+	## begin new - line 6
 	VR2	<-	Razz_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -394,7 +394,7 @@ case2_tag8:
 	jumpt	VR3 case2_error
 	VR3	<-	9 < VR2
 	jumpt	VR3 case2_error
-	## new begin - line 27
+	## begin new - line 27
 	VR2	<-	Bar_protObj
 	VI0	<-	VR2
 	call Object.copy

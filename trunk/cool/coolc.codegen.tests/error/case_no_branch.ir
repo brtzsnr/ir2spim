@@ -43,7 +43,7 @@ Main_init:
 	call	Object_init
 	## begin assign - line 36
 	## begin dispatch - line 36
-	## new begin - line 36
+	## begin new - line 36
 	VR1	<-	A_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -76,7 +76,7 @@ dispatch_notvoid0:
 	## store rhs in VR1 to attribute a
 	store	VR1 [VR0, 12]
 	## begin assign - line 37
-	## new begin - line 37
+	## begin new - line 37
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
 	call Object.copy

@@ -48,7 +48,7 @@ Main.main:
 	VR0	<-	VI0
 	## begin assign - line 83
 	## begin dispatch - line 83
-	## new begin - line 83
+	## begin new - line 83
 	VR1	<-	CellularAutomaton_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -118,7 +118,7 @@ dispatch_notvoid1:
 loop_start0:
 	## < operator - line 86
 	## create the result object - not in the original source
-	## new begin - line 86
+	## begin new - line 86
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -390,7 +390,7 @@ CellularAutomaton.cell_left_neighbor:
 	## begin if-then-else - line 31
 	## = operator - line 31
 	## create the result object - not in the original source
-	## new begin - line 31
+	## begin new - line 31
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -515,7 +515,7 @@ CellularAutomaton.cell_right_neighbor:
 	## begin if-then-else - line 39
 	## = operator - line 39
 	## create the result object - not in the original source
-	## new begin - line 39
+	## begin new - line 39
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -640,7 +640,7 @@ CellularAutomaton.cell_at_next_evolution:
 	## begin if-then-else - line 52
 	## = operator - line 52
 	## create the result object - not in the original source
-	## new begin - line 52
+	## begin new - line 52
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -865,7 +865,7 @@ dispatch_notvoid17:
 	## let var num in VR2
 	## begin let - line 63
 	## create a let variable - not in the original source
-	## new begin - line 63
+	## begin new - line 63
 	VR3	<-	String_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -876,7 +876,7 @@ dispatch_notvoid17:
 loop_start1:
 	## < operator - line 65
 	## create the result object - not in the original source
-	## new begin - line 65
+	## begin new - line 65
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
 	call Object.copy

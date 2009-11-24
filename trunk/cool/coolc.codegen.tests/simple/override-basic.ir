@@ -55,7 +55,7 @@ Main.main:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin let - line 29
-	## new begin - line 29
+	## begin new - line 29
 	VR2	<-	Base_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -92,7 +92,7 @@ dispatch_notvoid0:
 	## store let result over let var me
 	VR1	<-	VR2
 	## begin let - line 32
-	## new begin - line 32
+	## begin new - line 32
 	VR2	<-	Derived_protObj
 	VI0	<-	VR2
 	call Object.copy
@@ -129,7 +129,7 @@ dispatch_notvoid1:
 	## store let result over let var me
 	VR1	<-	VR2
 	## begin let - line 35
-	## new begin - line 35
+	## begin new - line 35
 	VR2	<-	Derived_protObj
 	VI0	<-	VR2
 	call Object.copy

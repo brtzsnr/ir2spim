@@ -40,7 +40,7 @@ Main_init:
 	VR0	<-	VI0
 	call	Object_init
 	## begin assign - line 21
-	## new begin - line 21
+	## begin new - line 21
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
 	call Object.copy
@@ -189,7 +189,7 @@ Main.main:
 	VR1	<-	VR2
 	## let var i in VR1
 	## begin let - line 25
-	## new begin - line 25
+	## begin new - line 25
 	VR3	<-	A_protObj
 	VI0	<-	VR3
 	call Object.copy
@@ -198,7 +198,7 @@ Main.main:
 	VR2	<-	VR3
 	## let var a in VR2
 	## begin let - line 26
-	## new begin - line 26
+	## begin new - line 26
 	VR4	<-	Q_protObj
 	VI0	<-	VR4
 	call Object.copy
@@ -213,7 +213,7 @@ Main.main:
 loop_start0:
 	## < operator - line 29
 	## create the result object - not in the original source
-	## new begin - line 29
+	## begin new - line 29
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
 	call Object.copy
@@ -400,7 +400,7 @@ loop_end0:
 	## not operator - line 52
 	## = operator - line 52
 	## create the result object - not in the original source
-	## new begin - line 52
+	## begin new - line 52
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
 	call Object.copy
@@ -412,19 +412,14 @@ loop_end0:
 	VR6	<-	VR6	=	VR7
 	store	VR6 [VR5, 12]
 	## create the result object - not in the original source
-	## new begin - line 52
+	## begin new - line 52
 	VR6	<-	Bool_protObj
 	VI0	<-	VR6
 	call Object.copy
 	VR6	<-	VI0
 	call Bool_init
 	load	VR7 [VR5, 12]
-	jumpt	VR7 not_true0
-	VR7	<-	1
-	jump	not_end0
-not_true0:
-	VR7	<-	0
-not_end0:
+	VR7	<-	1 - VR7
 	store	VR7 [VR6, 12]
 	VR5	<-	VR6
 	## condition in VR5, load effective value into VR6
@@ -501,7 +496,7 @@ dispatch_notvoid1:
 loop_start1:
 	## < operator - line 57
 	## create the result object - not in the original source
-	## new begin - line 57
+	## begin new - line 57
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
 	call Object.copy
@@ -688,7 +683,7 @@ loop_end1:
 	## not operator - line 80
 	## = operator - line 80
 	## create the result object - not in the original source
-	## new begin - line 80
+	## begin new - line 80
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
 	call Object.copy
@@ -700,19 +695,14 @@ loop_end1:
 	VR6	<-	VR6	=	VR7
 	store	VR6 [VR5, 12]
 	## create the result object - not in the original source
-	## new begin - line 80
+	## begin new - line 80
 	VR6	<-	Bool_protObj
 	VI0	<-	VR6
 	call Object.copy
 	VR6	<-	VI0
 	call Bool_init
 	load	VR7 [VR5, 12]
-	jumpt	VR7 not_true1
-	VR7	<-	1
-	jump	not_end1
-not_true1:
-	VR7	<-	0
-not_end1:
+	VR7	<-	1 - VR7
 	store	VR7 [VR6, 12]
 	VR5	<-	VR6
 	## condition in VR5, load effective value into VR6
