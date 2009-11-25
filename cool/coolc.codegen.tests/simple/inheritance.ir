@@ -94,7 +94,7 @@ P.method:
 	VR1	<-	str_const0
 	VR4	<-	9
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -123,7 +123,7 @@ dispatch_notvoid0:
 	VR1	<-	str_const0
 	VR4	<-	10
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -136,7 +136,7 @@ dispatch_notvoid1:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -160,7 +160,7 @@ dispatch_notvoid1:
 	VR1	<-	str_const0
 	VR4	<-	11
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -199,7 +199,7 @@ Main.main:
 	VR1	<-	str_const0
 	VR4	<-	38
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -225,7 +225,7 @@ dispatch_notvoid3:
 	VR1	<-	str_const0
 	VR4	<-	39
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -262,7 +262,7 @@ C.method:
 	VR1	<-	str_const0
 	VR4	<-	21
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -291,7 +291,7 @@ dispatch_notvoid5:
 	VR1	<-	str_const0
 	VR4	<-	22
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -304,7 +304,7 @@ dispatch_notvoid6:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -328,7 +328,7 @@ dispatch_notvoid6:
 	VR1	<-	str_const0
 	VR4	<-	23
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -357,7 +357,7 @@ dispatch_notvoid7:
 	VR1	<-	str_const0
 	VR4	<-	24
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0

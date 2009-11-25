@@ -92,7 +92,7 @@ Main.main:
 	VR2	<-	str_const0
 	VR5	<-	116
 	# boxing integer from VR5 to VR4
-	VR4	<-	Bool_protObj
+	VR4	<-	Int_protObj
 	VI0	<-	VR4
 	call	Object.copy
 	VR4	<-	VI0
@@ -132,7 +132,7 @@ dispatch_notvoid0:
 	VR3	<-	str_const0
 	VR6	<-	120
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
@@ -176,7 +176,7 @@ dispatch_notvoid1:
 	VR3	<-	str_const0
 	VR6	<-	125
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
@@ -203,7 +203,7 @@ dispatch_notvoid2:
 	VR3	<-	str_const0
 	VR6	<-	125
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
@@ -234,7 +234,7 @@ dispatch_notvoid3:
 	VR3	<-	str_const0
 	VR6	<-	126
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
@@ -295,7 +295,7 @@ Book.print:
 	VR1	<-	str_const0
 	VR4	<-	16
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -322,7 +322,7 @@ dispatch_notvoid5:
 	VR1	<-	str_const0
 	VR4	<-	16
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -349,7 +349,7 @@ dispatch_notvoid6:
 	VR1	<-	str_const0
 	VR4	<-	16
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -380,7 +380,7 @@ dispatch_notvoid7:
 	VR1	<-	str_const0
 	VR4	<-	17
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -407,7 +407,7 @@ dispatch_notvoid8:
 	VR1	<-	str_const0
 	VR4	<-	17
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -434,7 +434,7 @@ dispatch_notvoid9:
 	VR1	<-	str_const0
 	VR4	<-	17
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -473,7 +473,7 @@ BookList.isNil:
 	VR1	<-	str_const0
 	VR4	<-	49
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -519,7 +519,7 @@ BookList.cons:
 	VR3	<-	str_const0
 	VR6	<-	53
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
@@ -562,7 +562,7 @@ BookList.car:
 	VR1	<-	str_const0
 	VR4	<-	61
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -603,7 +603,7 @@ BookList.cdr:
 	VR1	<-	str_const0
 	VR4	<-	67
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -644,7 +644,7 @@ BookList.print_list:
 	VR1	<-	str_const0
 	VR4	<-	69
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -710,7 +710,7 @@ Cons.print_list:
 	VR1	<-	str_const0
 	VR4	<-	94
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -733,7 +733,7 @@ dispatch_notvoid16:
 	VR1	<-	str_const0
 	VR4	<-	94
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -755,7 +755,7 @@ case0_tag10:
 	VR2	<-	str_const0
 	VR5	<-	96
 	# boxing integer from VR5 to VR4
-	VR4	<-	Bool_protObj
+	VR4	<-	Int_protObj
 	VI0	<-	VR4
 	call	Object.copy
 	VR4	<-	VI0
@@ -790,7 +790,7 @@ case0_tag6:
 	VR2	<-	str_const0
 	VR5	<-	95
 	# boxing integer from VR5 to VR4
-	VR4	<-	Bool_protObj
+	VR4	<-	Int_protObj
 	VI0	<-	VR4
 	call	Object.copy
 	VR4	<-	VI0
@@ -825,7 +825,7 @@ case0_end:
 	VR1	<-	str_const0
 	VR4	<-	98
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -900,7 +900,7 @@ Article.print:
 	VR1	<-	str_const0
 	VR4	<-	37
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -928,7 +928,7 @@ dispatch_notvoid20:
 	VR1	<-	str_const0
 	VR4	<-	38
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -955,7 +955,7 @@ dispatch_notvoid21:
 	VR1	<-	str_const0
 	VR4	<-	38
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -982,7 +982,7 @@ dispatch_notvoid22:
 	VR1	<-	str_const0
 	VR4	<-	38
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -1024,7 +1024,7 @@ Article.initArticle:
 	VR4	<-	str_const0
 	VR7	<-	29
 	# boxing integer from VR7 to VR6
-	VR6	<-	Bool_protObj
+	VR6	<-	Int_protObj
 	VI0	<-	VR6
 	call	Object.copy
 	VR6	<-	VI0

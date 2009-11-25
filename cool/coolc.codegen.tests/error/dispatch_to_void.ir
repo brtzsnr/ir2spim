@@ -65,7 +65,7 @@ Main.main:
 	VR1	<-	str_const0
 	VR4	<-	15
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
