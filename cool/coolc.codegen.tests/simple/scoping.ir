@@ -62,10 +62,9 @@ Main.jack:
 	VR2	<-	VI2
 	## begin let - line 10
 	## + operator - line 10
-	VR4	<-	VR2
-	load	VR5 [VR0, 16]
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	VR3	<-	VR2
+	load	VR4 [VR0, 16]
+	VR3	<-	VR3 + VR4
 	## let var z in VR3
 	## begin dispatch - line 10
 	VR4	<-	VR0
@@ -108,10 +107,9 @@ dispatch_notvoid0:
 	store	VR3 [VR0, 16]
 	## begin let - line 12
 	## + operator - line 12
-	VR4	<-	VR2
-	load	VR5 [VR0, 16]
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	VR3	<-	VR2
+	load	VR4 [VR0, 16]
+	VR3	<-	VR3 + VR4
 	## let var y in VR3
 	VR4	<-	VR3
 	## store let result over let var y
@@ -261,43 +259,42 @@ dispatch_notvoid4:
 	VR1	<-	VI0
 	## begin let - line 23
 	## begin dispatch - line 23
-	VR2	<-	VR0
-	## caller in VR2
+	VR1	<-	VR0
+	## caller in VR1
 	## dispatch to void handling, ends at dispatch_notvoid5
-	jumpt	VR2 dispatch_notvoid5
-	VR2	<-	str_const0
-	VR5	<-	23
-	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
-	VI0	<-	VR4
+	jumpt	VR1 dispatch_notvoid5
+	VR1	<-	str_const0
+	VR4	<-	23
+	# boxing integer from VR4 to VR3
+	VR3	<-	Int_protObj
+	VI0	<-	VR3
 	call	Object.copy
-	VR4	<-	VI0
-	store	VR5 [VR4, 12]
+	VR3	<-	VI0
+	store	VR4 [VR3, 12]
 	# end boxing
-	VI0	<-	VR2
-	VI1	<-	VR4
+	VI0	<-	VR1
+	VI1	<-	VR3
 	call	_dispatch_abort
 dispatch_notvoid5:
 	## actual parameter 1
-	VR3	<-	int_const2.val
-	load	VR3 [VR3, 0]
+	VR2	<-	int_const2.val
+	load	VR2 [VR2, 0]
 	## actual parameter 2
 	## + operator - line 23
-	load	VR4 [VR0, 20]
-	VR5	<-	int_const3.val
-	load	VR5 [VR5, 0]
-	VR4	<-	VR4 + VR5
+	load	VR3 [VR0, 20]
+	VR4	<-	int_const3.val
+	load	VR4 [VR4, 0]
+	VR3	<-	VR3 + VR4
 	## store self and actual parameters into VI's
-	VI0	<-	VR2
-	VI1	<-	VR3
-	VI2	<-	VR4
+	VI0	<-	VR1
+	VI1	<-	VR2
+	VI2	<-	VR3
 	## compute the target address
-	load	VR3 [VR2, 8]
-	load	VR3 [VR3, 28]
-	call	VR3
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
 	## fetch (and maybe unbox) the result
-	VR2	<-	VI0
-	VR1	<-	VR2
+	VR1	<-	VI0
 	## let var z in VR1
 	## begin dispatch - line 24
 	VR2	<-	VR0

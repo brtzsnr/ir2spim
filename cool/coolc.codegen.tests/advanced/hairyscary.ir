@@ -692,8 +692,7 @@ Bazz.doh:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin let - line 50
-	load	VR2 [VR0, 12]
-	VR1	<-	VR2
+	load	VR1 [VR0, 12]
 	## let var i in VR1
 	## begin assign - line 50
 	## + operator - line 50
@@ -716,8 +715,7 @@ Foo.doh:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin let - line 12
-	load	VR2 [VR0, 12]
-	VR1	<-	VR2
+	load	VR1 [VR0, 12]
 	## let var i in VR1
 	## begin assign - line 12
 	## + operator - line 12

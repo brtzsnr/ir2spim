@@ -39,8 +39,7 @@ Main.main:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin let - line 8
-	VR2	<-	VR0
-	VR1	<-	VR2
+	VR1	<-	VR0
 	## let var thing in VR1
 	## begin typed case - line 9
 	VR2	<-	VR1

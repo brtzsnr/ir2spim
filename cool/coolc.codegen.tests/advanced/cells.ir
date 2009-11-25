@@ -110,9 +110,8 @@ dispatch_notvoid1:
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin let - line 85
-	VR2	<-	int_const2.val
-	load	VR2 [VR2, 0]
-	VR1	<-	VR2
+	VR1	<-	int_const2.val
+	load	VR1 [VR1, 0]
 	## let var countdown in VR1
 	## begin loop - line 86
 loop_start0:
@@ -783,35 +782,34 @@ CellularAutomaton.evolve:
 	## let var position in VR1
 	## begin let - line 62
 	## begin dispatch - line 62
-	VR3	<-	VR0
-	## caller in VR3
+	VR2	<-	VR0
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid17
-	jumpt	VR3 dispatch_notvoid17
-	VR3	<-	str_const0
-	VR6	<-	62
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
+	jumpt	VR2 dispatch_notvoid17
+	VR2	<-	str_const0
+	VR5	<-	62
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
 	call	Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid17:
 	## store self and actual parameters into VI's
-	VI0	<-	VR3
+	VI0	<-	VR2
 	## compute the target address
-	load	VR4 [VR3, 8]
-	load	VR4 [VR4, 36]
-	call	VR4
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR3	<-	VI0
-	VR2	<-	VR3
+	VR2	<-	VI0
 	## let var num in VR2
 	## begin let - line 63
-	## create a let variable - not in the original source
+	## create string let variable - not in Cool source
 	## begin new - line 63
 	VR3	<-	String_protObj
 	VI0	<-	VR3
