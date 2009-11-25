@@ -81,16 +81,55 @@ Main.main:
 	## begin let - line 115
 	## begin dispatch - line 116
 	## begin new - line 116
-	VR2	<-	Book_protObj
+	VR1	<-	Book_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	Book_init
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
+	VR1	<-	str_const0
+	VR4	<-	116
+	# boxing integer from VR4 to VR3
+	VR3	<-	Int_protObj
+	VI0	<-	VR3
+	call	Object.copy
+	VR3	<-	VI0
+	store	VR4 [VR3, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR3
+	call	_dispatch_abort
+dispatch_notvoid0:
+	## actual parameter 1
+	VR2	<-	str_const7
+	## actual parameter 2
+	VR3	<-	str_const8
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	VI2	<-	VR3
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## let var a_book in VR1
+	## begin let - line 119
+	## begin dispatch - line 120
+	## begin new - line 120
+	VR2	<-	Article_protObj
 	VI0	<-	VR2
 	call	Object.copy
 	VR2	<-	VI0
-	call	Book_init
+	call	Article_init
 	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid0
-	jumpt	VR2 dispatch_notvoid0
+	## dispatch to void handling, ends at dispatch_notvoid1
+	jumpt	VR2 dispatch_notvoid1
 	VR2	<-	str_const0
-	VR5	<-	116
+	VR5	<-	120
 	# boxing integer from VR5 to VR4
 	VR4	<-	Int_protObj
 	VI0	<-	VR4
@@ -101,65 +140,24 @@ Main.main:
 	VI0	<-	VR2
 	VI1	<-	VR4
 	call	_dispatch_abort
-dispatch_notvoid0:
+dispatch_notvoid1:
 	## actual parameter 1
-	VR3	<-	str_const7
+	VR3	<-	str_const9
 	## actual parameter 2
-	VR4	<-	str_const8
+	VR4	<-	str_const10
+	## actual parameter 3
+	VR5	<-	str_const11
 	## store self and actual parameters into VI's
 	VI0	<-	VR2
 	VI1	<-	VR3
 	VI2	<-	VR4
+	VI3	<-	VR5
 	## compute the target address
 	load	VR3 [VR2, 8]
-	load	VR3 [VR3, 28]
+	load	VR3 [VR3, 36]
 	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
-	VR1	<-	VR2
-	## let var a_book in VR1
-	## begin let - line 119
-	## begin dispatch - line 120
-	## begin new - line 120
-	VR3	<-	Article_protObj
-	VI0	<-	VR3
-	call	Object.copy
-	VR3	<-	VI0
-	call	Article_init
-	## caller in VR3
-	## dispatch to void handling, ends at dispatch_notvoid1
-	jumpt	VR3 dispatch_notvoid1
-	VR3	<-	str_const0
-	VR6	<-	120
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
-	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
-	call	_dispatch_abort
-dispatch_notvoid1:
-	## actual parameter 1
-	VR4	<-	str_const9
-	## actual parameter 2
-	VR5	<-	str_const10
-	## actual parameter 3
-	VR6	<-	str_const11
-	## store self and actual parameters into VI's
-	VI0	<-	VR3
-	VI1	<-	VR4
-	VI2	<-	VR5
-	VI3	<-	VR6
-	## compute the target address
-	load	VR4 [VR3, 8]
-	load	VR4 [VR4, 36]
-	call	VR4
-	## fetch (and maybe unbox) the result
-	VR3	<-	VI0
-	VR2	<-	VR3
 	## let var an_article in VR2
 	## begin assign - line 125
 	## begin dispatch - line 125
@@ -504,12 +502,11 @@ BookList.cons:
 	VR1	<-	VI1
 	## begin let - line 52
 	## begin new - line 52
-	VR3	<-	Cons_protObj
-	VI0	<-	VR3
+	VR2	<-	Cons_protObj
+	VI0	<-	VR2
 	call	Object.copy
-	VR3	<-	VI0
+	VR2	<-	VI0
 	call	Cons_init
-	VR2	<-	VR3
 	## let var new_cell in VR2
 	## begin dispatch - line 53
 	VR3	<-	VR2

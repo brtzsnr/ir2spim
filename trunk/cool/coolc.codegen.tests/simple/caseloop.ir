@@ -184,27 +184,24 @@ Main.main:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin let - line 24
-	VR2	<-	int_const0.val
-	load	VR2 [VR2, 0]
-	VR1	<-	VR2
+	VR1	<-	int_const0.val
+	load	VR1 [VR1, 0]
 	## let var i in VR1
 	## begin let - line 25
 	## begin new - line 25
-	VR3	<-	A_protObj
-	VI0	<-	VR3
+	VR2	<-	A_protObj
+	VI0	<-	VR2
 	call	Object.copy
-	VR3	<-	VI0
+	VR2	<-	VI0
 	call	A_init
-	VR2	<-	VR3
 	## let var a in VR2
 	## begin let - line 26
 	## begin new - line 26
-	VR4	<-	Q_protObj
-	VI0	<-	VR4
+	VR3	<-	Q_protObj
+	VI0	<-	VR3
 	call	Object.copy
-	VR4	<-	VI0
+	VR3	<-	VI0
 	call	Q_init
-	VR3	<-	VR4
 	## let var q in VR3
 	## begin let - line 27
 	VR4	<-	0

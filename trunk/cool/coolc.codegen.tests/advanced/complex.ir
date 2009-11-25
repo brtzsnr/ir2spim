@@ -53,44 +53,43 @@ Main.main:
 	## begin let - line 3
 	## begin dispatch - line 3
 	## begin new - line 3
-	VR2	<-	Complex_protObj
-	VI0	<-	VR2
+	VR1	<-	Complex_protObj
+	VI0	<-	VR1
 	call	Object.copy
-	VR2	<-	VI0
+	VR1	<-	VI0
 	call	Complex_init
-	## caller in VR2
+	## caller in VR1
 	## dispatch to void handling, ends at dispatch_notvoid0
-	jumpt	VR2 dispatch_notvoid0
-	VR2	<-	str_const0
-	VR5	<-	3
-	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
-	VI0	<-	VR4
+	jumpt	VR1 dispatch_notvoid0
+	VR1	<-	str_const0
+	VR4	<-	3
+	# boxing integer from VR4 to VR3
+	VR3	<-	Int_protObj
+	VI0	<-	VR3
 	call	Object.copy
-	VR4	<-	VI0
-	store	VR5 [VR4, 12]
+	VR3	<-	VI0
+	store	VR4 [VR3, 12]
 	# end boxing
-	VI0	<-	VR2
-	VI1	<-	VR4
+	VI0	<-	VR1
+	VI1	<-	VR3
 	call	_dispatch_abort
 dispatch_notvoid0:
 	## actual parameter 1
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
+	VR2	<-	int_const0.val
+	load	VR2 [VR2, 0]
 	## actual parameter 2
-	VR4	<-	int_const1.val
-	load	VR4 [VR4, 0]
+	VR3	<-	int_const1.val
+	load	VR3 [VR3, 0]
 	## store self and actual parameters into VI's
-	VI0	<-	VR2
-	VI1	<-	VR3
-	VI2	<-	VR4
+	VI0	<-	VR1
+	VI1	<-	VR2
+	VI2	<-	VR3
 	## compute the target address
-	load	VR3 [VR2, 8]
-	load	VR3 [VR3, 28]
-	call	VR3
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
 	## fetch (and maybe unbox) the result
-	VR2	<-	VI0
-	VR1	<-	VR2
+	VR1	<-	VI0
 	## let var c in VR1
 	## begin if-then-else - line 4
 	## = operator - line 4

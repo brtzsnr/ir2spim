@@ -56,12 +56,11 @@ Main.main:
 	VR0	<-	VI0
 	## begin let - line 29
 	## begin new - line 29
-	VR2	<-	Base_protObj
-	VI0	<-	VR2
+	VR1	<-	Base_protObj
+	VI0	<-	VR1
 	call	Object.copy
-	VR2	<-	VI0
+	VR1	<-	VI0
 	call	Base_init
-	VR1	<-	VR2
 	## let var me in VR1
 	## begin dispatch - line 30
 	VR2	<-	VR1
@@ -93,12 +92,11 @@ dispatch_notvoid0:
 	VR1	<-	VR2
 	## begin let - line 32
 	## begin new - line 32
-	VR2	<-	Derived_protObj
-	VI0	<-	VR2
+	VR1	<-	Derived_protObj
+	VI0	<-	VR1
 	call	Object.copy
-	VR2	<-	VI0
+	VR1	<-	VI0
 	call	Derived_init
-	VR1	<-	VR2
 	## let var me in VR1
 	## begin dispatch - line 33
 	VR2	<-	VR1
@@ -130,12 +128,11 @@ dispatch_notvoid1:
 	VR1	<-	VR2
 	## begin let - line 35
 	## begin new - line 35
-	VR2	<-	Derived_protObj
-	VI0	<-	VR2
+	VR1	<-	Derived_protObj
+	VI0	<-	VR1
 	call	Object.copy
-	VR2	<-	VI0
+	VR1	<-	VI0
 	call	Derived_init
-	VR1	<-	VR2
 	## let var me in VR1
 	## begin dispatch - line 37
 	VR2	<-	VR1
