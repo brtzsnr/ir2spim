@@ -73,7 +73,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 16]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## begin dispatch - line 8
@@ -102,7 +102,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store result into the output register
@@ -173,7 +173,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## actual parameter 2
@@ -204,7 +204,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 28]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 3
@@ -235,7 +235,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -246,7 +246,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 32]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -433,7 +433,7 @@ class_nameTab:
 	DL	str_const9
 	DL	str_const10
 	DL	str_const11
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

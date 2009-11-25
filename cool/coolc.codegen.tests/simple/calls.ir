@@ -35,9 +35,9 @@ Main_init:
 	## begin new - line 3
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call IO_init
+	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 12]
 	return
@@ -112,7 +112,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 20]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -143,7 +143,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 24]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -153,7 +153,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 16]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	# boxing integer from VR2 to VR3
@@ -170,7 +170,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 7
@@ -199,7 +199,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -214,10 +214,9 @@ Main.f:
 	VR1	<-	VI1
 	VR2	<-	VI2
 	## + operator - line 10
-	VR4	<-	VR1
-	VR5	<-	VR2
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	VR3	<-	VR1
+	VR4	<-	VR2
+	VR3	<-	VR3 + VR4
 	## store result into the output register
 	VI0	<-	VR3
 	return
@@ -229,11 +228,10 @@ Main.g:
 	VR0	<-	VI0
 	VR1	<-	VI1
 	## + operator - line 11
-	VR3	<-	VR1
-	VR4	<-	int_const2.val
-	load	VR4 [VR4, 0]
-	VR3	<-	VR3 + VR4
-	VR2	<-	VR3
+	VR2	<-	VR1
+	VR3	<-	int_const2.val
+	load	VR3 [VR3, 0]
+	VR2	<-	VR2 + VR3
 	## store result into the output register
 	VI0	<-	VR2
 	return
@@ -245,11 +243,10 @@ Main.h:
 	VR0	<-	VI0
 	VR1	<-	VI1
 	## + operator - line 12
-	VR3	<-	VR1
-	VR4	<-	int_const3.val
-	load	VR4 [VR4, 0]
-	VR3	<-	VR3 + VR4
-	VR2	<-	VR3
+	VR2	<-	VR1
+	VR3	<-	int_const3.val
+	load	VR3 [VR3, 0]
+	VR2	<-	VR2 + VR3
 	## store result into the output register
 	VI0	<-	VR2
 	return
@@ -446,7 +443,7 @@ class_nameTab:
 	DL	str_const9
 	DL	str_const10
 	DL	str_const11
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

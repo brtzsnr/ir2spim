@@ -43,9 +43,9 @@ Main_init:
 	## begin new - line 21
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call IO_init
+	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 12]
 	return
@@ -192,18 +192,18 @@ Main.main:
 	## begin new - line 25
 	VR3	<-	A_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call A_init
+	call	A_init
 	VR2	<-	VR3
 	## let var a in VR2
 	## begin let - line 26
 	## begin new - line 26
 	VR4	<-	Q_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call Q_init
+	call	Q_init
 	VR3	<-	VR4
 	## let var q in VR3
 	## begin let - line 27
@@ -216,13 +216,13 @@ loop_start0:
 	## begin new - line 29
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR6	<-	VR1
 	VR7	<-	int_const1.val
 	load	VR7 [VR7, 0]
-	VR6	<-	VR6	<	VR7
+	VR6	<-	VR6 < VR7
 	store	VR6 [VR5, 12]
 	## condition in VR5, load effective value into VR6
 	load	VR6 [VR5, 12]
@@ -234,14 +234,16 @@ loop_start0:
 	jumpt	VR5 case0_notvoid
 	VR5	<-	str_const0
 	VR8	<-	31
+	# boxing integer from VR8 to VR7
 	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
+	# end boxing
 	VI0	<-	VR5
 	VI1	<-	VR7
-	call _case_abort2
+	call	_case_abort2
 case0_notvoid:
 	load	VR6 [VR5, 0]
 case0_tag22:
@@ -380,18 +382,17 @@ case0_tag5:
 	jump	case0_end
 case0_error:
 	VI0	<-	VR5
-	call _case_abort
+	call	_case_abort
 case0_end:
 	VR5	<-	VR6
 	## store rhs from VR5 to let var result in VR4
 	VR4	<-	VR5
 	## begin assign - line 50
 	## + operator - line 50
-	VR6	<-	VR1
-	VR7	<-	int_const2.val
-	load	VR7 [VR7, 0]
-	VR6	<-	VR6 + VR7
-	VR5	<-	VR6
+	VR5	<-	VR1
+	VR6	<-	int_const2.val
+	load	VR6 [VR6, 0]
+	VR5	<-	VR5 + VR6
 	## store rhs from VR5 to let var i in VR1
 	VR1	<-	VR5
 	jump	loop_start0
@@ -403,21 +404,21 @@ loop_end0:
 	## begin new - line 52
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR6	<-	VR4
 	VR7	<-	int_const18.val
 	load	VR7 [VR7, 0]
-	VR6	<-	VR6	=	VR7
+	VR6	<-	VR6 = VR7
 	store	VR6 [VR5, 12]
 	## create the result object - not in the original source
 	## begin new - line 52
 	VR6	<-	Bool_protObj
 	VI0	<-	VR6
-	call Object.copy
+	call	Object.copy
 	VR6	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR7 [VR5, 12]
 	VR7	<-	1 - VR7
 	store	VR7 [VR6, 12]
@@ -449,7 +450,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 0]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	jump	ite_end0
@@ -484,7 +485,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin assign - line 56
@@ -499,13 +500,13 @@ loop_start1:
 	## begin new - line 57
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR6	<-	VR1
 	VR7	<-	int_const1.val
 	load	VR7 [VR7, 0]
-	VR6	<-	VR6	<	VR7
+	VR6	<-	VR6 < VR7
 	store	VR6 [VR5, 12]
 	## condition in VR5, load effective value into VR6
 	load	VR6 [VR5, 12]
@@ -517,14 +518,16 @@ loop_start1:
 	jumpt	VR5 case1_notvoid
 	VR5	<-	str_const0
 	VR8	<-	59
+	# boxing integer from VR8 to VR7
 	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
+	# end boxing
 	VI0	<-	VR5
 	VI1	<-	VR7
-	call _case_abort2
+	call	_case_abort2
 case1_notvoid:
 	load	VR6 [VR5, 0]
 case1_tag22:
@@ -663,18 +666,17 @@ case1_tag5:
 	jump	case1_end
 case1_error:
 	VI0	<-	VR5
-	call _case_abort
+	call	_case_abort
 case1_end:
 	VR5	<-	VR6
 	## store rhs from VR5 to let var result in VR4
 	VR4	<-	VR5
 	## begin assign - line 78
 	## + operator - line 78
-	VR6	<-	VR1
-	VR7	<-	int_const2.val
-	load	VR7 [VR7, 0]
-	VR6	<-	VR6 + VR7
-	VR5	<-	VR6
+	VR5	<-	VR1
+	VR6	<-	int_const2.val
+	load	VR6 [VR6, 0]
+	VR5	<-	VR5 + VR6
 	## store rhs from VR5 to let var i in VR1
 	VR1	<-	VR5
 	jump	loop_start1
@@ -686,21 +688,21 @@ loop_end1:
 	## begin new - line 80
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR6	<-	VR4
 	VR7	<-	int_const2.val
 	load	VR7 [VR7, 0]
-	VR6	<-	VR6	=	VR7
+	VR6	<-	VR6 = VR7
 	store	VR6 [VR5, 12]
 	## create the result object - not in the original source
 	## begin new - line 80
 	VR6	<-	Bool_protObj
 	VI0	<-	VR6
-	call Object.copy
+	call	Object.copy
 	VR6	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR7 [VR5, 12]
 	VR7	<-	1 - VR7
 	store	VR7 [VR6, 12]
@@ -732,7 +734,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 0]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	jump	ite_end1
@@ -767,7 +769,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store let result over let var result
@@ -1199,7 +1201,7 @@ class_nameTab:
 	DL	str_const26
 	DL	str_const27
 	DL	str_const28
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

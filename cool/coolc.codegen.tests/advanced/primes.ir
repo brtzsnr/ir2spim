@@ -58,7 +58,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	int_const1.val
@@ -85,11 +85,10 @@ loop_start0:
 	jumpf	VR2 loop_end0
 	## begin assign - line 49
 	## + operator - line 49
-	load	VR2 [VR0, 16]
-	VR3	<-	int_const3.val
-	load	VR3 [VR3, 0]
-	VR2	<-	VR2 + VR3
-	VR1	<-	VR2
+	load	VR1 [VR0, 16]
+	VR2	<-	int_const3.val
+	load	VR2 [VR2, 0]
+	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute testee
 	store	VR1 [VR0, 16]
 	## begin assign - line 50
@@ -105,16 +104,15 @@ loop_start1:
 	## begin new - line 53
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 16]
 	## * operator - line 53
+	load	VR3 [VR0, 20]
 	load	VR4 [VR0, 20]
-	load	VR5 [VR0, 20]
-	VR4	<-	VR4 * VR5
-	VR3	<-	VR4
-	VR2	<-	VR2	<	VR3
+	VR3	<-	VR3 * VR4
+	VR2	<-	VR2 < VR3
 	store	VR2 [VR1, 12]
 	## condition in VR1, load effective value into VR2
 	load	VR2 [VR1, 12]
@@ -130,25 +128,22 @@ ite_false0:
 	## begin new - line 55
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	## - operator - line 55
-	load	VR3 [VR0, 16]
+	load	VR2 [VR0, 16]
 	## * operator - line 55
-	load	VR5 [VR0, 20]
+	load	VR3 [VR0, 20]
 	## / operator - line 55
-	load	VR7 [VR0, 16]
-	load	VR8 [VR0, 20]
-	VR7	<-	VR7 / VR8
-	VR6	<-	VR7
-	VR5	<-	VR5 * VR6
-	VR4	<-	VR5
-	VR3	<-	VR3 - VR4
-	VR2	<-	VR3
+	load	VR4 [VR0, 16]
+	load	VR5 [VR0, 20]
+	VR4	<-	VR4 / VR5
+	VR3	<-	VR3 * VR4
+	VR2	<-	VR2 - VR3
 	VR3	<-	int_const0.val
 	load	VR3 [VR3, 0]
-	VR2	<-	VR2	=	VR3
+	VR2	<-	VR2 = VR3
 	store	VR2 [VR1, 12]
 	## condition in VR1, load effective value into VR2
 	load	VR2 [VR1, 12]
@@ -166,11 +161,10 @@ ite_end0:
 	jumpf	VR2 loop_end1
 	## begin assign - line 60
 	## + operator - line 60
-	load	VR2 [VR0, 20]
-	VR3	<-	int_const3.val
-	load	VR3 [VR3, 0]
-	VR2	<-	VR2 + VR3
-	VR1	<-	VR2
+	load	VR1 [VR0, 20]
+	VR2	<-	int_const3.val
+	load	VR2 [VR2, 0]
+	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute divisor
 	store	VR1 [VR0, 20]
 	jump	loop_start1
@@ -181,16 +175,15 @@ loop_end1:
 	## begin new - line 63
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 16]
 	## * operator - line 63
+	load	VR3 [VR0, 20]
 	load	VR4 [VR0, 20]
-	load	VR5 [VR0, 20]
-	VR4	<-	VR4 * VR5
-	VR3	<-	VR4
-	VR2	<-	VR2	<	VR3
+	VR3	<-	VR3 * VR4
+	VR2	<-	VR2 < VR3
 	store	VR2 [VR1, 12]
 	## condition in VR1, load effective value into VR2
 	load	VR2 [VR1, 12]
@@ -234,7 +227,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 68
@@ -263,7 +256,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	jump	ite_end2
@@ -278,12 +271,12 @@ ite_end2:
 	## begin new - line 74
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 24]
 	load	VR3 [VR0, 16]
-	VR2	<-	VR2	<=	VR3
+	VR2	<-	VR2 <= VR3
 	store	VR2 [VR1, 12]
 	## condition in VR1, load effective value into VR2
 	load	VR2 [VR1, 12]
@@ -312,7 +305,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	jump	ite_end3
@@ -562,7 +555,7 @@ class_nameTab:
 	DL	str_const12
 	DL	str_const13
 	DL	str_const14
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

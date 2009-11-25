@@ -62,10 +62,9 @@ Main.jack:
 	VR2	<-	VI2
 	## begin let - line 10
 	## + operator - line 10
-	VR5	<-	VR2
-	load	VR6 [VR0, 16]
-	VR5	<-	VR5 + VR6
-	VR4	<-	VR5
+	VR4	<-	VR2
+	load	VR5 [VR0, 16]
+	VR4	<-	VR4 + VR5
 	VR3	<-	VR4
 	## let var z in VR3
 	## begin dispatch - line 10
@@ -94,26 +93,24 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 32]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store let result over let var z
 	VR3	<-	VR4
 	## begin assign - line 11
 	## + operator - line 11
-	load	VR4 [VR0, 16]
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	load	VR3 [VR0, 16]
+	VR4	<-	int_const0.val
+	load	VR4 [VR4, 0]
+	VR3	<-	VR3 + VR4
 	## store rhs in VR3 to attribute y
 	store	VR3 [VR0, 16]
 	## begin let - line 12
 	## + operator - line 12
-	VR5	<-	VR2
-	load	VR6 [VR0, 16]
-	VR5	<-	VR5 + VR6
-	VR4	<-	VR5
+	VR4	<-	VR2
+	load	VR5 [VR0, 16]
+	VR4	<-	VR4 + VR5
 	VR3	<-	VR4
 	## let var y in VR3
 	VR4	<-	VR3
@@ -155,7 +152,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## begin dispatch - line 17
@@ -192,7 +189,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 16]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## begin dispatch - line 18
@@ -221,7 +218,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store result into the output register
@@ -259,7 +256,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 32]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin let - line 23
@@ -286,11 +283,10 @@ dispatch_notvoid5:
 	load	VR3 [VR3, 0]
 	## actual parameter 2
 	## + operator - line 23
-	load	VR5 [VR0, 20]
-	VR6	<-	int_const3.val
-	load	VR6 [VR6, 0]
-	VR5	<-	VR5 + VR6
-	VR4	<-	VR5
+	load	VR4 [VR0, 20]
+	VR5	<-	int_const3.val
+	load	VR5 [VR5, 0]
+	VR4	<-	VR4 + VR5
 	## store self and actual parameters into VI's
 	VI0	<-	VR2
 	VI1	<-	VR3
@@ -298,7 +294,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	VR1	<-	VR2
@@ -329,7 +325,7 @@ dispatch_notvoid6:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 32]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store let result over let var z
@@ -547,7 +543,7 @@ class_nameTab:
 	DL	str_const11
 	DL	str_const12
 	DL	str_const13
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

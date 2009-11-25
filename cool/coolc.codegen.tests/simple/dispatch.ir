@@ -35,9 +35,9 @@ P_init:
 	## begin new - line 4
 	VR1	<-	IO_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call IO_init
+	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 12]
 	return
@@ -52,9 +52,9 @@ Main_init:
 	## begin new - line 38
 	VR1	<-	C_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call C_init
+	call	C_init
 	## store rhs in VR1 to attribute c
 	store	VR1 [VR0, 12]
 	return
@@ -104,7 +104,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin dispatch - line 11
@@ -141,7 +141,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 16]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin dispatch - line 12
@@ -170,7 +170,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin assign - line 14
@@ -206,7 +206,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	VR5	<-	int_const0.val
@@ -240,7 +240,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	VR5	<-	int_const1.val
@@ -282,7 +282,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 16]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin dispatch - line 21
@@ -311,7 +311,7 @@ dispatch_notvoid6:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin dispatch - line 22
@@ -340,7 +340,7 @@ dispatch_notvoid7:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin dispatch - line 23
@@ -369,7 +369,7 @@ dispatch_notvoid8:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 12]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store let result over let var i1
@@ -418,7 +418,7 @@ dispatch_notvoid9:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 43
@@ -454,7 +454,7 @@ dispatch_notvoid10:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -724,7 +724,7 @@ class_nameTab:
 	DL	str_const17
 	DL	str_const19
 	DL	str_const18
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

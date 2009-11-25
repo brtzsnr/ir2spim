@@ -35,36 +35,36 @@ Main_init:
 	## begin new - line 55
 	VR1	<-	Bazz_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bazz_init
+	call	Bazz_init
 	## store rhs in VR1 to attribute a
 	store	VR1 [VR0, 12]
 	## begin assign - line 56
 	## begin new - line 56
 	VR1	<-	Foo_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Foo_init
+	call	Foo_init
 	## store rhs in VR1 to attribute b
 	store	VR1 [VR0, 16]
 	## begin assign - line 57
 	## begin new - line 57
 	VR1	<-	Razz_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Razz_init
+	call	Razz_init
 	## store rhs in VR1 to attribute c
 	store	VR1 [VR0, 20]
 	## begin assign - line 58
 	## begin new - line 58
 	VR1	<-	Bar_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bar_init
+	call	Bar_init
 	## store rhs in VR1 to attribute d
 	store	VR1 [VR0, 24]
 	return
@@ -87,14 +87,16 @@ Bazz_init:
 	jumpt	VR1 case0_notvoid
 	VR1	<-	str_const0
 	VR4	<-	39
+	# boxing integer from VR4 to VR3
 	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
+	# end boxing
 	VI0	<-	VR1
 	VI1	<-	VR3
-	call _case_abort2
+	call	_case_abort2
 case0_notvoid:
 	load	VR2 [VR1, 0]
 case0_tag9:
@@ -110,9 +112,9 @@ case0_tag8:
 	## begin new - line 41
 	VR2	<-	Bar_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Bar_init
+	call	Bar_init
 	jump	case0_end
 case0_tag7:
 	VR3	<-	VR2 < 7
@@ -122,9 +124,9 @@ case0_tag7:
 	## begin new - line 42
 	VR2	<-	Razz_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Razz_init
+	call	Razz_init
 	jump	case0_end
 case0_tag6:
 	VR3	<-	VR2 < 6
@@ -134,13 +136,13 @@ case0_tag6:
 	## begin new - line 40
 	VR2	<-	Foo_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Foo_init
+	call	Foo_init
 	jump	case0_end
 case0_error:
 	VI0	<-	VR1
-	call _case_abort
+	call	_case_abort
 case0_end:
 	VR1	<-	VR2
 	## store rhs in VR1 to attribute g
@@ -169,7 +171,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	# boxing integer from VR1 to VR2
@@ -197,14 +199,16 @@ Foo_init:
 	jumpt	VR1 case1_notvoid
 	VR1	<-	str_const0
 	VR4	<-	4
+	# boxing integer from VR4 to VR3
 	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
+	# end boxing
 	VI0	<-	VR1
 	VI1	<-	VR3
-	call _case_abort2
+	call	_case_abort2
 case1_notvoid:
 	load	VR2 [VR1, 0]
 case1_tag9:
@@ -220,9 +224,9 @@ case1_tag8:
 	## begin new - line 5
 	VR2	<-	Bar_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Bar_init
+	call	Bar_init
 	jump	case1_end
 case1_tag7:
 	VR3	<-	VR2 < 7
@@ -232,13 +236,13 @@ case1_tag7:
 	## begin new - line 6
 	VR2	<-	Razz_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Razz_init
+	call	Razz_init
 	jump	case1_end
 case1_error:
 	VI0	<-	VR1
-	call _case_abort
+	call	_case_abort
 case1_end:
 	VR1	<-	VR2
 	## store rhs in VR1 to attribute a
@@ -248,115 +252,112 @@ case1_end:
 	## + operator - line 10
 	## + operator - line 10
 	## begin dispatch - line 10
-	load	VR4 [VR0, 24]
-	## caller in VR4
+	load	VR1 [VR0, 24]
+	## caller in VR1
 	## dispatch to void handling, ends at dispatch_notvoid1
-	jumpt	VR4 dispatch_notvoid1
-	VR4	<-	str_const0
-	VR7	<-	10
-	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
-	VI0	<-	VR6
+	jumpt	VR1 dispatch_notvoid1
+	VR1	<-	str_const0
+	VR4	<-	10
+	# boxing integer from VR4 to VR3
+	VR3	<-	Int_protObj
+	VI0	<-	VR3
 	call Object.copy
-	VR6	<-	VI0
-	store	VR7 [VR6, 12]
+	VR3	<-	VI0
+	store	VR4 [VR3, 12]
 	# end boxing
-	VI0	<-	VR4
-	VI1	<-	VR6
+	VI0	<-	VR1
+	VI1	<-	VR3
 	call	_dispatch_abort
 dispatch_notvoid1:
 	## store self and actual parameters into VI's
-	VI0	<-	VR4
+	VI0	<-	VR1
 	## compute the target address
-	load	VR5 [VR4, 8]
-	load	VR5 [VR5, 32]
-	call VR5
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 32]
+	call	VR2
 	## fetch (and maybe unbox) the result
-	VR4	<-	VI0
+	VR1	<-	VI0
 	## begin dispatch - line 10
-	load	VR5 [VR0, 16]
-	## caller in VR5
+	load	VR2 [VR0, 16]
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid2
-	jumpt	VR5 dispatch_notvoid2
-	VR5	<-	str_const0
-	VR8	<-	10
-	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
-	VI0	<-	VR7
+	jumpt	VR2 dispatch_notvoid2
+	VR2	<-	str_const0
+	VR5	<-	10
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
 	call Object.copy
-	VR7	<-	VI0
-	store	VR8 [VR7, 12]
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR5
-	VI1	<-	VR7
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid2:
 	## store self and actual parameters into VI's
-	VI0	<-	VR5
+	VI0	<-	VR2
 	## compute the target address
-	load	VR6 [VR5, 8]
-	load	VR6 [VR6, 32]
-	call VR6
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR5	<-	VI0
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## begin dispatch - line 10
-	VR4	<-	VR0
-	## caller in VR4
+	VR2	<-	VR0
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid3
-	jumpt	VR4 dispatch_notvoid3
-	VR4	<-	str_const0
-	VR7	<-	10
-	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
-	VI0	<-	VR6
-	call Object.copy
-	VR6	<-	VI0
-	store	VR7 [VR6, 12]
-	# end boxing
+	jumpt	VR2 dispatch_notvoid3
+	VR2	<-	str_const0
+	VR5	<-	10
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
 	VI0	<-	VR4
-	VI1	<-	VR6
+	call Object.copy
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
+	# end boxing
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid3:
 	## store self and actual parameters into VI's
-	VI0	<-	VR4
+	VI0	<-	VR2
 	## compute the target address
-	load	VR5 [VR4, 8]
-	load	VR5 [VR5, 32]
-	call VR5
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR4	<-	VI0
-	VR3	<-	VR3 + VR4
-	VR2	<-	VR3
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## begin dispatch - line 10
-	VR3	<-	VR0
-	## caller in VR3
+	VR2	<-	VR0
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid4
-	jumpt	VR3 dispatch_notvoid4
-	VR3	<-	str_const0
-	VR6	<-	10
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
+	jumpt	VR2 dispatch_notvoid4
+	VR2	<-	str_const0
+	VR5	<-	10
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
 	call Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid4:
 	## store self and actual parameters into VI's
-	VI0	<-	VR3
+	VI0	<-	VR2
 	## compute the target address
-	load	VR4 [VR3, 8]
-	load	VR4 [VR4, 28]
-	call VR4
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 28]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR3	<-	VI0
-	VR2	<-	VR2 + VR3
-	VR1	<-	VR2
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute b
 	store	VR1 [VR0, 28]
 	return
@@ -374,14 +375,16 @@ Razz_init:
 	jumpt	VR1 case2_notvoid
 	VR1	<-	str_const0
 	VR4	<-	26
+	# boxing integer from VR4 to VR3
 	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
+	# end boxing
 	VI0	<-	VR1
 	VI1	<-	VR3
-	call _case_abort2
+	call	_case_abort2
 case2_notvoid:
 	load	VR2 [VR1, 0]
 case2_tag9:
@@ -397,13 +400,13 @@ case2_tag8:
 	## begin new - line 27
 	VR2	<-	Bar_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Bar_init
+	call	Bar_init
 	jump	case2_end
 case2_error:
 	VI0	<-	VR1
-	call _case_abort
+	call	_case_abort
 case2_end:
 	VR1	<-	VR2
 	## store rhs in VR1 to attribute e
@@ -414,143 +417,139 @@ case2_end:
 	## + operator - line 31
 	## + operator - line 31
 	## begin dispatch - line 31
-	load	VR5 [VR0, 24]
-	## caller in VR5
+	load	VR1 [VR0, 24]
+	## caller in VR1
 	## dispatch to void handling, ends at dispatch_notvoid5
-	jumpt	VR5 dispatch_notvoid5
-	VR5	<-	str_const0
-	VR8	<-	31
-	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
-	VI0	<-	VR7
+	jumpt	VR1 dispatch_notvoid5
+	VR1	<-	str_const0
+	VR4	<-	31
+	# boxing integer from VR4 to VR3
+	VR3	<-	Int_protObj
+	VI0	<-	VR3
 	call Object.copy
-	VR7	<-	VI0
-	store	VR8 [VR7, 12]
+	VR3	<-	VI0
+	store	VR4 [VR3, 12]
 	# end boxing
-	VI0	<-	VR5
-	VI1	<-	VR7
+	VI0	<-	VR1
+	VI1	<-	VR3
 	call	_dispatch_abort
 dispatch_notvoid5:
 	## store self and actual parameters into VI's
-	VI0	<-	VR5
+	VI0	<-	VR1
 	## compute the target address
-	VR6	<-	Bazz_dispatch
-	load	VR6 [VR6, 32]
-	call VR6
+	VR2	<-	Bazz_dispatch
+	load	VR2 [VR2, 32]
+	call	VR2
 	## fetch (and maybe unbox) the result
-	VR5	<-	VI0
+	VR1	<-	VI0
 	## begin dispatch - line 31
-	load	VR6 [VR0, 16]
-	## caller in VR6
+	load	VR2 [VR0, 16]
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid6
-	jumpt	VR6 dispatch_notvoid6
-	VR6	<-	str_const0
-	VR9	<-	31
-	# boxing integer from VR9 to VR8
-	VR8	<-	Int_protObj
-	VI0	<-	VR8
+	jumpt	VR2 dispatch_notvoid6
+	VR2	<-	str_const0
+	VR5	<-	31
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
 	call Object.copy
-	VR8	<-	VI0
-	store	VR9 [VR8, 12]
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR6
-	VI1	<-	VR8
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid6:
 	## store self and actual parameters into VI's
-	VI0	<-	VR6
+	VI0	<-	VR2
 	## compute the target address
-	load	VR7 [VR6, 8]
-	load	VR7 [VR7, 32]
-	call VR7
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR6	<-	VI0
-	VR5	<-	VR5 + VR6
-	VR4	<-	VR5
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## begin dispatch - line 31
-	load	VR5 [VR0, 32]
-	## caller in VR5
+	load	VR2 [VR0, 32]
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid7
-	jumpt	VR5 dispatch_notvoid7
-	VR5	<-	str_const0
-	VR8	<-	31
-	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
-	VI0	<-	VR7
+	jumpt	VR2 dispatch_notvoid7
+	VR2	<-	str_const0
+	VR5	<-	31
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
 	call Object.copy
-	VR7	<-	VI0
-	store	VR8 [VR7, 12]
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR5
-	VI1	<-	VR7
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid7:
 	## store self and actual parameters into VI's
-	VI0	<-	VR5
+	VI0	<-	VR2
 	## compute the target address
-	load	VR6 [VR5, 8]
-	load	VR6 [VR6, 32]
-	call VR6
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR5	<-	VI0
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## begin dispatch - line 31
-	VR4	<-	VR0
-	## caller in VR4
+	VR2	<-	VR0
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid8
-	jumpt	VR4 dispatch_notvoid8
-	VR4	<-	str_const0
-	VR7	<-	31
-	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
-	VI0	<-	VR6
-	call Object.copy
-	VR6	<-	VI0
-	store	VR7 [VR6, 12]
-	# end boxing
+	jumpt	VR2 dispatch_notvoid8
+	VR2	<-	str_const0
+	VR5	<-	31
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
 	VI0	<-	VR4
-	VI1	<-	VR6
+	call Object.copy
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
+	# end boxing
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid8:
 	## store self and actual parameters into VI's
-	VI0	<-	VR4
+	VI0	<-	VR2
 	## compute the target address
-	load	VR5 [VR4, 8]
-	load	VR5 [VR5, 32]
-	call VR5
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR4	<-	VI0
-	VR3	<-	VR3 + VR4
-	VR2	<-	VR3
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## begin dispatch - line 31
-	VR3	<-	VR0
-	## caller in VR3
+	VR2	<-	VR0
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid9
-	jumpt	VR3 dispatch_notvoid9
-	VR3	<-	str_const0
-	VR6	<-	31
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
+	jumpt	VR2 dispatch_notvoid9
+	VR2	<-	str_const0
+	VR5	<-	31
+	# boxing integer from VR5 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
 	call Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid9:
 	## store self and actual parameters into VI's
-	VI0	<-	VR3
+	VI0	<-	VR2
 	## compute the target address
-	load	VR4 [VR3, 8]
-	load	VR4 [VR4, 28]
-	call VR4
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 28]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR3	<-	VI0
-	VR2	<-	VR2 + VR3
-	VR1	<-	VR2
+	VR2	<-	VI0
+	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute f
 	store	VR1 [VR0, 36]
 	return
@@ -585,7 +584,7 @@ dispatch_notvoid10:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 32]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store rhs in VR1 to attribute c
@@ -614,7 +613,7 @@ dispatch_notvoid11:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	# boxing integer from VR1 to VR2
@@ -678,7 +677,7 @@ dispatch_notvoid12:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	int_const2.val
@@ -698,11 +697,10 @@ Bazz.doh:
 	## let var i in VR1
 	## begin assign - line 50
 	## + operator - line 50
-	load	VR3 [VR0, 12]
-	VR4	<-	int_const1.val
-	load	VR4 [VR4, 0]
-	VR3	<-	VR3 + VR4
-	VR2	<-	VR3
+	load	VR2 [VR0, 12]
+	VR3	<-	int_const1.val
+	load	VR3 [VR3, 0]
+	VR2	<-	VR2 + VR3
 	## store rhs in VR2 to attribute h
 	store	VR2 [VR0, 12]
 	VR2	<-	VR1
@@ -723,11 +721,10 @@ Foo.doh:
 	## let var i in VR1
 	## begin assign - line 12
 	## + operator - line 12
-	load	VR3 [VR0, 12]
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
-	VR3	<-	VR3 + VR4
-	VR2	<-	VR3
+	load	VR2 [VR0, 12]
+	VR3	<-	int_const0.val
+	load	VR3 [VR3, 0]
+	VR2	<-	VR2 + VR3
 	## store rhs in VR2 to attribute h
 	store	VR2 [VR0, 12]
 	VR2	<-	VR1
@@ -957,7 +954,7 @@ class_nameTab:
 	DL	str_const11
 	DL	str_const13
 	DL	str_const12
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init
