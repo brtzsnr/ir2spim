@@ -83,9 +83,9 @@ Main.main:
 	## begin new - line 116
 	VR2	<-	Book_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Book_init
+	call	Book_init
 	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid0
 	jumpt	VR2 dispatch_notvoid0
@@ -113,7 +113,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	VR1	<-	VR2
@@ -123,9 +123,9 @@ dispatch_notvoid0:
 	## begin new - line 120
 	VR3	<-	Article_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Article_init
+	call	Article_init
 	## caller in VR3
 	## dispatch to void handling, ends at dispatch_notvoid1
 	jumpt	VR3 dispatch_notvoid1
@@ -156,7 +156,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 36]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR2	<-	VR3
@@ -167,9 +167,9 @@ dispatch_notvoid1:
 	## begin new - line 125
 	VR3	<-	Nil_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Nil_init
+	call	Nil_init
 	## caller in VR3
 	## dispatch to void handling, ends at dispatch_notvoid2
 	jumpt	VR3 dispatch_notvoid2
@@ -194,7 +194,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 32]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## caller in VR3
@@ -221,7 +221,7 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 32]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store rhs in VR3 to attribute books
@@ -249,7 +249,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 44]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store let result over let var an_article
@@ -313,7 +313,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -340,7 +340,7 @@ dispatch_notvoid6:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -367,7 +367,7 @@ dispatch_notvoid7:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 17
@@ -398,7 +398,7 @@ dispatch_notvoid8:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -425,7 +425,7 @@ dispatch_notvoid9:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -452,7 +452,7 @@ dispatch_notvoid10:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -488,7 +488,7 @@ dispatch_notvoid11:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	bool_const1
@@ -506,9 +506,9 @@ BookList.cons:
 	## begin new - line 52
 	VR3	<-	Cons_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Cons_init
+	call	Cons_init
 	VR2	<-	VR3
 	## let var new_cell in VR2
 	## begin dispatch - line 53
@@ -540,7 +540,7 @@ dispatch_notvoid12:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 48]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store let result over let var new_cell
@@ -577,15 +577,15 @@ dispatch_notvoid13:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 61
 	VR1	<-	Book_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Book_init
+	call	Book_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -618,15 +618,15 @@ dispatch_notvoid14:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 67
 	VR1	<-	BookList_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call BookList_init
+	call	BookList_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -659,7 +659,7 @@ dispatch_notvoid15:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -725,21 +725,23 @@ dispatch_notvoid16:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 32]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## case on void handling, ends at case0_notvoid
 	jumpt	VR1 case0_notvoid
 	VR1	<-	str_const0
 	VR4	<-	94
+	# boxing integer from VR4 to VR3
 	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
+	# end boxing
 	VI0	<-	VR1
 	VI1	<-	VR3
-	call _case_abort2
+	call	_case_abort2
 case0_notvoid:
 	load	VR2 [VR1, 0]
 case0_tag10:
@@ -771,7 +773,7 @@ dispatch_notvoid17:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	jump	case0_end
@@ -806,13 +808,13 @@ dispatch_notvoid18:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	jump	case0_end
 case0_error:
 	VI0	<-	VR1
-	call _case_abort
+	call	_case_abort
 case0_end:
 	VR1	<-	VR2
 	## begin dispatch - line 98
@@ -838,7 +840,7 @@ dispatch_notvoid19:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 44]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -913,7 +915,7 @@ dispatch_notvoid20:
 	## compute the target address
 	VR2	<-	Book_dispatch
 	load	VR2 [VR2, 32]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 38
@@ -944,7 +946,7 @@ dispatch_notvoid21:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -971,7 +973,7 @@ dispatch_notvoid22:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -998,7 +1000,7 @@ dispatch_notvoid23:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -1043,7 +1045,7 @@ dispatch_notvoid24:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin assign - line 30
@@ -1409,7 +1411,7 @@ class_nameTab:
 	DL	str_const24
 	DL	str_const25
 	DL	str_const22
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

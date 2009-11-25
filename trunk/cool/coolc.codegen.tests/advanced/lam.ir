@@ -158,15 +158,15 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 46
 	VR1	<-	VarList_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call VarList_init
+	call	VarList_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -199,15 +199,15 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 47
 	VR1	<-	Lambda_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Lambda_init
+	call	Lambda_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -240,7 +240,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	int_const1.val
@@ -277,15 +277,15 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 49
 	VR1	<-	LambdaList_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call LambdaList_init
+	call	LambdaList_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -302,9 +302,9 @@ LambdaList.add:
 	## begin new - line 51
 	VR4	<-	LambdaListNE_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call LambdaListNE_init
+	call	LambdaListNE_init
 	## caller in VR4
 	## dispatch to void handling, ends at dispatch_notvoid4
 	jumpt	VR4 dispatch_notvoid4
@@ -338,7 +338,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store result into the output register
@@ -373,7 +373,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -408,7 +408,7 @@ dispatch_notvoid6:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -443,7 +443,7 @@ dispatch_notvoid7:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 20]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -478,7 +478,7 @@ dispatch_notvoid8:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 24]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -499,9 +499,9 @@ LambdaListRef.reset:
 	## begin new - line 86
 	VR1	<-	LambdaList_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call LambdaList_init
+	call	LambdaList_init
 	## store rhs in VR1 to attribute l
 	store	VR1 [VR0, 16]
 	VR1	<-	VR0
@@ -549,26 +549,24 @@ dispatch_notvoid9:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 32]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store rhs in VR3 to attribute l
 	store	VR3 [VR0, 16]
 	## begin assign - line 93
 	## + operator - line 93
-	load	VR4 [VR0, 12]
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
-	VR4	<-	VR4 + VR5
-	VR3	<-	VR4
+	load	VR3 [VR0, 12]
+	VR4	<-	int_const0.val
+	load	VR4 [VR4, 0]
+	VR3	<-	VR3 + VR4
 	## store rhs in VR3 to attribute nextNum
 	store	VR3 [VR0, 12]
 	## - operator - line 94
-	load	VR4 [VR0, 12]
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
-	VR4	<-	VR4 - VR5
-	VR3	<-	VR4
+	load	VR3 [VR0, 12]
+	VR4	<-	int_const0.val
+	load	VR4 [VR4, 0]
+	VR3	<-	VR3 - VR4
 	## store result into the output register
 	VI0	<-	VR3
 	return
@@ -602,7 +600,7 @@ dispatch_notvoid10:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store rhs in VR1 to attribute l
@@ -730,15 +728,15 @@ dispatch_notvoid11:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 23
 	VR1	<-	Variable_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Variable_init
+	call	Variable_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -771,15 +769,15 @@ dispatch_notvoid12:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin new - line 24
 	VR1	<-	VarList_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call VarList_init
+	call	VarList_init
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -794,9 +792,9 @@ VarList.add:
 	## begin new - line 25
 	VR2	<-	VarListNE_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call VarListNE_init
+	call	VarListNE_init
 	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid13
 	jumpt	VR2 dispatch_notvoid13
@@ -824,7 +822,7 @@ dispatch_notvoid13:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 48]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store result into the output register
@@ -862,7 +860,7 @@ dispatch_notvoid14:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -900,7 +898,7 @@ dispatch_notvoid15:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 117
@@ -926,7 +924,7 @@ dispatch_notvoid16:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -965,7 +963,7 @@ dispatch_notvoid17:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 126
@@ -991,7 +989,7 @@ dispatch_notvoid18:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 0]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -1032,7 +1030,7 @@ dispatch_notvoid19:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 135
@@ -1058,7 +1056,7 @@ dispatch_notvoid20:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 0]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR3	<-	VR0
@@ -1099,7 +1097,7 @@ dispatch_notvoid21:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 144
@@ -1125,7 +1123,7 @@ dispatch_notvoid22:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 0]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR3	<-	VR0
@@ -1143,9 +1141,9 @@ Term.var:
 	## begin new - line 340
 	VR3	<-	Variable_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Variable_init
+	call	Variable_init
 	VR2	<-	VR3
 	## let var v in VR2
 	## begin dispatch - line 341
@@ -1174,7 +1172,7 @@ dispatch_notvoid23:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 44]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store let result over let var v
@@ -1194,9 +1192,9 @@ Term.lam:
 	## begin new - line 345
 	VR4	<-	Lambda_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call Lambda_init
+	call	Lambda_init
 	VR3	<-	VR4
 	## let var l in VR3
 	## begin dispatch - line 346
@@ -1228,7 +1226,7 @@ dispatch_notvoid24:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 44]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store let result over let var l
@@ -1248,9 +1246,9 @@ Term.app:
 	## begin new - line 350
 	VR4	<-	App_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call App_init
+	call	App_init
 	VR3	<-	VR4
 	## let var a in VR3
 	## begin dispatch - line 351
@@ -1282,7 +1280,7 @@ dispatch_notvoid25:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 44]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store let result over let var a
@@ -1323,7 +1321,7 @@ dispatch_notvoid26:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	VR1	<-	VR2
@@ -1357,7 +1355,7 @@ dispatch_notvoid27:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 32]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store let result over let var x
@@ -1398,7 +1396,7 @@ dispatch_notvoid28:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	VR1	<-	VR2
@@ -1430,7 +1428,7 @@ dispatch_notvoid29:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 28]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR2	<-	VR3
@@ -1485,7 +1483,7 @@ dispatch_notvoid31:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 32]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store self and actual parameters into VI's
@@ -1495,7 +1493,7 @@ dispatch_notvoid31:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 32]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store let result over let var y
@@ -1538,7 +1536,7 @@ dispatch_notvoid32:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	VR1	<-	VR2
@@ -1570,7 +1568,7 @@ dispatch_notvoid33:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 28]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR2	<-	VR3
@@ -1602,7 +1600,7 @@ dispatch_notvoid34:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR3	<-	VR4
@@ -1718,7 +1716,7 @@ dispatch_notvoid39:
 	## compute the target address
 	load	VR12 [VR11, 8]
 	load	VR12 [VR12, 36]
-	call VR12
+	call	VR12
 	## fetch (and maybe unbox) the result
 	VR11	<-	VI0
 	## actual parameter 2
@@ -1751,7 +1749,7 @@ dispatch_notvoid40:
 	## compute the target address
 	load	VR13 [VR12, 8]
 	load	VR13 [VR13, 36]
-	call VR13
+	call	VR13
 	## fetch (and maybe unbox) the result
 	VR12	<-	VI0
 	## store self and actual parameters into VI's
@@ -1761,7 +1759,7 @@ dispatch_notvoid40:
 	## compute the target address
 	load	VR11 [VR10, 8]
 	load	VR11 [VR11, 36]
-	call VR11
+	call	VR11
 	## fetch (and maybe unbox) the result
 	VR10	<-	VI0
 	## store self and actual parameters into VI's
@@ -1771,7 +1769,7 @@ dispatch_notvoid40:
 	## compute the target address
 	load	VR9 [VR8, 8]
 	load	VR9 [VR9, 32]
-	call VR9
+	call	VR9
 	## fetch (and maybe unbox) the result
 	VR8	<-	VI0
 	## store self and actual parameters into VI's
@@ -1781,7 +1779,7 @@ dispatch_notvoid40:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 32]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store self and actual parameters into VI's
@@ -1791,7 +1789,7 @@ dispatch_notvoid40:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 32]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store let result over let var z
@@ -1836,7 +1834,7 @@ dispatch_notvoid41:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## begin dispatch - line 388
@@ -1862,7 +1860,7 @@ dispatch_notvoid42:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## begin let - line 389
@@ -1874,9 +1872,9 @@ dispatch_notvoid42:
 	## begin new - line 390
 	VR3	<-	Expr_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Expr_init
+	call	Expr_init
 	## let var new_expr in VR3
 	## begin loop - line 392
 loop_start0:
@@ -1886,9 +1884,9 @@ loop_start0:
 	## begin new - line 392
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR6 [VR4, 12]
 	VR6	<-	1 - VR6
 	store	VR6 [VR5, 12]
@@ -1920,7 +1918,7 @@ dispatch_notvoid43:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 32]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store rhs from VR4 to let var new_expr in VR3
@@ -1931,12 +1929,12 @@ dispatch_notvoid43:
 	## begin new - line 395
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR5	<-	VR3
 	VR6	<-	VR1
-	VR5	<-	VR5	=	VR6
+	VR5	<-	VR5 = VR6
 	store	VR5 [VR4, 12]
 	## condition in VR4, load effective value into VR5
 	load	VR5 [VR4, 12]
@@ -1979,7 +1977,7 @@ dispatch_notvoid44:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 401
@@ -2005,7 +2003,7 @@ dispatch_notvoid45:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 ite_end0:
@@ -2037,7 +2035,7 @@ dispatch_notvoid46:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR4	<-	VR1
@@ -2080,7 +2078,7 @@ dispatch_notvoid47:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 415
@@ -2109,7 +2107,7 @@ dispatch_notvoid48:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 416
@@ -2138,7 +2136,7 @@ dispatch_notvoid49:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -2176,7 +2174,7 @@ dispatch_notvoid50:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 423
@@ -2205,7 +2203,7 @@ dispatch_notvoid51:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 424
@@ -2234,7 +2232,7 @@ dispatch_notvoid52:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 425
@@ -2263,7 +2261,7 @@ dispatch_notvoid53:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 426
@@ -2292,7 +2290,7 @@ dispatch_notvoid54:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 427
@@ -2321,7 +2319,7 @@ dispatch_notvoid55:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 428
@@ -2350,7 +2348,7 @@ dispatch_notvoid56:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 429
@@ -2379,7 +2377,7 @@ dispatch_notvoid57:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -2397,9 +2395,9 @@ Main.gen_code:
 	## begin new - line 434
 	VR3	<-	LambdaListRef_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call LambdaListRef_init
+	call	LambdaListRef_init
 	## caller in VR3
 	## dispatch to void handling, ends at dispatch_notvoid58
 	jumpt	VR3 dispatch_notvoid58
@@ -2421,7 +2419,7 @@ dispatch_notvoid58:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 28]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR2	<-	VR3
@@ -2452,7 +2450,7 @@ dispatch_notvoid59:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 437
@@ -2478,7 +2476,7 @@ dispatch_notvoid60:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 28]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 438
@@ -2507,7 +2505,7 @@ dispatch_notvoid61:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 439
@@ -2536,7 +2534,7 @@ dispatch_notvoid62:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 440
@@ -2562,7 +2560,7 @@ dispatch_notvoid63:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 56]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 441
@@ -2588,7 +2586,7 @@ dispatch_notvoid64:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 60]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 442
@@ -2617,7 +2615,7 @@ dispatch_notvoid65:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 443
@@ -2646,7 +2644,7 @@ dispatch_notvoid66:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 444
@@ -2671,9 +2669,9 @@ dispatch_notvoid67:
 	## begin new - line 444
 	VR4	<-	VarList_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call VarList_init
+	call	VarList_init
 	## actual parameter 2
 	VR5	<-	VR2
 	## store self and actual parameters into VI's
@@ -2683,7 +2681,7 @@ dispatch_notvoid67:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 40]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 445
@@ -2712,7 +2710,7 @@ dispatch_notvoid68:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin loop - line 446
@@ -2741,16 +2739,16 @@ dispatch_notvoid69:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## create the result object - not in the original source
 	## begin new - line 446
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR5 [VR3, 12]
 	VR5	<-	1 - VR5
 	store	VR5 [VR4, 12]
@@ -2782,7 +2780,7 @@ dispatch_notvoid70:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 16]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR3	<-	VR4
@@ -2811,7 +2809,7 @@ dispatch_notvoid71:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 20]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	VR4	<-	VR5
@@ -2840,7 +2838,7 @@ dispatch_notvoid72:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 24]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	VR5	<-	VR6
@@ -2868,7 +2866,7 @@ dispatch_notvoid73:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 36]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## begin dispatch - line 452
@@ -2903,7 +2901,7 @@ dispatch_notvoid74:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 52]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store let result over let var n
@@ -2940,7 +2938,7 @@ dispatch_notvoid75:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store let result over let var cl
@@ -2978,7 +2976,7 @@ dispatch_notvoid76:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 40]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -3002,7 +3000,7 @@ dispatch_notvoid77:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 462
@@ -3031,7 +3029,7 @@ dispatch_notvoid78:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 463
@@ -3058,7 +3056,7 @@ dispatch_notvoid79:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 44]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -3082,7 +3080,7 @@ dispatch_notvoid80:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 464
@@ -3111,7 +3109,7 @@ dispatch_notvoid81:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 465
@@ -3138,7 +3136,7 @@ dispatch_notvoid82:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 48]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -3162,7 +3160,7 @@ dispatch_notvoid83:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 466
@@ -3191,7 +3189,7 @@ dispatch_notvoid84:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 467
@@ -3293,7 +3291,7 @@ dispatch_notvoid89:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 48]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## actual parameter 2
@@ -3320,7 +3318,7 @@ dispatch_notvoid90:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 44]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store self and actual parameters into VI's
@@ -3330,7 +3328,7 @@ dispatch_notvoid90:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## actual parameter 2
@@ -3357,7 +3355,7 @@ dispatch_notvoid91:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 40]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store self and actual parameters into VI's
@@ -3367,7 +3365,7 @@ dispatch_notvoid91:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 36]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -3394,7 +3392,7 @@ dispatch_notvoid92:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -3404,7 +3402,7 @@ dispatch_notvoid92:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store self and actual parameters into VI's
@@ -3413,7 +3411,7 @@ dispatch_notvoid92:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 52]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 468
@@ -3496,7 +3494,7 @@ dispatch_notvoid96:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 44]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## actual parameter 2
@@ -3523,7 +3521,7 @@ dispatch_notvoid97:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 40]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store self and actual parameters into VI's
@@ -3533,7 +3531,7 @@ dispatch_notvoid97:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 36]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -3560,7 +3558,7 @@ dispatch_notvoid98:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -3570,7 +3568,7 @@ dispatch_notvoid98:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store self and actual parameters into VI's
@@ -3579,7 +3577,7 @@ dispatch_notvoid98:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 52]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 469
@@ -3643,7 +3641,7 @@ dispatch_notvoid101:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 40]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -3670,7 +3668,7 @@ dispatch_notvoid102:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -3680,7 +3678,7 @@ dispatch_notvoid102:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store self and actual parameters into VI's
@@ -3689,7 +3687,7 @@ dispatch_notvoid102:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 64]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 470
@@ -3791,7 +3789,7 @@ dispatch_notvoid107:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 48]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## actual parameter 2
@@ -3818,7 +3816,7 @@ dispatch_notvoid108:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 44]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store self and actual parameters into VI's
@@ -3828,7 +3826,7 @@ dispatch_notvoid108:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## actual parameter 2
@@ -3855,7 +3853,7 @@ dispatch_notvoid109:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 40]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store self and actual parameters into VI's
@@ -3865,7 +3863,7 @@ dispatch_notvoid109:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 36]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -3892,7 +3890,7 @@ dispatch_notvoid110:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -3902,7 +3900,7 @@ dispatch_notvoid110:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store self and actual parameters into VI's
@@ -3911,7 +3909,7 @@ dispatch_notvoid110:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 64]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 471
@@ -4108,7 +4106,7 @@ dispatch_notvoid120:
 	## compute the target address
 	load	VR11 [VR10, 8]
 	load	VR11 [VR11, 40]
-	call VR11
+	call	VR11
 	## fetch (and maybe unbox) the result
 	VR10	<-	VI0
 	## actual parameter 2
@@ -4135,7 +4133,7 @@ dispatch_notvoid121:
 	## compute the target address
 	load	VR12 [VR11, 8]
 	load	VR12 [VR12, 44]
-	call VR12
+	call	VR12
 	## fetch (and maybe unbox) the result
 	VR11	<-	VI0
 	## store self and actual parameters into VI's
@@ -4145,7 +4143,7 @@ dispatch_notvoid121:
 	## compute the target address
 	load	VR10 [VR9, 8]
 	load	VR10 [VR10, 36]
-	call VR10
+	call	VR10
 	## fetch (and maybe unbox) the result
 	VR9	<-	VI0
 	## actual parameter 2
@@ -4172,7 +4170,7 @@ dispatch_notvoid122:
 	## compute the target address
 	load	VR11 [VR10, 8]
 	load	VR11 [VR11, 48]
-	call VR11
+	call	VR11
 	## fetch (and maybe unbox) the result
 	VR10	<-	VI0
 	## store self and actual parameters into VI's
@@ -4182,7 +4180,7 @@ dispatch_notvoid122:
 	## compute the target address
 	load	VR9 [VR8, 8]
 	load	VR9 [VR9, 36]
-	call VR9
+	call	VR9
 	## fetch (and maybe unbox) the result
 	VR8	<-	VI0
 	## actual parameter 2
@@ -4209,7 +4207,7 @@ dispatch_notvoid123:
 	## compute the target address
 	load	VR10 [VR9, 8]
 	load	VR10 [VR10, 48]
-	call VR10
+	call	VR10
 	## fetch (and maybe unbox) the result
 	VR9	<-	VI0
 	## store self and actual parameters into VI's
@@ -4219,7 +4217,7 @@ dispatch_notvoid123:
 	## compute the target address
 	load	VR8 [VR7, 8]
 	load	VR8 [VR8, 36]
-	call VR8
+	call	VR8
 	## fetch (and maybe unbox) the result
 	VR7	<-	VI0
 	## actual parameter 2
@@ -4246,7 +4244,7 @@ dispatch_notvoid124:
 	## compute the target address
 	load	VR9 [VR8, 8]
 	load	VR9 [VR9, 44]
-	call VR9
+	call	VR9
 	## fetch (and maybe unbox) the result
 	VR8	<-	VI0
 	## store self and actual parameters into VI's
@@ -4256,7 +4254,7 @@ dispatch_notvoid124:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 36]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## actual parameter 2
@@ -4283,7 +4281,7 @@ dispatch_notvoid125:
 	## compute the target address
 	load	VR8 [VR7, 8]
 	load	VR8 [VR8, 48]
-	call VR8
+	call	VR8
 	## fetch (and maybe unbox) the result
 	VR7	<-	VI0
 	## store self and actual parameters into VI's
@@ -4293,7 +4291,7 @@ dispatch_notvoid125:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 36]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## actual parameter 2
@@ -4320,7 +4318,7 @@ dispatch_notvoid126:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 40]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store self and actual parameters into VI's
@@ -4330,7 +4328,7 @@ dispatch_notvoid126:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## actual parameter 2
@@ -4357,7 +4355,7 @@ dispatch_notvoid127:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 44]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store self and actual parameters into VI's
@@ -4367,7 +4365,7 @@ dispatch_notvoid127:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 36]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -4394,7 +4392,7 @@ dispatch_notvoid128:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -4404,7 +4402,7 @@ dispatch_notvoid128:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store self and actual parameters into VI's
@@ -4413,7 +4411,7 @@ dispatch_notvoid128:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 64]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 473
@@ -4496,7 +4494,7 @@ dispatch_notvoid132:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## actual parameter 2
@@ -4542,7 +4540,7 @@ dispatch_notvoid134:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 44]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## actual parameter 2
@@ -4569,7 +4567,7 @@ dispatch_notvoid135:
 	## compute the target address
 	load	VR8 [VR7, 8]
 	load	VR8 [VR8, 48]
-	call VR8
+	call	VR8
 	## fetch (and maybe unbox) the result
 	VR7	<-	VI0
 	## store self and actual parameters into VI's
@@ -4579,7 +4577,7 @@ dispatch_notvoid135:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 36]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store self and actual parameters into VI's
@@ -4589,7 +4587,7 @@ dispatch_notvoid135:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 36]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## actual parameter 2
@@ -4635,7 +4633,7 @@ dispatch_notvoid137:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 44]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## actual parameter 2
@@ -4681,7 +4679,7 @@ dispatch_notvoid139:
 	## compute the target address
 	load	VR8 [VR7, 8]
 	load	VR8 [VR8, 48]
-	call VR8
+	call	VR8
 	## fetch (and maybe unbox) the result
 	VR7	<-	VI0
 	## actual parameter 2
@@ -4708,7 +4706,7 @@ dispatch_notvoid140:
 	## compute the target address
 	load	VR9 [VR8, 8]
 	load	VR9 [VR9, 48]
-	call VR9
+	call	VR9
 	## fetch (and maybe unbox) the result
 	VR8	<-	VI0
 	## store self and actual parameters into VI's
@@ -4718,7 +4716,7 @@ dispatch_notvoid140:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 36]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store self and actual parameters into VI's
@@ -4728,7 +4726,7 @@ dispatch_notvoid140:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store self and actual parameters into VI's
@@ -4738,7 +4736,7 @@ dispatch_notvoid140:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store self and actual parameters into VI's
@@ -4747,7 +4745,7 @@ dispatch_notvoid140:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 64]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	int_const1.val
@@ -4787,7 +4785,7 @@ dispatch_notvoid141:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## store result into the output register
@@ -4817,12 +4815,12 @@ Variable.substitute:
 	## begin new - line 170
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR4	<-	VR1
 	VR5	<-	VR0
-	VR4	<-	VR4	=	VR5
+	VR4	<-	VR4 = VR5
 	store	VR4 [VR3, 12]
 	## condition in VR3, load effective value into VR4
 	load	VR4 [VR3, 12]
@@ -4875,7 +4873,7 @@ dispatch_notvoid142:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## condition in VR4, load effective value into VR5
@@ -4892,9 +4890,9 @@ ite_false2:
 	## begin new - line 178
 	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call Bool_init
+	call	Bool_init
 	## begin dispatch - line 178
 	VR5	<-	VR3
 	## caller in VR5
@@ -4918,19 +4916,19 @@ dispatch_notvoid143:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 32]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	VR6	<-	VR0
-	VR5	<-	VR5	=	VR6
+	VR5	<-	VR5 = VR6
 	store	VR5 [VR4, 12]
 	## create the result object - not in the original source
 	## begin new - line 178
 	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR6 [VR4, 12]
 	VR6	<-	1 - VR6
 	store	VR6 [VR5, 12]
@@ -4965,7 +4963,7 @@ dispatch_notvoid144:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin assign - line 181
@@ -4992,7 +4990,7 @@ dispatch_notvoid145:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store rhs from VR4 to let var cur_env in VR3
@@ -5023,7 +5021,7 @@ dispatch_notvoid146:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## condition in VR4, load effective value into VR5
@@ -5056,7 +5054,7 @@ dispatch_notvoid147:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 186
@@ -5082,7 +5080,7 @@ dispatch_notvoid148:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 28]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 187
@@ -5111,7 +5109,7 @@ dispatch_notvoid149:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 188
@@ -5137,7 +5135,7 @@ dispatch_notvoid150:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 0]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR4	<-	VR0
@@ -5170,7 +5168,7 @@ dispatch_notvoid151:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 ite_end3:
@@ -5226,7 +5224,7 @@ dispatch_notvoid152:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 216
@@ -5252,7 +5250,7 @@ dispatch_notvoid153:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 217
@@ -5281,7 +5279,7 @@ dispatch_notvoid154:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 218
@@ -5307,7 +5305,7 @@ dispatch_notvoid155:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -5338,12 +5336,12 @@ Lambda.substitute:
 	## begin new - line 231
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Bool_init
+	call	Bool_init
 	VR4	<-	VR1
 	load	VR5 [VR0, 12]
-	VR4	<-	VR4	=	VR5
+	VR4	<-	VR4 = VR5
 	store	VR4 [VR3, 12]
 	## condition in VR3, load effective value into VR4
 	load	VR4 [VR3, 12]
@@ -5383,7 +5381,7 @@ dispatch_notvoid156:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR3	<-	VR4
@@ -5392,9 +5390,9 @@ dispatch_notvoid156:
 	## begin new - line 235
 	VR5	<-	Lambda_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
-	call Lambda_init
+	call	Lambda_init
 	VR4	<-	VR5
 	## let var new_lam in VR4
 	## begin dispatch - line 236
@@ -5426,7 +5424,7 @@ dispatch_notvoid157:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 44]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## store let result over let var new_lam
@@ -5471,7 +5469,7 @@ dispatch_notvoid158:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 243
@@ -5522,7 +5520,7 @@ dispatch_notvoid160:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 32]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	# boxing integer from VR4 to VR5
@@ -5539,7 +5537,7 @@ dispatch_notvoid160:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 16]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 244
@@ -5568,7 +5566,7 @@ dispatch_notvoid161:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin if-then-else - line 245
@@ -5595,7 +5593,7 @@ dispatch_notvoid162:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 28]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## condition in VR3, load effective value into VR4
@@ -5628,7 +5626,7 @@ dispatch_notvoid163:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	jump	ite_end5
@@ -5660,7 +5658,7 @@ dispatch_notvoid164:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 ite_end5:
@@ -5724,7 +5722,7 @@ dispatch_notvoid165:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 36]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	## store result into the output register
@@ -5765,7 +5763,7 @@ dispatch_notvoid166:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 257
@@ -5802,7 +5800,7 @@ dispatch_notvoid167:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 16]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 258
@@ -5831,7 +5829,7 @@ dispatch_notvoid168:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 259
@@ -5860,7 +5858,7 @@ dispatch_notvoid169:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 260
@@ -5889,7 +5887,7 @@ dispatch_notvoid170:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 261
@@ -5926,7 +5924,7 @@ dispatch_notvoid171:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 16]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 262
@@ -5955,7 +5953,7 @@ dispatch_notvoid172:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 263
@@ -5984,7 +5982,7 @@ dispatch_notvoid173:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 264
@@ -6032,7 +6030,7 @@ dispatch_notvoid175:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 40]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## actual parameter 2
@@ -6044,7 +6042,7 @@ dispatch_notvoid175:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 40]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 265
@@ -6073,7 +6071,7 @@ dispatch_notvoid176:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## begin dispatch - line 266
@@ -6102,7 +6100,7 @@ dispatch_notvoid177:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 12]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store result into the output register
@@ -6140,7 +6138,7 @@ dispatch_notvoid178:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 289
@@ -6166,7 +6164,7 @@ dispatch_notvoid179:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 290
@@ -6195,7 +6193,7 @@ dispatch_notvoid180:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 291
@@ -6221,7 +6219,7 @@ dispatch_notvoid181:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 292
@@ -6250,7 +6248,7 @@ dispatch_notvoid182:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -6269,14 +6267,16 @@ App.beta:
 	jumpt	VR1 case0_notvoid
 	VR1	<-	str_const0
 	VR4	<-	298
+	# boxing integer from VR4 to VR3
 	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
+	# end boxing
 	VI0	<-	VR1
 	VI1	<-	VR3
-	call _case_abort2
+	call	_case_abort2
 case0_notvoid:
 	load	VR2 [VR1, 0]
 case0_tag13:
@@ -6308,7 +6308,7 @@ dispatch_notvoid183:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 48]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	jump	case0_end
@@ -6341,7 +6341,7 @@ dispatch_notvoid184:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 32]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	VR2	<-	VR3
@@ -6350,9 +6350,9 @@ dispatch_notvoid184:
 	## begin new - line 302
 	VR4	<-	App_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
-	call App_init
+	call	App_init
 	VR3	<-	VR4
 	## let var new_app in VR3
 	## begin dispatch - line 303
@@ -6384,7 +6384,7 @@ dispatch_notvoid185:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 44]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	## store let result over let var new_app
@@ -6394,7 +6394,7 @@ dispatch_notvoid185:
 	jump	case0_end
 case0_error:
 	VI0	<-	VR1
-	call _case_abort
+	call	_case_abort
 case0_end:
 	VR1	<-	VR2
 	## store result into the output register
@@ -6438,7 +6438,7 @@ dispatch_notvoid186:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR3	<-	VR4
@@ -6473,7 +6473,7 @@ dispatch_notvoid187:
 	## compute the target address
 	load	VR6 [VR5, 8]
 	load	VR6 [VR6, 36]
-	call VR6
+	call	VR6
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	VR4	<-	VR5
@@ -6482,9 +6482,9 @@ dispatch_notvoid187:
 	## begin new - line 310
 	VR6	<-	App_protObj
 	VI0	<-	VR6
-	call Object.copy
+	call	Object.copy
 	VR6	<-	VI0
-	call App_init
+	call	App_init
 	VR5	<-	VR6
 	## let var new_app in VR5
 	## begin dispatch - line 311
@@ -6516,7 +6516,7 @@ dispatch_notvoid188:
 	## compute the target address
 	load	VR7 [VR6, 8]
 	load	VR7 [VR7, 44]
-	call VR7
+	call	VR7
 	## fetch (and maybe unbox) the result
 	VR6	<-	VI0
 	## store let result over let var new_app
@@ -6562,7 +6562,7 @@ dispatch_notvoid189:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 317
@@ -6594,7 +6594,7 @@ dispatch_notvoid190:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 40]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 318
@@ -6623,7 +6623,7 @@ dispatch_notvoid191:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 319
@@ -6652,7 +6652,7 @@ dispatch_notvoid192:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 320
@@ -6684,7 +6684,7 @@ dispatch_notvoid193:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 40]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 321
@@ -6713,7 +6713,7 @@ dispatch_notvoid194:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 322
@@ -6742,7 +6742,7 @@ dispatch_notvoid195:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 323
@@ -6771,7 +6771,7 @@ dispatch_notvoid196:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 324
@@ -6800,7 +6800,7 @@ dispatch_notvoid197:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 325
@@ -6829,7 +6829,7 @@ dispatch_notvoid198:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## store result into the output register
@@ -6914,7 +6914,7 @@ dispatch_notvoid199:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 28]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 36
@@ -6943,7 +6943,7 @@ dispatch_notvoid200:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin dispatch - line 37
@@ -6969,7 +6969,7 @@ dispatch_notvoid201:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 44]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	VR0
@@ -7787,7 +7787,7 @@ class_nameTab:
 	DL	str_const71
 	DL	str_const72
 	DL	str_const65
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

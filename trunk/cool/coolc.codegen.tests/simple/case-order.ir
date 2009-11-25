@@ -48,14 +48,16 @@ Main.main:
 	jumpt	VR2 case0_notvoid
 	VR2	<-	str_const0
 	VR5	<-	9
+	# boxing integer from VR5 to VR4
 	VR4	<-	Int_protObj
 	VI0	<-	VR4
 	call Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
+	# end boxing
 	VI0	<-	VR2
 	VI1	<-	VR4
-	call _case_abort2
+	call	_case_abort2
 case0_notvoid:
 	load	VR3 [VR2, 0]
 case0_tag5:
@@ -87,7 +89,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	jump	case0_end
@@ -122,13 +124,13 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 12]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	jump	case0_end
 case0_error:
 	VI0	<-	VR2
-	call _case_abort
+	call	_case_abort
 case0_end:
 	VR2	<-	VR3
 	## store let result over let var thing
@@ -330,7 +332,7 @@ class_nameTab:
 	DL	str_const10
 	DL	str_const11
 	DL	str_const12
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

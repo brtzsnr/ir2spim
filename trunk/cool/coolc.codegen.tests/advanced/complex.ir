@@ -55,9 +55,9 @@ Main.main:
 	## begin new - line 3
 	VR2	<-	Complex_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Complex_init
+	call	Complex_init
 	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid0
 	jumpt	VR2 dispatch_notvoid0
@@ -87,7 +87,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 28]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	VR1	<-	VR2
@@ -98,9 +98,9 @@ dispatch_notvoid0:
 	## begin new - line 4
 	VR2	<-	Bool_protObj
 	VI0	<-	VR2
-	call Object.copy
+	call	Object.copy
 	VR2	<-	VI0
-	call Bool_init
+	call	Bool_init
 	## begin dispatch - line 4
 	## begin dispatch - line 4
 	VR3	<-	VR1
@@ -125,7 +125,7 @@ dispatch_notvoid1:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 40]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## caller in VR3
@@ -149,7 +149,7 @@ dispatch_notvoid2:
 	## compute the target address
 	load	VR4 [VR3, 8]
 	load	VR4 [VR4, 44]
-	call VR4
+	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
 	## begin dispatch - line 4
@@ -175,10 +175,10 @@ dispatch_notvoid3:
 	## compute the target address
 	load	VR5 [VR4, 8]
 	load	VR5 [VR5, 36]
-	call VR5
+	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
-	VR3	<-	VR3	=	VR4
+	VR3	<-	VR3 = VR4
 	store	VR3 [VR2, 12]
 	## condition in VR2, load effective value into VR3
 	load	VR3 [VR2, 12]
@@ -210,7 +210,7 @@ dispatch_notvoid4:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 	jump	ite_end0
@@ -242,7 +242,7 @@ dispatch_notvoid5:
 	## compute the target address
 	load	VR3 [VR2, 8]
 	load	VR3 [VR3, 12]
-	call VR3
+	call	VR3
 	## fetch (and maybe unbox) the result
 	VR2	<-	VI0
 ite_end0:
@@ -264,24 +264,24 @@ Complex.init:
 	## begin new - line 18
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR4 [VR0, 12]
 	VR5	<-	VR1
-	VR4	<-	VR4	=	VR5
+	VR4	<-	VR4 = VR5
 	store	VR4 [VR3, 12]
 	## = operator - line 19
 	## create the result object - not in the original source
 	## begin new - line 19
 	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR4 [VR0, 16]
 	VR5	<-	VR2
-	VR4	<-	VR4	=	VR5
+	VR4	<-	VR4 = VR5
 	store	VR4 [VR3, 12]
 	VR3	<-	VR0
 	## store result into the output register
@@ -299,13 +299,13 @@ Complex.print:
 	## begin new - line 25
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 16]
 	VR3	<-	int_const2.val
 	load	VR3 [VR3, 0]
-	VR2	<-	VR2	=	VR3
+	VR2	<-	VR2 = VR3
 	store	VR2 [VR1, 12]
 	## condition in VR1, load effective value into VR2
 	load	VR2 [VR1, 12]
@@ -345,7 +345,7 @@ dispatch_notvoid6:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	jump	ite_end1
@@ -388,7 +388,7 @@ dispatch_notvoid7:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -415,7 +415,7 @@ dispatch_notvoid8:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -450,7 +450,7 @@ dispatch_notvoid9:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 16]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## caller in VR1
@@ -477,7 +477,7 @@ dispatch_notvoid10:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 ite_end1:
@@ -495,28 +495,28 @@ Complex.reflect_0:
 	## begin new - line 33
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 12]
 	## unary - operator - line 33
 	load	VR3 [VR0, 12]
 	VR3	<-	0 - VR3
-	VR2	<-	VR2	=	VR3
+	VR2	<-	VR2 = VR3
 	store	VR2 [VR1, 12]
 	## = operator - line 34
 	## create the result object - not in the original source
 	## begin new - line 34
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 16]
 	## unary - operator - line 34
 	load	VR3 [VR0, 16]
 	VR3	<-	0 - VR3
-	VR2	<-	VR2	=	VR3
+	VR2	<-	VR2 = VR3
 	store	VR2 [VR1, 12]
 	VR1	<-	VR0
 	## store result into the output register
@@ -533,14 +533,14 @@ Complex.reflect_X:
 	## begin new - line 41
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 16]
 	## unary - operator - line 41
 	load	VR3 [VR0, 16]
 	VR3	<-	0 - VR3
-	VR2	<-	VR2	=	VR3
+	VR2	<-	VR2 = VR3
 	store	VR2 [VR1, 12]
 	VR1	<-	VR0
 	## store result into the output register
@@ -557,14 +557,14 @@ Complex.reflect_Y:
 	## begin new - line 48
 	VR1	<-	Bool_protObj
 	VI0	<-	VR1
-	call Object.copy
+	call	Object.copy
 	VR1	<-	VI0
-	call Bool_init
+	call	Bool_init
 	load	VR2 [VR0, 12]
 	## unary - operator - line 48
 	load	VR3 [VR0, 12]
 	VR3	<-	0 - VR3
-	VR2	<-	VR2	=	VR3
+	VR2	<-	VR2 = VR3
 	store	VR2 [VR1, 12]
 	VR1	<-	VR0
 	## store result into the output register
@@ -788,7 +788,7 @@ class_nameTab:
 	DL	str_const13
 	DL	str_const14
 	DL	str_const15
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init

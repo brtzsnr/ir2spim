@@ -80,7 +80,7 @@ dispatch_notvoid0:
 	## compute the target address
 	load	VR2 [VR1, 8]
 	load	VR2 [VR2, 12]
-	call VR2
+	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	VR1	<-	int_const0.val
@@ -272,7 +272,7 @@ class_nameTab:
 	DL	str_const9
 	DL	str_const10
 	DL	str_const11
-#### prototypes and init my tag
+#### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
 	DL	Object_init
