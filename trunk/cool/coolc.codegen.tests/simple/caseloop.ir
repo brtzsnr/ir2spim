@@ -225,7 +225,7 @@ loop_start0:
 	VR5	<-	str_const0
 	VR8	<-	31
 	# boxing integer from VR8 to VR7
-	VR7	<-	Bool_protObj
+	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call	Object.copy
 	VR7	<-	VI0
@@ -405,7 +405,7 @@ loop_end0:
 	VR5	<-	str_const0
 	VR8	<-	52
 	# boxing integer from VR8 to VR7
-	VR7	<-	Bool_protObj
+	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call	Object.copy
 	VR7	<-	VI0
@@ -437,7 +437,7 @@ ite_end0:
 	VR5	<-	str_const0
 	VR8	<-	54
 	# boxing integer from VR8 to VR7
-	VR7	<-	Bool_protObj
+	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call	Object.copy
 	VR7	<-	VI0
@@ -479,7 +479,7 @@ loop_start1:
 	VR5	<-	str_const0
 	VR8	<-	59
 	# boxing integer from VR8 to VR7
-	VR7	<-	Bool_protObj
+	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call	Object.copy
 	VR7	<-	VI0
@@ -659,7 +659,7 @@ loop_end1:
 	VR5	<-	str_const0
 	VR8	<-	80
 	# boxing integer from VR8 to VR7
-	VR7	<-	Bool_protObj
+	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call	Object.copy
 	VR7	<-	VI0
@@ -691,7 +691,7 @@ ite_end1:
 	VR5	<-	str_const0
 	VR8	<-	82
 	# boxing integer from VR8 to VR7
-	VR7	<-	Bool_protObj
+	VR7	<-	Int_protObj
 	VI0	<-	VR7
 	call	Object.copy
 	VR7	<-	VI0

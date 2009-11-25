@@ -40,7 +40,7 @@ Main_init:
 	VR1	<-	str_const0
 	VR4	<-	35
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -167,7 +167,7 @@ loop_end1:
 	VR1	<-	str_const0
 	VR4	<-	67
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -180,7 +180,7 @@ dispatch_notvoid1:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -204,7 +204,7 @@ dispatch_notvoid1:
 	VR1	<-	str_const0
 	VR4	<-	68
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0
@@ -246,7 +246,7 @@ ite_end2:
 	VR1	<-	str_const0
 	VR4	<-	75
 	# boxing integer from VR4 to VR3
-	VR3	<-	Bool_protObj
+	VR3	<-	Int_protObj
 	VI0	<-	VR3
 	call	Object.copy
 	VR3	<-	VI0

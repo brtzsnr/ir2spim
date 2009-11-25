@@ -49,7 +49,7 @@ Main.main:
 	VR2	<-	str_const0
 	VR5	<-	9
 	# boxing integer from VR5 to VR4
-	VR4	<-	Bool_protObj
+	VR4	<-	Int_protObj
 	VI0	<-	VR4
 	call	Object.copy
 	VR4	<-	VI0
@@ -71,7 +71,7 @@ case0_tag5:
 	VR3	<-	str_const0
 	VR6	<-	11
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
@@ -106,7 +106,7 @@ case0_tag0:
 	VR3	<-	str_const0
 	VR6	<-	10
 	# boxing integer from VR6 to VR5
-	VR5	<-	Bool_protObj
+	VR5	<-	Int_protObj
 	VI0	<-	VR5
 	call	Object.copy
 	VR5	<-	VI0
