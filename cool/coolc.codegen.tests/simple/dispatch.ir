@@ -86,9 +86,9 @@ P.method1:
 	VR5	<-	str_const0
 	VR8	<-	10
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -115,9 +115,9 @@ dispatch_notvoid0:
 	VR5	<-	str_const0
 	VR8	<-	11
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -128,9 +128,9 @@ dispatch_notvoid1:
 	## actual parameter 1
 	VR6	<-	VR1
 	# boxing integer from VR6 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR6 [VR7, 12]
 	# end boxing
@@ -152,9 +152,9 @@ dispatch_notvoid1:
 	VR5	<-	str_const0
 	VR8	<-	12
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -176,9 +176,7 @@ dispatch_notvoid2:
 	## begin assign - line 14
 	## begin if-then-else - line 15
 	VR5	<-	VR2
-	## condition in VR5, load effective value into VR6
-	load	VR6 [VR5, 12]
-	jumpf	VR6 ite_false0
+	jumpf	VR5 ite_false0
 	## begin true branch
 	## begin dispatch - line 16
 	load	VR5 [VR0, 12]
@@ -188,9 +186,9 @@ dispatch_notvoid2:
 	VR5	<-	str_const0
 	VR8	<-	16
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -222,9 +220,9 @@ ite_false0:
 	VR5	<-	str_const0
 	VR8	<-	17
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -256,9 +254,9 @@ ite_end0:
 	VR5	<-	str_const0
 	VR8	<-	20
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -269,9 +267,9 @@ dispatch_notvoid5:
 	## actual parameter 1
 	VR6	<-	VR4
 	# boxing integer from VR6 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR6 [VR7, 12]
 	# end boxing
@@ -293,9 +291,9 @@ dispatch_notvoid5:
 	VR5	<-	str_const0
 	VR8	<-	21
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -322,9 +320,9 @@ dispatch_notvoid6:
 	VR5	<-	str_const0
 	VR8	<-	22
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -351,9 +349,9 @@ dispatch_notvoid7:
 	VR5	<-	str_const0
 	VR8	<-	23
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -393,9 +391,9 @@ Main.main:
 	VR1	<-	str_const0
 	VR4	<-	42
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -407,7 +405,7 @@ dispatch_notvoid9:
 	VR2	<-	int_const3.val
 	load	VR2 [VR2, 0]
 	## actual parameter 2
-	VR3	<-	bool_const1
+	VR3	<-	1
 	## actual parameter 3
 	VR4	<-	str_const6
 	## store self and actual parameters into VI's
@@ -429,9 +427,9 @@ dispatch_notvoid9:
 	VR1	<-	str_const0
 	VR4	<-	43
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -443,7 +441,7 @@ dispatch_notvoid10:
 	VR2	<-	int_const2.val
 	load	VR2 [VR2, 0]
 	## actual parameter 2
-	VR3	<-	bool_const0
+	VR3	<-	0
 	## actual parameter 3
 	VR4	<-	str_const7
 	## store self and actual parameters into VI's

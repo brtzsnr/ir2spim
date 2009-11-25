@@ -212,21 +212,11 @@ Main.main:
 	## begin loop - line 29
 loop_start0:
 	## < operator - line 29
-	## create the result object - not in the original source
-	## begin new - line 29
-	VR5	<-	Bool_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	call	Bool_init
-	VR6	<-	VR1
-	VR7	<-	int_const1.val
-	load	VR7 [VR7, 0]
-	VR6	<-	VR6 < VR7
-	store	VR6 [VR5, 12]
-	## condition in VR5, load effective value into VR6
-	load	VR6 [VR5, 12]
-	jumpf	VR6 loop_end0
+	VR5	<-	VR1
+	VR6	<-	int_const1.val
+	load	VR6 [VR6, 0]
+	VR5	<-	VR5 < VR6
+	jumpf	VR5 loop_end0
 	## begin assign - line 30
 	## begin typed case - line 31
 	VR5	<-	VR3
@@ -235,9 +225,9 @@ loop_start0:
 	VR5	<-	str_const0
 	VR8	<-	31
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -400,32 +390,12 @@ loop_end0:
 	## begin if-then-else - line 52
 	## not operator - line 52
 	## = operator - line 52
-	## create the result object - not in the original source
-	## begin new - line 52
-	VR5	<-	Bool_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	call	Bool_init
-	VR6	<-	VR4
-	VR7	<-	int_const18.val
-	load	VR7 [VR7, 0]
-	VR6	<-	VR6 = VR7
-	store	VR6 [VR5, 12]
-	## create the result object - not in the original source
-	## begin new - line 52
-	VR6	<-	Bool_protObj
-	VI0	<-	VR6
-	call	Object.copy
-	VR6	<-	VI0
-	call	Bool_init
-	load	VR7 [VR5, 12]
-	VR7	<-	1 - VR7
-	store	VR7 [VR6, 12]
-	VR5	<-	VR6
-	## condition in VR5, load effective value into VR6
-	load	VR6 [VR5, 12]
-	jumpf	VR6 ite_false0
+	VR5	<-	VR4
+	VR6	<-	int_const18.val
+	load	VR6 [VR6, 0]
+	VR5	<-	VR5 = VR6
+	VR5	<-	1 - VR5
+	jumpf	VR5 ite_false0
 	## begin true branch
 	## begin dispatch - line 52
 	VR5	<-	VR0
@@ -435,9 +405,9 @@ loop_end0:
 	VR5	<-	str_const0
 	VR8	<-	52
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -467,9 +437,9 @@ ite_end0:
 	VR5	<-	str_const0
 	VR8	<-	54
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -496,21 +466,11 @@ dispatch_notvoid1:
 	## begin loop - line 57
 loop_start1:
 	## < operator - line 57
-	## create the result object - not in the original source
-	## begin new - line 57
-	VR5	<-	Bool_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	call	Bool_init
-	VR6	<-	VR1
-	VR7	<-	int_const1.val
-	load	VR7 [VR7, 0]
-	VR6	<-	VR6 < VR7
-	store	VR6 [VR5, 12]
-	## condition in VR5, load effective value into VR6
-	load	VR6 [VR5, 12]
-	jumpf	VR6 loop_end1
+	VR5	<-	VR1
+	VR6	<-	int_const1.val
+	load	VR6 [VR6, 0]
+	VR5	<-	VR5 < VR6
+	jumpf	VR5 loop_end1
 	## begin assign - line 58
 	## begin typed case - line 59
 	VR5	<-	VR2
@@ -519,9 +479,9 @@ loop_start1:
 	VR5	<-	str_const0
 	VR8	<-	59
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -684,32 +644,12 @@ loop_end1:
 	## begin if-then-else - line 80
 	## not operator - line 80
 	## = operator - line 80
-	## create the result object - not in the original source
-	## begin new - line 80
-	VR5	<-	Bool_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	call	Bool_init
-	VR6	<-	VR4
-	VR7	<-	int_const2.val
-	load	VR7 [VR7, 0]
-	VR6	<-	VR6 = VR7
-	store	VR6 [VR5, 12]
-	## create the result object - not in the original source
-	## begin new - line 80
-	VR6	<-	Bool_protObj
-	VI0	<-	VR6
-	call	Object.copy
-	VR6	<-	VI0
-	call	Bool_init
-	load	VR7 [VR5, 12]
-	VR7	<-	1 - VR7
-	store	VR7 [VR6, 12]
-	VR5	<-	VR6
-	## condition in VR5, load effective value into VR6
-	load	VR6 [VR5, 12]
-	jumpf	VR6 ite_false1
+	VR5	<-	VR4
+	VR6	<-	int_const2.val
+	load	VR6 [VR6, 0]
+	VR5	<-	VR5 = VR6
+	VR5	<-	1 - VR5
+	jumpf	VR5 ite_false1
 	## begin true branch
 	## begin dispatch - line 80
 	VR5	<-	VR0
@@ -719,9 +659,9 @@ loop_end1:
 	VR5	<-	str_const0
 	VR8	<-	80
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
@@ -751,9 +691,9 @@ ite_end1:
 	VR5	<-	str_const0
 	VR8	<-	82
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing

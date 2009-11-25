@@ -64,9 +64,9 @@ Main.main:
 	VR2	<-	str_const0
 	VR5	<-	3
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -94,95 +94,85 @@ dispatch_notvoid0:
 	## let var c in VR1
 	## begin if-then-else - line 4
 	## = operator - line 4
-	## create the result object - not in the original source
-	## begin new - line 4
-	VR2	<-	Bool_protObj
-	VI0	<-	VR2
-	call	Object.copy
-	VR2	<-	VI0
-	call	Bool_init
 	## begin dispatch - line 4
 	## begin dispatch - line 4
-	VR3	<-	VR1
-	## caller in VR3
+	VR2	<-	VR1
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid1
-	jumpt	VR3 dispatch_notvoid1
-	VR3	<-	str_const0
-	VR6	<-	4
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
-	call Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
+	jumpt	VR2 dispatch_notvoid1
+	VR2	<-	str_const0
+	VR5	<-	4
+	# boxing integer from VR5 to VR4
+	VR4	<-	Bool_protObj
+	VI0	<-	VR4
+	call	Object.copy
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
 	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
+	VI0	<-	VR2
+	VI1	<-	VR4
 	call	_dispatch_abort
 dispatch_notvoid1:
 	## store self and actual parameters into VI's
-	VI0	<-	VR3
+	VI0	<-	VR2
 	## compute the target address
-	load	VR4 [VR3, 8]
-	load	VR4 [VR4, 40]
-	call	VR4
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 40]
+	call	VR3
 	## fetch (and maybe unbox) the result
-	VR3	<-	VI0
-	## caller in VR3
+	VR2	<-	VI0
+	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid2
-	jumpt	VR3 dispatch_notvoid2
+	jumpt	VR2 dispatch_notvoid2
+	VR2	<-	str_const0
+	VR5	<-	4
+	# boxing integer from VR5 to VR4
+	VR4	<-	Bool_protObj
+	VI0	<-	VR4
+	call	Object.copy
+	VR4	<-	VI0
+	store	VR5 [VR4, 12]
+	# end boxing
+	VI0	<-	VR2
+	VI1	<-	VR4
+	call	_dispatch_abort
+dispatch_notvoid2:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 44]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## begin dispatch - line 4
+	VR3	<-	VR1
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR3 dispatch_notvoid3
 	VR3	<-	str_const0
 	VR6	<-	4
 	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
+	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
 	store	VR6 [VR5, 12]
 	# end boxing
 	VI0	<-	VR3
 	VI1	<-	VR5
 	call	_dispatch_abort
-dispatch_notvoid2:
+dispatch_notvoid3:
 	## store self and actual parameters into VI's
 	VI0	<-	VR3
 	## compute the target address
 	load	VR4 [VR3, 8]
-	load	VR4 [VR4, 44]
+	load	VR4 [VR4, 36]
 	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
-	## begin dispatch - line 4
-	VR4	<-	VR1
-	## caller in VR4
-	## dispatch to void handling, ends at dispatch_notvoid3
-	jumpt	VR4 dispatch_notvoid3
-	VR4	<-	str_const0
-	VR7	<-	4
-	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
-	VI0	<-	VR6
-	call Object.copy
-	VR6	<-	VI0
-	store	VR7 [VR6, 12]
-	# end boxing
-	VI0	<-	VR4
-	VI1	<-	VR6
-	call	_dispatch_abort
-dispatch_notvoid3:
-	## store self and actual parameters into VI's
-	VI0	<-	VR4
-	## compute the target address
-	load	VR5 [VR4, 8]
-	load	VR5 [VR5, 36]
-	call	VR5
-	## fetch (and maybe unbox) the result
-	VR4	<-	VI0
-	VR3	<-	VR3 = VR4
-	store	VR3 [VR2, 12]
-	## condition in VR2, load effective value into VR3
-	load	VR3 [VR2, 12]
-	jumpf	VR3 ite_false0
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false0
 	## begin true branch
 	## begin dispatch - line 5
 	VR2	<-	VR0
@@ -192,9 +182,9 @@ dispatch_notvoid3:
 	VR2	<-	str_const0
 	VR5	<-	5
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -224,9 +214,9 @@ ite_false0:
 	VR2	<-	str_const0
 	VR5	<-	6
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -260,29 +250,13 @@ Complex.init:
 	VR1	<-	VI1
 	VR2	<-	VI2
 	## = operator - line 18
-	## create the result object - not in the original source
-	## begin new - line 18
-	VR3	<-	Bool_protObj
-	VI0	<-	VR3
-	call	Object.copy
-	VR3	<-	VI0
-	call	Bool_init
-	load	VR4 [VR0, 12]
-	VR5	<-	VR1
-	VR4	<-	VR4 = VR5
-	store	VR4 [VR3, 12]
+	load	VR3 [VR0, 12]
+	VR4	<-	VR1
+	VR3	<-	VR3 = VR4
 	## = operator - line 19
-	## create the result object - not in the original source
-	## begin new - line 19
-	VR3	<-	Bool_protObj
-	VI0	<-	VR3
-	call	Object.copy
-	VR3	<-	VI0
-	call	Bool_init
-	load	VR4 [VR0, 16]
-	VR5	<-	VR2
-	VR4	<-	VR4 = VR5
-	store	VR4 [VR3, 12]
+	load	VR3 [VR0, 16]
+	VR4	<-	VR2
+	VR3	<-	VR3 = VR4
 	VR3	<-	VR0
 	## store result into the output register
 	VI0	<-	VR3
@@ -295,21 +269,11 @@ Complex.print:
 	VR0	<-	VI0
 	## begin if-then-else - line 25
 	## = operator - line 25
-	## create the result object - not in the original source
-	## begin new - line 25
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 16]
-	VR3	<-	int_const2.val
-	load	VR3 [VR3, 0]
-	VR2	<-	VR2 = VR3
-	store	VR2 [VR1, 12]
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 ite_false1
+	load	VR1 [VR0, 16]
+	VR2	<-	int_const2.val
+	load	VR2 [VR2, 0]
+	VR1	<-	VR1 = VR2
+	jumpf	VR1 ite_false1
 	## begin true branch
 	## begin dispatch - line 26
 	VR1	<-	VR0
@@ -319,9 +283,9 @@ Complex.print:
 	VR1	<-	str_const0
 	VR4	<-	26
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -332,9 +296,9 @@ dispatch_notvoid6:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR2 [VR3, 12]
 	# end boxing
@@ -362,9 +326,9 @@ ite_false1:
 	VR1	<-	str_const0
 	VR4	<-	27
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -375,9 +339,9 @@ dispatch_notvoid7:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR2 [VR3, 12]
 	# end boxing
@@ -397,9 +361,9 @@ dispatch_notvoid7:
 	VR1	<-	str_const0
 	VR4	<-	27
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -424,9 +388,9 @@ dispatch_notvoid8:
 	VR1	<-	str_const0
 	VR4	<-	27
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -437,9 +401,9 @@ dispatch_notvoid9:
 	## actual parameter 1
 	load	VR2 [VR0, 16]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR2 [VR3, 12]
 	# end boxing
@@ -459,9 +423,9 @@ dispatch_notvoid9:
 	VR1	<-	str_const0
 	VR4	<-	27
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -491,33 +455,17 @@ Complex.reflect_0:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## = operator - line 33
-	## create the result object - not in the original source
-	## begin new - line 33
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 12]
+	load	VR1 [VR0, 12]
 	## unary - operator - line 33
-	load	VR3 [VR0, 12]
-	VR3	<-	0 - VR3
-	VR2	<-	VR2 = VR3
-	store	VR2 [VR1, 12]
+	load	VR2 [VR0, 12]
+	VR2	<-	0 - VR2
+	VR1	<-	VR1 = VR2
 	## = operator - line 34
-	## create the result object - not in the original source
-	## begin new - line 34
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 16]
+	load	VR1 [VR0, 16]
 	## unary - operator - line 34
-	load	VR3 [VR0, 16]
-	VR3	<-	0 - VR3
-	VR2	<-	VR2 = VR3
-	store	VR2 [VR1, 12]
+	load	VR2 [VR0, 16]
+	VR2	<-	0 - VR2
+	VR1	<-	VR1 = VR2
 	VR1	<-	VR0
 	## store result into the output register
 	VI0	<-	VR1
@@ -529,19 +477,11 @@ Complex.reflect_X:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## = operator - line 41
-	## create the result object - not in the original source
-	## begin new - line 41
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 16]
+	load	VR1 [VR0, 16]
 	## unary - operator - line 41
-	load	VR3 [VR0, 16]
-	VR3	<-	0 - VR3
-	VR2	<-	VR2 = VR3
-	store	VR2 [VR1, 12]
+	load	VR2 [VR0, 16]
+	VR2	<-	0 - VR2
+	VR1	<-	VR1 = VR2
 	VR1	<-	VR0
 	## store result into the output register
 	VI0	<-	VR1
@@ -553,19 +493,11 @@ Complex.reflect_Y:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## = operator - line 48
-	## create the result object - not in the original source
-	## begin new - line 48
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 12]
+	load	VR1 [VR0, 12]
 	## unary - operator - line 48
-	load	VR3 [VR0, 12]
-	VR3	<-	0 - VR3
-	VR2	<-	VR2 = VR3
-	store	VR2 [VR1, 12]
+	load	VR2 [VR0, 12]
+	VR2	<-	0 - VR2
+	VR1	<-	VR1 = VR2
 	VR1	<-	VR0
 	## store result into the output register
 	VI0	<-	VR1

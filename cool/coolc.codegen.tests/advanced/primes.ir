@@ -40,9 +40,9 @@ Main_init:
 	VR1	<-	str_const0
 	VR4	<-	35
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -79,10 +79,8 @@ dispatch_notvoid0:
 	## begin assign - line 45
 	## begin loop - line 46
 loop_start0:
-	VR1	<-	bool_const1
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 loop_end0
+	VR1	<-	1
+	jumpf	VR1 loop_end0
 	## begin assign - line 49
 	## + operator - line 49
 	load	VR1 [VR0, 16]
@@ -100,65 +98,43 @@ loop_start0:
 loop_start1:
 	## begin if-then-else - line 53
 	## < operator - line 53
-	## create the result object - not in the original source
-	## begin new - line 53
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 16]
+	load	VR1 [VR0, 16]
 	## * operator - line 53
+	load	VR2 [VR0, 20]
 	load	VR3 [VR0, 20]
-	load	VR4 [VR0, 20]
-	VR3	<-	VR3 * VR4
-	VR2	<-	VR2 < VR3
-	store	VR2 [VR1, 12]
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 ite_false0
+	VR2	<-	VR2 * VR3
+	VR1	<-	VR1 < VR2
+	jumpf	VR1 ite_false0
 	## begin true branch
-	VR1	<-	bool_const0
+	VR1	<-	0
 	jump	ite_end0
 	## begin false branch
 ite_false0:
 	## begin if-then-else - line 55
 	## = operator - line 55
-	## create the result object - not in the original source
-	## begin new - line 55
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
 	## - operator - line 55
-	load	VR2 [VR0, 16]
+	load	VR1 [VR0, 16]
 	## * operator - line 55
-	load	VR3 [VR0, 20]
+	load	VR2 [VR0, 20]
 	## / operator - line 55
-	load	VR4 [VR0, 16]
-	load	VR5 [VR0, 20]
-	VR4	<-	VR4 / VR5
-	VR3	<-	VR3 * VR4
-	VR2	<-	VR2 - VR3
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
-	VR2	<-	VR2 = VR3
-	store	VR2 [VR1, 12]
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 ite_false1
+	load	VR3 [VR0, 16]
+	load	VR4 [VR0, 20]
+	VR3	<-	VR3 / VR4
+	VR2	<-	VR2 * VR3
+	VR1	<-	VR1 - VR2
+	VR2	<-	int_const0.val
+	load	VR2 [VR2, 0]
+	VR1	<-	VR1 = VR2
+	jumpf	VR1 ite_false1
 	## begin true branch
-	VR1	<-	bool_const0
+	VR1	<-	0
 	jump	ite_end1
 	## begin false branch
 ite_false1:
-	VR1	<-	bool_const1
+	VR1	<-	1
 ite_end1:
 ite_end0:
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 loop_end1
+	jumpf	VR1 loop_end1
 	## begin assign - line 60
 	## + operator - line 60
 	load	VR1 [VR0, 20]
@@ -171,23 +147,13 @@ ite_end0:
 loop_end1:
 	## begin if-then-else - line 63
 	## < operator - line 63
-	## create the result object - not in the original source
-	## begin new - line 63
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 16]
+	load	VR1 [VR0, 16]
 	## * operator - line 63
+	load	VR2 [VR0, 20]
 	load	VR3 [VR0, 20]
-	load	VR4 [VR0, 20]
-	VR3	<-	VR3 * VR4
-	VR2	<-	VR2 < VR3
-	store	VR2 [VR1, 12]
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 ite_false2
+	VR2	<-	VR2 * VR3
+	VR1	<-	VR1 < VR2
+	jumpf	VR1 ite_false2
 	## begin true branch
 	## begin assign - line 66
 	load	VR1 [VR0, 16]
@@ -201,9 +167,9 @@ loop_end1:
 	VR1	<-	str_const0
 	VR4	<-	67
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -214,9 +180,9 @@ dispatch_notvoid1:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR2 [VR3, 12]
 	# end boxing
@@ -238,9 +204,9 @@ dispatch_notvoid1:
 	VR1	<-	str_const0
 	VR4	<-	68
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -267,20 +233,10 @@ ite_false2:
 ite_end2:
 	## begin if-then-else - line 74
 	## <= operator - line 74
-	## create the result object - not in the original source
-	## begin new - line 74
-	VR1	<-	Bool_protObj
-	VI0	<-	VR1
-	call	Object.copy
-	VR1	<-	VI0
-	call	Bool_init
-	load	VR2 [VR0, 24]
-	load	VR3 [VR0, 16]
-	VR2	<-	VR2 <= VR3
-	store	VR2 [VR1, 12]
-	## condition in VR1, load effective value into VR2
-	load	VR2 [VR1, 12]
-	jumpf	VR2 ite_false3
+	load	VR1 [VR0, 24]
+	load	VR2 [VR0, 16]
+	VR1	<-	VR1 <= VR2
+	jumpf	VR1 ite_false3
 	## begin true branch
 	## begin dispatch - line 75
 	VR1	<-	str_const3
@@ -290,9 +246,9 @@ ite_end2:
 	VR1	<-	str_const0
 	VR4	<-	75
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing

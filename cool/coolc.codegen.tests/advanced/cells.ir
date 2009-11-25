@@ -60,9 +60,9 @@ Main.main:
 	VR1	<-	str_const0
 	VR4	<-	83
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -91,9 +91,9 @@ dispatch_notvoid0:
 	VR1	<-	str_const0
 	VR4	<-	84
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -117,21 +117,11 @@ dispatch_notvoid1:
 	## begin loop - line 86
 loop_start0:
 	## < operator - line 86
-	## create the result object - not in the original source
-	## begin new - line 86
-	VR2	<-	Bool_protObj
-	VI0	<-	VR2
-	call	Object.copy
-	VR2	<-	VI0
-	call	Bool_init
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
-	VR4	<-	VR1
-	VR3	<-	VR3 < VR4
-	store	VR3 [VR2, 12]
-	## condition in VR2, load effective value into VR3
-	load	VR3 [VR2, 12]
-	jumpf	VR3 loop_end0
+	VR2	<-	int_const1.val
+	load	VR2 [VR2, 0]
+	VR3	<-	VR1
+	VR2	<-	VR2 < VR3
+	jumpf	VR2 loop_end0
 	## begin dispatch - line 88
 	load	VR2 [VR0, 12]
 	## caller in VR2
@@ -140,9 +130,9 @@ loop_start0:
 	VR2	<-	str_const0
 	VR5	<-	88
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -166,9 +156,9 @@ dispatch_notvoid2:
 	VR2	<-	str_const0
 	VR5	<-	89
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -229,9 +219,9 @@ CellularAutomaton.print:
 	VR1	<-	str_const0
 	VR4	<-	17
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -248,9 +238,9 @@ dispatch_notvoid4:
 	VR2	<-	str_const0
 	VR5	<-	17
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -296,9 +286,9 @@ CellularAutomaton.num_cells:
 	VR1	<-	str_const0
 	VR4	<-	23
 	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
+	VR3	<-	Bool_protObj
 	VI0	<-	VR3
-	call Object.copy
+	call	Object.copy
 	VR3	<-	VI0
 	store	VR4 [VR3, 12]
 	# end boxing
@@ -335,9 +325,9 @@ CellularAutomaton.cell:
 	VR2	<-	str_const0
 	VR5	<-	27
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -348,9 +338,9 @@ dispatch_notvoid7:
 	## actual parameter 1
 	VR3	<-	VR1
 	# boxing integer from VR3 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR3 [VR4, 12]
 	# end boxing
@@ -359,9 +349,9 @@ dispatch_notvoid7:
 	VR4	<-	int_const0.val
 	load	VR4 [VR4, 0]
 	# boxing integer from VR4 to VR5
-	VR5	<-	Int_protObj
+	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
 	store	VR4 [VR5, 12]
 	# end boxing
@@ -388,21 +378,11 @@ CellularAutomaton.cell_left_neighbor:
 	VR1	<-	VI1
 	## begin if-then-else - line 31
 	## = operator - line 31
-	## create the result object - not in the original source
-	## begin new - line 31
-	VR2	<-	Bool_protObj
-	VI0	<-	VR2
-	call	Object.copy
-	VR2	<-	VI0
-	call	Bool_init
-	VR3	<-	VR1
-	VR4	<-	int_const1.val
-	load	VR4 [VR4, 0]
-	VR3	<-	VR3 = VR4
-	store	VR3 [VR2, 12]
-	## condition in VR2, load effective value into VR3
-	load	VR3 [VR2, 12]
-	jumpf	VR3 ite_false0
+	VR2	<-	VR1
+	VR3	<-	int_const1.val
+	load	VR3 [VR3, 0]
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false0
 	## begin true branch
 	## begin dispatch - line 32
 	VR2	<-	VR0
@@ -412,9 +392,9 @@ CellularAutomaton.cell_left_neighbor:
 	VR2	<-	str_const0
 	VR5	<-	32
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -432,9 +412,9 @@ dispatch_notvoid8:
 	VR3	<-	str_const0
 	VR6	<-	32
 	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
+	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
 	store	VR6 [VR5, 12]
 	# end boxing
@@ -473,9 +453,9 @@ ite_false0:
 	VR2	<-	str_const0
 	VR5	<-	34
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -511,49 +491,39 @@ CellularAutomaton.cell_right_neighbor:
 	VR1	<-	VI1
 	## begin if-then-else - line 39
 	## = operator - line 39
-	## create the result object - not in the original source
-	## begin new - line 39
-	VR2	<-	Bool_protObj
-	VI0	<-	VR2
-	call	Object.copy
-	VR2	<-	VI0
-	call	Bool_init
-	VR3	<-	VR1
+	VR2	<-	VR1
 	## - operator - line 39
 	## begin dispatch - line 39
-	VR4	<-	VR0
-	## caller in VR4
+	VR3	<-	VR0
+	## caller in VR3
 	## dispatch to void handling, ends at dispatch_notvoid11
-	jumpt	VR4 dispatch_notvoid11
-	VR4	<-	str_const0
-	VR7	<-	39
-	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
-	VI0	<-	VR6
-	call Object.copy
-	VR6	<-	VI0
-	store	VR7 [VR6, 12]
+	jumpt	VR3 dispatch_notvoid11
+	VR3	<-	str_const0
+	VR6	<-	39
+	# boxing integer from VR6 to VR5
+	VR5	<-	Bool_protObj
+	VI0	<-	VR5
+	call	Object.copy
+	VR5	<-	VI0
+	store	VR6 [VR5, 12]
 	# end boxing
-	VI0	<-	VR4
-	VI1	<-	VR6
+	VI0	<-	VR3
+	VI1	<-	VR5
 	call	_dispatch_abort
 dispatch_notvoid11:
 	## store self and actual parameters into VI's
-	VI0	<-	VR4
+	VI0	<-	VR3
 	## compute the target address
-	load	VR5 [VR4, 8]
-	load	VR5 [VR5, 36]
-	call	VR5
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
 	## fetch (and maybe unbox) the result
-	VR4	<-	VI0
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
-	VR4	<-	VR4 - VR5
-	VR3	<-	VR3 = VR4
-	store	VR3 [VR2, 12]
-	## condition in VR2, load effective value into VR3
-	load	VR3 [VR2, 12]
-	jumpf	VR3 ite_false1
+	VR3	<-	VI0
+	VR4	<-	int_const0.val
+	load	VR4 [VR4, 0]
+	VR3	<-	VR3 - VR4
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false1
 	## begin true branch
 	## begin dispatch - line 40
 	VR2	<-	VR0
@@ -563,9 +533,9 @@ dispatch_notvoid11:
 	VR2	<-	str_const0
 	VR5	<-	40
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -596,9 +566,9 @@ ite_false1:
 	VR2	<-	str_const0
 	VR5	<-	42
 	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
+	VR4	<-	Bool_protObj
 	VI0	<-	VR4
-	call Object.copy
+	call	Object.copy
 	VR4	<-	VI0
 	store	VR5 [VR4, 12]
 	# end boxing
@@ -634,35 +604,78 @@ CellularAutomaton.cell_at_next_evolution:
 	VR1	<-	VI1
 	## begin if-then-else - line 52
 	## = operator - line 52
-	## create the result object - not in the original source
-	## begin new - line 52
-	VR2	<-	Bool_protObj
-	VI0	<-	VR2
-	call	Object.copy
-	VR2	<-	VI0
-	call	Bool_init
 	## + operator - line 51
 	## + operator - line 50
 	## begin if-then-else - line 49
 	## = operator - line 49
 	## begin dispatch - line 49
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid14
+	jumpt	VR3 dispatch_notvoid14
+	VR3	<-	str_const0
+	VR6	<-	49
+	# boxing integer from VR6 to VR5
+	VR5	<-	Bool_protObj
+	VI0	<-	VR5
+	call	Object.copy
+	VR5	<-	VI0
+	store	VR6 [VR5, 12]
+	# end boxing
+	VI0	<-	VR3
+	VI1	<-	VR5
+	call	_dispatch_abort
+dispatch_notvoid14:
+	## actual parameter 1
+	VR4	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 40]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR4	<-	str_const2
+	VR5	<-	1
+	VI0	<-	VR5
+	VR5	<-	0
+	VI1	<-	VR5
+	VI2	<-	VR3
+	VI3	<-	VR4
+	call	equality_test
+	VR2	<-	VI0
+	jumpf	VR2 ite_false2
+	## begin true branch
+	VR2	<-	int_const0.val
+	load	VR2 [VR2, 0]
+	jump	ite_end2
+	## begin false branch
+ite_false2:
+	VR2	<-	int_const1.val
+	load	VR2 [VR2, 0]
+ite_end2:
+	## begin if-then-else - line 50
+	## = operator - line 50
+	## begin dispatch - line 50
 	VR4	<-	VR0
 	## caller in VR4
-	## dispatch to void handling, ends at dispatch_notvoid14
-	jumpt	VR4 dispatch_notvoid14
+	## dispatch to void handling, ends at dispatch_notvoid15
+	jumpt	VR4 dispatch_notvoid15
 	VR4	<-	str_const0
-	VR7	<-	49
+	VR7	<-	50
 	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
+	VR6	<-	Bool_protObj
 	VI0	<-	VR6
-	call Object.copy
+	call	Object.copy
 	VR6	<-	VI0
 	store	VR7 [VR6, 12]
 	# end boxing
 	VI0	<-	VR4
 	VI1	<-	VR6
 	call	_dispatch_abort
-dispatch_notvoid14:
+dispatch_notvoid15:
 	## actual parameter 1
 	VR5	<-	VR1
 	## store self and actual parameters into VI's
@@ -670,144 +683,85 @@ dispatch_notvoid14:
 	VI1	<-	VR5
 	## compute the target address
 	load	VR5 [VR4, 8]
-	load	VR5 [VR5, 40]
+	load	VR5 [VR5, 44]
 	call	VR5
 	## fetch (and maybe unbox) the result
 	VR4	<-	VI0
 	VR5	<-	str_const2
-	VR6	<-	bool_const1
+	VR6	<-	1
 	VI0	<-	VR6
-	VR6	<-	bool_const0
+	VR6	<-	0
 	VI1	<-	VR6
 	VI2	<-	VR4
 	VI3	<-	VR5
 	call	equality_test
 	VR3	<-	VI0
-	## condition in VR3, load effective value into VR4
-	load	VR4 [VR3, 12]
-	jumpf	VR4 ite_false2
+	jumpf	VR3 ite_false3
 	## begin true branch
 	VR3	<-	int_const0.val
 	load	VR3 [VR3, 0]
-	jump	ite_end2
-	## begin false branch
-ite_false2:
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
-ite_end2:
-	## begin if-then-else - line 50
-	## = operator - line 50
-	## begin dispatch - line 50
-	VR5	<-	VR0
-	## caller in VR5
-	## dispatch to void handling, ends at dispatch_notvoid15
-	jumpt	VR5 dispatch_notvoid15
-	VR5	<-	str_const0
-	VR8	<-	50
-	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
-	VI0	<-	VR7
-	call Object.copy
-	VR7	<-	VI0
-	store	VR8 [VR7, 12]
-	# end boxing
-	VI0	<-	VR5
-	VI1	<-	VR7
-	call	_dispatch_abort
-dispatch_notvoid15:
-	## actual parameter 1
-	VR6	<-	VR1
-	## store self and actual parameters into VI's
-	VI0	<-	VR5
-	VI1	<-	VR6
-	## compute the target address
-	load	VR6 [VR5, 8]
-	load	VR6 [VR6, 44]
-	call	VR6
-	## fetch (and maybe unbox) the result
-	VR5	<-	VI0
-	VR6	<-	str_const2
-	VR7	<-	bool_const1
-	VI0	<-	VR7
-	VR7	<-	bool_const0
-	VI1	<-	VR7
-	VI2	<-	VR5
-	VI3	<-	VR6
-	call	equality_test
-	VR4	<-	VI0
-	## condition in VR4, load effective value into VR5
-	load	VR5 [VR4, 12]
-	jumpf	VR5 ite_false3
-	## begin true branch
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
 	jump	ite_end3
 	## begin false branch
 ite_false3:
-	VR4	<-	int_const1.val
-	load	VR4 [VR4, 0]
+	VR3	<-	int_const1.val
+	load	VR3 [VR3, 0]
 ite_end3:
-	VR3	<-	VR3 + VR4
+	VR2	<-	VR2 + VR3
 	## begin if-then-else - line 51
 	## = operator - line 51
 	## begin dispatch - line 51
-	VR5	<-	VR0
-	## caller in VR5
+	VR4	<-	VR0
+	## caller in VR4
 	## dispatch to void handling, ends at dispatch_notvoid16
-	jumpt	VR5 dispatch_notvoid16
-	VR5	<-	str_const0
-	VR8	<-	51
-	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
-	VI0	<-	VR7
-	call Object.copy
-	VR7	<-	VI0
-	store	VR8 [VR7, 12]
+	jumpt	VR4 dispatch_notvoid16
+	VR4	<-	str_const0
+	VR7	<-	51
+	# boxing integer from VR7 to VR6
+	VR6	<-	Bool_protObj
+	VI0	<-	VR6
+	call	Object.copy
+	VR6	<-	VI0
+	store	VR7 [VR6, 12]
 	# end boxing
-	VI0	<-	VR5
-	VI1	<-	VR7
+	VI0	<-	VR4
+	VI1	<-	VR6
 	call	_dispatch_abort
 dispatch_notvoid16:
 	## actual parameter 1
-	VR6	<-	VR1
+	VR5	<-	VR1
 	## store self and actual parameters into VI's
-	VI0	<-	VR5
-	VI1	<-	VR6
+	VI0	<-	VR4
+	VI1	<-	VR5
 	## compute the target address
-	load	VR6 [VR5, 8]
-	load	VR6 [VR6, 48]
-	call	VR6
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 48]
+	call	VR5
 	## fetch (and maybe unbox) the result
-	VR5	<-	VI0
-	VR6	<-	str_const2
-	VR7	<-	bool_const1
-	VI0	<-	VR7
-	VR7	<-	bool_const0
-	VI1	<-	VR7
-	VI2	<-	VR5
-	VI3	<-	VR6
-	call	equality_test
 	VR4	<-	VI0
-	## condition in VR4, load effective value into VR5
-	load	VR5 [VR4, 12]
-	jumpf	VR5 ite_false4
+	VR5	<-	str_const2
+	VR6	<-	1
+	VI0	<-	VR6
+	VR6	<-	0
+	VI1	<-	VR6
+	VI2	<-	VR4
+	VI3	<-	VR5
+	call	equality_test
+	VR3	<-	VI0
+	jumpf	VR3 ite_false4
 	## begin true branch
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR3	<-	int_const0.val
+	load	VR3 [VR3, 0]
 	jump	ite_end4
 	## begin false branch
 ite_false4:
-	VR4	<-	int_const1.val
-	load	VR4 [VR4, 0]
+	VR3	<-	int_const1.val
+	load	VR3 [VR3, 0]
 ite_end4:
-	VR3	<-	VR3 + VR4
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
-	VR3	<-	VR3 = VR4
-	store	VR3 [VR2, 12]
-	## condition in VR2, load effective value into VR3
-	load	VR3 [VR2, 12]
-	jumpf	VR3 ite_false5
+	VR2	<-	VR2 + VR3
+	VR3	<-	int_const0.val
+	load	VR3 [VR3, 0]
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false5
 	## begin true branch
 	VR2	<-	str_const2
 	jump	ite_end5
@@ -836,9 +790,9 @@ CellularAutomaton.evolve:
 	VR3	<-	str_const0
 	VR6	<-	62
 	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
+	VR5	<-	Bool_protObj
 	VI0	<-	VR5
-	call Object.copy
+	call	Object.copy
 	VR5	<-	VI0
 	store	VR6 [VR5, 12]
 	# end boxing
@@ -868,20 +822,10 @@ dispatch_notvoid17:
 	## begin loop - line 65
 loop_start1:
 	## < operator - line 65
-	## create the result object - not in the original source
-	## begin new - line 65
-	VR4	<-	Bool_protObj
-	VI0	<-	VR4
-	call	Object.copy
-	VR4	<-	VI0
-	call	Bool_init
-	VR5	<-	VR1
-	VR6	<-	VR2
-	VR5	<-	VR5 < VR6
-	store	VR5 [VR4, 12]
-	## condition in VR4, load effective value into VR5
-	load	VR5 [VR4, 12]
-	jumpf	VR5 loop_end1
+	VR4	<-	VR1
+	VR5	<-	VR2
+	VR4	<-	VR4 < VR5
+	jumpf	VR4 loop_end1
 	## begin assign - line 67
 	## begin dispatch - line 67
 	VR4	<-	VR3
@@ -891,9 +835,9 @@ loop_start1:
 	VR4	<-	str_const0
 	VR7	<-	67
 	# boxing integer from VR7 to VR6
-	VR6	<-	Int_protObj
+	VR6	<-	Bool_protObj
 	VI0	<-	VR6
-	call Object.copy
+	call	Object.copy
 	VR6	<-	VI0
 	store	VR7 [VR6, 12]
 	# end boxing
@@ -910,9 +854,9 @@ dispatch_notvoid18:
 	VR5	<-	str_const0
 	VR8	<-	67
 	# boxing integer from VR8 to VR7
-	VR7	<-	Int_protObj
+	VR7	<-	Bool_protObj
 	VI0	<-	VR7
-	call Object.copy
+	call	Object.copy
 	VR7	<-	VI0
 	store	VR8 [VR7, 12]
 	# end boxing
