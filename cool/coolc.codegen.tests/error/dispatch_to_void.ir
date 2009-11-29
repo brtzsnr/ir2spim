@@ -3,7 +3,7 @@
 
 .function "Void dispatch handler", 2, 0
 void_disp_handler:
-	VR1	<-	str_const0
+	VR1	<-	VI0
 	VR3	<-	VI1
 	# boxing integer from VR3 to VR2
 	VR2	<-	Int_protObj
@@ -20,7 +20,7 @@ void_disp_handler:
 
 .function "Void case handler", 2, 0
 void_case_handler:
-	VR1	<-	str_const0
+	VR1	<-	VI0
 	VR3	<-	VI1
 	# boxing integer from VR3 to VR2
 	VR2	<-	Int_protObj
