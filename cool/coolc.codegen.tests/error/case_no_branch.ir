@@ -1,6 +1,40 @@
 #### code section
 	.code
 
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	str_const0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_dispatch_abort
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	str_const0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_case_abort2
+	return
+.end
+
 .function "Object init code", 1, 0
 Object_init:
 	return
@@ -52,18 +86,11 @@ Main_init:
 	## caller in VR1
 	## dispatch to void handling, ends at dispatch_notvoid0
 	jumpt	VR1 dispatch_notvoid0
-	VR1	<-	str_const0
-	VR4	<-	36
-	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
-	VI0	<-	VR3
-	call	Object.copy
-	VR3	<-	VI0
-	store	VR4 [VR3, 12]
-	# end boxing
-	VI0	<-	VR1
-	VI1	<-	VR3
-	call	_dispatch_abort
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	36
+	VI1	<-	VR2
+	call	void_disp_handler
 dispatch_notvoid0:
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
@@ -126,18 +153,11 @@ Main.main:
 	load	VR1 [VR0, 12]
 	## case on void handling, ends at case0_notvoid
 	jumpt	VR1 case0_notvoid
-	VR1	<-	str_const0
-	VR4	<-	41
-	# boxing integer from VR4 to VR3
-	VR3	<-	Int_protObj
-	VI0	<-	VR3
-	call	Object.copy
-	VR3	<-	VI0
-	store	VR4 [VR3, 12]
-	# end boxing
-	VI0	<-	VR1
-	VI1	<-	VR3
-	call	_case_abort2
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	41
+	VI1	<-	VR2
+	call	void_case_handler
 case0_notvoid:
 	load	VR2 [VR1, 0]
 case0_tag8:
@@ -148,18 +168,11 @@ case0_tag8:
 	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid1
 	jumpt	VR2 dispatch_notvoid1
-	VR2	<-	str_const0
-	VR5	<-	43
-	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
-	VI0	<-	VR4
-	call	Object.copy
-	VR4	<-	VI0
-	store	VR5 [VR4, 12]
-	# end boxing
-	VI0	<-	VR2
-	VI1	<-	VR4
-	call	_dispatch_abort
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	43
+	VI1	<-	VR3
+	call	void_disp_handler
 dispatch_notvoid1:
 	## actual parameter 1
 	VR3	<-	str_const2
@@ -181,18 +194,11 @@ case0_tag7:
 	## caller in VR2
 	## dispatch to void handling, ends at dispatch_notvoid2
 	jumpt	VR2 dispatch_notvoid2
-	VR2	<-	str_const0
-	VR5	<-	42
-	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
-	VI0	<-	VR4
-	call	Object.copy
-	VR4	<-	VI0
-	store	VR5 [VR4, 12]
-	# end boxing
-	VI0	<-	VR2
-	VI1	<-	VR4
-	call	_dispatch_abort
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	42
+	VI1	<-	VR3
+	call	void_disp_handler
 dispatch_notvoid2:
 	## actual parameter 1
 	VR3	<-	str_const1

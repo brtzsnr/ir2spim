@@ -1,6 +1,40 @@
 #### code section
 	.code
 
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	str_const0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_dispatch_abort
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	str_const0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_case_abort2
+	return
+.end
+
 .function "Object init code", 1, 0
 Object_init:
 	return
@@ -45,18 +79,11 @@ Main.main:
 	VR2	<-	VR1
 	## case on void handling, ends at case0_notvoid
 	jumpt	VR2 case0_notvoid
-	VR2	<-	str_const0
-	VR5	<-	9
-	# boxing integer from VR5 to VR4
-	VR4	<-	Int_protObj
-	VI0	<-	VR4
-	call	Object.copy
-	VR4	<-	VI0
-	store	VR5 [VR4, 12]
-	# end boxing
-	VI0	<-	VR2
-	VI1	<-	VR4
-	call	_case_abort2
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	9
+	VI1	<-	VR3
+	call	void_case_handler
 case0_notvoid:
 	load	VR3 [VR2, 0]
 case0_tag5:
@@ -67,18 +94,11 @@ case0_tag5:
 	## caller in VR3
 	## dispatch to void handling, ends at dispatch_notvoid0
 	jumpt	VR3 dispatch_notvoid0
-	VR3	<-	str_const0
-	VR6	<-	11
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
-	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
-	call	_dispatch_abort
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	11
+	VI1	<-	VR4
+	call	void_disp_handler
 dispatch_notvoid0:
 	## actual parameter 1
 	VR4	<-	str_const2
@@ -102,18 +122,11 @@ case0_tag0:
 	## caller in VR3
 	## dispatch to void handling, ends at dispatch_notvoid1
 	jumpt	VR3 dispatch_notvoid1
-	VR3	<-	str_const0
-	VR6	<-	10
-	# boxing integer from VR6 to VR5
-	VR5	<-	Int_protObj
-	VI0	<-	VR5
-	call	Object.copy
-	VR5	<-	VI0
-	store	VR6 [VR5, 12]
-	# end boxing
-	VI0	<-	VR3
-	VI1	<-	VR5
-	call	_dispatch_abort
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	10
+	VI1	<-	VR4
+	call	void_disp_handler
 dispatch_notvoid1:
 	## actual parameter 1
 	VR4	<-	str_const1
