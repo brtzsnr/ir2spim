@@ -1,0 +1,84 @@
+
+#
+# Test all instructions and directives
+#
+
+.code
+
+.function "Main.main_01", 0, 0
+Main.main_01:
+	# Copy instructions
+	VR0 <- 100
+label1:
+	VR1 <- VR2
+	
+	VR3 <- label1
+	VR4 <- VI0
+	VR5 <- VI1
+	
+	VI6 <- VR8
+	
+	# Arithmetic instructions
+	VR0 <- VR1 + VR2
+	VR1 <- 10 + 11
+	VR2 <- 5 + VR3
+	VR4 <- VR25 + 8 
+
+	VR0 <- VR1 - VR2
+	VR1 <- 10 - 11
+	VR2 <- 5 - VR3
+	VR4 <- VR25 - 8 
+
+	VR0 <- VR1 * VR2
+	VR1 <- 10 * 11
+	VR2 <- 5 * VR3 
+	VR4 <- VR25 * 8
+
+	VR0 <- VR1 / VR2
+	VR1 <- 10 / 11
+	VR2 <- 5 / VR3 
+	VR4 <- VR25 / 8
+	
+	VR4 <- ~ VR5
+	VR5 <- ~ 2
+	
+	return
+.end
+
+.function "Main.main_02", 1, 2
+Main.main_02:
+	# Change-of-flow instructions
+	
+label2:
+	jump label3
+	jumpt VR0 label2
+	jumpf VR5 label3
+	
+	call VR5
+	call Main.main_01
+label3:
+	return
+.end
+
+.function "Main.main_03", 2, 3
+	# load/store instructions
+	load VR0 [VR1, 8]
+	store VR0 [VR2, 16]
+	loadb VR5 [VR4, 1]
+	storeb VR6 [VR7, 3]
+		
+.end
+
+
+.data
+CONST100:
+	DW 100
+LABEL:
+	DL Main.main_01
+BYTE255:
+	DB 255
+STRING:
+	DB "sir ""mare""\0"
+STORAGE:
+	DS 1024
+	
