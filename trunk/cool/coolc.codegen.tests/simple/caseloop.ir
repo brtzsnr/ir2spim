@@ -218,8 +218,7 @@ Main.main:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin let - line 24
-	VR1	<-	int_const0.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## let var i in VR1
 	## begin let - line 25
 	## begin new - line 25
@@ -244,8 +243,7 @@ Main.main:
 loop_start0:
 	## < operator - line 29
 	VR5	<-	VR1
-	VR6	<-	int_const1.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1000
 	VR5	<-	VR5 < VR6
 	jumpf	VR5 loop_end0
 	## begin assign - line 30
@@ -263,136 +261,119 @@ case0_notvoid:
 case0_tag22:
 	VR7	<-	VR6 = 22
 	jumpf	VR7 case0_tag21
-	VR6	<-	int_const18.val
-	load	VR6 [VR6, 0]
+	VR6	<-	17
 	jump	case0_end
 case0_tag21:
 	VR7	<-	VR6 < 21
 	jumpt	VR7 case0_tag20
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag20
-	VR6	<-	int_const17.val
-	load	VR6 [VR6, 0]
+	VR6	<-	16
 	jump	case0_end
 case0_tag20:
 	VR7	<-	VR6 < 20
 	jumpt	VR7 case0_tag19
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag19
-	VR6	<-	int_const16.val
-	load	VR6 [VR6, 0]
+	VR6	<-	15
 	jump	case0_end
 case0_tag19:
 	VR7	<-	VR6 < 19
 	jumpt	VR7 case0_tag18
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag18
-	VR6	<-	int_const15.val
-	load	VR6 [VR6, 0]
+	VR6	<-	14
 	jump	case0_end
 case0_tag18:
 	VR7	<-	VR6 < 18
 	jumpt	VR7 case0_tag17
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag17
-	VR6	<-	int_const14.val
-	load	VR6 [VR6, 0]
+	VR6	<-	13
 	jump	case0_end
 case0_tag17:
 	VR7	<-	VR6 < 17
 	jumpt	VR7 case0_tag16
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag16
-	VR6	<-	int_const13.val
-	load	VR6 [VR6, 0]
+	VR6	<-	12
 	jump	case0_end
 case0_tag16:
 	VR7	<-	VR6 < 16
 	jumpt	VR7 case0_tag15
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag15
-	VR6	<-	int_const12.val
-	load	VR6 [VR6, 0]
+	VR6	<-	11
 	jump	case0_end
 case0_tag15:
 	VR7	<-	VR6 < 15
 	jumpt	VR7 case0_tag14
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag14
-	VR6	<-	int_const11.val
-	load	VR6 [VR6, 0]
+	VR6	<-	10
 	jump	case0_end
 case0_tag14:
 	VR7	<-	VR6 < 14
 	jumpt	VR7 case0_tag13
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag13
-	VR6	<-	int_const10.val
-	load	VR6 [VR6, 0]
+	VR6	<-	9
 	jump	case0_end
 case0_tag13:
 	VR7	<-	VR6 < 13
 	jumpt	VR7 case0_tag12
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag12
-	VR6	<-	int_const9.val
-	load	VR6 [VR6, 0]
+	VR6	<-	8
 	jump	case0_end
 case0_tag12:
 	VR7	<-	VR6 < 12
 	jumpt	VR7 case0_tag11
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag11
-	VR6	<-	int_const8.val
-	load	VR6 [VR6, 0]
+	VR6	<-	7
 	jump	case0_end
 case0_tag11:
 	VR7	<-	VR6 < 11
 	jumpt	VR7 case0_tag10
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag10
-	VR6	<-	int_const7.val
-	load	VR6 [VR6, 0]
+	VR6	<-	6
 	jump	case0_end
 case0_tag10:
 	VR7	<-	VR6 < 10
 	jumpt	VR7 case0_tag9
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag9
-	VR6	<-	int_const6.val
-	load	VR6 [VR6, 0]
+	VR6	<-	5
 	jump	case0_end
 case0_tag9:
 	VR7	<-	VR6 < 9
 	jumpt	VR7 case0_tag8
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag8
-	VR6	<-	int_const5.val
-	load	VR6 [VR6, 0]
+	VR6	<-	4
 	jump	case0_end
 case0_tag8:
 	VR7	<-	VR6 < 8
 	jumpt	VR7 case0_tag7
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag7
-	VR6	<-	int_const4.val
-	load	VR6 [VR6, 0]
+	VR6	<-	3
 	jump	case0_end
 case0_tag7:
 	VR7	<-	VR6 < 7
 	jumpt	VR7 case0_tag5
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_tag5
-	VR6	<-	int_const3.val
-	load	VR6 [VR6, 0]
+	VR6	<-	2
 	jump	case0_end
 case0_tag5:
 	VR7	<-	VR6 < 5
 	jumpt	VR7 case0_error
 	VR7	<-	22 < VR6
 	jumpt	VR7 case0_error
-	VR6	<-	int_const2.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1
 	jump	case0_end
 case0_error:
 	VI0	<-	VR5
@@ -404,8 +385,7 @@ case0_end:
 	## begin assign - line 50
 	## + operator - line 50
 	VR5	<-	VR1
-	VR6	<-	int_const2.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1
 	VR5	<-	VR5 + VR6
 	## store rhs from VR5 to let var i in VR1
 	VR1	<-	VR5
@@ -415,8 +395,7 @@ loop_end0:
 	## not operator - line 52
 	## = operator - line 52
 	VR5	<-	VR4
-	VR6	<-	int_const18.val
-	load	VR6 [VR6, 0]
+	VR6	<-	17
 	VR5	<-	VR5 = VR6
 	VR5	<-	1 - VR5
 	jumpf	VR5 ite_false0
@@ -443,8 +422,7 @@ dispatch_notvoid0:
 	jump	ite_end0
 	## begin false branch
 ite_false0:
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
+	VR5	<-	0
 ite_end0:
 	## begin dispatch - line 54
 	load	VR5 [VR0, 12]
@@ -469,16 +447,14 @@ dispatch_notvoid1:
 	## fetch (and maybe unbox) the result
 	VR5	<-	VI0
 	## begin assign - line 56
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
+	VR5	<-	0
 	## store rhs from VR5 to let var i in VR1
 	VR1	<-	VR5
 	## begin loop - line 57
 loop_start1:
 	## < operator - line 57
 	VR5	<-	VR1
-	VR6	<-	int_const1.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1000
 	VR5	<-	VR5 < VR6
 	jumpf	VR5 loop_end1
 	## begin assign - line 58
@@ -496,136 +472,119 @@ case1_notvoid:
 case1_tag22:
 	VR7	<-	VR6 = 22
 	jumpf	VR7 case1_tag21
-	VR6	<-	int_const18.val
-	load	VR6 [VR6, 0]
+	VR6	<-	17
 	jump	case1_end
 case1_tag21:
 	VR7	<-	VR6 < 21
 	jumpt	VR7 case1_tag20
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag20
-	VR6	<-	int_const17.val
-	load	VR6 [VR6, 0]
+	VR6	<-	16
 	jump	case1_end
 case1_tag20:
 	VR7	<-	VR6 < 20
 	jumpt	VR7 case1_tag19
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag19
-	VR6	<-	int_const16.val
-	load	VR6 [VR6, 0]
+	VR6	<-	15
 	jump	case1_end
 case1_tag19:
 	VR7	<-	VR6 < 19
 	jumpt	VR7 case1_tag18
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag18
-	VR6	<-	int_const15.val
-	load	VR6 [VR6, 0]
+	VR6	<-	14
 	jump	case1_end
 case1_tag18:
 	VR7	<-	VR6 < 18
 	jumpt	VR7 case1_tag17
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag17
-	VR6	<-	int_const14.val
-	load	VR6 [VR6, 0]
+	VR6	<-	13
 	jump	case1_end
 case1_tag17:
 	VR7	<-	VR6 < 17
 	jumpt	VR7 case1_tag16
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag16
-	VR6	<-	int_const13.val
-	load	VR6 [VR6, 0]
+	VR6	<-	12
 	jump	case1_end
 case1_tag16:
 	VR7	<-	VR6 < 16
 	jumpt	VR7 case1_tag15
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag15
-	VR6	<-	int_const12.val
-	load	VR6 [VR6, 0]
+	VR6	<-	11
 	jump	case1_end
 case1_tag15:
 	VR7	<-	VR6 < 15
 	jumpt	VR7 case1_tag14
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag14
-	VR6	<-	int_const11.val
-	load	VR6 [VR6, 0]
+	VR6	<-	10
 	jump	case1_end
 case1_tag14:
 	VR7	<-	VR6 < 14
 	jumpt	VR7 case1_tag13
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag13
-	VR6	<-	int_const10.val
-	load	VR6 [VR6, 0]
+	VR6	<-	9
 	jump	case1_end
 case1_tag13:
 	VR7	<-	VR6 < 13
 	jumpt	VR7 case1_tag12
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag12
-	VR6	<-	int_const9.val
-	load	VR6 [VR6, 0]
+	VR6	<-	8
 	jump	case1_end
 case1_tag12:
 	VR7	<-	VR6 < 12
 	jumpt	VR7 case1_tag11
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag11
-	VR6	<-	int_const8.val
-	load	VR6 [VR6, 0]
+	VR6	<-	7
 	jump	case1_end
 case1_tag11:
 	VR7	<-	VR6 < 11
 	jumpt	VR7 case1_tag10
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag10
-	VR6	<-	int_const7.val
-	load	VR6 [VR6, 0]
+	VR6	<-	6
 	jump	case1_end
 case1_tag10:
 	VR7	<-	VR6 < 10
 	jumpt	VR7 case1_tag9
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag9
-	VR6	<-	int_const6.val
-	load	VR6 [VR6, 0]
+	VR6	<-	5
 	jump	case1_end
 case1_tag9:
 	VR7	<-	VR6 < 9
 	jumpt	VR7 case1_tag8
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag8
-	VR6	<-	int_const5.val
-	load	VR6 [VR6, 0]
+	VR6	<-	4
 	jump	case1_end
 case1_tag8:
 	VR7	<-	VR6 < 8
 	jumpt	VR7 case1_tag7
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag7
-	VR6	<-	int_const4.val
-	load	VR6 [VR6, 0]
+	VR6	<-	3
 	jump	case1_end
 case1_tag7:
 	VR7	<-	VR6 < 7
 	jumpt	VR7 case1_tag5
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_tag5
-	VR6	<-	int_const3.val
-	load	VR6 [VR6, 0]
+	VR6	<-	2
 	jump	case1_end
 case1_tag5:
 	VR7	<-	VR6 < 5
 	jumpt	VR7 case1_error
 	VR7	<-	22 < VR6
 	jumpt	VR7 case1_error
-	VR6	<-	int_const2.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1
 	jump	case1_end
 case1_error:
 	VI0	<-	VR5
@@ -637,8 +596,7 @@ case1_end:
 	## begin assign - line 78
 	## + operator - line 78
 	VR5	<-	VR1
-	VR6	<-	int_const2.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1
 	VR5	<-	VR5 + VR6
 	## store rhs from VR5 to let var i in VR1
 	VR1	<-	VR5
@@ -648,8 +606,7 @@ loop_end1:
 	## not operator - line 80
 	## = operator - line 80
 	VR5	<-	VR4
-	VR6	<-	int_const2.val
-	load	VR6 [VR6, 0]
+	VR6	<-	1
 	VR5	<-	VR5 = VR6
 	VR5	<-	1 - VR5
 	jumpf	VR5 ite_false1
@@ -676,8 +633,7 @@ dispatch_notvoid2:
 	jump	ite_end1
 	## begin false branch
 ite_false1:
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
+	VR5	<-	0
 ite_end1:
 	## begin dispatch - line 82
 	load	VR5 [VR0, 12]
@@ -984,121 +940,101 @@ int_const19:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const19.val:
 	DW	25
 int_const18:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const18.val:
 	DW	17
 int_const17:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const17.val:
 	DW	16
 int_const16:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const16.val:
 	DW	15
 int_const15:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const15.val:
 	DW	14
 int_const14:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const14.val:
 	DW	13
 int_const13:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const13.val:
 	DW	12
 int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const12.val:
 	DW	11
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	10
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	9
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	8
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	7
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	6
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	5
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	4
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	3
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	2
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	1
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	1000
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	0
 bool_const1:
 	DW	2

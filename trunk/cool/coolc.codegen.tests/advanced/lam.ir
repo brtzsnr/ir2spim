@@ -74,8 +74,7 @@ LambdaListRef_init:
 	VR0	<-	VI0
 	call	Object_init
 	## begin assign - line 77
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store rhs in VR1 to attribute nextNum
 	store	VR1 [VR0, 12]
 	return
@@ -256,8 +255,7 @@ dispatch_notvoid2:
 	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -462,8 +460,7 @@ LambdaListRef.reset:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin assign - line 85
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store rhs in VR1 to attribute nextNum
 	store	VR1 [VR0, 12]
 	## begin assign - line 86
@@ -521,15 +518,13 @@ dispatch_notvoid9:
 	## begin assign - line 93
 	## + operator - line 93
 	load	VR3 [VR0, 12]
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	VR3	<-	VR3 + VR4
 	## store rhs in VR3 to attribute nextNum
 	store	VR3 [VR0, 12]
 	## - operator - line 94
 	load	VR3 [VR0, 12]
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	VR3	<-	VR3 - VR4
 	## store result into the output register
 	VI0	<-	VR3
@@ -3741,8 +3736,7 @@ dispatch_notvoid140:
 	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -6075,199 +6069,166 @@ int_const32:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const32.val:
 	DW	21
 int_const31:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const31.val:
 	DW	47
 int_const30:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const30.val:
 	DW	45
 int_const29:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const29.val:
 	DW	27
 int_const28:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const28.val:
 	DW	39
 int_const27:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const27.val:
 	DW	35
 int_const26:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const26.val:
 	DW	14
 int_const25:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const25.val:
 	DW	5
 int_const24:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const24.val:
 	DW	23
 int_const23:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const23.val:
 	DW	48
 int_const22:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const22.val:
 	DW	31
 int_const21:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const21.val:
 	DW	36
 int_const20:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const20.val:
 	DW	18
 int_const19:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const19.val:
 	DW	37
 int_const18:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const18.val:
 	DW	30
 int_const17:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const17.val:
 	DW	56
 int_const16:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const16.val:
 	DW	61
 int_const15:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const15.val:
 	DW	20
 int_const14:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const14.val:
 	DW	46
 int_const13:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const13.val:
 	DW	50
 int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const12.val:
 	DW	24
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	2
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	7
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	9
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	10
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	12
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	13
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	8
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	6
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	3
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	4
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	0
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	1
 bool_const1:
 	DW	2
@@ -6506,14 +6467,14 @@ LambdaListRef_protObj:
 	DW	6
 	DW	5
 	DL	LambdaListRef_dispatch
-	DL	int_const1.val
+	DW	0
 	DW	0
 LambdaListNE_protObj:
 	DW	7
 	DW	7
 	DL	LambdaListNE_dispatch
 	DW	0
-	DL	int_const1.val
+	DW	0
 	DW	0
 	DW	0
 VarList_protObj:

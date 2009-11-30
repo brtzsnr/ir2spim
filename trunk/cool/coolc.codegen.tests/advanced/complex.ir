@@ -102,11 +102,9 @@ Main.main:
 	call	void_disp_handler
 dispatch_notvoid0:
 	## actual parameter 1
-	VR2	<-	int_const0.val
-	load	VR2 [VR2, 0]
+	VR2	<-	2
 	## actual parameter 2
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
+	VR3	<-	3
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -261,8 +259,7 @@ Complex.print:
 	## begin if-then-else - line 25
 	## = operator - line 25
 	load	VR1 [VR0, 16]
-	VR2	<-	int_const2.val
-	load	VR2 [VR2, 0]
+	VR2	<-	0
 	VR1	<-	VR1 = VR2
 	jumpf	VR1 ite_false1
 	## begin true branch
@@ -600,67 +597,56 @@ int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	26
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	1
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	13
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	9
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	10
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	6
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	4
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	7
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	0
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	3
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	2
 bool_const1:
 	DW	2
@@ -749,5 +735,5 @@ Complex_protObj:
 	DW	6
 	DW	5
 	DL	Complex_dispatch
-	DL	int_const2.val
-	DL	int_const2.val
+	DW	0
+	DW	0

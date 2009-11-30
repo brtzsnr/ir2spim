@@ -108,8 +108,7 @@ A.init:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin assign - line 8
-	VR1	<-	int_const0.val
-	load	VR1 [VR1, 0]
+	VR1	<-	10
 	## store rhs in VR1 to attribute i
 	store	VR1 [VR0, 12]
 	VR1	<-	VR0
@@ -190,8 +189,7 @@ case0_error:
 	call	_case_abort
 case0_end:
 	VR1	<-	VR2
-	VR1	<-	int_const3.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -202,8 +200,7 @@ B.init:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin assign - line 18
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	20
 	## store rhs in VR1 to attribute i
 	store	VR1 [VR0, 12]
 	VR1	<-	VR0
@@ -217,8 +214,7 @@ C.init:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
 	## begin assign - line 28
-	VR1	<-	int_const2.val
-	load	VR1 [VR1, 0]
+	VR1	<-	30
 	## store rhs in VR1 to attribute i
 	store	VR1 [VR0, 12]
 	VR1	<-	VR0
@@ -371,67 +367,56 @@ int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	13
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	9
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	3
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	6
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	2
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	1
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	4
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	0
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	30
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	20
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	10
 bool_const1:
 	DW	2
@@ -520,7 +505,7 @@ A_protObj:
 	DW	5
 	DW	4
 	DL	A_dispatch
-	DL	int_const3.val
+	DW	0
 Main_protObj:
 	DW	6
 	DW	5
@@ -531,9 +516,9 @@ B_protObj:
 	DW	7
 	DW	4
 	DL	B_dispatch
-	DL	int_const3.val
+	DW	0
 C_protObj:
 	DW	8
 	DW	4
 	DL	C_dispatch
-	DL	int_const3.val
+	DW	0

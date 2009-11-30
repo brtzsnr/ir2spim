@@ -130,14 +130,12 @@ dispatch_notvoid1:
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
 	## begin let - line 85
-	VR1	<-	int_const2.val
-	load	VR1 [VR1, 0]
+	VR1	<-	20
 	## let var countdown in VR1
 	## begin loop - line 86
 loop_start0:
 	## < operator - line 86
-	VR2	<-	int_const1.val
-	load	VR2 [VR2, 0]
+	VR2	<-	0
 	VR3	<-	VR1
 	VR2	<-	VR2 < VR3
 	jumpf	VR2 loop_end0
@@ -182,8 +180,7 @@ dispatch_notvoid3:
 	## begin assign - line 90
 	## - operator - line 90
 	VR2	<-	VR1
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
+	VR3	<-	1
 	VR2	<-	VR2 - VR3
 	## store rhs from VR2 to let var countdown in VR1
 	VR1	<-	VR2
@@ -323,8 +320,7 @@ dispatch_notvoid7:
 	# end boxing
 	VR3	<-	VR4
 	## actual parameter 2
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	# boxing integer from VR4 to VR5
 	VR5	<-	Int_protObj
 	VI0	<-	VR5
@@ -356,8 +352,7 @@ CellularAutomaton.cell_left_neighbor:
 	## begin if-then-else - line 31
 	## = operator - line 31
 	VR2	<-	VR1
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
+	VR3	<-	0
 	VR2	<-	VR2 = VR3
 	jumpf	VR2 ite_false0
 	## begin true branch
@@ -393,8 +388,7 @@ dispatch_notvoid9:
 	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	VR3	<-	VR3 - VR4
 	## store self and actual parameters into VI's
 	VI0	<-	VR2
@@ -422,8 +416,7 @@ dispatch_notvoid10:
 	## actual parameter 1
 	## - operator - line 34
 	VR3	<-	VR1
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	VR3	<-	VR3 - VR4
 	## store self and actual parameters into VI's
 	VI0	<-	VR2
@@ -468,8 +461,7 @@ dispatch_notvoid11:
 	call	VR4
 	## fetch (and maybe unbox) the result
 	VR3	<-	VI0
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	VR3	<-	VR3 - VR4
 	VR2	<-	VR2 = VR3
 	jumpf	VR2 ite_false1
@@ -486,8 +478,7 @@ dispatch_notvoid11:
 	call	void_disp_handler
 dispatch_notvoid12:
 	## actual parameter 1
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
+	VR3	<-	0
 	## store self and actual parameters into VI's
 	VI0	<-	VR2
 	VI1	<-	VR3
@@ -514,8 +505,7 @@ dispatch_notvoid13:
 	## actual parameter 1
 	## + operator - line 42
 	VR3	<-	VR1
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	VR3	<-	VR3 + VR4
 	## store self and actual parameters into VI's
 	VI0	<-	VR2
@@ -576,13 +566,11 @@ dispatch_notvoid14:
 	VR2	<-	VI0
 	jumpf	VR2 ite_false2
 	## begin true branch
-	VR2	<-	int_const0.val
-	load	VR2 [VR2, 0]
+	VR2	<-	1
 	jump	ite_end2
 	## begin false branch
 ite_false2:
-	VR2	<-	int_const1.val
-	load	VR2 [VR2, 0]
+	VR2	<-	0
 ite_end2:
 	## begin if-then-else - line 50
 	## = operator - line 50
@@ -619,13 +607,11 @@ dispatch_notvoid15:
 	VR3	<-	VI0
 	jumpf	VR3 ite_false3
 	## begin true branch
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
+	VR3	<-	1
 	jump	ite_end3
 	## begin false branch
 ite_false3:
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
+	VR3	<-	0
 ite_end3:
 	VR2	<-	VR2 + VR3
 	## begin if-then-else - line 51
@@ -663,17 +649,14 @@ dispatch_notvoid16:
 	VR3	<-	VI0
 	jumpf	VR3 ite_false4
 	## begin true branch
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
+	VR3	<-	1
 	jump	ite_end4
 	## begin false branch
 ite_false4:
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
+	VR3	<-	0
 ite_end4:
 	VR2	<-	VR2 + VR3
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
+	VR3	<-	1
 	VR2	<-	VR2 = VR3
 	jumpf	VR2 ite_false5
 	## begin true branch
@@ -781,8 +764,7 @@ dispatch_notvoid19:
 	## begin assign - line 68
 	## + operator - line 68
 	VR4	<-	VR1
-	VR5	<-	int_const0.val
-	load	VR5 [VR5, 0]
+	VR5	<-	1
 	VR4	<-	VR4 + VR5
 	## store rhs from VR4 to let var position in VR1
 	VR1	<-	VR4
@@ -944,79 +926,66 @@ int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const12.val:
 	DW	24
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	19
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	13
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	9
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	10
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	3
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	6
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	2
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	17
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	4
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	20
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	0
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	1
 bool_const1:
 	DW	2

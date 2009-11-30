@@ -1132,115 +1132,96 @@ int_const18:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const18.val:
 	DW	28
 int_const17:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const17.val:
 	DW	12
 int_const16:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const16.val:
 	DW	26
 int_const15:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const15.val:
 	DW	29
 int_const14:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const14.val:
 	DW	44
 int_const13:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const13.val:
 	DW	22
 int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const12.val:
 	DW	19
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	11
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	13
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	9
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	10
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	6
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	2
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	7
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	8
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	3
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	4
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	0
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	1
 bool_const1:
 	DW	2

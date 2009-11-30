@@ -117,8 +117,7 @@ dispatch_notvoid1:
 	call	void_disp_handler
 dispatch_notvoid2:
 	## actual parameter 1
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	1
 	## store self and actual parameters into VI's
 	VI0	<-	VR3
 	VI1	<-	VR4
@@ -141,8 +140,7 @@ dispatch_notvoid2:
 	call	void_disp_handler
 dispatch_notvoid3:
 	## actual parameter 1
-	VR5	<-	int_const1.val
-	load	VR5 [VR5, 0]
+	VR5	<-	2
 	## store self and actual parameters into VI's
 	VI0	<-	VR4
 	VI1	<-	VR5
@@ -228,8 +226,7 @@ Main.g:
 	VR1	<-	VI1
 	## + operator - line 11
 	VR2	<-	VR1
-	VR3	<-	int_const2.val
-	load	VR3 [VR3, 0]
+	VR3	<-	5
 	VR2	<-	VR2 + VR3
 	## store result into the output register
 	VI0	<-	VR2
@@ -243,8 +240,7 @@ Main.h:
 	VR1	<-	VI1
 	## + operator - line 12
 	VR2	<-	VR1
-	VR3	<-	int_const3.val
-	load	VR3 [VR3, 0]
+	VR3	<-	7
 	VR2	<-	VR2 + VR3
 	## store result into the output register
 	VI0	<-	VR2
@@ -361,73 +357,61 @@ int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	22
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	13
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	9
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	10
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	3
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	6
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	4
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	0
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	7
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	5
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	2
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	1
 bool_const1:
 	DW	2

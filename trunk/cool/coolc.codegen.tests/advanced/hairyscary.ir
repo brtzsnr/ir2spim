@@ -110,8 +110,7 @@ Bazz_init:
 	VR0	<-	VI0
 	call	IO_init
 	## begin assign - line 37
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	1
 	## store rhs in VR1 to attribute h
 	store	VR1 [VR0, 12]
 	## begin assign - line 39
@@ -602,8 +601,7 @@ dispatch_notvoid12:
 	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	VR1	<-	int_const2.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -619,8 +617,7 @@ Bazz.doh:
 	## begin assign - line 50
 	## + operator - line 50
 	load	VR2 [VR0, 12]
-	VR3	<-	int_const1.val
-	load	VR3 [VR3, 0]
+	VR3	<-	1
 	VR2	<-	VR2 + VR3
 	## store rhs in VR2 to attribute h
 	store	VR2 [VR0, 12]
@@ -642,8 +639,7 @@ Foo.doh:
 	## begin assign - line 12
 	## + operator - line 12
 	load	VR2 [VR0, 12]
-	VR3	<-	int_const0.val
-	load	VR3 [VR3, 0]
+	VR3	<-	2
 	VR2	<-	VR2 + VR3
 	## store rhs in VR2 to attribute h
 	store	VR2 [VR0, 12]
@@ -801,61 +797,51 @@ int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	29
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	13
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	9
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	10
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	6
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	3
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	4
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	0
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	1
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	2
 bool_const1:
 	DW	2
@@ -980,39 +966,39 @@ Bazz_protObj:
 	DW	6
 	DW	6
 	DL	Bazz_dispatch
-	DL	int_const2.val
+	DW	0
 	DW	0
 	DW	0
 Foo_protObj:
 	DW	7
 	DW	8
 	DL	Foo_dispatch
-	DL	int_const2.val
 	DW	0
 	DW	0
 	DW	0
-	DL	int_const2.val
+	DW	0
+	DW	0
 Razz_protObj:
 	DW	8
 	DW	10
 	DL	Razz_dispatch
-	DL	int_const2.val
 	DW	0
 	DW	0
 	DW	0
-	DL	int_const2.val
 	DW	0
-	DL	int_const2.val
+	DW	0
+	DW	0
+	DW	0
 Bar_protObj:
 	DW	9
 	DW	12
 	DL	Bar_dispatch
-	DL	int_const2.val
 	DW	0
 	DW	0
 	DW	0
-	DL	int_const2.val
 	DW	0
-	DL	int_const2.val
-	DL	int_const2.val
+	DW	0
+	DW	0
+	DW	0
+	DW	0
 	DW	0
