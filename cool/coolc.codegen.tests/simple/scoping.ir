@@ -68,8 +68,7 @@ Bob_init:
 	VR1	<-	0
 	store	VR1 [VR0, 12]
 	## begin assign - line 3
-	VR1	<-	int_const0.val
-	load	VR1 [VR1, 0]
+	VR1	<-	4
 	## store rhs in VR1 to attribute y
 	store	VR1 [VR0, 16]
 	return
@@ -81,8 +80,7 @@ Main_init:
 	VR0	<-	VI0
 	call	Bob_init
 	## begin assign - line 7
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	23
 	## store rhs in VR1 to attribute z
 	store	VR1 [VR0, 20]
 	return
@@ -127,8 +125,7 @@ dispatch_notvoid0:
 	## begin assign - line 11
 	## + operator - line 11
 	load	VR3 [VR0, 16]
-	VR4	<-	int_const0.val
-	load	VR4 [VR4, 0]
+	VR4	<-	4
 	VR3	<-	VR3 + VR4
 	## store rhs in VR3 to attribute y
 	store	VR3 [VR0, 16]
@@ -269,13 +266,11 @@ dispatch_notvoid4:
 	call	void_disp_handler
 dispatch_notvoid5:
 	## actual parameter 1
-	VR2	<-	int_const2.val
-	load	VR2 [VR2, 0]
+	VR2	<-	5
 	## actual parameter 2
 	## + operator - line 23
 	load	VR3 [VR0, 20]
-	VR4	<-	int_const3.val
-	load	VR4 [VR4, 0]
+	VR4	<-	2
 	VR3	<-	VR3 + VR4
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
@@ -443,73 +438,61 @@ int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	24
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	1
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	13
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	9
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	10
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	6
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	3
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	0
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	2
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	5
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	23
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	4
 bool_const1:
 	DW	2
@@ -591,12 +574,12 @@ Bob_protObj:
 	DW	5
 	DW	5
 	DL	Bob_dispatch
-	DL	int_const4.val
-	DL	int_const4.val
+	DW	0
+	DW	0
 Main_protObj:
 	DW	6
 	DW	6
 	DL	Main_dispatch
-	DL	int_const4.val
-	DL	int_const4.val
-	DL	int_const4.val
+	DW	0
+	DW	0
+	DW	0

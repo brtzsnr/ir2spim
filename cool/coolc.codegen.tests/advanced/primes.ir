@@ -88,8 +88,7 @@ dispatch_notvoid0:
 	call	VR2
 	## fetch (and maybe unbox) the result
 	VR1	<-	VI0
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	2
 	## store rhs in VR1 to attribute out
 	store	VR1 [VR0, 12]
 	## begin assign - line 39
@@ -99,8 +98,7 @@ dispatch_notvoid0:
 	VR1	<-	0
 	store	VR1 [VR0, 20]
 	## begin assign - line 43
-	VR1	<-	int_const2.val
-	load	VR1 [VR1, 0]
+	VR1	<-	500
 	## store rhs in VR1 to attribute stop
 	store	VR1 [VR0, 24]
 	## begin assign - line 45
@@ -111,14 +109,12 @@ loop_start0:
 	## begin assign - line 49
 	## + operator - line 49
 	load	VR1 [VR0, 16]
-	VR2	<-	int_const3.val
-	load	VR2 [VR2, 0]
+	VR2	<-	1
 	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute testee
 	store	VR1 [VR0, 16]
 	## begin assign - line 50
-	VR1	<-	int_const1.val
-	load	VR1 [VR1, 0]
+	VR1	<-	2
 	## store rhs in VR1 to attribute divisor
 	store	VR1 [VR0, 20]
 	## begin loop - line 53
@@ -149,8 +145,7 @@ ite_false0:
 	VR3	<-	VR3 / VR4
 	VR2	<-	VR2 * VR3
 	VR1	<-	VR1 - VR2
-	VR2	<-	int_const0.val
-	load	VR2 [VR2, 0]
+	VR2	<-	0
 	VR1	<-	VR1 = VR2
 	jumpf	VR1 ite_false1
 	## begin true branch
@@ -165,8 +160,7 @@ ite_end0:
 	## begin assign - line 60
 	## + operator - line 60
 	load	VR1 [VR0, 20]
-	VR2	<-	int_const3.val
-	load	VR2 [VR2, 0]
+	VR2	<-	1
 	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute divisor
 	store	VR1 [VR0, 20]
@@ -241,8 +235,7 @@ dispatch_notvoid2:
 	jump	ite_end2
 	## begin false branch
 ite_false2:
-	VR1	<-	int_const0.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 ite_end2:
 	## begin if-then-else - line 74
 	## <= operator - line 74
@@ -286,8 +279,7 @@ loop_end0:
 Main.main:
 	## store self and arguments into the reserved VR0..VR0
 	VR0	<-	VI0
-	VR1	<-	int_const0.val
-	load	VR1 [VR1, 0]
+	VR1	<-	0
 	## store result into the output register
 	VI0	<-	VR1
 	return
@@ -424,85 +416,71 @@ int_const13:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const13.val:
 	DW	25
 int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const12.val:
 	DW	22
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const11.val:
 	DW	11
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	8
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	13
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	9
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	10
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	3
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	6
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	4
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	1
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	500
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	2
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	0
 bool_const1:
 	DW	2
@@ -571,8 +549,8 @@ Main_protObj:
 	DW	5
 	DW	8
 	DL	Main_dispatch
-	DL	int_const0.val
-	DL	int_const0.val
-	DL	int_const0.val
-	DL	int_const0.val
+	DW	0
+	DW	0
+	DW	0
+	DW	0
 	DW	0

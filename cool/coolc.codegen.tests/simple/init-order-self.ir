@@ -78,8 +78,7 @@ Main_init:
 	call	void_disp_handler
 dispatch_notvoid0:
 	## actual parameter 1
-	VR2	<-	int_const0.val
-	load	VR2 [VR2, 0]
+	VR2	<-	1
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -104,8 +103,7 @@ dispatch_notvoid0:
 	call	void_disp_handler
 dispatch_notvoid1:
 	## actual parameter 1
-	VR2	<-	int_const1.val
-	load	VR2 [VR2, 0]
+	VR2	<-	2
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -130,8 +128,7 @@ dispatch_notvoid1:
 	call	void_disp_handler
 dispatch_notvoid2:
 	## actual parameter 1
-	VR2	<-	int_const2.val
-	load	VR2 [VR2, 0]
+	VR2	<-	3
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -156,8 +153,7 @@ dispatch_notvoid2:
 	call	void_disp_handler
 dispatch_notvoid3:
 	## actual parameter 1
-	VR2	<-	int_const3.val
-	load	VR2 [VR2, 0]
+	VR2	<-	4
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -182,8 +178,7 @@ dispatch_notvoid3:
 	call	void_disp_handler
 dispatch_notvoid4:
 	## actual parameter 1
-	VR2	<-	int_const4.val
-	load	VR2 [VR2, 0]
+	VR2	<-	5
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -208,8 +203,7 @@ dispatch_notvoid4:
 	call	void_disp_handler
 dispatch_notvoid5:
 	## actual parameter 1
-	VR2	<-	int_const5.val
-	load	VR2 [VR2, 0]
+	VR2	<-	6
 	## store self and actual parameters into VI's
 	VI0	<-	VR1
 	VI1	<-	VR2
@@ -407,67 +401,56 @@ int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const10.val:
 	DW	32
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const9.val:
 	DW	13
 int_const8:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const8.val:
 	DW	9
 int_const7:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const7.val:
 	DW	10
 int_const6:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const6.val:
 	DW	0
 int_const5:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const5.val:
 	DW	6
 int_const4:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const4.val:
 	DW	5
 int_const3:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const3.val:
 	DW	4
 int_const2:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const2.val:
 	DW	3
 int_const1:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const1.val:
 	DW	2
 int_const0:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-int_const0.val:
 	DW	1
 bool_const1:
 	DW	2
