@@ -1,9 +1,0 @@
-program x;
-var t:real;
-function z(u:char):real
-begin
-z:=u;
-end;
-begin
-t:=zz
-end.

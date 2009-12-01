@@ -1,5 +1,0 @@
-program me;
-begin
-repeat;
-until false
-end.

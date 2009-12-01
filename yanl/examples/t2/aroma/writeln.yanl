@@ -1,9 +1,0 @@
-program writeln;
-procedure writeln
-begin
-  writecharacter((char)10);
-end;
-
-begin
-  writeln;
-end.

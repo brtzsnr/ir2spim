@@ -1,8 +1,0 @@
-# Nu e voie cu operator unar intre 2 operanzi
-
-program dude;
-var x,y:boolean;
-begin
-   if (x not y)
-			  writestring("not ok");
-end.

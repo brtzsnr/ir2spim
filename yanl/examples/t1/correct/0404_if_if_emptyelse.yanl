@@ -1,8 +1,0 @@
-program me;
-var a:integer;
-begin 
-if true then 
-    if true then 
-        a:=2 else 
-
-end.

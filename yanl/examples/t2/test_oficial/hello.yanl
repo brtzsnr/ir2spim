@@ -1,4 +1,0 @@
-program Hello;
-begin
-  writeString("Hello World!");
-end.

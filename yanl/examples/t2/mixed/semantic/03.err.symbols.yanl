@@ -1,6 +1,0 @@
-program test03; # must not find the expression b
-var a: integer;
-begin
-	a := b;		# line 4: error - STDIN(4, 6): variable b cannot be traced to a declaration
-	a := b.c	# line 5: error - STDIN(5, 6): OBJECT b cannot be traced to a TYPE declaration
-end.

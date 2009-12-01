@@ -1,5 +1,0 @@
-program me;
-var x:real;
-begin
-x:=100
-end.

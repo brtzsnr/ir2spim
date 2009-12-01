@@ -1,5 +1,0 @@
-program x;
-var z:char;
-begin
-z:=3
-end.

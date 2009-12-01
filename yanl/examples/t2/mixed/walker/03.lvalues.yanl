@@ -1,9 +1,0 @@
-program test3; # tests direct lvalue assignments; Yanl 1.0+
-var a: array[1..10] of integer;
-	b: integer;
-begin
-	b := 0;	# line 5
-	a[1] := b + 1;
-	a[2] := a[1] - 1;
-	a[3] := (a[1] + a[2]) div 2
-end.

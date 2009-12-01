@@ -1,9 +1,0 @@
-program test2; # tests a simple if then else with some assignments; Yanl 1.0+
-var a: boolean;
-begin
-	a := true;
-	if a then
-		a := false
-	else
-		a := true
-end.

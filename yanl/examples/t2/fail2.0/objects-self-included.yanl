@@ -1,9 +1,0 @@
-program me;
-
-type self_inclusive = object
-   a:self_inclusive;
-end;
-
-
-begin
-end.
