@@ -1,0 +1,87 @@
+# Acest test a fost "generat" de mana si este posibil ca sa se fi
+# strecurat greseli. Daca observati vreuna va rog sa postati pe
+# grupul de discutii.
+
+.code
+
+Main:
+    VR0 <- 1 # testee
+
+    # while true
+    loop1:
+        VR0 <- VR0 + 1
+        VR1 <- 2 # divisor
+
+        # while if [...]
+        loop2:
+            # if testee < divisor * divisor
+            VR4 <- VR1 * VR1
+            VR4 <- VR0 < VR4
+            jumpf VR4 label1
+                # then branch
+                VR3 <- 0
+                jump label2
+            label1:
+                # else branch
+
+                # if testee - divisor*(testee/divisor) = 0
+                VR4 <- VR0 / VR1
+                VR4 <- VR1 * VR4
+                VR4 <- VR0 - VR4
+                VR4 <- VR4 = 0
+                jumpf VR4 label3
+                    # then branch
+                    VR3 <- 0
+                    jump label4
+                label3:
+                    # else branch
+                    VR3 <- 1
+                label4:
+            label2:
+
+            jumpt VR3 end_loop2
+            VR1 <- VR1 + 1
+        end_loop2:
+
+        # if testee < divisor * divisor
+        VR5 <- VR1 * VR1
+        VR5 <- VR0 < VR5
+        jumpf VR5 label5
+            # then branch
+            VI0 <- VR0
+            VR5 <- call OutInt
+            loadl VR5 __str_ct1
+            VI0 <- VR5
+            VR5 <- call OutString
+            jump label6
+
+        label5:
+            #else branch
+            VR5 <- 0
+
+        label6:
+
+        # if stop <= testee
+        loadl VR5 __stop
+        load VR5 [VR5, 0]
+        VR5 <- VR5 <= VR0
+        jumpf VR5 label7
+            # then branch
+            loadl VR5 __str_ct2
+            VR5 <- call Abort
+            jump label8
+
+        label7:
+            # else branch
+            VR5 <- 0
+
+        label8:
+        jump loop1
+
+    return 0
+
+.data
+__stop: DW 500
+__str_ct1: DS " is prime.\n\0"
+__str_ct2: DS "halt\0"
+

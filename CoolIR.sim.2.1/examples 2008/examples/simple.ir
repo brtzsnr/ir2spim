@@ -1,0 +1,30 @@
+.code
+
+Main:
+    VR0 <- 0
+    loadl VR5 __stop
+    load VR1 [VR5, 0]
+    __loop:
+        VR2 <- VR0 < VR1
+        jumpf VR2 __else1
+            VR3 <- 1
+            jump __endif1
+        __else1:
+            VR3 <- 0
+        __endif1:
+
+        jumpf VR3 __end_loop
+
+        VI0 <- VR0
+        VR4 <- call OutInt
+        VR6 <- VR1 / 5
+        VR0 <- VR0 + VR6
+        jump __loop
+
+    __end_loop:
+
+    return 0
+
+.data
+__stop: DW 10
+

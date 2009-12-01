@@ -1,0 +1,171 @@
+.code
+
+.function "Main init code",1,0 
+Main_init:
+    return
+.end
+
+.function "Main.main",1,1 
+Main.main:
+    VR0 <- VI0             # load self
+	
+    jumpf VR0 Main.L.2
+    load VR1 [VR0, 8]     # vtable pointer
+    load VR2 [VR1, 24]    # address of self.in_string
+	VI0 <- VR0
+	call VR2
+	VR3 <- VI0
+
+	jumpf VR3 Main.L.2
+    load VR1 [VR3, 8]     # vtable pointer
+    load VR2 [VR1, 16]    # address of String.length
+	VI0 <- VR3
+	call VR2
+	VR4 <- VI0
+	
+	load VR4 [VR4,12]	  # Unbox
+	
+    VR5 <- Int_protObj     # Boxing the value for IO.out_int
+    VI0 <- VR5
+    call Object.copy       # Copy Int prototype object
+    VR5 <- VI0
+    store VR4 [VR5, 12]    # Initialize Int object with the value
+
+    jumpf VR0 Main.L.3
+    load VR8 [VR0, 8]     # vtable pointer
+    load VR9 [VR8, 12]    # address of self.out_int
+    VI0 <- VR0     
+    VI1 <- VR5
+    call VR9
+
+    VI0 <- VR4
+    return
+
+Main.L.2:
+    VR1 <- Int.c3
+	jump Main.L.1
+
+Main.L.3:
+    VR1 <- Int.c4
+	jump Main.L.1
+	
+Main.L.1:
+    VR0 <- File.name       # File name and line number
+    VI0 <- VR0
+    VI1 <- VR1
+    call _dispatch_abort
+.end
+
+
+.data
+Main.1:					# Dispatch table for Main
+    DL Object.abort
+    DL Object.copy
+    DL Object.type_name
+    DL IO.out_int
+    DL IO.out_string
+    DL IO.in_int
+    DL IO.in_string
+    DL Main.main
+  
+Main_protObj:              # The initial value of the fields of the Main object
+    DW 5                   # Class tag
+    DW 3                   # Object size
+    DL Main.1              # Dispatch table
+
+# Debug information used at runtime
+File.name:                 
+    DW 3
+    DW 6
+    DL String_dispatch
+    DL Int.c7
+    DB "slen.cl"
+    DS 1
+
+# Class names, used by Object.type_name
+Object.2:                  # String constant, containing the text "Object"
+    DW 3
+    DW 6
+    DL String_dispatch
+    DL Int.c6
+    DB "Object"
+    DS 2
+ 
+Int.2:
+    DW 3
+    DW 5
+    DL String_dispatch
+    DL Int.c3
+    DB "Int"
+    DB 0
+ 
+Bool.2:
+    DW 3
+    DW 6
+    DL String_dispatch
+    DL Int.c4
+    DB "Bool"
+    DS 4
+	 
+String.2:
+    DW 3
+    DW 6
+    DL String_dispatch
+    DL Int.c6
+    DB "String"
+    DS 2
+
+IO.2:
+    DW 3
+    DW 5
+    DL String_dispatch
+    DL Int.c2
+    DB "IO"
+    DS 2
+ 
+Main.2:
+    DW 3
+    DW 6
+    DL String_dispatch
+    DL Int.c4
+    DB "Main"
+    DS 4
+	 
+class_nameTab:
+    DL Object.2
+    DL Int.2
+    DL Bool.2
+    DL String.2
+    DL IO.2
+    DL Main.2
+
+#Integer constants
+ Int.c2:
+    DW 1                # Identifier for Int
+    DW 4
+    DL Object_dispatch
+    DW 2                # Value of the Int object
+
+ Int.c3:
+    DW 1
+    DW 4
+    DL Object_dispatch
+    DW 3
+
+ Int.c4:
+    DW 1
+    DW 4
+    DL Object_dispatch
+    DW 4
+
+ Int.c6:
+    DW 1
+    DW 4
+    DL Object_dispatch
+    DW 6
+
+ Int.c7:
+    DW 1
+    DW 4
+    DL Object_dispatch
+    DW 7
