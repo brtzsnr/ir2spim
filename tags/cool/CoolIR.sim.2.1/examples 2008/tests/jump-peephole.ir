@@ -1,0 +1,93 @@
+.code
+
+Func1:
+	VR0 <- VI0
+	jumpf VR0 temp1
+
+	# jump la return
+	jump label1
+
+temp1:
+	VR0 <- VR0 + 1
+	VI0 <- VR0
+	VR1 <- call OutInt
+
+label1:
+	return 0
+
+
+Func2:
+	VR0 <- VI0
+	jumpf VR0 temp2_1
+
+	VR0 <- VR0 + 1
+	jumpf VR0 temp2_2
+
+	# jump la jump la return
+	jump label2_1
+
+temp2_1:
+	VR0 <- VR0 + 1
+	VI0 <- VR0
+	VR1 <- call OutInt
+
+label2_1:
+	jump label2_2
+
+temp2_2:
+	VR0 <- VR0 + 1
+	VI0 <- VR0
+	VR1 <- call OutInt
+
+label2_2:
+	return 0
+
+
+Func3:
+	VR0 <- VI0
+	jumpf VR0 temp3_1
+
+	VR0 <- VR0 + 1
+	jumpf VR0 temp3_2
+
+	# jump la jump
+	jump label3_1
+
+temp3_1:
+	VR0 <- VR0 + 1
+	VI0 <- VR0
+	VR1 <- call OutInt
+
+label3_1:
+	jump label3_2
+
+temp3_2:
+	VR0 <- VR0 + 1
+	VI0 <- VR0
+	VR1 <- call OutInt
+
+label3_2:
+	VR0 <- VR0 + 1
+	VI0 <- VR0
+	VR1 <- call OutInt
+
+	return 0
+
+
+Main:
+	VR0 <- -1
+	VI0 <- VR0
+	VR1 <- call Func1
+
+	VR0 <- -1
+	VI0 <- VR0
+	VR1 <- call Func2
+
+	VR0 <- -1
+	VI0 <- VR0
+	VR1 <- call Func3
+
+	return 0
+
+.data
+
