@@ -79,6 +79,7 @@ class Program(object):
 
 		self.registers = {}
 		self.registers[VR_IP] = self.memory.labelToLocation('__start')
+		self.cycleCount = 0
 
 		logging.info('program restarted')
 
@@ -127,6 +128,7 @@ class Program(object):
 			return True
 
 		if self.__ip == self.memory.labelToLocation('__abort__'):
+			print >> sys.stderr, "Cycle count:", self.cycleCount,"cycles"
 			raise errors.ProgramAbortError(self.__registerValue(operand.VI(0)))
 
 		if self.__ip == self.memory.labelToLocation('__outInt__'):
@@ -175,8 +177,11 @@ class Program(object):
 		if labels:
 			print labels, ':'
 
+		# print cycle count
+		print '[%d] ' % self.cycleCount,
+		
 		# prints instruction pointer
-		print '__ip = 0x%08X,' % ip,
+		print 'ip = 0x%08X,' % ip,
 
 		# prints destination
 		if instruction[1] is not None:
@@ -224,6 +229,7 @@ class Program(object):
 
 		mnem = instr[0]
 		dest = None
+		cycles = instructionCycles(mnem)
 
 		# opcodes that return a value
 		if mnem == 'mov':
@@ -259,9 +265,13 @@ class Program(object):
 		elif mnem == 'jumpf':
 			if not instr[2]:
 				self.__ip = instr[3]
+			else:
+				cycles = 1
 		elif mnem == 'jumpt':
 			if instr[2]:
 				self.__ip = instr[3]
+			else:
+				cycles = 1
 		elif mnem == 'store':
 			self.memory.storeWord(instr[2], address=instr[3] + instr[4])
 		elif mnem == 'storeb':
@@ -276,6 +286,8 @@ class Program(object):
 		# stores destination
 		if dest is not None:
 			self.registers[instr[1]] = operand.normalize(dest)
+			
+		self.cycleCount += cycles
 
 
 def disassemble(memory, address):
@@ -318,3 +330,16 @@ def disassemble(memory, address):
 def sign(a):
 	return (-1, 1)[a < 0]
 
+def instructionCycles(mnem):
+	if mnem == 'mov':
+		return 1
+	elif mnem == 'loadl':
+		return 1
+	elif mnem == 'jump':
+		return 3
+	elif mnem == 'jumpf':
+		return 3
+	elif mnem == 'jumpt':
+		return 3
+	else:
+		return 2
