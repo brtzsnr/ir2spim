@@ -1,0 +1,34 @@
+.code
+
+Main:
+__1: VR0 <- 0
+__2: VR0 <- VI1
+__3: VI0 <- VR0
+__4: VR0 <- VR0 + VR1
+__5: VR0 <- VR0 - 1
+__6: VR0 <- 1 * VR0
+__7: VR0 <- 1 / 8
+__8: VR0 <- VR0 < 100
+__9: VR0 <- 100 <= 100
+_10: VR0 <- 100 = VR0
+_11: VR0 <- not VR100
+_12: loadl VR0 label1
+_13: jump label2
+_14: jumpt VR0 label2
+_15: jumpf VR0 label2
+_16: VR2 <- call Main
+_17: label1: label2: VR0 <- call VR1
+_18: return 0
+_19: return VR0
+_20: load VR0 [VR1, -100]
+_21: store VR0 [VR1, 100]
+_22: loadb VR0 [VR1, 0]
+_23: storeb VR0 [VR1, 1000]
+
+
+.data
+_24: DW 100
+_25: DL Main
+_26: DS "sir ""mare""\0"
+_27: DB 100
+
