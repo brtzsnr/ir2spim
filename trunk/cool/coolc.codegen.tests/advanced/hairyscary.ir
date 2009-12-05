@@ -660,20 +660,6 @@ _bool_tag:
 	DW	2
 _string_tag:
 	DW	3
-_Object_tag:
-	DW	0
-_IO_tag:
-	DW	4
-_Main_tag:
-	DW	5
-_Bazz_tag:
-	DW	6
-_Foo_tag:
-	DW	7
-_Razz_tag:
-	DW	8
-_Bar_tag:
-	DW	9
 #### constants
 str_const16:
 	DW	3
@@ -883,10 +869,6 @@ class_objTab:
 	DL	Bar_protObj
 	DL	Bar_init
 #### dispatch tables by tag
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 IO_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -948,7 +930,7 @@ Object_protObj:
 Bool_protObj:
 	DW	2
 	DW	4
-	DL	Bool_dispatch
+	DL	Object_dispatch
 	DW	0
 IO_protObj:
 	DW	4
