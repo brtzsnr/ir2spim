@@ -300,12 +300,6 @@ _bool_tag:
 	DW	2
 _string_tag:
 	DW	3
-_Object_tag:
-	DW	0
-_IO_tag:
-	DW	4
-_Main_tag:
-	DW	5
 #### constants
 str_const12:
 	DW	3
@@ -480,10 +474,6 @@ class_objTab:
 	DL	Main_protObj
 	DL	Main_init
 #### dispatch tables by tag
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 IO_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -510,7 +500,7 @@ Object_protObj:
 Bool_protObj:
 	DW	2
 	DW	4
-	DL	Bool_dispatch
+	DL	Object_dispatch
 	DW	0
 IO_protObj:
 	DW	4

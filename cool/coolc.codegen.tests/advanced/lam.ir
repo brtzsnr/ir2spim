@@ -5506,32 +5506,6 @@ _bool_tag:
 	DW	2
 _string_tag:
 	DW	3
-_Object_tag:
-	DW	0
-_IO_tag:
-	DW	4
-_LambdaList_tag:
-	DW	5
-_LambdaListRef_tag:
-	DW	6
-_LambdaListNE_tag:
-	DW	7
-_VarList_tag:
-	DW	8
-_Expr_tag:
-	DW	9
-_Term_tag:
-	DW	10
-_Main_tag:
-	DW	11
-_Variable_tag:
-	DW	12
-_Lambda_tag:
-	DW	13
-_App_tag:
-	DW	14
-_VarListNE_tag:
-	DW	15
 #### constants
 str_const75:
 	DW	3
@@ -6288,10 +6262,6 @@ class_objTab:
 	DL	VarListNE_protObj
 	DL	VarListNE_init
 #### dispatch tables by tag
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 IO_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -6453,7 +6423,7 @@ Object_protObj:
 Bool_protObj:
 	DW	2
 	DW	4
-	DL	Bool_dispatch
+	DL	Object_dispatch
 	DW	0
 IO_protObj:
 	DW	4
