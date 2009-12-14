@@ -74,6 +74,7 @@ A_init:
 	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -120,6 +121,7 @@ dispatch_notvoid0:
 	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 20]
+	VI0	<-	VR0
 	return
 .end
 
@@ -155,6 +157,7 @@ dispatch_notvoid1:
 	VR1	<-	VI0
 	## store rhs in VR1 to attribute b
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 

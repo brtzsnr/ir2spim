@@ -67,6 +67,7 @@ A_init:
 	call	Object_init
 	VR1	<-	0
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -84,6 +85,7 @@ Main_init:
 	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 16]
+	VI0	<-	VR0
 	return
 .end
 
@@ -92,6 +94,7 @@ B_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	A_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -100,6 +103,7 @@ C_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	A_init
+	VI0	<-	VR0
 	return
 .end
 

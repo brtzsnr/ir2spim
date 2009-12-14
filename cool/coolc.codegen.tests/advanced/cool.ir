@@ -65,6 +65,7 @@ Main_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	IO_init
+	VI0	<-	VR0
 	return
 .end
 

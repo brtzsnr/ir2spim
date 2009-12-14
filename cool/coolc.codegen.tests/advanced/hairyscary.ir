@@ -101,6 +101,7 @@ Main_init:
 	call	Bar_init
 	## store rhs in VR1 to attribute d
 	store	VR1 [VR0, 24]
+	VI0	<-	VR0
 	return
 .end
 
@@ -203,6 +204,7 @@ dispatch_notvoid0:
 	VR1	<-	VR2
 	## store rhs in VR1 to attribute i
 	store	VR1 [VR0, 20]
+	VI0	<-	VR0
 	return
 .end
 
@@ -344,6 +346,7 @@ dispatch_notvoid4:
 	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute b
 	store	VR1 [VR0, 28]
+	VI0	<-	VR0
 	return
 .end
 
@@ -494,6 +497,7 @@ dispatch_notvoid9:
 	VR1	<-	VR1 + VR2
 	## store rhs in VR1 to attribute f
 	store	VR1 [VR0, 36]
+	VI0	<-	VR0
 	return
 .end
 
@@ -554,6 +558,7 @@ dispatch_notvoid11:
 	VR1	<-	VR2
 	## store rhs in VR1 to attribute d
 	store	VR1 [VR0, 44]
+	VI0	<-	VR0
 	return
 .end
 

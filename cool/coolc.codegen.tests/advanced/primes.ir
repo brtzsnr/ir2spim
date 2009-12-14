@@ -272,6 +272,7 @@ ite_end3:
 loop_end0:
 	## store rhs in VR1 to attribute m
 	store	VR1 [VR0, 28]
+	VI0	<-	VR0
 	return
 .end
 

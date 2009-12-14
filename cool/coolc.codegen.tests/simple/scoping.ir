@@ -71,6 +71,7 @@ Bob_init:
 	VR1	<-	4
 	## store rhs in VR1 to attribute y
 	store	VR1 [VR0, 16]
+	VI0	<-	VR0
 	return
 .end
 
@@ -83,6 +84,7 @@ Main_init:
 	VR1	<-	23
 	## store rhs in VR1 to attribute z
 	store	VR1 [VR0, 20]
+	VI0	<-	VR0
 	return
 .end
 

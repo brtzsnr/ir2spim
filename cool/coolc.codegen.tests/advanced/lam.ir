@@ -65,6 +65,7 @@ LambdaList_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Object_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -77,6 +78,7 @@ LambdaListRef_init:
 	VR1	<-	0
 	## store rhs in VR1 to attribute nextNum
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -87,6 +89,7 @@ LambdaListNE_init:
 	call	LambdaList_init
 	VR1	<-	0
 	store	VR1 [VR0, 16]
+	VI0	<-	VR0
 	return
 .end
 
@@ -95,6 +98,7 @@ VarList_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	IO_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -103,6 +107,7 @@ Expr_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	IO_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -111,6 +116,7 @@ Term_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	IO_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -119,6 +125,7 @@ Main_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Term_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -127,6 +134,7 @@ Variable_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Expr_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -135,6 +143,7 @@ Lambda_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Expr_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -143,6 +152,7 @@ App_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Expr_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -151,6 +161,7 @@ VarListNE_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	VarList_init
+	VI0	<-	VR0
 	return
 .end
 

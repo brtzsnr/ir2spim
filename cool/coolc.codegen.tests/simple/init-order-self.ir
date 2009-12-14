@@ -215,6 +215,7 @@ dispatch_notvoid5:
 	VR1	<-	VI0
 	## store rhs in VR1 to attribute a
 	store	VR1 [VR0, 32]
+	VI0	<-	VR0
 	return
 .end
 
