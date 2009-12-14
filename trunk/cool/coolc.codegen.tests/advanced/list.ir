@@ -65,6 +65,7 @@ List_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Object_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -75,6 +76,7 @@ Cons_init:
 	call	List_init
 	VR1	<-	0
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -83,6 +85,7 @@ Main_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	IO_init
+	VI0	<-	VR0
 	return
 .end
 

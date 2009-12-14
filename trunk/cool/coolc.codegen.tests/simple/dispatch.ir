@@ -74,6 +74,7 @@ P_init:
 	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -91,6 +92,7 @@ Main_init:
 	call	C_init
 	## store rhs in VR1 to attribute c
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -99,6 +101,7 @@ C_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	P_init
+	VI0	<-	VR0
 	return
 .end
 

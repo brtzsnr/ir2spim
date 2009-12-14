@@ -65,6 +65,7 @@ Main_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	IO_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -77,6 +78,7 @@ Complex_init:
 	store	VR1 [VR0, 12]
 	VR1	<-	0
 	store	VR1 [VR0, 16]
+	VI0	<-	VR0
 	return
 .end
 

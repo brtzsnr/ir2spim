@@ -65,6 +65,7 @@ A_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	Object_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -82,6 +83,7 @@ Main_init:
 	call	IO_init
 	## store rhs in VR1 to attribute io
 	store	VR1 [VR0, 12]
+	VI0	<-	VR0
 	return
 .end
 
@@ -90,6 +92,7 @@ B_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	A_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -98,6 +101,7 @@ C_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	B_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -106,6 +110,7 @@ D_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	C_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -114,6 +119,7 @@ E_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	D_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -122,6 +128,7 @@ F_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	E_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -130,6 +137,7 @@ G_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	F_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -138,6 +146,7 @@ H_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	G_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -146,6 +155,7 @@ I_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	H_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -154,6 +164,7 @@ J_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	I_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -162,6 +173,7 @@ K_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	J_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -170,6 +182,7 @@ L_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	K_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -178,6 +191,7 @@ M_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	L_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -186,6 +200,7 @@ N_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	M_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -194,6 +209,7 @@ O_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	N_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -202,6 +218,7 @@ P_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	O_init
+	VI0	<-	VR0
 	return
 .end
 
@@ -210,6 +227,7 @@ Q_init:
 	## store self into the reserved VR0
 	VR0	<-	VI0
 	call	P_init
+	VI0	<-	VR0
 	return
 .end
 
