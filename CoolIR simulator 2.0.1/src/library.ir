@@ -491,42 +491,6 @@ _case_abort2:
 ######################
 .data
 
-# Int prototype
-Int_protObj:
-    DW 1
-    DW 4
-    DL Object_dispatch
-    DW 0
-#########################
-# String prototype
-String_protObj:
-    DW 3
-    DW 5
-    DL String_dispatch
-	DL Int_protObj    # String size 0
-    DS 4
-#########################
-# Bool prototype
-bool_const0:
-    DW 2
-    DW 4
-    DL Object_dispatch
-    DW 0
-#########################
-# Dispatch tables for basic classes
-Object_dispatch:
-    DL Object.abort
-    DL Object.copy
-    DL Object.type_name
-#########################
-String_dispatch:
-    DL Object.abort
-    DL Object.copy
-    DL Object.type_name
-    DL String.concat
-    DL String.length
-    DL String.substr
-#########################
 #Error messages
 __str_term_msg:
 	DB "COOL program successfully executed\n"	# 35 chars
