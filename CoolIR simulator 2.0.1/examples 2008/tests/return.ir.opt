@@ -1,0 +1,17 @@
+.code
+
+Nothing:
+    return 0
+
+Func:
+	VR1 <- 5
+	VI0 <- VR1
+	VR0 <- call Nothing
+	return 5
+
+Main:
+	VR0 <- call Func
+	return 0
+
+.data
+

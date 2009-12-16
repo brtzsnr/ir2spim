@@ -1,0 +1,33 @@
+.code
+
+Nothing:
+	return 0
+
+Func:
+	VR1 <- 5
+	VR5 <- 5
+	VI0 <- VR1
+	VI1 <- VR1
+	VR0 <- call Nothing
+
+	# using((5,))
+	VR100 <- call Nothing
+
+	__loop_start_6:
+	jumpf VR100 __loop_end_6
+		VR5 <- VR5 + 23
+		VR5 <- VR5 + VR100
+	VR100 <- VR100 - 1
+	jump __loop_start_6
+	__loop_end_6:
+
+	VI5 <- VR5
+	VR100 <- call Nothing
+
+	return 0
+
+Main:
+	VR0 <- call Func
+	return 0
+
+.data
