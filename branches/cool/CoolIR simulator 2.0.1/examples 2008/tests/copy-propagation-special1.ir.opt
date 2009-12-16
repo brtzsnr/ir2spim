@@ -1,0 +1,64 @@
+.code
+
+Ok:
+	loadl VR100 ok
+	VI0 <- VR100
+	VR100 <- call OutString
+	return 0
+
+Wrong:
+	loadl VR100 wrong
+	VI0 <- VR100
+	VR100 <- call OutString
+	return 0
+
+Assign1:
+    VR100 <- VI0
+    return VR100
+
+
+Func:
+	VR90 <- call Assign1
+	VR91 <- VR90
+
+	# one
+	VR100 <- 0  # false
+	# prevent code with no effect elimination
+	VI0 <- VR100
+	VR100 <- call Assign1
+	VR100 <- call Ok
+
+
+	# prevent code with no effect elimination
+	# using(xrange(90, 91))
+	VR100 <- 0
+	VI0 <- VR100
+	VR100 <- call Assign1
+
+	__loop_start_3:
+	jumpf VR100 __loop_end_3
+		VR90 <- VR90 + 91
+		VR90 <- VR90 + VR100
+		VR91 <- VR91 + 92
+		VR91 <- VR91 + VR100
+	VR100 <- VR100 - 1
+	jump __loop_start_3
+	__loop_end_3:
+
+	VI90 <- VR90
+	VI91 <- VR91
+	VR100 <- call Ok
+
+	return 0
+
+
+Main:
+	VR0 <- 1
+	VI0 <- VR0
+	VR100 <- call Func
+	return 0
+
+
+.data
+	ok: DS "ok\n\0"
+	wrong: DS "wrong\n\0"

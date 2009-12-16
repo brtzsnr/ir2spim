@@ -1,0 +1,52 @@
+# @2009 Alexandru Mosoi (brtzsnr@gmail.com)
+
+.code
+
+Main:
+	VR0 <- 3
+	VR1 <- 4
+	VR2 <- 0
+
+	# should print 666
+	VR3 <- 666
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 2457 = 3 3 3 7 13
+	# constant propagation + constant folding
+	VR3 <- 2457
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 2
+	# constant propagation + constant folding
+	VR3 <- 2
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 6
+	# constant propagation + constant folding
+	VR3 <- 6
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 1
+	# constant propagation + constant folding
+	VR3 <- 1
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 0
+	# constant propagation + constant folding
+	VR3 <- 0
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	# should print 12
+	# constant propagation + constant folding
+	VR3 <- 12
+	VI0 <- VR3
+	VR4 <- call OutInt
+
+	return 0
+
