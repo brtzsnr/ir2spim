@@ -137,11 +137,16 @@ str_const1:
 	.byte	0, 0
 str_const0:
 	.word	3
-	.word	12
+	.word	13
 	.word	String_dispatch
-	.word	int_const2
-	.ascii	"_tests/error/case_no_branch.cl"
-	.byte	0, 0
+	.word	int_const11
+	.ascii	"tests/error/ok/case_no_branch.cl"
+	.byte	0, 0, 0, 0
+int_const11:
+	.word	1
+	.word	4
+	.word	Object_dispatch
+	.word	32
 int_const10:
 	.word	1
 	.word	4
@@ -240,14 +245,6 @@ Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-Int_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
-Bool_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
 String_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -290,7 +287,7 @@ Object_protObj:
 Int_protObj:
 	.word	1
 	.word	4
-	.word	Int_dispatch
+	.word	Object_dispatch
 	.word	0
 Bool_protObj:
 	.word	2
