@@ -24,121 +24,185 @@ _bool_tag:
 	.word	2
 _string_tag:
 	.word	3
-str_const12:
-	.word	3
-	.word	5
-	.word	String_dispatch
-	.word	int_const3
-	.byte	0, 0, 0, 0
-str_const11:
+str_const19:
 	.word	3
 	.word	6
 	.word	String_dispatch
 	.word	int_const4
 	.ascii	"Main"
 	.byte	0, 0, 0, 0
-str_const10:
+str_const18:
 	.word	3
 	.word	5
 	.word	String_dispatch
-	.word	int_const1
+	.word	int_const0
+	.ascii	"C"
+	.byte	0, 0, 0
+str_const17:
+	.word	3
+	.word	5
+	.word	String_dispatch
+	.word	int_const0
+	.ascii	"P"
+	.byte	0, 0, 0
+str_const16:
+	.word	3
+	.word	5
+	.word	String_dispatch
+	.word	int_const5
 	.ascii	"IO"
 	.byte	0, 0
-str_const9:
+str_const15:
 	.word	3
 	.word	6
 	.word	String_dispatch
-	.word	int_const5
+	.word	int_const6
 	.ascii	"String"
 	.byte	0, 0
-str_const8:
+str_const14:
 	.word	3
 	.word	6
 	.word	String_dispatch
 	.word	int_const4
 	.ascii	"Bool"
 	.byte	0, 0, 0, 0
-str_const7:
+str_const13:
 	.word	3
 	.word	5
 	.word	String_dispatch
-	.word	int_const2
+	.word	int_const7
 	.ascii	"Int"
 	.byte	0
+str_const12:
+	.word	3
+	.word	6
+	.word	String_dispatch
+	.word	int_const6
+	.ascii	"Object"
+	.byte	0, 0
+str_const11:
+	.word	3
+	.word	7
+	.word	String_dispatch
+	.word	int_const3
+	.ascii	"_prim_slot"
+	.byte	0, 0
+str_const10:
+	.word	3
+	.word	7
+	.word	String_dispatch
+	.word	int_const8
+	.ascii	"SELF_TYPE"
+	.byte	0, 0, 0
+str_const9:
+	.word	3
+	.word	7
+	.word	String_dispatch
+	.word	int_const8
+	.ascii	"_no_class"
+	.byte	0, 0, 0
+str_const8:
+	.word	3
+	.word	8
+	.word	String_dispatch
+	.word	int_const9
+	.ascii	"<basic class>"
+	.byte	0, 0, 0
+str_const7:
+	.word	3
+	.word	6
+	.word	String_dispatch
+	.word	int_const10
+	.ascii	"FALSE"
+	.byte	0, 0, 0
 str_const6:
 	.word	3
 	.word	6
 	.word	String_dispatch
-	.word	int_const5
-	.ascii	"Object"
-	.byte	0, 0
+	.word	int_const4
+	.ascii	"TRUE"
+	.byte	0, 0, 0, 0
 str_const5:
-	.word	3
-	.word	7
-	.word	String_dispatch
-	.word	int_const6
-	.ascii	"_prim_slot"
-	.byte	0, 0
-str_const4:
-	.word	3
-	.word	7
-	.word	String_dispatch
-	.word	int_const7
-	.ascii	"SELF_TYPE"
-	.byte	0, 0, 0
-str_const3:
-	.word	3
-	.word	7
-	.word	String_dispatch
-	.word	int_const7
-	.ascii	"_no_class"
-	.byte	0, 0, 0
-str_const2:
 	.word	3
 	.word	8
 	.word	String_dispatch
-	.word	int_const8
-	.ascii	"<basic class>"
+	.word	int_const11
+	.ascii	"C.method2()\n"
+	.byte	0, 0, 0, 0
+str_const4:
+	.word	3
+	.word	6
+	.word	String_dispatch
+	.word	int_const6
+	.ascii	"false\n"
+	.byte	0, 0
+str_const3:
+	.word	3
+	.word	6
+	.word	String_dispatch
+	.word	int_const10
+	.ascii	"true\n"
 	.byte	0, 0, 0
-str_const1:
+str_const2:
 	.word	3
 	.word	5
 	.word	String_dispatch
 	.word	int_const0
 	.ascii	"\n"
 	.byte	0, 0, 0
+str_const1:
+	.word	3
+	.word	5
+	.word	String_dispatch
+	.word	int_const1
+	.byte	0, 0, 0, 0
 str_const0:
 	.word	3
-	.word	13
+	.word	11
 	.word	String_dispatch
-	.word	int_const9
-	.ascii	"tests/simple/ok/eval-order-args.cl"
-	.byte	0, 0
+	.word	int_const12
+	.ascii	"tests/simple/ko/dispatch.cl"
+	.byte	0
+int_const12:
+	.word	1
+	.word	4
+	.word	Object_dispatch
+	.word	27
+int_const11:
+	.word	1
+	.word	4
+	.word	Object_dispatch
+	.word	12
+int_const10:
+	.word	1
+	.word	4
+	.word	Object_dispatch
+	.word	5
 int_const9:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	34
+	.word	13
 int_const8:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	13
+	.word	9
 int_const7:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	9
+	.word	3
 int_const6:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	10
+	.word	6
 int_const5:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	6
+	.word	2
 int_const4:
 	.word	1
 	.word	4
@@ -148,17 +212,17 @@ int_const3:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	0
+	.word	10
 int_const2:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	3
+	.word	20
 int_const1:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	2
+	.word	0
 int_const0:
 	.word	1
 	.word	4
@@ -175,12 +239,14 @@ bool_const0:
 	.word	Object_dispatch
 	.word	0
 class_nameTab:
-	.word	str_const6
-	.word	str_const7
-	.word	str_const8
-	.word	str_const9
-	.word	str_const10
-	.word	str_const11
+	.word	str_const12
+	.word	str_const13
+	.word	str_const14
+	.word	str_const15
+	.word	str_const16
+	.word	str_const17
+	.word	str_const19
+	.word	str_const18
 class_objTab:
 	.word	Object_protObj
 	.word	Object_init
@@ -192,8 +258,12 @@ class_objTab:
 	.word	String_init
 	.word	IO_protObj
 	.word	IO_init
+	.word	P_protObj
+	.word	P_init
 	.word	Main_protObj
 	.word	Main_init
+	.word	C_protObj
+	.word	C_init
 Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -213,17 +283,22 @@ IO_dispatch:
 	.word	IO.out_int
 	.word	IO.in_string
 	.word	IO.in_int
+P_dispatch:
+	.word	Object.abort
+	.word	Object.copy
+	.word	Object.type_name
+	.word	P.method1
 Main_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-	.word	IO.out_string
-	.word	IO.out_int
-	.word	IO.in_string
-	.word	IO.in_int
-	.word	Main.recite
-	.word	Main.disregard
 	.word	Main.main
+C_dispatch:
+	.word	Object.abort
+	.word	Object.copy
+	.word	Object.type_name
+	.word	P.method1
+	.word	C.method2
 Object_protObj:
 	.word	0
 	.word	3
@@ -242,16 +317,27 @@ String_protObj:
 	.word	3
 	.word	5
 	.word	String_dispatch
-	.word	int_const3
+	.word	int_const1
 	.word	0
 IO_protObj:
 	.word	4
 	.word	3
 	.word	IO_dispatch
-Main_protObj:
+P_protObj:
 	.word	5
-	.word	3
+	.word	4
+	.word	P_dispatch
+	.word	0
+Main_protObj:
+	.word	6
+	.word	4
 	.word	Main_dispatch
+	.word	0
+C_protObj:
+	.word	7
+	.word	4
+	.word	C_dispatch
+	.word	0
 heap_start:
 	.word	0
 
@@ -405,6 +491,37 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+P_init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	jal	Object_init
+	la	$s1, IO_protObj
+	move	$a0, $s1
+	jal	Object.copy
+	move	$s1, $a0
+	jal	IO_init
+	sw	$s1, 12 ($s0)
+	move	$a0, $s0
+	j	__P_init_epilogue
+__P_init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -413,11 +530,42 @@ Main_init:
 	## saving registers
 	sw	$s0, 0 ($sp)
 	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
 	move	$s0, $a0
-	jal	IO_init
+	jal	Object_init
+	la	$s1, C_protObj
+	move	$a0, $s1
+	jal	Object.copy
+	move	$s1, $a0
+	jal	C_init
+	sw	$s1, 12 ($s0)
 	move	$a0, $s0
 	j	__Main_init_epilogue
 __Main_init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+C_init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	jal	P_init
+	move	$a0, $s0
+	j	__C_init_epilogue
+__C_init_epilogue:
 	## restoring registers
 	addi $sp, $sp, 4
 	lw	$s0, 0 ($sp)
@@ -426,7 +574,7 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
-Main.recite:
+P.method1:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
 	sw	$ra, 4 ($sp)
@@ -440,84 +588,206 @@ Main.recite:
 	addi $sp, $sp, -4
 	sw	$s3, 0 ($sp)
 	addi $sp, $sp, -4
+	sw	$s4, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s5, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s6, 0 ($sp)
+	addi $sp, $sp, -4
 	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	move	$s2, $s0
-	bnez	$s2, dispatch_notvoid0
-	la	$s3, str_const0
-	move	$a0, $s3
-	li	$s3, 7
-	sw	$s3, 0 ($sp)
+	lw	$s1, 16 ($fp)
+	lw	$s2, 12 ($fp)
+	lw	$s3, 8 ($fp)
+	li	$s4, 0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid0
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 10
+	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid0: 
-	move	$s3, $s1
+	la	$s6, str_const1
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid1
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 11
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid1: 
+	move	$s6, $s1
 	la	$s1, Int_protObj
 	move	$a0, $s1
 	jal	Object.copy
 	move	$s1, $a0
-	sw	$s3, 12 ($s1)
-	move	$s3, $s1
-	move	$a0, $s2
-	sw	$s3, 0 ($sp)
+	sw	$s6, 12 ($s1)
+	move	$s6, $s1
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
-	lw	$s3, 8 ($s2)
-	lw	$s3, 16 ($s3)
-	jalr	$s3
-	move	$s2, $a0
-	move	$s2, $s0
-	bnez	$s2, dispatch_notvoid1
-	la	$s3, str_const0
-	move	$a0, $s3
-	li	$s3, 8
-	sw	$s3, 0 ($sp)
+	lw	$s6, 8 ($s5)
+	lw	$s6, 16 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid2
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 12
+	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid1: 
-	la	$s3, str_const1
-	move	$a0, $s2
-	sw	$s3, 0 ($sp)
+dispatch_notvoid2: 
+	la	$s6, str_const2
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
-	lw	$s3, 8 ($s2)
-	lw	$s3, 12 ($s3)
-	jalr	$s3
-	move	$s2, $a0
-	move	$a0, $s2
-	j	__Main.recite_epilogue
-__Main.recite_epilogue:
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	move	$s5, $s2
+	beqz	$s5, ite_false0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid3
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 16
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid3: 
+	la	$s6, str_const3
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	li	$s5, 1
+	b	ite_end0
+ite_false0: 
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid4
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 17
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid4: 
+	la	$s6, str_const4
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	li	$s5, 0
+ite_end0: 
+	move	$s4, $s5
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid5
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 20
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid5: 
+	move	$s6, $s4
+	la	$s1, Int_protObj
+	move	$a0, $s1
+	jal	Object.copy
+	move	$s1, $a0
+	sw	$s6, 12 ($s1)
+	move	$s6, $s1
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 16 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid6
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 21
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid6: 
+	la	$s6, str_const2
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid7
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 22
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid7: 
+	move	$s6, $s3
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	lw	$s5, 12 ($s0)
+	bnez	$s5, dispatch_notvoid8
+	la	$s6, str_const0
+	move	$a0, $s6
+	li	$s6, 23
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid8: 
+	la	$s6, str_const2
+	move	$a0, $s5
+	sw	$s6, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s6, 8 ($s5)
+	lw	$s6, 12 ($s6)
+	jalr	$s6
+	move	$s5, $a0
+	move	$s4, $s5
+	li	$s4, 20
+	move	$a0, $s4
+	j	__P.method1_epilogue
+__P.method1_epilogue:
 	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s6, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s5, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s4, 0 ($sp)
 	addi $sp, $sp, 4
 	lw	$s3, 0 ($sp)
 	addi $sp, $sp, 4
 	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
-Main.disregard:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 16 ($fp)
-	lw	$s1, 12 ($fp)
-	lw	$s1, 8 ($fp)
-	move	$s1, $s0
-	move	$a0, $s1
-	j	__Main.disregard_epilogue
-__Main.disregard_epilogue:
-	## restoring registers
 	addi $sp, $sp, 4
 	lw	$s1, 0 ($sp)
 	addi $sp, $sp, 4
@@ -544,66 +814,18 @@ Main.main:
 	sw	$s4, 0 ($sp)
 	addi $sp, $sp, -4
 	move	$s0, $a0
-	move	$s1, $s0
-	bnez	$s1, dispatch_notvoid2
+	lw	$s1, 12 ($s0)
+	bnez	$s1, dispatch_notvoid9
 	la	$s2, str_const0
 	move	$a0, $s2
-	li	$s2, 19
+	li	$s2, 42
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid2: 
-	move	$s2, $s0
-	bnez	$s2, dispatch_notvoid3
-	la	$s3, str_const0
-	move	$a0, $s3
-	li	$s3, 19
-	sw	$s3, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid3: 
+dispatch_notvoid9: 
+	li	$s2, 10
 	li	$s3, 1
-	move	$a0, $s2
-	sw	$s3, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s3, 8 ($s2)
-	lw	$s3, 28 ($s3)
-	jalr	$s3
-	move	$s2, $a0
-	move	$s3, $s0
-	bnez	$s3, dispatch_notvoid4
-	la	$s4, str_const0
-	move	$a0, $s4
-	li	$s4, 19
-	sw	$s4, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid4: 
-	li	$s4, 2
-	move	$a0, $s3
-	sw	$s4, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s4, 8 ($s3)
-	lw	$s4, 28 ($s4)
-	jalr	$s4
-	move	$s3, $a0
-	move	$s4, $s0
-	bnez	$s4, dispatch_notvoid5
-	la	$s0, str_const0
-	move	$a0, $s0
-	li	$s0, 19
-	sw	$s0, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid5: 
-	li	$s0, 3
-	move	$a0, $s4
-	sw	$s0, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s0, 8 ($s4)
-	lw	$s0, 28 ($s0)
-	jalr	$s0
-	move	$s4, $a0
+	la	$s4, str_const6
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
@@ -612,7 +834,30 @@ dispatch_notvoid5:
 	sw	$s4, 0 ($sp)
 	addi	$sp, $sp, -4
 	lw	$s2, 8 ($s1)
-	lw	$s2, 32 ($s2)
+	lw	$s2, 12 ($s2)
+	jalr	$s2
+	move	$s1, $a0
+	lw	$s1, 12 ($s0)
+	bnez	$s1, dispatch_notvoid10
+	la	$s2, str_const0
+	move	$a0, $s2
+	li	$s2, 43
+	sw	$s2, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_disp_handler
+dispatch_notvoid10: 
+	li	$s2, 20
+	li	$s3, 0
+	la	$s4, str_const7
+	move	$a0, $s1
+	sw	$s2, 0 ($sp)
+	addi	$sp, $sp, -4
+	sw	$s3, 0 ($sp)
+	addi	$sp, $sp, -4
+	sw	$s4, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s2, 8 ($s1)
+	lw	$s2, 12 ($s2)
 	jalr	$s2
 	move	$s1, $a0
 	move	$a0, $s1
@@ -627,6 +872,27 @@ __Main.main_epilogue:
 	lw	$s2, 0 ($sp)
 	addi $sp, $sp, 4
 	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+C.method2:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	la	$s0, str_const5
+	move	$a0, $s0
+	j	__C.method2_epilogue
+__C.method2_epilogue:
+	## restoring registers
 	addi $sp, $sp, 4
 	lw	$s0, 0 ($sp)
 	lw	$ra, 0 ($fp)

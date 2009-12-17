@@ -390,13 +390,13 @@ str_const0:
 	DW	13
 	DL	String_dispatch
 	DL	int_const10
-	DB	"_tests/simple/init-order-self.cl"
-	DS	4
+	DB	"tests/simple/ok/init-order-self.cl"
+	DS	2
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	32
+	DW	34
 int_const9:
 	DW	1
 	DW	4
@@ -484,14 +484,6 @@ Object_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
-Int_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 String_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -525,7 +517,7 @@ Object_protObj:
 Int_protObj:
 	DW	1
 	DW	4
-	DL	Int_dispatch
+	DL	Object_dispatch
 	DW	0
 Bool_protObj:
 	DW	2

@@ -782,13 +782,13 @@ str_const0:
 	DW	12
 	DL	String_dispatch
 	DL	int_const9
-	DB	"_tests/advanced/hairyscary.cl"
-	DS	3
+	DB	"tests/advanced/ok/hairyscary.cl"
+	DS	1
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	29
+	DW	31
 int_const8:
 	DW	1
 	DW	4
@@ -883,14 +883,6 @@ Object_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
-Int_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 String_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -959,7 +951,7 @@ Object_protObj:
 Int_protObj:
 	DW	1
 	DW	4
-	DL	Int_dispatch
+	DL	Object_dispatch
 	DW	0
 Bool_protObj:
 	DW	2

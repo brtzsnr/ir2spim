@@ -137,16 +137,16 @@ str_const1:
 	.byte	0
 str_const0:
 	.word	3
-	.word	11
+	.word	12
 	.word	String_dispatch
 	.word	int_const10
-	.ascii	"_tests/advanced/complex.cl"
-	.byte	0, 0
+	.ascii	"tests/advanced/ok/complex.cl"
+	.byte	0, 0, 0, 0
 int_const10:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	26
+	.word	28
 int_const9:
 	.word	1
 	.word	4
@@ -234,14 +234,6 @@ Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-Int_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
-Bool_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
 String_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -286,7 +278,7 @@ Object_protObj:
 Int_protObj:
 	.word	1
 	.word	4
-	.word	Int_dispatch
+	.word	Object_dispatch
 	.word	0
 Bool_protObj:
 	.word	2
@@ -670,8 +662,8 @@ Complex.init:
 	sw	$s4, 0 ($sp)
 	addi $sp, $sp, -4
 	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	lw	$s2, 12 ($fp)
+	lw	$s1, 12 ($fp)
+	lw	$s2, 8 ($fp)
 	lw	$s3, 12 ($s0)
 	move	$s4, $s1
 	seq	$s3, $s3, $s4

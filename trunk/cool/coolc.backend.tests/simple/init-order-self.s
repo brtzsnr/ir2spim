@@ -112,13 +112,13 @@ str_const0:
 	.word	13
 	.word	String_dispatch
 	.word	int_const10
-	.ascii	"_tests/simple/init-order-self.cl"
-	.byte	0, 0, 0, 0
+	.ascii	"tests/simple/ok/init-order-self.cl"
+	.byte	0, 0
 int_const10:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	32
+	.word	34
 int_const9:
 	.word	1
 	.word	4
@@ -203,14 +203,6 @@ Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-Int_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
-Bool_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
 String_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -243,7 +235,7 @@ Object_protObj:
 Int_protObj:
 	.word	1
 	.word	4
-	.word	Int_dispatch
+	.word	Object_dispatch
 	.word	0
 Bool_protObj:
 	.word	2
