@@ -238,13 +238,13 @@ str_const0:
 	.word	11
 	.word	String_dispatch
 	.word	int_const19
-	.ascii	"_tests/simple/caseloop.cl"
-	.byte	0, 0, 0
+	.ascii	"tests/simple/ok/caseloop.cl"
+	.byte	0
 int_const19:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	25
+	.word	27
 int_const18:
 	.word	1
 	.word	4
@@ -425,14 +425,6 @@ Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-Int_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
-Bool_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
 String_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -528,7 +520,7 @@ Object_protObj:
 Int_protObj:
 	.word	1
 	.word	4
-	.word	Int_dispatch
+	.word	Object_dispatch
 	.word	0
 Bool_protObj:
 	.word	2

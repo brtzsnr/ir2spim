@@ -912,13 +912,13 @@ str_const0:
 	DW	11
 	DL	String_dispatch
 	DL	int_const19
-	DB	"_tests/simple/caseloop.cl"
-	DS	3
+	DB	"tests/simple/ok/caseloop.cl"
+	DS	1
 int_const19:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	25
+	DW	27
 int_const18:
 	DW	1
 	DW	4
@@ -1102,14 +1102,6 @@ Object_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
-Int_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 String_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -1206,7 +1198,7 @@ Object_protObj:
 Int_protObj:
 	DW	1
 	DW	4
-	DL	Int_dispatch
+	DL	Object_dispatch
 	DW	0
 Bool_protObj:
 	DW	2

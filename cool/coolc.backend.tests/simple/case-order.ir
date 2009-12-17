@@ -255,16 +255,16 @@ str_const1:
 	DS	1
 str_const0:
 	DW	3
-	DW	11
+	DW	12
 	DL	String_dispatch
 	DL	int_const10
-	DB	"_tests/simple/case-order.cl"
-	DS	1
+	DB	"tests/simple/ok/case-order.cl"
+	DS	3
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	27
+	DW	29
 int_const9:
 	DW	1
 	DW	4
@@ -352,14 +352,6 @@ Object_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
-Int_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-Bool_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
 String_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -392,7 +384,7 @@ Object_protObj:
 Int_protObj:
 	DW	1
 	DW	4
-	DL	Int_dispatch
+	DL	Object_dispatch
 	DW	0
 Bool_protObj:
 	DW	2

@@ -109,16 +109,16 @@ str_const1:
 	.byte	0, 0, 0
 str_const0:
 	.word	3
-	.word	10
+	.word	11
 	.word	String_dispatch
 	.word	int_const9
-	.ascii	"_tests/advanced/cool.cl"
-	.byte	0
+	.ascii	"tests/advanced/ok/cool.cl"
+	.byte	0, 0, 0
 int_const9:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	23
+	.word	25
 int_const8:
 	.word	1
 	.word	4
@@ -198,14 +198,6 @@ Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-Int_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
-Bool_dispatch:
-	.word	Object.abort
-	.word	Object.copy
-	.word	Object.type_name
 String_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -237,7 +229,7 @@ Object_protObj:
 Int_protObj:
 	.word	1
 	.word	4
-	.word	Int_dispatch
+	.word	Object_dispatch
 	.word	0
 Bool_protObj:
 	.word	2
