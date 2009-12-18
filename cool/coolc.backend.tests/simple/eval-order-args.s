@@ -267,6 +267,8 @@ void_disp_handler:
 void_case_handler:
 	lw	$t1, 4 ($sp)
 	jal	_case_abort2
+# Mapping: 
+# To spill: 
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -281,6 +283,8 @@ __Object_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Int_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -295,6 +299,8 @@ __Int_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Bool_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -309,6 +315,8 @@ __Bool_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 String_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -323,6 +331,8 @@ __String_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 IO_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -337,6 +347,8 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -358,6 +370,8 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s1 
+# To spill: 
 Main.recite:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -431,6 +445,8 @@ __Main.recite_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s1 VR3:$s1 VR4:$s1 
+# To spill: 
 Main.disregard:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -459,6 +475,8 @@ __Main.disregard_epilogue:
 	addi	$sp, $sp, 20
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s0 
+# To spill: 
 Main.main:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)

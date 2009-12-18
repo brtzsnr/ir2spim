@@ -625,6 +625,8 @@ void_disp_handler:
 void_case_handler:
 	lw	$t1, 4 ($sp)
 	jal	_case_abort2
+# Mapping: 
+# To spill: 
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -639,6 +641,8 @@ __Object_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Int_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -653,6 +657,8 @@ __Int_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Bool_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -667,6 +673,8 @@ __Bool_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 String_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -681,6 +689,8 @@ __String_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 IO_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -695,6 +705,8 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 A_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -716,6 +728,8 @@ __A_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -747,6 +761,8 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 B_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -768,6 +784,8 @@ __B_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 C_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -789,6 +807,8 @@ __C_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 D_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -810,6 +830,8 @@ __D_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 E_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -831,6 +853,8 @@ __E_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 F_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -852,6 +876,8 @@ __F_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 G_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -873,6 +899,8 @@ __G_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 H_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -894,6 +922,8 @@ __H_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 I_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -915,6 +945,8 @@ __I_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 J_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -936,6 +968,8 @@ __J_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 K_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -957,6 +991,8 @@ __K_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 L_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -978,6 +1014,8 @@ __L_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 M_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -999,6 +1037,8 @@ __M_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 N_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1020,6 +1060,8 @@ __N_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 O_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1041,6 +1083,8 @@ __O_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 P_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1062,6 +1106,8 @@ __P_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Q_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1083,6 +1129,8 @@ __Q_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s6 VR7:$s4 
+# To spill: 
 Main.main:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)

@@ -329,6 +329,8 @@ void_disp_handler:
 void_case_handler:
 	lw	$t1, 4 ($sp)
 	jal	_case_abort2
+# Mapping: 
+# To spill: 
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -343,6 +345,8 @@ __Object_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Int_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -357,6 +361,8 @@ __Int_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Bool_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -371,6 +377,8 @@ __Bool_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 String_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -385,6 +393,8 @@ __String_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 IO_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -399,6 +409,8 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -420,6 +432,8 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 CellularAutomaton_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -441,6 +455,8 @@ __CellularAutomaton_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 Main.main:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -551,6 +567,8 @@ __Main.main_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 CellularAutomaton.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -583,6 +601,8 @@ __CellularAutomaton.init_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 CellularAutomaton.print:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -649,6 +669,8 @@ __CellularAutomaton.print_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 CellularAutomaton.num_cells:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -689,6 +711,8 @@ __CellularAutomaton.num_cells_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s0 VR4:$s1 VR5:$s3 
+# To spill: 
 CellularAutomaton.cell:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -754,6 +778,8 @@ __CellularAutomaton.cell_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s0 
+# To spill: 
 CellularAutomaton.cell_left_neighbor:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -845,6 +871,8 @@ __CellularAutomaton.cell_left_neighbor_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 
+# To spill: 
 CellularAutomaton.cell_right_neighbor:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -940,6 +968,8 @@ __CellularAutomaton.cell_right_neighbor_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s5 VR3:$s2 VR4:$s3 VR5:$s4 VR6:$s2 
+# To spill: 
 CellularAutomaton.cell_at_next_evolution:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1114,6 +1144,8 @@ __CellularAutomaton.cell_at_next_evolution_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s3 
+# To spill: 
 CellularAutomaton.evolve:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)

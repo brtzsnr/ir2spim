@@ -326,6 +326,8 @@ void_disp_handler:
 void_case_handler:
 	lw	$t1, 4 ($sp)
 	jal	_case_abort2
+# Mapping: 
+# To spill: 
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -340,6 +342,8 @@ __Object_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Int_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -354,6 +358,8 @@ __Int_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Bool_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -368,6 +374,8 @@ __Bool_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 String_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -382,6 +390,8 @@ __String_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 IO_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -396,6 +406,8 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 List_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -417,6 +429,8 @@ __List_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Cons_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -444,6 +458,8 @@ __Cons_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -465,6 +481,8 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 List.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -486,6 +504,8 @@ __List.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 List.head:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -525,6 +545,8 @@ __List.head_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 List.tail:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -568,6 +590,8 @@ __List.tail_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s1 
+# To spill: 
 List.cons:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -625,6 +649,8 @@ __List.cons_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 Cons.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -646,6 +672,8 @@ __Cons.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Cons.head:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -671,6 +699,8 @@ __Cons.head_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Cons.tail:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -696,6 +726,8 @@ __Cons.tail_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 Cons.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -735,6 +767,8 @@ __Cons.init_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 
+# To spill: 
 Main.print_list:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -890,6 +924,8 @@ __Main.print_list_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Main.main:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)

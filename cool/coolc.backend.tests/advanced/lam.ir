@@ -6048,7 +6048,7 @@ str_const0:
 	DW	11
 	DL	String_dispatch
 	DL	int_const12
-	DB	"tests/advanced/ko/lam.cl"
+	DB	"tests/advanced/ok/lam.cl"
 	DS	4
 int_const31:
 	DW	1
