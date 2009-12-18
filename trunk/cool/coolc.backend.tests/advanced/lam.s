@@ -554,7 +554,7 @@ str_const0:
 	.word	11
 	.word	String_dispatch
 	.word	int_const12
-	.ascii	"tests/advanced/ko/lam.cl"
+	.ascii	"tests/advanced/ok/lam.cl"
 	.byte	0, 0, 0, 0
 int_const31:
 	.word	1
@@ -1036,6 +1036,8 @@ void_disp_handler:
 void_case_handler:
 	lw	$t1, 4 ($sp)
 	jal	_case_abort2
+# Mapping: 
+# To spill: 
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1050,6 +1052,8 @@ __Object_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Int_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1064,6 +1068,8 @@ __Int_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Bool_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1078,6 +1084,8 @@ __Bool_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 String_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1092,6 +1100,8 @@ __String_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 IO_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1106,6 +1116,8 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 LambdaList_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1127,6 +1139,8 @@ __LambdaList_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListRef_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1154,6 +1168,8 @@ __LambdaListRef_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListNE_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1181,6 +1197,8 @@ __LambdaListNE_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 VarList_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1202,6 +1220,8 @@ __VarList_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Expr_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1223,6 +1243,8 @@ __Expr_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Term_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1244,6 +1266,8 @@ __Term_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1265,6 +1289,8 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Variable_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1286,6 +1312,8 @@ __Variable_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Lambda_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1307,6 +1335,8 @@ __Lambda_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 App_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1328,6 +1358,8 @@ __App_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 VarListNE_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1349,6 +1381,8 @@ __VarListNE_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 LambdaList.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1370,6 +1404,8 @@ __LambdaList.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaList.headE:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1413,6 +1449,8 @@ __LambdaList.headE_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaList.headC:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1456,6 +1494,8 @@ __LambdaList.headC_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaList.headN:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1495,6 +1535,8 @@ __LambdaList.headN_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaList.tail:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1538,6 +1580,8 @@ __LambdaList.tail_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s1 VR7:$s2 VR8:$s3 
+# To spill: 
 LambdaList.add:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1611,6 +1655,8 @@ __LambdaList.add_epilogue:
 	addi	$sp, $sp, 20
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaListRef.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1649,6 +1695,8 @@ __LambdaListRef.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaListRef.headE:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1687,6 +1735,8 @@ __LambdaListRef.headE_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaListRef.headC:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1725,6 +1775,8 @@ __LambdaListRef.headC_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 LambdaListRef.headN:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1763,6 +1815,8 @@ __LambdaListRef.headN_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListRef.reset:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1796,6 +1850,8 @@ __LambdaListRef.reset_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s1 VR6:$s2 
+# To spill: 
 LambdaListRef.add:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1865,6 +1921,8 @@ __LambdaListRef.add_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 LambdaListRef.removeHead:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1909,6 +1967,8 @@ __LambdaListRef.removeHead_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 LambdaListNE.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1930,6 +1990,8 @@ __LambdaListNE.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListNE.headE:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1955,6 +2017,8 @@ __LambdaListNE.headE_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListNE.headC:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1980,6 +2044,8 @@ __LambdaListNE.headC_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListNE.headN:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2005,6 +2071,8 @@ __LambdaListNE.headN_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 LambdaListNE.tail:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2030,6 +2098,8 @@ __LambdaListNE.tail_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 
+# To spill: 
 LambdaListNE.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2083,6 +2153,8 @@ __LambdaListNE.init_epilogue:
 	addi	$sp, $sp, 24
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 VarList.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2104,6 +2176,8 @@ __VarList.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 VarList.head:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2147,6 +2221,8 @@ __VarList.head_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 VarList.tail:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2190,6 +2266,8 @@ __VarList.tail_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s1 
+# To spill: 
 VarList.add:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2247,6 +2325,8 @@ __VarList.add_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 VarList.print:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2288,6 +2368,8 @@ __VarList.print_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Expr.print_self:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2348,6 +2430,8 @@ __Expr.print_self_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Expr.beta:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2408,6 +2492,8 @@ __Expr.beta_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s1 VR3:$s1 VR4:$s2 
+# To spill: 
 Expr.substitute:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2470,6 +2556,8 @@ __Expr.substitute_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s1 VR3:$s1 VR4:$s2 
+# To spill: 
 Expr.gen_code:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2532,6 +2620,8 @@ __Expr.gen_code_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 VR2:$s1 VR3:$s2 VR4:$s1 
+# To spill: 
 Term.var:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2584,6 +2674,8 @@ __Term.var_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 VR2:$s1 VR3:$s2 VR4:$s3 VR5:$s2 VR6:$s0 
+# To spill: 
 Term.lam:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2644,6 +2736,8 @@ __Term.lam_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 VR2:$s1 VR3:$s2 VR4:$s3 VR5:$s2 VR6:$s0 
+# To spill: 
 Term.app:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2704,6 +2798,8 @@ __Term.app_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s0 VR4:$s3 
+# To spill: 
 Term.i:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2774,6 +2870,8 @@ __Term.i_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s0 VR7:$s6 
+# To spill: 
 Term.k:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -2893,6 +2991,8 @@ __Term.k_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR8:$s2 VR9:$s3 VR10:$s4 VR11:$s5 VR12:$s6 VR13:$s1 VR14:$s0 
+# To spill: VR2 VR3 VR4 VR5 VR6 VR7 
 Term.s:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -3188,6 +3288,8 @@ __Term.s_epilogue:
 	addi	$sp, $sp, 32
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 
+# To spill: 
 Main.beta_reduce:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -3346,6 +3448,8 @@ __Main.beta_reduce_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Main.eval_class:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -3425,6 +3529,8 @@ __Main.eval_class_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Main.closure_class:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -3589,6 +3695,8 @@ __Main.closure_class_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s1 VR6:$s5 VR7:$s6 VR8:$s4 VR9:$s3 
+# To spill: 
 Main.gen_code:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -3940,6 +4048,8 @@ __Main.gen_code_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR6:$s0 VR7:$s1 VR8:$s2 VR9:$s3 VR10:$s4 VR11:$s5 VR12:$s6 
+# To spill: VR0 VR1 VR2 VR3 VR4 VR5 
 Main.main:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -5641,6 +5751,8 @@ __Main.main_epilogue:
 	addi	$sp, $sp, 32
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Variable.print_self:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -5686,6 +5798,8 @@ __Variable.print_self_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Variable.beta:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -5711,6 +5825,8 @@ __Variable.beta_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s1 
+# To spill: 
 Variable.substitute:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -5754,6 +5870,8 @@ __Variable.substitute_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s2 VR4:$s1 VR5:$s3 
+# To spill: 
 Variable.gen_code:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -5961,6 +6079,8 @@ __Variable.gen_code_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Variable.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -5993,6 +6113,8 @@ __Variable.init_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Lambda.print_self:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6084,6 +6206,8 @@ __Lambda.print_self_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Lambda.beta:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6109,6 +6233,8 @@ __Lambda.beta_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s1 VR6:$s2 VR7:$s0 
+# To spill: 
 Lambda.substitute:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6202,6 +6328,8 @@ __Lambda.substitute_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s2 VR6:$s5 
+# To spill: 
 Lambda.gen_code:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6373,6 +6501,8 @@ __Lambda.gen_code_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 Lambda.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6412,6 +6542,8 @@ __Lambda.init_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s0 
+# To spill: 
 Lambda.apply:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6465,6 +6597,8 @@ __Lambda.apply_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s6 
+# To spill: 
 Lambda.gen_closure_code:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6730,6 +6864,8 @@ __Lambda.gen_closure_code_epilogue:
 	addi	$sp, $sp, 20
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 App.print_self:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6838,6 +6974,8 @@ __App.print_self_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s1 VR5:$s3 VR6:$s4 
+# To spill: 
 App.beta:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -6958,6 +7096,8 @@ __App.beta_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s0 VR7:$s1 VR8:$s2 
+# To spill: 
 App.substitute:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7068,6 +7208,8 @@ __App.substitute_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 
+# To spill: 
 App.gen_code:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7286,6 +7428,8 @@ __App.gen_code_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 App.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7325,6 +7469,8 @@ __App.init_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 VarListNE.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7346,6 +7492,8 @@ __VarListNE.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 VarListNE.head:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7371,6 +7519,8 @@ __VarListNE.head_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 VarListNE.tail:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7396,6 +7546,8 @@ __VarListNE.tail_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 VarListNE.print:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -7470,6 +7622,8 @@ __VarListNE.print_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 VarListNE.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)

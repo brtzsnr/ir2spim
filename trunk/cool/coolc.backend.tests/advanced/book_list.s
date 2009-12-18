@@ -515,6 +515,8 @@ void_disp_handler:
 void_case_handler:
 	lw	$t1, 4 ($sp)
 	jal	_case_abort2
+# Mapping: 
+# To spill: 
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -529,6 +531,8 @@ __Object_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Int_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -543,6 +547,8 @@ __Int_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 Bool_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -557,6 +563,8 @@ __Bool_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 String_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -571,6 +579,8 @@ __String_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: 
+# To spill: 
 IO_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -585,6 +595,8 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -606,6 +618,8 @@ __Main_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Book_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -627,6 +641,8 @@ __Book_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 BookList_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -648,6 +664,8 @@ __BookList_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Cons_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -669,6 +687,8 @@ __Cons_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Nil_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -690,6 +710,8 @@ __Nil_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 
+# To spill: 
 Article_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -711,6 +733,8 @@ __Article_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 
+# To spill: 
 Main.main:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -856,6 +880,8 @@ __Main.main_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 Book.initBook:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -895,6 +921,8 @@ __Book.initBook_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Book.print:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1022,6 +1050,8 @@ __Book.print_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 BookList.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1061,6 +1091,8 @@ __BookList.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s2 VR5:$s1 
+# To spill: 
 BookList.cons:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1120,6 +1152,8 @@ __BookList.cons_epilogue:
 	addi	$sp, $sp, 12
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 BookList.car:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1163,6 +1197,8 @@ __BookList.car_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 BookList.cdr:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1206,6 +1242,8 @@ __BookList.cdr_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s0 
+# To spill: 
 BookList.print_list:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1244,6 +1282,8 @@ __BookList.print_list_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 Cons.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1265,6 +1305,8 @@ __Cons.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Cons.car:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1290,6 +1332,8 @@ __Cons.car_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 
+# To spill: 
 Cons.cdr:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1315,6 +1359,8 @@ __Cons.cdr_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 Cons.print_list:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1434,6 +1480,8 @@ __Cons.print_list_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 
+# To spill: 
 Cons.init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1473,6 +1521,8 @@ __Cons.init_epilogue:
 	addi	$sp, $sp, 16
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 Nil.isNil:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1494,6 +1544,8 @@ __Nil.isNil_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s0 
+# To spill: 
 Nil.print_list:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1515,6 +1567,8 @@ __Nil.print_list_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 
+# To spill: 
 Article.print:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1607,6 +1661,8 @@ __Article.print_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+# Mapping: VR0:$s0 VR1:$s1 VR2:$s2 VR3:$s3 VR4:$s4 VR5:$s5 VR6:$s1 
+# To spill: 
 Article.initArticle:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
