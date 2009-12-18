@@ -161,7 +161,7 @@ str_const0:
 	.word	11
 	.word	String_dispatch
 	.word	int_const12
-	.ascii	"tests/simple/ko/dispatch.cl"
+	.ascii	"tests/simple/ok/dispatch.cl"
 	.byte	0
 int_const12:
 	.word	1
@@ -348,79 +348,11 @@ heap_start:
 	.globl	Main_init
 	.globl	Main.main
 void_disp_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_dispatch_abort
-	j	__void_disp_handler_epilogue
-__void_disp_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 void_case_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_case_abort2
-	j	__void_case_handler_epilogue
-__void_case_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -607,7 +539,7 @@ P.method1:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid0: 
+dispatch_notvoid0:
 	la	$s6, str_const1
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -624,7 +556,7 @@ dispatch_notvoid0:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid1: 
+dispatch_notvoid1:
 	move	$s6, $s1
 	la	$s1, Int_protObj
 	move	$a0, $s1
@@ -647,7 +579,7 @@ dispatch_notvoid1:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid2: 
+dispatch_notvoid2:
 	la	$s6, str_const2
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -666,7 +598,7 @@ dispatch_notvoid2:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid3: 
+dispatch_notvoid3:
 	la	$s6, str_const3
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -677,7 +609,7 @@ dispatch_notvoid3:
 	move	$s5, $a0
 	li	$s5, 1
 	b	ite_end0
-ite_false0: 
+ite_false0:
 	lw	$s5, 12 ($s0)
 	bnez	$s5, dispatch_notvoid4
 	la	$s6, str_const0
@@ -686,7 +618,7 @@ ite_false0:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid4: 
+dispatch_notvoid4:
 	la	$s6, str_const4
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -696,7 +628,7 @@ dispatch_notvoid4:
 	jalr	$s6
 	move	$s5, $a0
 	li	$s5, 0
-ite_end0: 
+ite_end0:
 	move	$s4, $s5
 	lw	$s5, 12 ($s0)
 	bnez	$s5, dispatch_notvoid5
@@ -706,7 +638,7 @@ ite_end0:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid5: 
+dispatch_notvoid5:
 	move	$s6, $s4
 	la	$s1, Int_protObj
 	move	$a0, $s1
@@ -729,7 +661,7 @@ dispatch_notvoid5:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid6: 
+dispatch_notvoid6:
 	la	$s6, str_const2
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -746,7 +678,7 @@ dispatch_notvoid6:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid7: 
+dispatch_notvoid7:
 	move	$s6, $s3
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -763,7 +695,7 @@ dispatch_notvoid7:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid8: 
+dispatch_notvoid8:
 	la	$s6, str_const2
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -822,7 +754,7 @@ Main.main:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid9: 
+dispatch_notvoid9:
 	li	$s2, 10
 	li	$s3, 1
 	la	$s4, str_const6
@@ -845,7 +777,7 @@ dispatch_notvoid9:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid10: 
+dispatch_notvoid10:
 	li	$s2, 20
 	li	$s3, 0
 	la	$s4, str_const7

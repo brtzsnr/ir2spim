@@ -620,79 +620,11 @@ heap_start:
 	.globl	Main_init
 	.globl	Main.main
 void_disp_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_dispatch_abort
-	j	__void_disp_handler_epilogue
-__void_disp_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 void_case_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_case_abort2
-	j	__void_case_handler_epilogue
-__void_case_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -1184,7 +1116,7 @@ Main.main:
 	move	$s3, $a0
 	jal	Q_init
 	li	$s4, 0
-loop_start0: 
+loop_start0:
 	move	$s5, $s1
 	li	$s6, 1000
 	slt	$s5, $s5, $s6
@@ -1197,14 +1129,14 @@ loop_start0:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_case_handler
-case0_notvoid: 
+case0_notvoid:
 	lw	$s6, 0 ($s5)
-case0_tag22: 
+case0_tag22:
 	seq	$s4, $s6, 22
 	beqz	$s4, case0_tag21
 	li	$s6, 17
 	b	case0_end
-case0_tag21: 
+case0_tag21:
 	slt	$s4, $s6, 21
 	bnez	$s4, case0_tag20
 	li	$t0, 22
@@ -1212,7 +1144,7 @@ case0_tag21:
 	bnez	$s4, case0_tag20
 	li	$s6, 16
 	b	case0_end
-case0_tag20: 
+case0_tag20:
 	slt	$s4, $s6, 20
 	bnez	$s4, case0_tag19
 	li	$t0, 22
@@ -1220,7 +1152,7 @@ case0_tag20:
 	bnez	$s4, case0_tag19
 	li	$s6, 15
 	b	case0_end
-case0_tag19: 
+case0_tag19:
 	slt	$s4, $s6, 19
 	bnez	$s4, case0_tag18
 	li	$t0, 22
@@ -1228,7 +1160,7 @@ case0_tag19:
 	bnez	$s4, case0_tag18
 	li	$s6, 14
 	b	case0_end
-case0_tag18: 
+case0_tag18:
 	slt	$s4, $s6, 18
 	bnez	$s4, case0_tag17
 	li	$t0, 22
@@ -1236,7 +1168,7 @@ case0_tag18:
 	bnez	$s4, case0_tag17
 	li	$s6, 13
 	b	case0_end
-case0_tag17: 
+case0_tag17:
 	slt	$s4, $s6, 17
 	bnez	$s4, case0_tag16
 	li	$t0, 22
@@ -1244,7 +1176,7 @@ case0_tag17:
 	bnez	$s4, case0_tag16
 	li	$s6, 12
 	b	case0_end
-case0_tag16: 
+case0_tag16:
 	slt	$s4, $s6, 16
 	bnez	$s4, case0_tag15
 	li	$t0, 22
@@ -1252,7 +1184,7 @@ case0_tag16:
 	bnez	$s4, case0_tag15
 	li	$s6, 11
 	b	case0_end
-case0_tag15: 
+case0_tag15:
 	slt	$s4, $s6, 15
 	bnez	$s4, case0_tag14
 	li	$t0, 22
@@ -1260,7 +1192,7 @@ case0_tag15:
 	bnez	$s4, case0_tag14
 	li	$s6, 10
 	b	case0_end
-case0_tag14: 
+case0_tag14:
 	slt	$s4, $s6, 14
 	bnez	$s4, case0_tag13
 	li	$t0, 22
@@ -1268,7 +1200,7 @@ case0_tag14:
 	bnez	$s4, case0_tag13
 	li	$s6, 9
 	b	case0_end
-case0_tag13: 
+case0_tag13:
 	slt	$s4, $s6, 13
 	bnez	$s4, case0_tag12
 	li	$t0, 22
@@ -1276,7 +1208,7 @@ case0_tag13:
 	bnez	$s4, case0_tag12
 	li	$s6, 8
 	b	case0_end
-case0_tag12: 
+case0_tag12:
 	slt	$s4, $s6, 12
 	bnez	$s4, case0_tag11
 	li	$t0, 22
@@ -1284,7 +1216,7 @@ case0_tag12:
 	bnez	$s4, case0_tag11
 	li	$s6, 7
 	b	case0_end
-case0_tag11: 
+case0_tag11:
 	slt	$s4, $s6, 11
 	bnez	$s4, case0_tag10
 	li	$t0, 22
@@ -1292,7 +1224,7 @@ case0_tag11:
 	bnez	$s4, case0_tag10
 	li	$s6, 6
 	b	case0_end
-case0_tag10: 
+case0_tag10:
 	slt	$s4, $s6, 10
 	bnez	$s4, case0_tag9
 	li	$t0, 22
@@ -1300,7 +1232,7 @@ case0_tag10:
 	bnez	$s4, case0_tag9
 	li	$s6, 5
 	b	case0_end
-case0_tag9: 
+case0_tag9:
 	slt	$s4, $s6, 9
 	bnez	$s4, case0_tag8
 	li	$t0, 22
@@ -1308,7 +1240,7 @@ case0_tag9:
 	bnez	$s4, case0_tag8
 	li	$s6, 4
 	b	case0_end
-case0_tag8: 
+case0_tag8:
 	slt	$s4, $s6, 8
 	bnez	$s4, case0_tag7
 	li	$t0, 22
@@ -1316,7 +1248,7 @@ case0_tag8:
 	bnez	$s4, case0_tag7
 	li	$s6, 3
 	b	case0_end
-case0_tag7: 
+case0_tag7:
 	slt	$s4, $s6, 7
 	bnez	$s4, case0_tag5
 	li	$t0, 22
@@ -1324,7 +1256,7 @@ case0_tag7:
 	bnez	$s4, case0_tag5
 	li	$s6, 2
 	b	case0_end
-case0_tag5: 
+case0_tag5:
 	slt	$s4, $s6, 5
 	bnez	$s4, case0_error
 	li	$t0, 22
@@ -1332,10 +1264,10 @@ case0_tag5:
 	bnez	$s4, case0_error
 	li	$s6, 1
 	b	case0_end
-case0_error: 
+case0_error:
 	move	$a0, $s5
 	jal	_case_abort
-case0_end: 
+case0_end:
 	move	$s5, $s6
 	move	$s4, $s5
 	move	$s5, $s1
@@ -1343,7 +1275,7 @@ case0_end:
 	add	$s5, $s5, $s6
 	move	$s1, $s5
 	b	loop_start0
-loop_end0: 
+loop_end0:
 	move	$s5, $s4
 	li	$s6, 17
 	seq	$s5, $s5, $s6
@@ -1358,16 +1290,16 @@ loop_end0:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid0: 
+dispatch_notvoid0:
 	move	$a0, $s5
 	lw	$s6, 8 ($s5)
 	lw	$s6, 0 ($s6)
 	jalr	$s6
 	move	$s5, $a0
 	b	ite_end0
-ite_false0: 
+ite_false0:
 	li	$s5, 0
-ite_end0: 
+ite_end0:
 	lw	$s5, 12 ($s0)
 	bnez	$s5, dispatch_notvoid1
 	la	$s6, str_const0
@@ -1376,7 +1308,7 @@ ite_end0:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid1: 
+dispatch_notvoid1:
 	la	$s6, str_const1
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)
@@ -1387,7 +1319,7 @@ dispatch_notvoid1:
 	move	$s5, $a0
 	li	$s5, 0
 	move	$s1, $s5
-loop_start1: 
+loop_start1:
 	move	$s5, $s1
 	li	$s6, 1000
 	slt	$s5, $s5, $s6
@@ -1400,14 +1332,14 @@ loop_start1:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_case_handler
-case1_notvoid: 
+case1_notvoid:
 	lw	$s6, 0 ($s5)
-case1_tag22: 
+case1_tag22:
 	seq	$s4, $s6, 22
 	beqz	$s4, case1_tag21
 	li	$s6, 17
 	b	case1_end
-case1_tag21: 
+case1_tag21:
 	slt	$s4, $s6, 21
 	bnez	$s4, case1_tag20
 	li	$t0, 22
@@ -1415,7 +1347,7 @@ case1_tag21:
 	bnez	$s4, case1_tag20
 	li	$s6, 16
 	b	case1_end
-case1_tag20: 
+case1_tag20:
 	slt	$s4, $s6, 20
 	bnez	$s4, case1_tag19
 	li	$t0, 22
@@ -1423,7 +1355,7 @@ case1_tag20:
 	bnez	$s4, case1_tag19
 	li	$s6, 15
 	b	case1_end
-case1_tag19: 
+case1_tag19:
 	slt	$s4, $s6, 19
 	bnez	$s4, case1_tag18
 	li	$t0, 22
@@ -1431,7 +1363,7 @@ case1_tag19:
 	bnez	$s4, case1_tag18
 	li	$s6, 14
 	b	case1_end
-case1_tag18: 
+case1_tag18:
 	slt	$s4, $s6, 18
 	bnez	$s4, case1_tag17
 	li	$t0, 22
@@ -1439,7 +1371,7 @@ case1_tag18:
 	bnez	$s4, case1_tag17
 	li	$s6, 13
 	b	case1_end
-case1_tag17: 
+case1_tag17:
 	slt	$s4, $s6, 17
 	bnez	$s4, case1_tag16
 	li	$t0, 22
@@ -1447,7 +1379,7 @@ case1_tag17:
 	bnez	$s4, case1_tag16
 	li	$s6, 12
 	b	case1_end
-case1_tag16: 
+case1_tag16:
 	slt	$s4, $s6, 16
 	bnez	$s4, case1_tag15
 	li	$t0, 22
@@ -1455,7 +1387,7 @@ case1_tag16:
 	bnez	$s4, case1_tag15
 	li	$s6, 11
 	b	case1_end
-case1_tag15: 
+case1_tag15:
 	slt	$s4, $s6, 15
 	bnez	$s4, case1_tag14
 	li	$t0, 22
@@ -1463,7 +1395,7 @@ case1_tag15:
 	bnez	$s4, case1_tag14
 	li	$s6, 10
 	b	case1_end
-case1_tag14: 
+case1_tag14:
 	slt	$s4, $s6, 14
 	bnez	$s4, case1_tag13
 	li	$t0, 22
@@ -1471,7 +1403,7 @@ case1_tag14:
 	bnez	$s4, case1_tag13
 	li	$s6, 9
 	b	case1_end
-case1_tag13: 
+case1_tag13:
 	slt	$s4, $s6, 13
 	bnez	$s4, case1_tag12
 	li	$t0, 22
@@ -1479,7 +1411,7 @@ case1_tag13:
 	bnez	$s4, case1_tag12
 	li	$s6, 8
 	b	case1_end
-case1_tag12: 
+case1_tag12:
 	slt	$s4, $s6, 12
 	bnez	$s4, case1_tag11
 	li	$t0, 22
@@ -1487,7 +1419,7 @@ case1_tag12:
 	bnez	$s4, case1_tag11
 	li	$s6, 7
 	b	case1_end
-case1_tag11: 
+case1_tag11:
 	slt	$s4, $s6, 11
 	bnez	$s4, case1_tag10
 	li	$t0, 22
@@ -1495,7 +1427,7 @@ case1_tag11:
 	bnez	$s4, case1_tag10
 	li	$s6, 6
 	b	case1_end
-case1_tag10: 
+case1_tag10:
 	slt	$s4, $s6, 10
 	bnez	$s4, case1_tag9
 	li	$t0, 22
@@ -1503,7 +1435,7 @@ case1_tag10:
 	bnez	$s4, case1_tag9
 	li	$s6, 5
 	b	case1_end
-case1_tag9: 
+case1_tag9:
 	slt	$s4, $s6, 9
 	bnez	$s4, case1_tag8
 	li	$t0, 22
@@ -1511,7 +1443,7 @@ case1_tag9:
 	bnez	$s4, case1_tag8
 	li	$s6, 4
 	b	case1_end
-case1_tag8: 
+case1_tag8:
 	slt	$s4, $s6, 8
 	bnez	$s4, case1_tag7
 	li	$t0, 22
@@ -1519,7 +1451,7 @@ case1_tag8:
 	bnez	$s4, case1_tag7
 	li	$s6, 3
 	b	case1_end
-case1_tag7: 
+case1_tag7:
 	slt	$s4, $s6, 7
 	bnez	$s4, case1_tag5
 	li	$t0, 22
@@ -1527,7 +1459,7 @@ case1_tag7:
 	bnez	$s4, case1_tag5
 	li	$s6, 2
 	b	case1_end
-case1_tag5: 
+case1_tag5:
 	slt	$s4, $s6, 5
 	bnez	$s4, case1_error
 	li	$t0, 22
@@ -1535,10 +1467,10 @@ case1_tag5:
 	bnez	$s4, case1_error
 	li	$s6, 1
 	b	case1_end
-case1_error: 
+case1_error:
 	move	$a0, $s5
 	jal	_case_abort
-case1_end: 
+case1_end:
 	move	$s5, $s6
 	move	$s4, $s5
 	move	$s5, $s1
@@ -1546,7 +1478,7 @@ case1_end:
 	add	$s5, $s5, $s6
 	move	$s1, $s5
 	b	loop_start1
-loop_end1: 
+loop_end1:
 	move	$s5, $s4
 	li	$s6, 1
 	seq	$s5, $s5, $s6
@@ -1561,16 +1493,16 @@ loop_end1:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid2: 
+dispatch_notvoid2:
 	move	$a0, $s5
 	lw	$s6, 8 ($s5)
 	lw	$s6, 0 ($s6)
 	jalr	$s6
 	move	$s5, $a0
 	b	ite_end1
-ite_false1: 
+ite_false1:
 	li	$s5, 0
-ite_end1: 
+ite_end1:
 	lw	$s5, 12 ($s0)
 	bnez	$s5, dispatch_notvoid3
 	la	$s6, str_const0
@@ -1579,7 +1511,7 @@ ite_end1:
 	sw	$s6, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid3: 
+dispatch_notvoid3:
 	la	$s6, str_const2
 	move	$a0, $s5
 	sw	$s6, 0 ($sp)

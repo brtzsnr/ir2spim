@@ -24,126 +24,164 @@ _bool_tag:
 	.word	2
 _string_tag:
 	.word	3
-str_const12:
+str_const16:
 	.word	3
 	.word	5
 	.word	String_dispatch
 	.word	int_const3
 	.byte	0, 0, 0, 0
-str_const11:
+str_const15:
 	.word	3
 	.word	6
 	.word	String_dispatch
-	.word	int_const0
+	.word	int_const4
 	.ascii	"Main"
 	.byte	0, 0, 0, 0
-str_const10:
+str_const14:
 	.word	3
 	.word	5
 	.word	String_dispatch
-	.word	int_const4
+	.word	int_const5
+	.ascii	"C"
+	.byte	0, 0, 0
+str_const13:
+	.word	3
+	.word	5
+	.word	String_dispatch
+	.word	int_const5
+	.ascii	"B"
+	.byte	0, 0, 0
+str_const12:
+	.word	3
+	.word	5
+	.word	String_dispatch
+	.word	int_const5
+	.ascii	"A"
+	.byte	0, 0, 0
+str_const11:
+	.word	3
+	.word	5
+	.word	String_dispatch
+	.word	int_const6
 	.ascii	"IO"
+	.byte	0, 0
+str_const10:
+	.word	3
+	.word	6
+	.word	String_dispatch
+	.word	int_const7
+	.ascii	"String"
 	.byte	0, 0
 str_const9:
 	.word	3
 	.word	6
 	.word	String_dispatch
-	.word	int_const5
-	.ascii	"String"
-	.byte	0, 0
-str_const8:
-	.word	3
-	.word	6
-	.word	String_dispatch
-	.word	int_const0
+	.word	int_const4
 	.ascii	"Bool"
 	.byte	0, 0, 0, 0
-str_const7:
+str_const8:
 	.word	3
 	.word	5
 	.word	String_dispatch
-	.word	int_const2
+	.word	int_const8
 	.ascii	"Int"
 	.byte	0
-str_const6:
+str_const7:
 	.word	3
 	.word	6
 	.word	String_dispatch
-	.word	int_const5
+	.word	int_const7
 	.ascii	"Object"
+	.byte	0, 0
+str_const6:
+	.word	3
+	.word	7
+	.word	String_dispatch
+	.word	int_const0
+	.ascii	"_prim_slot"
 	.byte	0, 0
 str_const5:
 	.word	3
 	.word	7
 	.word	String_dispatch
-	.word	int_const6
-	.ascii	"_prim_slot"
-	.byte	0, 0
+	.word	int_const9
+	.ascii	"SELF_TYPE"
+	.byte	0, 0, 0
 str_const4:
 	.word	3
 	.word	7
 	.word	String_dispatch
-	.word	int_const7
-	.ascii	"SELF_TYPE"
+	.word	int_const9
+	.ascii	"_no_class"
 	.byte	0, 0, 0
 str_const3:
 	.word	3
-	.word	7
+	.word	8
 	.word	String_dispatch
-	.word	int_const7
-	.ascii	"_no_class"
+	.word	int_const10
+	.ascii	"<basic class>"
 	.byte	0, 0, 0
 str_const2:
 	.word	3
-	.word	8
+	.word	5
 	.word	String_dispatch
-	.word	int_const8
-	.ascii	"<basic class>"
-	.byte	0, 0, 0
+	.word	int_const6
+	.ascii	"C\n"
+	.byte	0, 0
 str_const1:
 	.word	3
 	.word	5
 	.word	String_dispatch
-	.word	int_const1
-	.ascii	"\n"
-	.byte	0, 0, 0
+	.word	int_const6
+	.ascii	"B\n"
+	.byte	0, 0
 str_const0:
 	.word	3
-	.word	11
+	.word	13
 	.word	String_dispatch
-	.word	int_const9
-	.ascii	"tests/advanced/ok/cool.cl"
-	.byte	0, 0, 0
-int_const9:
+	.word	int_const11
+	.ascii	"tests/error/ok/case_with_void.cl"
+	.byte	0, 0, 0, 0
+int_const11:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	25
-int_const8:
+	.word	32
+int_const10:
 	.word	1
 	.word	4
 	.word	Object_dispatch
 	.word	13
-int_const7:
+int_const9:
 	.word	1
 	.word	4
 	.word	Object_dispatch
 	.word	9
-int_const6:
+int_const8:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	10
-int_const5:
+	.word	3
+int_const7:
 	.word	1
 	.word	4
 	.word	Object_dispatch
 	.word	6
-int_const4:
+int_const6:
 	.word	1
 	.word	4
 	.word	Object_dispatch
 	.word	2
+int_const5:
+	.word	1
+	.word	4
+	.word	Object_dispatch
+	.word	1
+int_const4:
+	.word	1
+	.word	4
+	.word	Object_dispatch
+	.word	4
 int_const3:
 	.word	1
 	.word	4
@@ -153,17 +191,17 @@ int_const2:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	3
+	.word	30
 int_const1:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	1
+	.word	20
 int_const0:
 	.word	1
 	.word	4
 	.word	Object_dispatch
-	.word	4
+	.word	10
 bool_const1:
 	.word	2
 	.word	4
@@ -175,12 +213,15 @@ bool_const0:
 	.word	Object_dispatch
 	.word	0
 class_nameTab:
-	.word	str_const6
 	.word	str_const7
 	.word	str_const8
 	.word	str_const9
 	.word	str_const10
 	.word	str_const11
+	.word	str_const12
+	.word	str_const15
+	.word	str_const13
+	.word	str_const14
 class_objTab:
 	.word	Object_protObj
 	.word	Object_init
@@ -192,8 +233,14 @@ class_objTab:
 	.word	String_init
 	.word	IO_protObj
 	.word	IO_init
+	.word	A_protObj
+	.word	A_init
 	.word	Main_protObj
 	.word	Main_init
+	.word	B_protObj
+	.word	B_init
+	.word	C_protObj
+	.word	C_init
 Object_dispatch:
 	.word	Object.abort
 	.word	Object.copy
@@ -213,15 +260,26 @@ IO_dispatch:
 	.word	IO.out_int
 	.word	IO.in_string
 	.word	IO.in_int
+A_dispatch:
+	.word	Object.abort
+	.word	Object.copy
+	.word	Object.type_name
+	.word	A.init
 Main_dispatch:
 	.word	Object.abort
 	.word	Object.copy
 	.word	Object.type_name
-	.word	IO.out_string
-	.word	IO.out_int
-	.word	IO.in_string
-	.word	IO.in_int
 	.word	Main.main
+B_dispatch:
+	.word	Object.abort
+	.word	Object.copy
+	.word	Object.type_name
+	.word	B.init
+C_dispatch:
+	.word	Object.abort
+	.word	Object.copy
+	.word	Object.type_name
+	.word	C.init
 Object_protObj:
 	.word	0
 	.word	3
@@ -246,10 +304,27 @@ IO_protObj:
 	.word	4
 	.word	3
 	.word	IO_dispatch
-Main_protObj:
+A_protObj:
 	.word	5
-	.word	3
+	.word	4
+	.word	A_dispatch
+	.word	0
+Main_protObj:
+	.word	6
+	.word	5
 	.word	Main_dispatch
+	.word	0
+	.word	0
+B_protObj:
+	.word	7
+	.word	4
+	.word	B_dispatch
+	.word	0
+C_protObj:
+	.word	8
+	.word	4
+	.word	C_dispatch
+	.word	0
 heap_start:
 	.word	0
 
@@ -335,6 +410,33 @@ __IO_init_epilogue:
 	addi	$sp, $sp, 8
 	jr	$ra
 
+A_init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	jal	Object_init
+	li	$s1, 0
+	sw	$s1, 12 ($s0)
+	move	$a0, $s0
+	j	__A_init_epilogue
+__A_init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
 Main_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -343,12 +445,91 @@ Main_init:
 	## saving registers
 	sw	$s0, 0 ($sp)
 	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
 	move	$s0, $a0
+	jal	Object_init
+	la	$s1, IO_protObj
+	move	$a0, $s1
+	jal	Object.copy
+	move	$s1, $a0
 	jal	IO_init
+	sw	$s1, 16 ($s0)
 	move	$a0, $s0
 	j	__Main_init_epilogue
 __Main_init_epilogue:
 	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+B_init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	jal	A_init
+	move	$a0, $s0
+	j	__B_init_epilogue
+__B_init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+C_init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	jal	A_init
+	move	$a0, $s0
+	j	__C_init_epilogue
+__C_init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+A.init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	li	$s1, 10
+	sw	$s1, 12 ($s0)
+	move	$s1, $s0
+	move	$a0, $s1
+	j	__A.init_epilogue
+__A.init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
 	addi $sp, $sp, 4
 	lw	$s0, 0 ($sp)
 	lw	$ra, 0 ($fp)
@@ -370,177 +551,127 @@ Main.main:
 	addi $sp, $sp, -4
 	sw	$s3, 0 ($sp)
 	addi $sp, $sp, -4
-	sw	$s4, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s5, 0 ($sp)
-	addi $sp, $sp, -4
 	move	$s0, $a0
-	move	$s1, $s0
-	bnez	$s1, dispatch_notvoid0
+	lw	$s1, 12 ($s0)
+	bnez	$s1, case0_notvoid
 	la	$s2, str_const0
 	move	$a0, $s2
-	li	$s2, 4
+	li	$s2, 41
 	sw	$s2, 0 ($sp)
+	addi	$sp, $sp, -4
+	jal	void_case_handler
+case0_notvoid:
+	lw	$s2, 0 ($s1)
+case0_tag8:
+	seq	$s3, $s2, 8
+	beqz	$s3, case0_tag7
+	lw	$s2, 16 ($s0)
+	bnez	$s2, dispatch_notvoid0
+	la	$s3, str_const0
+	move	$a0, $s3
+	li	$s3, 43
+	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid0:
-	la	$s2, Object_protObj
+	la	$s3, str_const2
 	move	$a0, $s2
-	jal	Object.copy
+	sw	$s3, 0 ($sp)
+	addi	$sp, $sp, -4
+	lw	$s3, 8 ($s2)
+	lw	$s3, 12 ($s3)
+	jalr	$s3
 	move	$s2, $a0
-	jal	Object_init
+	b	case0_end
+case0_tag7:
+	seq	$s3, $s2, 7
+	beqz	$s3, case0_error
+	lw	$s2, 16 ($s0)
 	bnez	$s2, dispatch_notvoid1
 	la	$s3, str_const0
 	move	$a0, $s3
-	li	$s3, 4
+	li	$s3, 42
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid1:
-	move	$a0, $s2
-	lw	$s3, 8 ($s2)
-	lw	$s3, 8 ($s3)
-	jalr	$s3
-	move	$s2, $a0
-	bnez	$s2, dispatch_notvoid2
-	la	$s3, str_const0
-	move	$a0, $s3
-	li	$s3, 4
-	sw	$s3, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid2:
-	li	$s3, 4
-	la	$s4, Int_protObj
-	move	$a0, $s4
-	jal	Object.copy
-	move	$s4, $a0
-	sw	$s3, 12 ($s4)
-	move	$s3, $s4
-	li	$s4, 1
-	la	$s5, Int_protObj
-	move	$a0, $s5
-	jal	Object.copy
-	move	$s5, $a0
-	sw	$s4, 12 ($s5)
-	move	$s4, $s5
+	la	$s3, str_const1
 	move	$a0, $s2
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
-	sw	$s4, 0 ($sp)
-	addi	$sp, $sp, -4
 	lw	$s3, 8 ($s2)
-	lw	$s3, 20 ($s3)
+	lw	$s3, 12 ($s3)
 	jalr	$s3
 	move	$s2, $a0
+	b	case0_end
+case0_error:
 	move	$a0, $s1
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s2, 8 ($s1)
-	lw	$s2, 12 ($s2)
-	jalr	$s2
-	move	$s1, $a0
-	bnez	$s1, dispatch_notvoid3
-	la	$s2, str_const0
-	move	$a0, $s2
-	li	$s2, 4
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid3:
-	move	$s2, $s0
-	beqz	$s2, isvoid_true0
-	la	$s2, bool_const0
-	b	isvoid_end0
-isvoid_true0:
-	la	$s2, bool_const1
-isvoid_end0:
-	la	$s3, Bool_protObj
-	move	$a0, $s3
-	jal	Object.copy
-	move	$s3, $a0
-	sw	$s2, 12 ($s3)
-	move	$s2, $s3
-	bnez	$s2, dispatch_notvoid4
-	la	$s3, str_const0
-	move	$a0, $s3
-	li	$s3, 5
-	sw	$s3, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid4:
-	move	$a0, $s2
-	lw	$s3, 8 ($s2)
-	lw	$s3, 8 ($s3)
-	jalr	$s3
-	move	$s2, $a0
-	bnez	$s2, dispatch_notvoid5
-	la	$s3, str_const0
-	move	$a0, $s3
-	li	$s3, 5
-	sw	$s3, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid5:
-	li	$s3, 1
-	la	$s4, Int_protObj
-	move	$a0, $s4
-	jal	Object.copy
-	move	$s4, $a0
-	sw	$s3, 12 ($s4)
-	move	$s3, $s4
-	li	$s4, 3
-	la	$s5, Int_protObj
-	move	$a0, $s5
-	jal	Object.copy
-	move	$s5, $a0
-	sw	$s4, 12 ($s5)
-	move	$s4, $s5
-	move	$a0, $s2
-	sw	$s3, 0 ($sp)
-	addi	$sp, $sp, -4
-	sw	$s4, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s3, 8 ($s2)
-	lw	$s3, 20 ($s3)
-	jalr	$s3
-	move	$s2, $a0
-	move	$a0, $s1
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s2, 8 ($s1)
-	lw	$s2, 12 ($s2)
-	jalr	$s2
-	move	$s1, $a0
-	move	$s1, $s0
-	bnez	$s1, dispatch_notvoid6
-	la	$s2, str_const0
-	move	$a0, $s2
-	li	$s2, 6
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
-	jal	void_disp_handler
-dispatch_notvoid6:
-	la	$s2, str_const1
-	move	$a0, $s1
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
-	lw	$s2, 8 ($s1)
-	lw	$s2, 12 ($s2)
-	jalr	$s2
-	move	$s1, $a0
+	jal	_case_abort
+case0_end:
+	move	$s1, $s2
+	li	$s1, 0
 	move	$a0, $s1
 	j	__Main.main_epilogue
 __Main.main_epilogue:
 	## restoring registers
 	addi $sp, $sp, 4
-	lw	$s5, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s4, 0 ($sp)
-	addi $sp, $sp, 4
 	lw	$s3, 0 ($sp)
 	addi $sp, $sp, 4
 	lw	$s2, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+B.init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	li	$s1, 20
+	sw	$s1, 12 ($s0)
+	move	$s1, $s0
+	move	$a0, $s1
+	j	__B.init_epilogue
+__B.init_epilogue:
+	## restoring registers
+	addi $sp, $sp, 4
+	lw	$s1, 0 ($sp)
+	addi $sp, $sp, 4
+	lw	$s0, 0 ($sp)
+	lw	$ra, 0 ($fp)
+	lw	$fp, 4 ($fp)
+	addi	$sp, $sp, 8
+	jr	$ra
+
+C.init:
+	addi	$sp, $sp, -8
+	sw	$fp, 8 ($sp)
+	sw	$ra, 4 ($sp)
+	addi	$fp, $sp, 4
+	## saving registers
+	sw	$s0, 0 ($sp)
+	addi $sp, $sp, -4
+	sw	$s1, 0 ($sp)
+	addi $sp, $sp, -4
+	move	$s0, $a0
+	li	$s1, 30
+	sw	$s1, 12 ($s0)
+	move	$s1, $s0
+	move	$a0, $s1
+	j	__C.init_epilogue
+__C.init_epilogue:
+	## restoring registers
 	addi $sp, $sp, 4
 	lw	$s1, 0 ($sp)
 	addi $sp, $sp, 4

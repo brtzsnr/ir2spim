@@ -727,7 +727,7 @@ str_const0:
 	DW	11
 	DL	String_dispatch
 	DL	int_const10
-	DB	"tests/advanced/ko/list.cl"
+	DB	"tests/advanced/ok/list.cl"
 	DS	3
 int_const10:
 	DW	1

@@ -380,79 +380,11 @@ heap_start:
 	.globl	Main_init
 	.globl	Main.main
 void_disp_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_dispatch_abort
-	j	__void_disp_handler_epilogue
-__void_disp_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 void_case_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_case_abort2
-	j	__void_case_handler_epilogue
-__void_case_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -598,14 +530,14 @@ Bazz_init:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_case_handler
-case0_notvoid: 
+case0_notvoid:
 	lw	$s2, 0 ($s1)
-case0_tag9: 
+case0_tag9:
 	seq	$s3, $s2, 9
 	beqz	$s3, case0_tag8
 	move	$s2, $s1
 	b	case0_end
-case0_tag8: 
+case0_tag8:
 	slt	$s3, $s2, 8
 	bnez	$s3, case0_tag7
 	li	$t0, 9
@@ -617,7 +549,7 @@ case0_tag8:
 	move	$s2, $a0
 	jal	Bar_init
 	b	case0_end
-case0_tag7: 
+case0_tag7:
 	slt	$s3, $s2, 7
 	bnez	$s3, case0_tag6
 	li	$t0, 9
@@ -629,7 +561,7 @@ case0_tag7:
 	move	$s2, $a0
 	jal	Razz_init
 	b	case0_end
-case0_tag6: 
+case0_tag6:
 	slt	$s3, $s2, 6
 	bnez	$s3, case0_error
 	li	$t0, 9
@@ -641,10 +573,10 @@ case0_tag6:
 	move	$s2, $a0
 	jal	Foo_init
 	b	case0_end
-case0_error: 
+case0_error:
 	move	$a0, $s1
 	jal	_case_abort
-case0_end: 
+case0_end:
 	move	$s1, $s2
 	sw	$s1, 16 ($s0)
 	move	$s1, $s0
@@ -655,7 +587,7 @@ case0_end:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid0: 
+dispatch_notvoid0:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 28 ($s2)
@@ -709,14 +641,14 @@ Foo_init:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_case_handler
-case1_notvoid: 
+case1_notvoid:
 	lw	$s2, 0 ($s1)
-case1_tag9: 
+case1_tag9:
 	seq	$s3, $s2, 9
 	beqz	$s3, case1_tag8
 	move	$s2, $s1
 	b	case1_end
-case1_tag8: 
+case1_tag8:
 	slt	$s3, $s2, 8
 	bnez	$s3, case1_tag7
 	li	$t0, 9
@@ -728,7 +660,7 @@ case1_tag8:
 	move	$s2, $a0
 	jal	Bar_init
 	b	case1_end
-case1_tag7: 
+case1_tag7:
 	slt	$s3, $s2, 7
 	bnez	$s3, case1_error
 	li	$t0, 9
@@ -740,10 +672,10 @@ case1_tag7:
 	move	$s2, $a0
 	jal	Razz_init
 	b	case1_end
-case1_error: 
+case1_error:
 	move	$a0, $s1
 	jal	_case_abort
-case1_end: 
+case1_end:
 	move	$s1, $s2
 	sw	$s1, 24 ($s0)
 	lw	$s1, 24 ($s0)
@@ -754,7 +686,7 @@ case1_end:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid1: 
+dispatch_notvoid1:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 32 ($s2)
@@ -768,7 +700,7 @@ dispatch_notvoid1:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid2: 
+dispatch_notvoid2:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 32 ($s3)
@@ -783,7 +715,7 @@ dispatch_notvoid2:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid3: 
+dispatch_notvoid3:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 32 ($s3)
@@ -798,7 +730,7 @@ dispatch_notvoid3:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid4: 
+dispatch_notvoid4:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 28 ($s3)
@@ -847,14 +779,14 @@ Razz_init:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_case_handler
-case2_notvoid: 
+case2_notvoid:
 	lw	$s2, 0 ($s1)
-case2_tag9: 
+case2_tag9:
 	seq	$s3, $s2, 9
 	beqz	$s3, case2_tag8
 	move	$s2, $s1
 	b	case2_end
-case2_tag8: 
+case2_tag8:
 	slt	$s3, $s2, 8
 	bnez	$s3, case2_error
 	li	$t0, 9
@@ -866,10 +798,10 @@ case2_tag8:
 	move	$s2, $a0
 	jal	Bar_init
 	b	case2_end
-case2_error: 
+case2_error:
 	move	$a0, $s1
 	jal	_case_abort
-case2_end: 
+case2_end:
 	move	$s1, $s2
 	sw	$s1, 32 ($s0)
 	lw	$s1, 24 ($s0)
@@ -880,7 +812,7 @@ case2_end:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid5: 
+dispatch_notvoid5:
 	move	$a0, $s1
 	la	$s2, Bazz_dispatch
 	lw	$s2, 32 ($s2)
@@ -894,7 +826,7 @@ dispatch_notvoid5:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid6: 
+dispatch_notvoid6:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 32 ($s3)
@@ -909,7 +841,7 @@ dispatch_notvoid6:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid7: 
+dispatch_notvoid7:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 32 ($s3)
@@ -924,7 +856,7 @@ dispatch_notvoid7:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid8: 
+dispatch_notvoid8:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 32 ($s3)
@@ -939,7 +871,7 @@ dispatch_notvoid8:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid9: 
+dispatch_notvoid9:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 28 ($s3)
@@ -986,7 +918,7 @@ Bar_init:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid10: 
+dispatch_notvoid10:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 32 ($s2)
@@ -1001,7 +933,7 @@ dispatch_notvoid10:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid11: 
+dispatch_notvoid11:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 28 ($s2)
@@ -1071,7 +1003,7 @@ Bazz.printh:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid12: 
+dispatch_notvoid12:
 	lw	$s2, 12 ($s0)
 	la	$s0, Int_protObj
 	move	$a0, $s0
