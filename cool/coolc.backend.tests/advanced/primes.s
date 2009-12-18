@@ -133,7 +133,7 @@ str_const0:
 	.word	11
 	.word	String_dispatch
 	.word	int_const13
-	.ascii	"tests/advanced/ko/primes.cl"
+	.ascii	"tests/advanced/ok/primes.cl"
 	.byte	0
 int_const13:
 	.word	1
@@ -306,79 +306,11 @@ heap_start:
 	.globl	Main_init
 	.globl	Main.main
 void_disp_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_dispatch_abort
-	j	__void_disp_handler_epilogue
-__void_disp_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 void_case_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_case_abort2
-	j	__void_case_handler_epilogue
-__void_case_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -476,7 +408,6 @@ Main_init:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid0:
-
 	la	$s2, str_const1
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -494,7 +425,6 @@ dispatch_notvoid0:
 	li	$s1, 500
 	sw	$s1, 24 ($s0)
 loop_start0:
-
 	li	$s1, 1
 	beqz	$s1, loop_end0
 	lw	$s1, 16 ($s0)
@@ -504,7 +434,6 @@ loop_start0:
 	li	$s1, 2
 	sw	$s1, 20 ($s0)
 loop_start1:
-
 	lw	$s1, 16 ($s0)
 	lw	$s2, 20 ($s0)
 	lw	$s3, 20 ($s0)
@@ -514,7 +443,6 @@ loop_start1:
 	li	$s1, 0
 	b	ite_end0
 ite_false0:
-
 	lw	$s1, 16 ($s0)
 	lw	$s2, 20 ($s0)
 	lw	$s3, 16 ($s0)
@@ -528,11 +456,9 @@ ite_false0:
 	li	$s1, 0
 	b	ite_end1
 ite_false1:
-
 	li	$s1, 1
 ite_end1:
 ite_end0:
-
 	beqz	$s1, loop_end1
 	lw	$s1, 20 ($s0)
 	li	$s2, 1
@@ -540,7 +466,6 @@ ite_end0:
 	sw	$s1, 20 ($s0)
 	b	loop_start1
 loop_end1:
-
 	lw	$s1, 16 ($s0)
 	lw	$s2, 20 ($s0)
 	lw	$s3, 20 ($s0)
@@ -558,7 +483,6 @@ loop_end1:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid1:
-
 	lw	$s2, 12 ($s0)
 	la	$s3, Int_protObj
 	move	$a0, $s3
@@ -582,7 +506,6 @@ dispatch_notvoid1:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid2:
-
 	la	$s2, str_const2
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -593,10 +516,8 @@ dispatch_notvoid2:
 	move	$s1, $a0
 	b	ite_end2
 ite_false2:
-
 	li	$s1, 0
 ite_end2:
-
 	lw	$s1, 24 ($s0)
 	lw	$s2, 16 ($s0)
 	sle	$s1, $s1, $s2
@@ -610,7 +531,6 @@ ite_end2:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid3:
-
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 0 ($s2)
@@ -618,13 +538,10 @@ dispatch_notvoid3:
 	move	$s1, $a0
 	b	ite_end3
 ite_false3:
-
 	la	$s1, str_const4
 ite_end3:
-
 	b	loop_start0
 loop_end0:
-
 	sw	$s1, 28 ($s0)
 	move	$a0, $s0
 	j	__Main_init_epilogue

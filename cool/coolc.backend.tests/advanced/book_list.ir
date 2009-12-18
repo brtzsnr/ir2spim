@@ -1116,7 +1116,7 @@ str_const0:
 	DW	12
 	DL	String_dispatch
 	DL	int_const18
-	DB	"tests/advanced/ko/book_list.cl"
+	DB	"tests/advanced/ok/book_list.cl"
 	DS	2
 int_const18:
 	DW	1

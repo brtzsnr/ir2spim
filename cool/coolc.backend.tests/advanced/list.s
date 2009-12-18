@@ -133,7 +133,7 @@ str_const0:
 	.word	11
 	.word	String_dispatch
 	.word	int_const10
-	.ascii	"tests/advanced/ko/list.cl"
+	.ascii	"tests/advanced/ok/list.cl"
 	.byte	0, 0, 0
 int_const10:
 	.word	1
@@ -321,79 +321,11 @@ heap_start:
 	.globl	Main_init
 	.globl	Main.main
 void_disp_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_dispatch_abort
-	j	__void_disp_handler_epilogue
-__void_disp_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 void_case_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_case_abort2
-	j	__void_case_handler_epilogue
-__void_case_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -573,7 +505,7 @@ List.head:
 	sw	$s0, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid0: 
+dispatch_notvoid0:
 	move	$a0, $s1
 	lw	$s0, 8 ($s1)
 	lw	$s0, 0 ($s0)
@@ -614,7 +546,7 @@ List.tail:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid1: 
+dispatch_notvoid1:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 0 ($s2)
@@ -664,7 +596,7 @@ List.cons:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid2: 
+dispatch_notvoid2:
 	move	$s3, $s1
 	move	$s1, $s0
 	move	$a0, $s2
@@ -829,7 +761,7 @@ Main.print_list:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid3: 
+dispatch_notvoid3:
 	move	$a0, $s2
 	lw	$s3, 8 ($s2)
 	lw	$s3, 12 ($s3)
@@ -844,7 +776,7 @@ dispatch_notvoid3:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid4: 
+dispatch_notvoid4:
 	la	$s3, str_const1
 	move	$a0, $s2
 	sw	$s3, 0 ($sp)
@@ -854,7 +786,7 @@ dispatch_notvoid4:
 	jalr	$s3
 	move	$s2, $a0
 	b	ite_end0
-ite_false0: 
+ite_false0:
 	move	$s2, $s0
 	bnez	$s2, dispatch_notvoid5
 	la	$s3, str_const0
@@ -863,7 +795,7 @@ ite_false0:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid5: 
+dispatch_notvoid5:
 	move	$s3, $s1
 	bnez	$s3, dispatch_notvoid6
 	la	$s4, str_const0
@@ -872,7 +804,7 @@ dispatch_notvoid5:
 	sw	$s4, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid6: 
+dispatch_notvoid6:
 	move	$a0, $s3
 	lw	$s4, 8 ($s3)
 	lw	$s4, 16 ($s4)
@@ -899,7 +831,7 @@ dispatch_notvoid6:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid7: 
+dispatch_notvoid7:
 	la	$s3, str_const2
 	move	$a0, $s2
 	sw	$s3, 0 ($sp)
@@ -916,7 +848,7 @@ dispatch_notvoid7:
 	sw	$s3, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid8: 
+dispatch_notvoid8:
 	move	$s3, $s1
 	bnez	$s3, dispatch_notvoid9
 	la	$s4, str_const0
@@ -925,7 +857,7 @@ dispatch_notvoid8:
 	sw	$s4, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid9: 
+dispatch_notvoid9:
 	move	$a0, $s3
 	lw	$s4, 8 ($s3)
 	lw	$s4, 20 ($s4)
@@ -938,7 +870,7 @@ dispatch_notvoid9:
 	lw	$s3, 28 ($s3)
 	jalr	$s3
 	move	$s2, $a0
-ite_end0: 
+ite_end0:
 	move	$a0, $s2
 	j	__Main.print_list_epilogue
 __Main.print_list_epilogue:
@@ -983,7 +915,7 @@ Main.main:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid10: 
+dispatch_notvoid10:
 	li	$s2, 1
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -999,7 +931,7 @@ dispatch_notvoid10:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid11: 
+dispatch_notvoid11:
 	li	$s2, 2
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -1015,7 +947,7 @@ dispatch_notvoid11:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid12: 
+dispatch_notvoid12:
 	li	$s2, 3
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -1031,7 +963,7 @@ dispatch_notvoid12:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid13: 
+dispatch_notvoid13:
 	li	$s2, 4
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -1047,7 +979,7 @@ dispatch_notvoid13:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid14: 
+dispatch_notvoid14:
 	li	$s2, 5
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -1057,7 +989,7 @@ dispatch_notvoid14:
 	jalr	$s2
 	move	$s1, $a0
 	sw	$s1, 12 ($s0)
-loop_start0: 
+loop_start0:
 	lw	$s1, 12 ($s0)
 	bnez	$s1, dispatch_notvoid15
 	la	$s2, str_const0
@@ -1066,7 +998,7 @@ loop_start0:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid15: 
+dispatch_notvoid15:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 12 ($s2)
@@ -1083,7 +1015,7 @@ dispatch_notvoid15:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid16: 
+dispatch_notvoid16:
 	lw	$s2, 12 ($s0)
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
@@ -1100,7 +1032,7 @@ dispatch_notvoid16:
 	sw	$s2, 0 ($sp)
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
-dispatch_notvoid17: 
+dispatch_notvoid17:
 	move	$a0, $s1
 	lw	$s2, 8 ($s1)
 	lw	$s2, 20 ($s2)
@@ -1108,7 +1040,7 @@ dispatch_notvoid17:
 	move	$s1, $a0
 	sw	$s1, 12 ($s0)
 	b	loop_start0
-loop_end0: 
+loop_end0:
 	move	$a0, $s1
 	j	__Main.main_epilogue
 __Main.main_epilogue:

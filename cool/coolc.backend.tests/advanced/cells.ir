@@ -1,0 +1,1094 @@
+#### code section
+	.code
+
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_dispatch_abort
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_case_abort2
+	return
+.end
+
+.function "Object init code", 1, 0
+Object_init:
+	return
+.end
+
+.function "Int init code", 1, 0
+Int_init:
+	return
+.end
+
+.function "Bool init code", 1, 0
+Bool_init:
+	return
+.end
+
+.function "String init code", 1, 0
+String_init:
+	return
+.end
+
+.function "IO init code", 1, 0
+IO_init:
+	return
+.end
+
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Object_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "CellularAutomaton init code", 1, 0
+CellularAutomaton_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	IO_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin assign - line 83
+	## begin dispatch - line 83
+	## begin new - line 83
+	VR1	<-	CellularAutomaton_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	CellularAutomaton_init
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	83
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid0:
+	## actual parameter 1
+	VR2	<-	str_const4
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store rhs in VR1 to attribute cells
+	store	VR1 [VR0, 12]
+	## begin dispatch - line 84
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid1
+	jumpt	VR1 dispatch_notvoid1
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	84
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid1:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 32]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin let - line 85
+	VR1	<-	20
+	## let var countdown in VR1
+	## begin loop - line 86
+loop_start0:
+	## < operator - line 86
+	VR2	<-	0
+	VR3	<-	VR1
+	VR2	<-	VR2 < VR3
+	jumpf	VR2 loop_end0
+	## begin dispatch - line 88
+	load	VR2 [VR0, 12]
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid2
+	jumpt	VR2 dispatch_notvoid2
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	88
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid2:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 56]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## begin dispatch - line 89
+	load	VR2 [VR0, 12]
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR2 dispatch_notvoid3
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	89
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid3:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## begin assign - line 90
+	## - operator - line 90
+	VR2	<-	VR1
+	VR3	<-	1
+	VR2	<-	VR2 - VR3
+	## store rhs from VR2 to let var countdown in VR1
+	VR1	<-	VR2
+	jump	loop_start0
+loop_end0:
+	## store let result over let var countdown
+	VR1	<-	VR2
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "CellularAutomaton.init", 2, 1
+CellularAutomaton.init:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin assign - line 10
+	VR2	<-	VR1
+	## store rhs in VR2 to attribute population_map
+	store	VR2 [VR0, 12]
+	VR2	<-	VR0
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "CellularAutomaton.print", 1, 1
+CellularAutomaton.print:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 17
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid4
+	jumpt	VR1 dispatch_notvoid4
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	17
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid4:
+	## actual parameter 1
+	## begin dispatch - line 17
+	load	VR2 [VR0, 12]
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid5
+	jumpt	VR2 dispatch_notvoid5
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	17
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid5:
+	## actual parameter 1
+	VR3	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 12]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "CellularAutomaton.num_cells", 1, 1
+CellularAutomaton.num_cells:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 23
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid6
+	jumpt	VR1 dispatch_notvoid6
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	23
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid6:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 16]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	# unboxing integer from VR1 to VR2
+	load	VR2 [VR1, 12]
+	VR1	<-	VR2
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "CellularAutomaton.cell", 2, 1
+CellularAutomaton.cell:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin dispatch - line 27
+	load	VR2 [VR0, 12]
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid7
+	jumpt	VR2 dispatch_notvoid7
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	27
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid7:
+	## actual parameter 1
+	VR3	<-	VR1
+	# boxing integer from VR3 to VR4
+	VR4	<-	Int_protObj
+	VI0	<-	VR4
+	call	Object.copy
+	VR4	<-	VI0
+	store	VR3 [VR4, 12]
+	# end boxing
+	VR3	<-	VR4
+	## actual parameter 2
+	VR4	<-	1
+	# boxing integer from VR4 to VR5
+	VR5	<-	Int_protObj
+	VI0	<-	VR5
+	call	Object.copy
+	VR5	<-	VI0
+	store	VR4 [VR5, 12]
+	# end boxing
+	VR4	<-	VR5
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 20]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "CellularAutomaton.cell_left_neighbor", 2, 1
+CellularAutomaton.cell_left_neighbor:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin if-then-else - line 31
+	## = operator - line 31
+	VR2	<-	VR1
+	VR3	<-	0
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false0
+	## begin true branch
+	## begin dispatch - line 32
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid8
+	jumpt	VR2 dispatch_notvoid8
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	32
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid8:
+	## actual parameter 1
+	## - operator - line 32
+	## begin dispatch - line 32
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid9
+	jumpt	VR3 dispatch_notvoid9
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	32
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid9:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR4	<-	1
+	VR3	<-	VR3 - VR4
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 40]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	jump	ite_end0
+	## begin false branch
+ite_false0:
+	## begin dispatch - line 34
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid10
+	jumpt	VR2 dispatch_notvoid10
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	34
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid10:
+	## actual parameter 1
+	## - operator - line 34
+	VR3	<-	VR1
+	VR4	<-	1
+	VR3	<-	VR3 - VR4
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 40]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+ite_end0:
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "CellularAutomaton.cell_right_neighbor", 2, 1
+CellularAutomaton.cell_right_neighbor:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin if-then-else - line 39
+	## = operator - line 39
+	VR2	<-	VR1
+	## - operator - line 39
+	## begin dispatch - line 39
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid11
+	jumpt	VR3 dispatch_notvoid11
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	39
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid11:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR4	<-	1
+	VR3	<-	VR3 - VR4
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false1
+	## begin true branch
+	## begin dispatch - line 40
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid12
+	jumpt	VR2 dispatch_notvoid12
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	40
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid12:
+	## actual parameter 1
+	VR3	<-	0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 40]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	jump	ite_end1
+	## begin false branch
+ite_false1:
+	## begin dispatch - line 42
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid13
+	jumpt	VR2 dispatch_notvoid13
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	42
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid13:
+	## actual parameter 1
+	## + operator - line 42
+	VR3	<-	VR1
+	VR4	<-	1
+	VR3	<-	VR3 + VR4
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 40]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+ite_end1:
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "CellularAutomaton.cell_at_next_evolution", 2, 1
+CellularAutomaton.cell_at_next_evolution:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin if-then-else - line 52
+	## = operator - line 52
+	## + operator - line 51
+	## + operator - line 50
+	## begin if-then-else - line 49
+	## = operator - line 49
+	## begin dispatch - line 49
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid14
+	jumpt	VR3 dispatch_notvoid14
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	49
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid14:
+	## actual parameter 1
+	VR4	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 40]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR4	<-	str_const2
+	VR5	<-	1
+	VI0	<-	VR5
+	VR5	<-	0
+	VI1	<-	VR5
+	VI2	<-	VR3
+	VI3	<-	VR4
+	call	equality_test
+	VR2	<-	VI0
+	jumpf	VR2 ite_false2
+	## begin true branch
+	VR2	<-	1
+	jump	ite_end2
+	## begin false branch
+ite_false2:
+	VR2	<-	0
+ite_end2:
+	## begin if-then-else - line 50
+	## = operator - line 50
+	## begin dispatch - line 50
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid15
+	jumpt	VR4 dispatch_notvoid15
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	50
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid15:
+	## actual parameter 1
+	VR5	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 44]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	VR5	<-	str_const2
+	VR6	<-	1
+	VI0	<-	VR6
+	VR6	<-	0
+	VI1	<-	VR6
+	VI2	<-	VR4
+	VI3	<-	VR5
+	call	equality_test
+	VR3	<-	VI0
+	jumpf	VR3 ite_false3
+	## begin true branch
+	VR3	<-	1
+	jump	ite_end3
+	## begin false branch
+ite_false3:
+	VR3	<-	0
+ite_end3:
+	VR2	<-	VR2 + VR3
+	## begin if-then-else - line 51
+	## = operator - line 51
+	## begin dispatch - line 51
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid16
+	jumpt	VR4 dispatch_notvoid16
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	51
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid16:
+	## actual parameter 1
+	VR5	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 48]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	VR5	<-	str_const2
+	VR6	<-	1
+	VI0	<-	VR6
+	VR6	<-	0
+	VI1	<-	VR6
+	VI2	<-	VR4
+	VI3	<-	VR5
+	call	equality_test
+	VR3	<-	VI0
+	jumpf	VR3 ite_false4
+	## begin true branch
+	VR3	<-	1
+	jump	ite_end4
+	## begin false branch
+ite_false4:
+	VR3	<-	0
+ite_end4:
+	VR2	<-	VR2 + VR3
+	VR3	<-	1
+	VR2	<-	VR2 = VR3
+	jumpf	VR2 ite_false5
+	## begin true branch
+	VR2	<-	str_const2
+	jump	ite_end5
+	## begin false branch
+ite_false5:
+	VR2	<-	str_const3
+ite_end5:
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "CellularAutomaton.evolve", 1, 1
+CellularAutomaton.evolve:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin let - line 61
+	VR1	<-	0
+	## let var position in VR1
+	## begin let - line 62
+	## begin dispatch - line 62
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid17
+	jumpt	VR2 dispatch_notvoid17
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	62
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid17:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## let var num in VR2
+	## begin let - line 63
+	## create string let variable - not in Cool source
+	## begin new - line 63
+	VR3	<-	String_protObj
+	VI0	<-	VR3
+	call	Object.copy
+	VR3	<-	VI0
+	call	String_init
+	## let var temp in VR3
+	## begin loop - line 65
+loop_start1:
+	## < operator - line 65
+	VR4	<-	VR1
+	VR5	<-	VR2
+	VR4	<-	VR4 < VR5
+	jumpf	VR4 loop_end1
+	## begin assign - line 67
+	## begin dispatch - line 67
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid18
+	jumpt	VR4 dispatch_notvoid18
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	67
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid18:
+	## actual parameter 1
+	## begin dispatch - line 67
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid19
+	jumpt	VR5 dispatch_notvoid19
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	67
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid19:
+	## actual parameter 1
+	VR6	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	VI1	<-	VR6
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 52]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store rhs from VR4 to let var temp in VR3
+	VR3	<-	VR4
+	## begin assign - line 68
+	## + operator - line 68
+	VR4	<-	VR1
+	VR5	<-	1
+	VR4	<-	VR4 + VR5
+	## store rhs from VR4 to let var position in VR1
+	VR1	<-	VR4
+	jump	loop_start1
+loop_end1:
+	## begin assign - line 71
+	VR4	<-	VR3
+	## store rhs in VR4 to attribute population_map
+	store	VR4 [VR0, 12]
+	VR4	<-	VR0
+	## store let result over let var temp
+	VR3	<-	VR4
+	## store let result over let var num
+	VR2	<-	VR3
+	## store let result over let var position
+	VR1	<-	VR2
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+#### data section
+	.data
+#### object tags
+_int_tag:
+	DW	1
+_bool_tag:
+	DW	2
+_string_tag:
+	DW	3
+#### constants
+str_const16:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DS	4
+str_const15:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const3
+	DB	"Main"
+	DS	4
+str_const14:
+	DW	3
+	DW	9
+	DL	String_dispatch
+	DL	int_const4
+	DB	"CellularAutomaton"
+	DS	3
+str_const13:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const5
+	DB	"IO"
+	DS	2
+str_const12:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const6
+	DB	"String"
+	DS	2
+str_const11:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const3
+	DB	"Bool"
+	DS	4
+str_const10:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const7
+	DB	"Int"
+	DS	1
+str_const9:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const6
+	DB	"Object"
+	DS	2
+str_const8:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const8
+	DB	"_prim_slot"
+	DS	2
+str_const7:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"SELF_TYPE"
+	DS	3
+str_const6:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"_no_class"
+	DS	3
+str_const5:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const10
+	DB	"<basic class>"
+	DS	3
+str_const4:
+	DW	3
+	DW	9
+	DL	String_dispatch
+	DL	int_const11
+	DB	"         X         "
+	DS	1
+str_const3:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"."
+	DS	3
+str_const2:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"X"
+	DS	3
+str_const1:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"\n"
+	DS	3
+str_const0:
+	DW	3
+	DW	11
+	DL	String_dispatch
+	DL	int_const12
+	DB	"tests/advanced/ok/cells.cl"
+	DS	2
+int_const12:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	26
+int_const11:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	19
+int_const10:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	13
+int_const9:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	9
+int_const8:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	10
+int_const7:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	3
+int_const6:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	6
+int_const5:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	2
+int_const4:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	17
+int_const3:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	4
+int_const2:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	20
+int_const1:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+int_const0:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const1:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const0:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+#### class names by tag
+class_nameTab:
+	DL	str_const9
+	DL	str_const10
+	DL	str_const11
+	DL	str_const12
+	DL	str_const13
+	DL	str_const15
+	DL	str_const14
+#### prototypes and init by tag
+class_objTab:
+	DL	Object_protObj
+	DL	Object_init
+	DL	Int_protObj
+	DL	Int_init
+	DL	Bool_protObj
+	DL	Bool_init
+	DL	String_protObj
+	DL	String_init
+	DL	IO_protObj
+	DL	IO_init
+	DL	Main_protObj
+	DL	Main_init
+	DL	CellularAutomaton_protObj
+	DL	CellularAutomaton_init
+#### dispatch tables by tag
+Object_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+String_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	String.concat
+	DL	String.length
+	DL	String.substr
+IO_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
+CellularAutomaton_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	CellularAutomaton.init
+	DL	CellularAutomaton.print
+	DL	CellularAutomaton.num_cells
+	DL	CellularAutomaton.cell
+	DL	CellularAutomaton.cell_left_neighbor
+	DL	CellularAutomaton.cell_right_neighbor
+	DL	CellularAutomaton.cell_at_next_evolution
+	DL	CellularAutomaton.evolve
+#### prototype objects
+Object_protObj:
+	DW	0
+	DW	3
+	DL	Object_dispatch
+Int_protObj:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+Bool_protObj:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+String_protObj:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DW	0
+IO_protObj:
+	DW	4
+	DW	3
+	DL	IO_dispatch
+Main_protObj:
+	DW	5
+	DW	4
+	DL	Main_dispatch
+	DW	0
+CellularAutomaton_protObj:
+	DW	6
+	DW	4
+	DL	CellularAutomaton_dispatch
+	DL	str_const16

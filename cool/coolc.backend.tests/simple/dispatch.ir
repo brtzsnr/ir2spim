@@ -572,7 +572,7 @@ str_const0:
 	DW	11
 	DL	String_dispatch
 	DL	int_const12
-	DB	"tests/simple/ko/dispatch.cl"
+	DB	"tests/simple/ok/dispatch.cl"
 	DS	1
 int_const12:
 	DW	1

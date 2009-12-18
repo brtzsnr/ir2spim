@@ -405,7 +405,7 @@ str_const0:
 	DW	11
 	DL	String_dispatch
 	DL	int_const13
-	DB	"tests/advanced/ko/primes.cl"
+	DB	"tests/advanced/ok/primes.cl"
 	DS	1
 int_const13:
 	DW	1

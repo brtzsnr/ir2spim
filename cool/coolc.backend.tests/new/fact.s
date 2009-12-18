@@ -262,79 +262,11 @@ heap_start:
 	.globl	Main_init
 	.globl	Main.main
 void_disp_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_dispatch_abort
-	j	__void_disp_handler_epilogue
-__void_disp_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 void_case_handler:
-	addi	$sp, $sp, -8
-	sw	$fp, 8 ($sp)
-	sw	$ra, 4 ($sp)
-	addi	$fp, $sp, 4
-	## saving registers
-	sw	$s0, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s1, 0 ($sp)
-	addi $sp, $sp, -4
-	sw	$s2, 0 ($sp)
-	addi $sp, $sp, -4
-	move	$s0, $a0
-	lw	$s1, 8 ($fp)
-	la	$s2, Int_protObj
-	move	$a0, $s2
-	jal	Object.copy
-	move	$s2, $a0
-	sw	$s1, 12 ($s2)
-	move	$a0, $s0
-	sw	$s2, 0 ($sp)
-	addi	$sp, $sp, -4
+	lw	$t1, 4 ($sp)
 	jal	_case_abort2
-	j	__void_case_handler_epilogue
-__void_case_handler_epilogue:
-	## restoring registers
-	addi $sp, $sp, 4
-	lw	$s2, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s1, 0 ($sp)
-	addi $sp, $sp, 4
-	lw	$s0, 0 ($sp)
-	lw	$ra, 0 ($fp)
-	lw	$fp, 4 ($fp)
-	addi	$sp, $sp, 12
-	jr	$ra
-
 Object_init:
 	addi	$sp, $sp, -8
 	sw	$fp, 8 ($sp)
@@ -455,7 +387,6 @@ Main.fact:
 	li	$s2, 1
 	b	ite_end0
 ite_false0:
-
 	move	$s2, $s1
 	move	$s3, $s0
 	bnez	$s3, dispatch_notvoid0
@@ -466,7 +397,6 @@ ite_false0:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid0:
-
 	move	$s0, $s1
 	li	$s1, 1
 	sub	$s0, $s0, $s1
@@ -479,7 +409,6 @@ dispatch_notvoid0:
 	move	$s3, $a0
 	mul	$s2, $s2, $s3
 ite_end0:
-
 	move	$a0, $s2
 	j	__Main.fact_epilogue
 __Main.fact_epilogue:
@@ -523,7 +452,6 @@ Main.main:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid1:
-
 	move	$s2, $s0
 	bnez	$s2, dispatch_notvoid2
 	la	$s0, str_const0
@@ -533,7 +461,6 @@ dispatch_notvoid1:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid2:
-
 	li	$s0, 4
 	move	$a0, $s2
 	sw	$s0, 0 ($sp)
@@ -563,7 +490,6 @@ dispatch_notvoid2:
 	addi	$sp, $sp, -4
 	jal	void_disp_handler
 dispatch_notvoid3:
-
 	la	$s2, str_const1
 	move	$a0, $s1
 	sw	$s2, 0 ($sp)
