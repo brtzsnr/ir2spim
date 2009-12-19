@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Instruction {
 	private List<String> labels;
-    
+	private boolean isLeader;
+	
 	public Instruction() {
 		this.labels = new ArrayList<String>();
 	}
@@ -44,5 +45,15 @@ public class Instruction {
 			ret += label + ":\n";
 		}
 		return ret.length() > 0 ? ret.substring(0, ret.length() - 1) : ret;
+	}
+	
+	public boolean isLeader()
+	{
+		return isLeader;
+	}
+	
+	public void markAsLeader()
+	{
+		isLeader = true;
 	}
 }
