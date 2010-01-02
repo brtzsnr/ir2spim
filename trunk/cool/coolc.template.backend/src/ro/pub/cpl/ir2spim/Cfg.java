@@ -177,4 +177,39 @@ class Cfg
 			prevWasJump = instr.isJump() || instr.isReturn();
 		}
 	}
+
+	void exportToDot(java.io.PrintStream printer) {
+		printer.println("digraph \"" + m.getName() + "\" {");
+		printer.println("node [shape=box, style=rounded];");
+		for (BasicBlock bb: blockList) {
+			printer.print(bb.toString() + " [label=\"");
+			if (bb.getIndex() == 0) {
+				printer.println("Start\"];");
+				continue;
+			}
+			if (bb.getIndex() == blockList.size() - 1) {
+				printer.println("Stop\"];");
+				continue;
+			}
+			int begin = bb.getBeginInstr();
+			int end = bb.getEndInstr();
+			for (int instrIdx = begin; instrIdx < end; instrIdx++) {
+				Instruction instr = m.getInstructions().get(instrIdx);
+				String labeledStr = instr.toString();
+				int endLabel = labeledStr.lastIndexOf(":");
+				String instrStr = labeledStr.substring(endLabel + 1).trim();
+				List<String> labels = instr.getLabels();
+				for (String label: labels)
+					printer.print(label + ":" + "\\l");
+				printer.format("%-3d ", instrIdx);
+				printer.print(instrStr);
+				printer.print("\\l");
+			}
+			printer.println("\"];");
+		}
+		for (BasicBlock bb: blockList)
+		for (BasicBlock succ: bb.getNext())
+			printer.println(bb.toString() + " -> " + succ.toString() + ";");
+		printer.println("}");
+	}
 }
