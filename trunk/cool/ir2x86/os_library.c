@@ -40,7 +40,7 @@ void __inInt__()
 
 void __inString__()
 {
-    fgets(sbuf, 64, stdin);
+    scanf("%63s", sbuf);
     VI0 = (int)sbuf;
     VI1 = strlen(sbuf); 
 }
