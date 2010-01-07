@@ -19,7 +19,7 @@ _start:
 
 	VI0 <- VR0
 	call Main.main
-	VR2 <- 0
+	VR2 <- VI0
 	
 	VR0 <- __str_term_msg
 	VR1 <- 35
@@ -126,10 +126,10 @@ __allocString:
 	call __alloc__
 	VR1 <- VI0            
 	
-	VR2 <- 4              	# Type id
+	VR2 <- 3              	# Type id
 	store VR2 [VR1,0]
 	store VR10 [VR1,4]		# Object size
-	VR2 <- String_dispTab  # Dispatch
+	VR2 <- String_dispatch  # Dispatch
 	store VR2 [VR1,8]		
 	
 	VR2 <- Int_protObj      # Actual size in bytes - box an integer
@@ -348,12 +348,12 @@ equality_test:
 	VR10 <- VR4 = VR5
 	jumpf VR10 __et0
 	
-	VR10 <- VR4 = 4		# String?
+	VR10 <- VR4 = 3		# String?
 	jumpt VR10 __et2
 
-	VR10 <- VR4 = 2		# Int or Bool?
+	VR10 <- VR4 = 1		# Int or Bool?
 	jumpt VR10 __et3
-	VR10 <- VR4 = 3		# if not, basic type compare failed
+	VR10 <- VR4 = 2		# if not, basic type compare failed
 	jumpf VR10 __et0
 
 __et3:					# compare numeric values
@@ -439,7 +439,7 @@ _case_abort:
 	call __outString__
 
 	load VR1 [VR0,8]			# Call self.type_name()
-	load VR1 [VR1,4]
+	load VR1 [VR1,8]
 	VI0 <- VR0
 	call VR1
 	VR1 <- VI0
@@ -489,40 +489,6 @@ _case_abort2:
 ######################
 .data
 
-# Int prototype
-Int_protObj:
-    DW 2
-    DW 4
-    DL Int_dispTab
-    DW 0
-#########################
-# String prototype
-String_protObj:
-    DW 4
-    DW 5
-    DL String_dispTab
-	DL Int_protObj    # String size 0
-    DW 0
-#########################
-# Dispatch tables for basic classes
-Object_dispTab:
-    DL Object.abort
-	DL Object.type_name
-    DL Object.copy
-#########################
-Int_dispTab:
-    DL Object.abort
-	DL Object.type_name
-    DL Object.copy
-#########################
-String_dispTab:
-    DL Object.abort
-	DL Object.type_name
-    DL Object.copy
-	DL String.length
-    DL String.concat
-    DL String.substr
-#########################
 #Error messages
 __str_term_msg:
 	DB "COOL program successfully executed\n"	# 35 chars
