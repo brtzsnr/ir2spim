@@ -1,0 +1,6526 @@
+#### code section
+	.code
+
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_dispatch_abort
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	store	VR3 [VR2, 12]
+	# end boxing
+	VI0	<-	VR1
+	VI1	<-	VR2
+	call	_case_abort2
+	return
+.end
+
+.function "Object init code", 1, 0
+Object_init:
+	return
+.end
+
+.function "Int init code", 1, 0
+Int_init:
+	return
+.end
+
+.function "Bool init code", 1, 0
+Bool_init:
+	return
+.end
+
+.function "String init code", 1, 0
+String_init:
+	return
+.end
+
+.function "IO init code", 1, 0
+IO_init:
+	return
+.end
+
+.function "LambdaList init code", 1, 0
+LambdaList_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Object_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "LambdaListRef init code", 1, 0
+LambdaListRef_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Object_init
+	## begin assign - line 77
+	VR1	<-	0
+	## store rhs in VR1 to attribute nextNum
+	store	VR1 [VR0, 12]
+	VI0	<-	VR0
+	return
+.end
+
+.function "LambdaListNE init code", 1, 0
+LambdaListNE_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	LambdaList_init
+	VR1	<-	0
+	store	VR1 [VR0, 16]
+	VI0	<-	VR0
+	return
+.end
+
+.function "VarList init code", 1, 0
+VarList_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	IO_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "Expr init code", 1, 0
+Expr_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	IO_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "Term init code", 1, 0
+Term_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	IO_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Term_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "Variable init code", 1, 0
+Variable_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Expr_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "Lambda init code", 1, 0
+Lambda_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Expr_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "App init code", 1, 0
+App_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	Expr_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "VarListNE init code", 1, 0
+VarListNE_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call	VarList_init
+	VI0	<-	VR0
+	return
+.end
+
+.function "LambdaList.isNil", 1, 1
+LambdaList.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	1
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaList.headE", 1, 1
+LambdaList.headE:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 46
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	46
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid0:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin new - line 46
+	VR1	<-	VarList_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	VarList_init
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaList.headC", 1, 1
+LambdaList.headC:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 47
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid1
+	jumpt	VR1 dispatch_notvoid1
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	47
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid1:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin new - line 47
+	VR1	<-	Lambda_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	Lambda_init
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaList.headN", 1, 1
+LambdaList.headN:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 48
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid2
+	jumpt	VR1 dispatch_notvoid2
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	48
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid2:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaList.tail", 1, 1
+LambdaList.tail:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 49
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR1 dispatch_notvoid3
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	49
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid3:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin new - line 49
+	VR1	<-	LambdaList_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	LambdaList_init
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaList.add", 4, 1
+LambdaList.add:
+	## store self and arguments into the reserved VR0..VR3
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	VR3	<-	VI3
+	## begin dispatch - line 51
+	## begin new - line 51
+	VR4	<-	LambdaListNE_protObj
+	VI0	<-	VR4
+	call	Object.copy
+	VR4	<-	VI0
+	call	LambdaListNE_init
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid4
+	jumpt	VR4 dispatch_notvoid4
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	51
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid4:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	VR6	<-	VR2
+	## actual parameter 3
+	VR7	<-	VR3
+	## actual parameter 4
+	VR8	<-	VR0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	VI3	<-	VR7
+	VI4	<-	VR8
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store result into the output register
+	VI0	<-	VR4
+	return
+.end
+
+.function "LambdaListRef.isNil", 1, 1
+LambdaListRef.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 79
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid5
+	jumpt	VR1 dispatch_notvoid5
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	79
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid5:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListRef.headE", 1, 1
+LambdaListRef.headE:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 80
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid6
+	jumpt	VR1 dispatch_notvoid6
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	80
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid6:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 16]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListRef.headC", 1, 1
+LambdaListRef.headC:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 81
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid7
+	jumpt	VR1 dispatch_notvoid7
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	81
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid7:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 20]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListRef.headN", 1, 1
+LambdaListRef.headN:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 82
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid8
+	jumpt	VR1 dispatch_notvoid8
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	82
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid8:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 24]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListRef.reset", 1, 1
+LambdaListRef.reset:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin assign - line 85
+	VR1	<-	0
+	## store rhs in VR1 to attribute nextNum
+	store	VR1 [VR0, 12]
+	## begin assign - line 86
+	## begin new - line 86
+	VR1	<-	LambdaList_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	LambdaList_init
+	## store rhs in VR1 to attribute l
+	store	VR1 [VR0, 16]
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListRef.add", 3, 1
+LambdaListRef.add:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin assign - line 92
+	## begin dispatch - line 92
+	load	VR3 [VR0, 16]
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid9
+	jumpt	VR3 dispatch_notvoid9
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	92
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid9:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	VR5	<-	VR2
+	## actual parameter 3
+	load	VR6 [VR0, 12]
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	VI3	<-	VR6
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 32]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## store rhs in VR3 to attribute l
+	store	VR3 [VR0, 16]
+	## begin assign - line 93
+	## + operator - line 93
+	load	VR3 [VR0, 12]
+	VR4	<-	1
+	VR3	<-	VR3 + VR4
+	## store rhs in VR3 to attribute nextNum
+	store	VR3 [VR0, 12]
+	## - operator - line 94
+	load	VR3 [VR0, 12]
+	VR4	<-	1
+	VR3	<-	VR3 - VR4
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "LambdaListRef.removeHead", 1, 1
+LambdaListRef.removeHead:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin assign - line 99
+	## begin dispatch - line 99
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid10
+	jumpt	VR1 dispatch_notvoid10
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	99
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid10:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store rhs in VR1 to attribute l
+	store	VR1 [VR0, 16]
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListNE.isNil", 1, 1
+LambdaListNE.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListNE.headE", 1, 1
+LambdaListNE.headE:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 20]
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListNE.headC", 1, 1
+LambdaListNE.headC:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 12]
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListNE.headN", 1, 1
+LambdaListNE.headN:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 16]
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListNE.tail", 1, 1
+LambdaListNE.tail:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 24]
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "LambdaListNE.init", 5, 1
+LambdaListNE.init:
+	## store self and arguments into the reserved VR0..VR4
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	VR3	<-	VI3
+	VR4	<-	VI4
+	## begin assign - line 67
+	VR5	<-	VR1
+	## store rhs in VR5 to attribute env
+	store	VR5 [VR0, 20]
+	## begin assign - line 68
+	VR5	<-	VR2
+	## store rhs in VR5 to attribute lam
+	store	VR5 [VR0, 12]
+	## begin assign - line 69
+	VR5	<-	VR3
+	## store rhs in VR5 to attribute num
+	store	VR5 [VR0, 16]
+	## begin assign - line 70
+	VR5	<-	VR4
+	## store rhs in VR5 to attribute rest
+	store	VR5 [VR0, 24]
+	VR5	<-	VR0
+	## store result into the output register
+	VI0	<-	VR5
+	return
+.end
+
+.function "VarList.isNil", 1, 1
+VarList.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	1
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarList.head", 1, 1
+VarList.head:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 23
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid11
+	jumpt	VR1 dispatch_notvoid11
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	23
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid11:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin new - line 23
+	VR1	<-	Variable_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	Variable_init
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarList.tail", 1, 1
+VarList.tail:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 24
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid12
+	jumpt	VR1 dispatch_notvoid12
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	24
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid12:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin new - line 24
+	VR1	<-	VarList_protObj
+	VI0	<-	VR1
+	call	Object.copy
+	VR1	<-	VI0
+	call	VarList_init
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarList.add", 2, 1
+VarList.add:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin dispatch - line 25
+	## begin new - line 25
+	VR2	<-	VarListNE_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	call	VarListNE_init
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid13
+	jumpt	VR2 dispatch_notvoid13
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	25
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid13:
+	## actual parameter 1
+	VR3	<-	VR1
+	## actual parameter 2
+	VR4	<-	VR0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 48]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "VarList.print", 1, 1
+VarList.print:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 26
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid14
+	jumpt	VR1 dispatch_notvoid14
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	26
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid14:
+	## actual parameter 1
+	VR2	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Expr.print_self", 1, 1
+Expr.print_self:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 116
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid15
+	jumpt	VR1 dispatch_notvoid15
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	116
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid15:
+	## actual parameter 1
+	VR2	<-	str_const3
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 117
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid16
+	jumpt	VR1 dispatch_notvoid16
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	117
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid16:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Expr.beta", 1, 1
+Expr.beta:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 125
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid17
+	jumpt	VR1 dispatch_notvoid17
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	125
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid17:
+	## actual parameter 1
+	VR2	<-	str_const4
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 126
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid18
+	jumpt	VR1 dispatch_notvoid18
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	126
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid18:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Expr.substitute", 3, 1
+Expr.substitute:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin dispatch - line 134
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid19
+	jumpt	VR3 dispatch_notvoid19
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	134
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid19:
+	## actual parameter 1
+	VR4	<-	str_const5
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 135
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid20
+	jumpt	VR3 dispatch_notvoid20
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	135
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid20:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 0]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR3	<-	VR0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Expr.gen_code", 3, 1
+Expr.gen_code:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin dispatch - line 143
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid21
+	jumpt	VR3 dispatch_notvoid21
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	143
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid21:
+	## actual parameter 1
+	VR4	<-	str_const6
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 144
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid22
+	jumpt	VR3 dispatch_notvoid22
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	144
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid22:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 0]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR3	<-	VR0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Term.var", 2, 1
+Term.var:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin let - line 340
+	## begin new - line 340
+	VR2	<-	Variable_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	call	Variable_init
+	## let var v in VR2
+	## begin dispatch - line 341
+	VR3	<-	VR2
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid23
+	jumpt	VR3 dispatch_notvoid23
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	341
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid23:
+	## actual parameter 1
+	VR4	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 44]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## store let result over let var v
+	VR2	<-	VR3
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "Term.lam", 3, 1
+Term.lam:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin let - line 345
+	## begin new - line 345
+	VR3	<-	Lambda_protObj
+	VI0	<-	VR3
+	call	Object.copy
+	VR3	<-	VI0
+	call	Lambda_init
+	## let var l in VR3
+	## begin dispatch - line 346
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid24
+	jumpt	VR4 dispatch_notvoid24
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	346
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid24:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	VR6	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 44]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store let result over let var l
+	VR3	<-	VR4
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Term.app", 3, 1
+Term.app:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin let - line 350
+	## begin new - line 350
+	VR3	<-	App_protObj
+	VI0	<-	VR3
+	call	Object.copy
+	VR3	<-	VI0
+	call	App_init
+	## let var a in VR3
+	## begin dispatch - line 351
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid25
+	jumpt	VR4 dispatch_notvoid25
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	351
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid25:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	VR6	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 44]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store let result over let var a
+	VR3	<-	VR4
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Term.i", 1, 1
+Term.i:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin let - line 358
+	## begin dispatch - line 358
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid26
+	jumpt	VR1 dispatch_notvoid26
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	358
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid26:
+	## actual parameter 1
+	VR2	<-	str_const35
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## let var x in VR1
+	## begin dispatch - line 359
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid27
+	jumpt	VR2 dispatch_notvoid27
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	359
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid27:
+	## actual parameter 1
+	VR3	<-	VR1
+	## actual parameter 2
+	VR4	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store let result over let var x
+	VR1	<-	VR2
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Term.k", 1, 1
+Term.k:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin let - line 363
+	## begin dispatch - line 363
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid28
+	jumpt	VR1 dispatch_notvoid28
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	363
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid28:
+	## actual parameter 1
+	VR2	<-	str_const35
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## let var x in VR1
+	## begin let - line 364
+	## begin dispatch - line 364
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid29
+	jumpt	VR2 dispatch_notvoid29
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	364
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid29:
+	## actual parameter 1
+	VR3	<-	str_const36
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 28]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## let var y in VR2
+	## begin dispatch - line 365
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid30
+	jumpt	VR3 dispatch_notvoid30
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	365
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid30:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	## begin dispatch - line 365
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid31
+	jumpt	VR5 dispatch_notvoid31
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	365
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid31:
+	## actual parameter 1
+	VR6	<-	VR2
+	## actual parameter 2
+	VR7	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	VI1	<-	VR6
+	VI2	<-	VR7
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 32]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 32]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## store let result over let var y
+	VR2	<-	VR3
+	## store let result over let var x
+	VR1	<-	VR2
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Term.s", 1, 1
+Term.s:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin let - line 369
+	## begin dispatch - line 369
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid32
+	jumpt	VR1 dispatch_notvoid32
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	369
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid32:
+	## actual parameter 1
+	VR2	<-	str_const35
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## let var x in VR1
+	## begin let - line 370
+	## begin dispatch - line 370
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid33
+	jumpt	VR2 dispatch_notvoid33
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	370
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid33:
+	## actual parameter 1
+	VR3	<-	str_const36
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 28]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## let var y in VR2
+	## begin let - line 371
+	## begin dispatch - line 371
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid34
+	jumpt	VR3 dispatch_notvoid34
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	371
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid34:
+	## actual parameter 1
+	VR4	<-	str_const37
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 28]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## let var z in VR3
+	## begin dispatch - line 372
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid35
+	jumpt	VR4 dispatch_notvoid35
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	372
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid35:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	## begin dispatch - line 372
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid36
+	jumpt	VR6 dispatch_notvoid36
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	372
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid36:
+	## actual parameter 1
+	VR7	<-	VR2
+	## actual parameter 2
+	## begin dispatch - line 372
+	VR8	<-	VR0
+	## caller in VR8
+	## dispatch to void handling, ends at dispatch_notvoid37
+	jumpt	VR8 dispatch_notvoid37
+	VR9	<-	str_const0
+	VI0	<-	VR9
+	VR9	<-	372
+	VI1	<-	VR9
+	call	void_disp_handler
+dispatch_notvoid37:
+	## actual parameter 1
+	VR9	<-	VR3
+	## actual parameter 2
+	## begin dispatch - line 372
+	VR10	<-	VR0
+	## caller in VR10
+	## dispatch to void handling, ends at dispatch_notvoid38
+	jumpt	VR10 dispatch_notvoid38
+	VR11	<-	str_const0
+	VI0	<-	VR11
+	VR11	<-	372
+	VI1	<-	VR11
+	call	void_disp_handler
+dispatch_notvoid38:
+	## actual parameter 1
+	## begin dispatch - line 372
+	VR11	<-	VR0
+	## caller in VR11
+	## dispatch to void handling, ends at dispatch_notvoid39
+	jumpt	VR11 dispatch_notvoid39
+	VR12	<-	str_const0
+	VI0	<-	VR12
+	VR12	<-	372
+	VI1	<-	VR12
+	call	void_disp_handler
+dispatch_notvoid39:
+	## actual parameter 1
+	VR12	<-	VR1
+	## actual parameter 2
+	VR13	<-	VR3
+	## store self and actual parameters into VI's
+	VI0	<-	VR11
+	VI1	<-	VR12
+	VI2	<-	VR13
+	## compute the target address
+	load	VR12 [VR11, 8]
+	load	VR12 [VR12, 36]
+	call	VR12
+	## fetch (and maybe unbox) the result
+	VR11	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 372
+	VR12	<-	VR0
+	## caller in VR12
+	## dispatch to void handling, ends at dispatch_notvoid40
+	jumpt	VR12 dispatch_notvoid40
+	VR13	<-	str_const0
+	VI0	<-	VR13
+	VR13	<-	372
+	VI1	<-	VR13
+	call	void_disp_handler
+dispatch_notvoid40:
+	## actual parameter 1
+	VR13	<-	VR2
+	## actual parameter 2
+	VR14	<-	VR3
+	## store self and actual parameters into VI's
+	VI0	<-	VR12
+	VI1	<-	VR13
+	VI2	<-	VR14
+	## compute the target address
+	load	VR13 [VR12, 8]
+	load	VR13 [VR13, 36]
+	call	VR13
+	## fetch (and maybe unbox) the result
+	VR12	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR10
+	VI1	<-	VR11
+	VI2	<-	VR12
+	## compute the target address
+	load	VR11 [VR10, 8]
+	load	VR11 [VR11, 36]
+	call	VR11
+	## fetch (and maybe unbox) the result
+	VR10	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR8
+	VI1	<-	VR9
+	VI2	<-	VR10
+	## compute the target address
+	load	VR9 [VR8, 8]
+	load	VR9 [VR9, 32]
+	call	VR9
+	## fetch (and maybe unbox) the result
+	VR8	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	VI1	<-	VR7
+	VI2	<-	VR8
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 32]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 32]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store let result over let var z
+	VR3	<-	VR4
+	## store let result over let var y
+	VR2	<-	VR3
+	## store let result over let var x
+	VR1	<-	VR2
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Main.beta_reduce", 2, 1
+Main.beta_reduce:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin dispatch - line 387
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid41
+	jumpt	VR2 dispatch_notvoid41
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	387
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid41:
+	## actual parameter 1
+	VR3	<-	str_const38
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 12]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## begin dispatch - line 388
+	VR2	<-	VR1
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid42
+	jumpt	VR2 dispatch_notvoid42
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	388
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid42:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 28]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## begin let - line 389
+	VR2	<-	0
+	## let var done in VR2
+	## begin let - line 390
+	VR3	<-	0
+	## let var new_expr in VR3
+	## begin loop - line 392
+loop_start0:
+	## not operator - line 392
+	VR4	<-	VR2
+	VR4	<-	1 - VR4
+	jumpf	VR4 loop_end0
+	## begin assign - line 394
+	## begin dispatch - line 394
+	VR4	<-	VR1
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid43
+	jumpt	VR4 dispatch_notvoid43
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	394
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid43:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 32]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store rhs from VR4 to let var new_expr in VR3
+	VR3	<-	VR4
+	## begin if-then-else - line 395
+	## = operator - line 395
+	VR4	<-	VR3
+	VR5	<-	VR1
+	VR4	<-	VR4 = VR5
+	jumpf	VR4 ite_false0
+	## begin true branch
+	## begin assign - line 396
+	VR4	<-	1
+	## store rhs from VR4 to let var done in VR2
+	VR2	<-	VR4
+	jump	ite_end0
+	## begin false branch
+ite_false0:
+	## begin assign - line 399
+	VR4	<-	VR3
+	## store rhs from VR4 to parameter e in VR1
+	VR1	<-	VR4
+	## begin dispatch - line 400
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid44
+	jumpt	VR4 dispatch_notvoid44
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	400
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid44:
+	## actual parameter 1
+	VR5	<-	str_const39
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 401
+	VR4	<-	VR1
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid45
+	jumpt	VR4 dispatch_notvoid45
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	401
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid45:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 28]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+ite_end0:
+	jump	loop_start0
+loop_end0:
+	## begin dispatch - line 406
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid46
+	jumpt	VR4 dispatch_notvoid46
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	406
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid46:
+	## actual parameter 1
+	VR5	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	VR4	<-	VR1
+	## store let result over let var new_expr
+	VR3	<-	VR4
+	## store let result over let var done
+	VR2	<-	VR3
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "Main.eval_class", 1, 1
+Main.eval_class:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 414
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid47
+	jumpt	VR1 dispatch_notvoid47
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	414
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid47:
+	## actual parameter 1
+	VR2	<-	str_const40
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 415
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid48
+	jumpt	VR1 dispatch_notvoid48
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	415
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid48:
+	## actual parameter 1
+	VR2	<-	str_const41
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 416
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid49
+	jumpt	VR1 dispatch_notvoid49
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	416
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid49:
+	## actual parameter 1
+	VR2	<-	str_const23
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Main.closure_class", 1, 1
+Main.closure_class:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 422
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid50
+	jumpt	VR1 dispatch_notvoid50
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	422
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid50:
+	## actual parameter 1
+	VR2	<-	str_const42
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 423
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid51
+	jumpt	VR1 dispatch_notvoid51
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	423
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid51:
+	## actual parameter 1
+	VR2	<-	str_const43
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 424
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid52
+	jumpt	VR1 dispatch_notvoid52
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	424
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid52:
+	## actual parameter 1
+	VR2	<-	str_const44
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 425
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid53
+	jumpt	VR1 dispatch_notvoid53
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	425
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid53:
+	## actual parameter 1
+	VR2	<-	str_const45
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 426
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid54
+	jumpt	VR1 dispatch_notvoid54
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	426
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid54:
+	## actual parameter 1
+	VR2	<-	str_const46
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 427
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid55
+	jumpt	VR1 dispatch_notvoid55
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	427
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid55:
+	## actual parameter 1
+	VR2	<-	str_const47
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 428
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid56
+	jumpt	VR1 dispatch_notvoid56
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	428
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid56:
+	## actual parameter 1
+	VR2	<-	str_const48
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 429
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid57
+	jumpt	VR1 dispatch_notvoid57
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	429
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid57:
+	## actual parameter 1
+	VR2	<-	str_const23
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Main.gen_code", 2, 1
+Main.gen_code:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin let - line 434
+	## begin dispatch - line 434
+	## begin new - line 434
+	VR2	<-	LambdaListRef_protObj
+	VI0	<-	VR2
+	call	Object.copy
+	VR2	<-	VI0
+	call	LambdaListRef_init
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid58
+	jumpt	VR2 dispatch_notvoid58
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	434
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid58:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 28]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## let var cl in VR2
+	## begin dispatch - line 436
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid59
+	jumpt	VR3 dispatch_notvoid59
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	436
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid59:
+	## actual parameter 1
+	VR4	<-	str_const49
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 437
+	VR3	<-	VR1
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid60
+	jumpt	VR3 dispatch_notvoid60
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	437
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid60:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 28]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 438
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid61
+	jumpt	VR3 dispatch_notvoid61
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	438
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid61:
+	## actual parameter 1
+	VR4	<-	str_const50
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 439
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid62
+	jumpt	VR3 dispatch_notvoid62
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	439
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid62:
+	## actual parameter 1
+	VR4	<-	str_const51
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 440
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid63
+	jumpt	VR3 dispatch_notvoid63
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	440
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid63:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 56]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 441
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid64
+	jumpt	VR3 dispatch_notvoid64
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	441
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid64:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 60]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 442
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid65
+	jumpt	VR3 dispatch_notvoid65
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	442
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid65:
+	## actual parameter 1
+	VR4	<-	str_const52
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 443
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid66
+	jumpt	VR3 dispatch_notvoid66
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	443
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid66:
+	## actual parameter 1
+	VR4	<-	str_const53
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 444
+	VR3	<-	VR1
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid67
+	jumpt	VR3 dispatch_notvoid67
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	444
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid67:
+	## actual parameter 1
+	## begin new - line 444
+	VR4	<-	VarList_protObj
+	VI0	<-	VR4
+	call	Object.copy
+	VR4	<-	VI0
+	call	VarList_init
+	## actual parameter 2
+	VR5	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 40]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 445
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid68
+	jumpt	VR3 dispatch_notvoid68
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	445
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid68:
+	## actual parameter 1
+	VR4	<-	str_const54
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin loop - line 446
+loop_start1:
+	## not operator - line 446
+	## begin dispatch - line 446
+	VR3	<-	VR2
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid69
+	jumpt	VR3 dispatch_notvoid69
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	446
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid69:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	VR3	<-	1 - VR3
+	jumpf	VR3 loop_end1
+	## begin let - line 447
+	## begin dispatch - line 447
+	VR3	<-	VR2
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid70
+	jumpt	VR3 dispatch_notvoid70
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	447
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid70:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 16]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## let var e in VR3
+	## begin let - line 448
+	## begin dispatch - line 448
+	VR4	<-	VR2
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid71
+	jumpt	VR4 dispatch_notvoid71
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	448
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid71:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 20]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## let var c in VR4
+	## begin let - line 449
+	## begin dispatch - line 449
+	VR5	<-	VR2
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid72
+	jumpt	VR5 dispatch_notvoid72
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	449
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid72:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 24]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## let var n in VR5
+	## begin dispatch - line 451
+	VR6	<-	VR2
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid73
+	jumpt	VR6 dispatch_notvoid73
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	451
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid73:
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 36]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## begin dispatch - line 452
+	VR6	<-	VR4
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid74
+	jumpt	VR6 dispatch_notvoid74
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	452
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid74:
+	## actual parameter 1
+	VR7	<-	VR5
+	## actual parameter 2
+	VR8	<-	VR3
+	## actual parameter 3
+	VR9	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	VI1	<-	VR7
+	VI2	<-	VR8
+	VI3	<-	VR9
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 52]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store let result over let var n
+	VR5	<-	VR6
+	## store let result over let var c
+	VR4	<-	VR5
+	## store let result over let var e
+	VR3	<-	VR4
+	jump	loop_start1
+loop_end1:
+	## begin dispatch - line 455
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid75
+	jumpt	VR3 dispatch_notvoid75
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	455
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid75:
+	## actual parameter 1
+	VR4	<-	str_const50
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## store let result over let var cl
+	VR2	<-	VR3
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 461
+	## begin dispatch - line 461
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid76
+	jumpt	VR1 dispatch_notvoid76
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	461
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid76:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 40]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid77
+	jumpt	VR1 dispatch_notvoid77
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	461
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid77:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 462
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid78
+	jumpt	VR1 dispatch_notvoid78
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	462
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid78:
+	## actual parameter 1
+	VR2	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 463
+	## begin dispatch - line 463
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid79
+	jumpt	VR1 dispatch_notvoid79
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	463
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid79:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 44]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid80
+	jumpt	VR1 dispatch_notvoid80
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	463
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid80:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 464
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid81
+	jumpt	VR1 dispatch_notvoid81
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	464
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid81:
+	## actual parameter 1
+	VR2	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 465
+	## begin dispatch - line 465
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid82
+	jumpt	VR1 dispatch_notvoid82
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	465
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid82:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 48]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid83
+	jumpt	VR1 dispatch_notvoid83
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	465
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid83:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 466
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid84
+	jumpt	VR1 dispatch_notvoid84
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	466
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid84:
+	## actual parameter 1
+	VR2	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 467
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid85
+	jumpt	VR1 dispatch_notvoid85
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	467
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid85:
+	## actual parameter 1
+	## begin dispatch - line 467
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid86
+	jumpt	VR2 dispatch_notvoid86
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	467
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid86:
+	## actual parameter 1
+	## begin dispatch - line 467
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid87
+	jumpt	VR3 dispatch_notvoid87
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	467
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid87:
+	## actual parameter 1
+	## begin dispatch - line 467
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid88
+	jumpt	VR4 dispatch_notvoid88
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	467
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid88:
+	## actual parameter 1
+	## begin dispatch - line 467
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid89
+	jumpt	VR5 dispatch_notvoid89
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	467
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid89:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 48]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 467
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid90
+	jumpt	VR6 dispatch_notvoid90
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	467
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid90:
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 44]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 467
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid91
+	jumpt	VR5 dispatch_notvoid91
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	467
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid91:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 40]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 467
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid92
+	jumpt	VR4 dispatch_notvoid92
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	467
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid92:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 52]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 468
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid93
+	jumpt	VR1 dispatch_notvoid93
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	468
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid93:
+	## actual parameter 1
+	## begin dispatch - line 468
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid94
+	jumpt	VR2 dispatch_notvoid94
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	468
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid94:
+	## actual parameter 1
+	## begin dispatch - line 468
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid95
+	jumpt	VR3 dispatch_notvoid95
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	468
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid95:
+	## actual parameter 1
+	## begin dispatch - line 468
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid96
+	jumpt	VR4 dispatch_notvoid96
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	468
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid96:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 44]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 468
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid97
+	jumpt	VR5 dispatch_notvoid97
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	468
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid97:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 40]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 468
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid98
+	jumpt	VR4 dispatch_notvoid98
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	468
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid98:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 52]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 469
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid99
+	jumpt	VR1 dispatch_notvoid99
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	469
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid99:
+	## actual parameter 1
+	## begin dispatch - line 469
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid100
+	jumpt	VR2 dispatch_notvoid100
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	469
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid100:
+	## actual parameter 1
+	## begin dispatch - line 469
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid101
+	jumpt	VR3 dispatch_notvoid101
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	469
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid101:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 40]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 469
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid102
+	jumpt	VR4 dispatch_notvoid102
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	469
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid102:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 64]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 470
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid103
+	jumpt	VR1 dispatch_notvoid103
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	470
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid103:
+	## actual parameter 1
+	## begin dispatch - line 470
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid104
+	jumpt	VR2 dispatch_notvoid104
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	470
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid104:
+	## actual parameter 1
+	## begin dispatch - line 470
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid105
+	jumpt	VR3 dispatch_notvoid105
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	470
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid105:
+	## actual parameter 1
+	## begin dispatch - line 470
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid106
+	jumpt	VR4 dispatch_notvoid106
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	470
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid106:
+	## actual parameter 1
+	## begin dispatch - line 470
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid107
+	jumpt	VR5 dispatch_notvoid107
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	470
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid107:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 48]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 470
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid108
+	jumpt	VR6 dispatch_notvoid108
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	470
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid108:
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 44]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 470
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid109
+	jumpt	VR5 dispatch_notvoid109
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	470
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid109:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 40]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 470
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid110
+	jumpt	VR4 dispatch_notvoid110
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	470
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid110:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 64]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 471
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid111
+	jumpt	VR1 dispatch_notvoid111
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	471
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid111:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid112
+	jumpt	VR2 dispatch_notvoid112
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	471
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid112:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid113
+	jumpt	VR3 dispatch_notvoid113
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	471
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid113:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid114
+	jumpt	VR4 dispatch_notvoid114
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	471
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid114:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid115
+	jumpt	VR5 dispatch_notvoid115
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	471
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid115:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid116
+	jumpt	VR6 dispatch_notvoid116
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	471
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid116:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR7	<-	VR0
+	## caller in VR7
+	## dispatch to void handling, ends at dispatch_notvoid117
+	jumpt	VR7 dispatch_notvoid117
+	VR8	<-	str_const0
+	VI0	<-	VR8
+	VR8	<-	471
+	VI1	<-	VR8
+	call	void_disp_handler
+dispatch_notvoid117:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR8	<-	VR0
+	## caller in VR8
+	## dispatch to void handling, ends at dispatch_notvoid118
+	jumpt	VR8 dispatch_notvoid118
+	VR9	<-	str_const0
+	VI0	<-	VR9
+	VR9	<-	471
+	VI1	<-	VR9
+	call	void_disp_handler
+dispatch_notvoid118:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR9	<-	VR0
+	## caller in VR9
+	## dispatch to void handling, ends at dispatch_notvoid119
+	jumpt	VR9 dispatch_notvoid119
+	VR10	<-	str_const0
+	VI0	<-	VR10
+	VR10	<-	471
+	VI1	<-	VR10
+	call	void_disp_handler
+dispatch_notvoid119:
+	## actual parameter 1
+	## begin dispatch - line 471
+	VR10	<-	VR0
+	## caller in VR10
+	## dispatch to void handling, ends at dispatch_notvoid120
+	jumpt	VR10 dispatch_notvoid120
+	VR11	<-	str_const0
+	VI0	<-	VR11
+	VR11	<-	471
+	VI1	<-	VR11
+	call	void_disp_handler
+dispatch_notvoid120:
+	## store self and actual parameters into VI's
+	VI0	<-	VR10
+	## compute the target address
+	load	VR11 [VR10, 8]
+	load	VR11 [VR11, 40]
+	call	VR11
+	## fetch (and maybe unbox) the result
+	VR10	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 471
+	VR11	<-	VR0
+	## caller in VR11
+	## dispatch to void handling, ends at dispatch_notvoid121
+	jumpt	VR11 dispatch_notvoid121
+	VR12	<-	str_const0
+	VI0	<-	VR12
+	VR12	<-	471
+	VI1	<-	VR12
+	call	void_disp_handler
+dispatch_notvoid121:
+	## store self and actual parameters into VI's
+	VI0	<-	VR11
+	## compute the target address
+	load	VR12 [VR11, 8]
+	load	VR12 [VR12, 44]
+	call	VR12
+	## fetch (and maybe unbox) the result
+	VR11	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR9
+	VI1	<-	VR10
+	VI2	<-	VR11
+	## compute the target address
+	load	VR10 [VR9, 8]
+	load	VR10 [VR10, 36]
+	call	VR10
+	## fetch (and maybe unbox) the result
+	VR9	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 471
+	VR10	<-	VR0
+	## caller in VR10
+	## dispatch to void handling, ends at dispatch_notvoid122
+	jumpt	VR10 dispatch_notvoid122
+	VR11	<-	str_const0
+	VI0	<-	VR11
+	VR11	<-	471
+	VI1	<-	VR11
+	call	void_disp_handler
+dispatch_notvoid122:
+	## store self and actual parameters into VI's
+	VI0	<-	VR10
+	## compute the target address
+	load	VR11 [VR10, 8]
+	load	VR11 [VR11, 48]
+	call	VR11
+	## fetch (and maybe unbox) the result
+	VR10	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR8
+	VI1	<-	VR9
+	VI2	<-	VR10
+	## compute the target address
+	load	VR9 [VR8, 8]
+	load	VR9 [VR9, 36]
+	call	VR9
+	## fetch (and maybe unbox) the result
+	VR8	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 471
+	VR9	<-	VR0
+	## caller in VR9
+	## dispatch to void handling, ends at dispatch_notvoid123
+	jumpt	VR9 dispatch_notvoid123
+	VR10	<-	str_const0
+	VI0	<-	VR10
+	VR10	<-	471
+	VI1	<-	VR10
+	call	void_disp_handler
+dispatch_notvoid123:
+	## store self and actual parameters into VI's
+	VI0	<-	VR9
+	## compute the target address
+	load	VR10 [VR9, 8]
+	load	VR10 [VR10, 48]
+	call	VR10
+	## fetch (and maybe unbox) the result
+	VR9	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR7
+	VI1	<-	VR8
+	VI2	<-	VR9
+	## compute the target address
+	load	VR8 [VR7, 8]
+	load	VR8 [VR8, 36]
+	call	VR8
+	## fetch (and maybe unbox) the result
+	VR7	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 472
+	VR8	<-	VR0
+	## caller in VR8
+	## dispatch to void handling, ends at dispatch_notvoid124
+	jumpt	VR8 dispatch_notvoid124
+	VR9	<-	str_const0
+	VI0	<-	VR9
+	VR9	<-	472
+	VI1	<-	VR9
+	call	void_disp_handler
+dispatch_notvoid124:
+	## store self and actual parameters into VI's
+	VI0	<-	VR8
+	## compute the target address
+	load	VR9 [VR8, 8]
+	load	VR9 [VR9, 44]
+	call	VR9
+	## fetch (and maybe unbox) the result
+	VR8	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	VI1	<-	VR7
+	VI2	<-	VR8
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 36]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 472
+	VR7	<-	VR0
+	## caller in VR7
+	## dispatch to void handling, ends at dispatch_notvoid125
+	jumpt	VR7 dispatch_notvoid125
+	VR8	<-	str_const0
+	VI0	<-	VR8
+	VR8	<-	472
+	VI1	<-	VR8
+	call	void_disp_handler
+dispatch_notvoid125:
+	## store self and actual parameters into VI's
+	VI0	<-	VR7
+	## compute the target address
+	load	VR8 [VR7, 8]
+	load	VR8 [VR8, 48]
+	call	VR8
+	## fetch (and maybe unbox) the result
+	VR7	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	VI1	<-	VR6
+	VI2	<-	VR7
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 36]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 472
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid126
+	jumpt	VR6 dispatch_notvoid126
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	472
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid126:
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 40]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 472
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid127
+	jumpt	VR5 dispatch_notvoid127
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	472
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid127:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 44]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 472
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid128
+	jumpt	VR4 dispatch_notvoid128
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	472
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid128:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 64]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 473
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid129
+	jumpt	VR1 dispatch_notvoid129
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	473
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid129:
+	## actual parameter 1
+	## begin dispatch - line 473
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid130
+	jumpt	VR2 dispatch_notvoid130
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	473
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid130:
+	## actual parameter 1
+	## begin dispatch - line 473
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid131
+	jumpt	VR3 dispatch_notvoid131
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	473
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid131:
+	## actual parameter 1
+	## begin dispatch - line 473
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid132
+	jumpt	VR4 dispatch_notvoid132
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	473
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid132:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 473
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid133
+	jumpt	VR5 dispatch_notvoid133
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	473
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid133:
+	## actual parameter 1
+	## begin dispatch - line 473
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid134
+	jumpt	VR6 dispatch_notvoid134
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	473
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid134:
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 44]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 473
+	VR7	<-	VR0
+	## caller in VR7
+	## dispatch to void handling, ends at dispatch_notvoid135
+	jumpt	VR7 dispatch_notvoid135
+	VR8	<-	str_const0
+	VI0	<-	VR8
+	VR8	<-	473
+	VI1	<-	VR8
+	call	void_disp_handler
+dispatch_notvoid135:
+	## store self and actual parameters into VI's
+	VI0	<-	VR7
+	## compute the target address
+	load	VR8 [VR7, 8]
+	load	VR8 [VR8, 48]
+	call	VR8
+	## fetch (and maybe unbox) the result
+	VR7	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	VI1	<-	VR6
+	VI2	<-	VR7
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 36]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 473
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid136
+	jumpt	VR4 dispatch_notvoid136
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	473
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid136:
+	## actual parameter 1
+	## begin dispatch - line 473
+	VR5	<-	VR0
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid137
+	jumpt	VR5 dispatch_notvoid137
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	473
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid137:
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 44]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 473
+	VR6	<-	VR0
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid138
+	jumpt	VR6 dispatch_notvoid138
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	473
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid138:
+	## actual parameter 1
+	## begin dispatch - line 473
+	VR7	<-	VR0
+	## caller in VR7
+	## dispatch to void handling, ends at dispatch_notvoid139
+	jumpt	VR7 dispatch_notvoid139
+	VR8	<-	str_const0
+	VI0	<-	VR8
+	VR8	<-	473
+	VI1	<-	VR8
+	call	void_disp_handler
+dispatch_notvoid139:
+	## store self and actual parameters into VI's
+	VI0	<-	VR7
+	## compute the target address
+	load	VR8 [VR7, 8]
+	load	VR8 [VR8, 48]
+	call	VR8
+	## fetch (and maybe unbox) the result
+	VR7	<-	VI0
+	## actual parameter 2
+	## begin dispatch - line 473
+	VR8	<-	VR0
+	## caller in VR8
+	## dispatch to void handling, ends at dispatch_notvoid140
+	jumpt	VR8 dispatch_notvoid140
+	VR9	<-	str_const0
+	VI0	<-	VR9
+	VR9	<-	473
+	VI1	<-	VR9
+	call	void_disp_handler
+dispatch_notvoid140:
+	## store self and actual parameters into VI's
+	VI0	<-	VR8
+	## compute the target address
+	load	VR9 [VR8, 8]
+	load	VR9 [VR9, 48]
+	call	VR9
+	## fetch (and maybe unbox) the result
+	VR8	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	VI1	<-	VR7
+	VI2	<-	VR8
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 36]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 64]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Variable.print_self", 1, 1
+Variable.print_self:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 164
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid141
+	jumpt	VR1 dispatch_notvoid141
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	164
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid141:
+	## actual parameter 1
+	load	VR2 [VR0, 12]
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Variable.beta", 1, 1
+Variable.beta:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Variable.substitute", 3, 1
+Variable.substitute:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin if-then-else - line 170
+	## = operator - line 170
+	VR3	<-	VR1
+	VR4	<-	VR0
+	VR3	<-	VR3 = VR4
+	jumpf	VR3 ite_false1
+	## begin true branch
+	VR3	<-	VR2
+	jump	ite_end1
+	## begin false branch
+ite_false1:
+	VR3	<-	VR0
+ite_end1:
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Variable.gen_code", 3, 1
+Variable.gen_code:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin let - line 174
+	VR3	<-	VR1
+	## let var cur_env in VR3
+	## begin loop - line 175
+loop_start2:
+	## begin if-then-else - line 175
+	## begin dispatch - line 175
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid142
+	jumpt	VR4 dispatch_notvoid142
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	175
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid142:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 28]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	jumpf	VR4 ite_false2
+	## begin true branch
+	VR4	<-	0
+	jump	ite_end2
+	## begin false branch
+ite_false2:
+	## not operator - line 178
+	## = operator - line 178
+	## begin dispatch - line 178
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid143
+	jumpt	VR4 dispatch_notvoid143
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	178
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid143:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 32]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	VR5	<-	VR0
+	VR4	<-	VR4 = VR5
+	VR4	<-	1 - VR4
+ite_end2:
+	jumpf	VR4 loop_end2
+	## begin dispatch - line 180
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid144
+	jumpt	VR4 dispatch_notvoid144
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	180
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid144:
+	## actual parameter 1
+	VR5	<-	str_const7
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin assign - line 181
+	## begin dispatch - line 181
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid145
+	jumpt	VR4 dispatch_notvoid145
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	181
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid145:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store rhs from VR4 to let var cur_env in VR3
+	VR3	<-	VR4
+	jump	loop_start2
+loop_end2:
+	## begin if-then-else - line 184
+	## begin dispatch - line 184
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid146
+	jumpt	VR4 dispatch_notvoid146
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	184
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid146:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 28]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	jumpf	VR4 ite_false3
+	## begin true branch
+	## begin dispatch - line 185
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid147
+	jumpt	VR4 dispatch_notvoid147
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	185
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid147:
+	## actual parameter 1
+	VR5	<-	str_const8
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 186
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid148
+	jumpt	VR4 dispatch_notvoid148
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	186
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid148:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 28]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 187
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid149
+	jumpt	VR4 dispatch_notvoid149
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	187
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid149:
+	## actual parameter 1
+	VR5	<-	str_const1
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 188
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid150
+	jumpt	VR4 dispatch_notvoid150
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	188
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid150:
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 0]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	VR4	<-	VR0
+	jump	ite_end3
+	## begin false branch
+ite_false3:
+	## begin dispatch - line 192
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid151
+	jumpt	VR4 dispatch_notvoid151
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	192
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid151:
+	## actual parameter 1
+	VR5	<-	str_const9
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+ite_end3:
+	## store let result over let var cur_env
+	VR3	<-	VR4
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Variable.init", 2, 1
+Variable.init:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin assign - line 158
+	VR2	<-	VR1
+	## store rhs in VR2 to attribute name
+	store	VR2 [VR0, 12]
+	VR2	<-	VR0
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "Lambda.print_self", 1, 1
+Lambda.print_self:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 215
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid152
+	jumpt	VR1 dispatch_notvoid152
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	215
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid152:
+	## actual parameter 1
+	VR2	<-	str_const10
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 216
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid153
+	jumpt	VR1 dispatch_notvoid153
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	216
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid153:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 217
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid154
+	jumpt	VR1 dispatch_notvoid154
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	217
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid154:
+	## actual parameter 1
+	VR2	<-	str_const11
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 218
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid155
+	jumpt	VR1 dispatch_notvoid155
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	218
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid155:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Lambda.beta", 1, 1
+Lambda.beta:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "Lambda.substitute", 3, 1
+Lambda.substitute:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin if-then-else - line 231
+	## = operator - line 231
+	VR3	<-	VR1
+	load	VR4 [VR0, 12]
+	VR3	<-	VR3 = VR4
+	jumpf	VR3 ite_false4
+	## begin true branch
+	VR3	<-	VR0
+	jump	ite_end4
+	## begin false branch
+ite_false4:
+	## begin let - line 234
+	## begin dispatch - line 234
+	load	VR3 [VR0, 16]
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid156
+	jumpt	VR3 dispatch_notvoid156
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	234
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid156:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	VR5	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## let var new_body in VR3
+	## begin let - line 235
+	## begin new - line 235
+	VR4	<-	Lambda_protObj
+	VI0	<-	VR4
+	call	Object.copy
+	VR4	<-	VI0
+	call	Lambda_init
+	## let var new_lam in VR4
+	## begin dispatch - line 236
+	VR5	<-	VR4
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid157
+	jumpt	VR5 dispatch_notvoid157
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	236
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid157:
+	## actual parameter 1
+	load	VR6 [VR0, 12]
+	## actual parameter 2
+	VR7	<-	VR3
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	VI1	<-	VR6
+	VI2	<-	VR7
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 44]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## store let result over let var new_lam
+	VR4	<-	VR5
+	## store let result over let var new_body
+	VR3	<-	VR4
+ite_end4:
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Lambda.gen_code", 3, 1
+Lambda.gen_code:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin dispatch - line 242
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid158
+	jumpt	VR3 dispatch_notvoid158
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	242
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid158:
+	## actual parameter 1
+	VR4	<-	str_const12
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 243
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid159
+	jumpt	VR3 dispatch_notvoid159
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	243
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid159:
+	## actual parameter 1
+	## begin dispatch - line 243
+	VR4	<-	VR2
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid160
+	jumpt	VR4 dispatch_notvoid160
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	243
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid160:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	VR6	<-	VR0
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 32]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	# boxing integer from VR4 to VR5
+	VR5	<-	Int_protObj
+	VI0	<-	VR5
+	call	Object.copy
+	VR5	<-	VI0
+	store	VR4 [VR5, 12]
+	# end boxing
+	VR4	<-	VR5
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 16]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 244
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid161
+	jumpt	VR3 dispatch_notvoid161
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	244
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid161:
+	## actual parameter 1
+	VR4	<-	str_const13
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin if-then-else - line 245
+	## begin dispatch - line 245
+	VR3	<-	VR1
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid162
+	jumpt	VR3 dispatch_notvoid162
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	245
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid162:
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 28]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	jumpf	VR3 ite_false5
+	## begin true branch
+	## begin dispatch - line 246
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid163
+	jumpt	VR3 dispatch_notvoid163
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	246
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid163:
+	## actual parameter 1
+	VR4	<-	str_const14
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	jump	ite_end5
+	## begin false branch
+ite_false5:
+	## begin dispatch - line 248
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid164
+	jumpt	VR3 dispatch_notvoid164
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	248
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid164:
+	## actual parameter 1
+	VR4	<-	str_const15
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+ite_end5:
+	VR3	<-	VR0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Lambda.init", 3, 1
+Lambda.init:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin assign - line 207
+	VR3	<-	VR1
+	## store rhs in VR3 to attribute arg
+	store	VR3 [VR0, 12]
+	## begin assign - line 208
+	VR3	<-	VR2
+	## store rhs in VR3 to attribute body
+	store	VR3 [VR0, 16]
+	VR3	<-	VR0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "Lambda.apply", 2, 1
+Lambda.apply:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin dispatch - line 226
+	load	VR2 [VR0, 16]
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid165
+	jumpt	VR2 dispatch_notvoid165
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	226
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid165:
+	## actual parameter 1
+	load	VR3 [VR0, 12]
+	## actual parameter 2
+	VR4	<-	VR1
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	VI2	<-	VR4
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 36]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## store result into the output register
+	VI0	<-	VR2
+	return
+.end
+
+.function "Lambda.gen_closure_code", 4, 1
+Lambda.gen_closure_code:
+	## store self and arguments into the reserved VR0..VR3
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	VR3	<-	VI3
+	## begin dispatch - line 256
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid166
+	jumpt	VR4 dispatch_notvoid166
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	256
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid166:
+	## actual parameter 1
+	VR5	<-	str_const16
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 257
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid167
+	jumpt	VR4 dispatch_notvoid167
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	257
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid167:
+	## actual parameter 1
+	VR5	<-	VR1
+	# boxing integer from VR5 to VR6
+	VR6	<-	Int_protObj
+	VI0	<-	VR6
+	call	Object.copy
+	VR6	<-	VI0
+	store	VR5 [VR6, 12]
+	# end boxing
+	VR5	<-	VR6
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 16]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 258
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid168
+	jumpt	VR4 dispatch_notvoid168
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	258
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid168:
+	## actual parameter 1
+	VR5	<-	str_const17
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 259
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid169
+	jumpt	VR4 dispatch_notvoid169
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	259
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid169:
+	## actual parameter 1
+	VR5	<-	str_const18
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 260
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid170
+	jumpt	VR4 dispatch_notvoid170
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	260
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid170:
+	## actual parameter 1
+	VR5	<-	str_const19
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 261
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid171
+	jumpt	VR4 dispatch_notvoid171
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	261
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid171:
+	## actual parameter 1
+	VR5	<-	VR1
+	# boxing integer from VR5 to VR6
+	VR6	<-	Int_protObj
+	VI0	<-	VR6
+	call	Object.copy
+	VR6	<-	VI0
+	store	VR5 [VR6, 12]
+	# end boxing
+	VR5	<-	VR6
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 16]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 262
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid172
+	jumpt	VR4 dispatch_notvoid172
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	262
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid172:
+	## actual parameter 1
+	VR5	<-	str_const20
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 263
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid173
+	jumpt	VR4 dispatch_notvoid173
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	263
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid173:
+	## actual parameter 1
+	VR5	<-	str_const21
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 264
+	load	VR4 [VR0, 16]
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid174
+	jumpt	VR4 dispatch_notvoid174
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	264
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid174:
+	## actual parameter 1
+	## begin dispatch - line 264
+	VR5	<-	VR2
+	## caller in VR5
+	## dispatch to void handling, ends at dispatch_notvoid175
+	jumpt	VR5 dispatch_notvoid175
+	VR6	<-	str_const0
+	VI0	<-	VR6
+	VR6	<-	264
+	VI1	<-	VR6
+	call	void_disp_handler
+dispatch_notvoid175:
+	## actual parameter 1
+	load	VR6 [VR0, 12]
+	## store self and actual parameters into VI's
+	VI0	<-	VR5
+	VI1	<-	VR6
+	## compute the target address
+	load	VR6 [VR5, 8]
+	load	VR6 [VR6, 40]
+	call	VR6
+	## fetch (and maybe unbox) the result
+	VR5	<-	VI0
+	## actual parameter 2
+	VR6	<-	VR3
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 40]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 265
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid176
+	jumpt	VR4 dispatch_notvoid176
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	265
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid176:
+	## actual parameter 1
+	VR5	<-	str_const22
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## begin dispatch - line 266
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid177
+	jumpt	VR4 dispatch_notvoid177
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	266
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid177:
+	## actual parameter 1
+	VR5	<-	str_const23
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 12]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store result into the output register
+	VI0	<-	VR4
+	return
+.end
+
+.function "App.print_self", 1, 1
+App.print_self:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 288
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid178
+	jumpt	VR1 dispatch_notvoid178
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	288
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid178:
+	## actual parameter 1
+	VR2	<-	str_const24
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 289
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid179
+	jumpt	VR1 dispatch_notvoid179
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	289
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid179:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 290
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid180
+	jumpt	VR1 dispatch_notvoid180
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	290
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid180:
+	## actual parameter 1
+	VR2	<-	str_const25
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 291
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid181
+	jumpt	VR1 dispatch_notvoid181
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	291
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid181:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 292
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid182
+	jumpt	VR1 dispatch_notvoid182
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	292
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid182:
+	## actual parameter 1
+	VR2	<-	str_const26
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "App.beta", 1, 1
+App.beta:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin typed case - line 298
+	load	VR1 [VR0, 12]
+	## case on void handling, ends at case0_notvoid
+	jumpt	VR1 case0_notvoid
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	298
+	VI1	<-	VR2
+	call	void_case_handler
+case0_notvoid:
+	load	VR2 [VR1, 0]
+case0_tag13:
+	VR3	<-	VR2 = 13
+	jumpf	VR3 case0_tag9
+	## begin dispatch - line 299
+	VR2	<-	VR1
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid183
+	jumpt	VR2 dispatch_notvoid183
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	299
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid183:
+	## actual parameter 1
+	load	VR3 [VR0, 16]
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	VI1	<-	VR3
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 48]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	jump	case0_end
+case0_tag9:
+	VR3	<-	VR2 < 9
+	jumpt	VR3 case0_error
+	VR3	<-	14 < VR2
+	jumpt	VR3 case0_error
+	## begin let - line 301
+	## begin dispatch - line 301
+	load	VR2 [VR0, 12]
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid184
+	jumpt	VR2 dispatch_notvoid184
+	VR3	<-	str_const0
+	VI0	<-	VR3
+	VR3	<-	301
+	VI1	<-	VR3
+	call	void_disp_handler
+dispatch_notvoid184:
+	## store self and actual parameters into VI's
+	VI0	<-	VR2
+	## compute the target address
+	load	VR3 [VR2, 8]
+	load	VR3 [VR3, 32]
+	call	VR3
+	## fetch (and maybe unbox) the result
+	VR2	<-	VI0
+	## let var new_fun in VR2
+	## begin let - line 302
+	## begin new - line 302
+	VR3	<-	App_protObj
+	VI0	<-	VR3
+	call	Object.copy
+	VR3	<-	VI0
+	call	App_init
+	## let var new_app in VR3
+	## begin dispatch - line 303
+	VR4	<-	VR3
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid185
+	jumpt	VR4 dispatch_notvoid185
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	303
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid185:
+	## actual parameter 1
+	VR5	<-	VR2
+	## actual parameter 2
+	load	VR6 [VR0, 16]
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 44]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## store let result over let var new_app
+	VR3	<-	VR4
+	## store let result over let var new_fun
+	VR2	<-	VR3
+	jump	case0_end
+case0_error:
+	VI0	<-	VR1
+	call	_case_abort
+case0_end:
+	VR1	<-	VR2
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "App.substitute", 3, 1
+App.substitute:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin let - line 308
+	## begin dispatch - line 308
+	load	VR3 [VR0, 12]
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid186
+	jumpt	VR3 dispatch_notvoid186
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	308
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid186:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	VR5	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 36]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## let var new_fun in VR3
+	## begin let - line 309
+	## begin dispatch - line 309
+	load	VR4 [VR0, 16]
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid187
+	jumpt	VR4 dispatch_notvoid187
+	VR5	<-	str_const0
+	VI0	<-	VR5
+	VR5	<-	309
+	VI1	<-	VR5
+	call	void_disp_handler
+dispatch_notvoid187:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	VR6	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR4
+	VI1	<-	VR5
+	VI2	<-	VR6
+	## compute the target address
+	load	VR5 [VR4, 8]
+	load	VR5 [VR5, 36]
+	call	VR5
+	## fetch (and maybe unbox) the result
+	VR4	<-	VI0
+	## let var new_arg in VR4
+	## begin let - line 310
+	## begin new - line 310
+	VR5	<-	App_protObj
+	VI0	<-	VR5
+	call	Object.copy
+	VR5	<-	VI0
+	call	App_init
+	## let var new_app in VR5
+	## begin dispatch - line 311
+	VR6	<-	VR5
+	## caller in VR6
+	## dispatch to void handling, ends at dispatch_notvoid188
+	jumpt	VR6 dispatch_notvoid188
+	VR7	<-	str_const0
+	VI0	<-	VR7
+	VR7	<-	311
+	VI1	<-	VR7
+	call	void_disp_handler
+dispatch_notvoid188:
+	## actual parameter 1
+	VR7	<-	VR3
+	## actual parameter 2
+	VR8	<-	VR4
+	## store self and actual parameters into VI's
+	VI0	<-	VR6
+	VI1	<-	VR7
+	VI2	<-	VR8
+	## compute the target address
+	load	VR7 [VR6, 8]
+	load	VR7 [VR7, 44]
+	call	VR7
+	## fetch (and maybe unbox) the result
+	VR6	<-	VI0
+	## store let result over let var new_app
+	VR5	<-	VR6
+	## store let result over let var new_arg
+	VR4	<-	VR5
+	## store let result over let var new_fun
+	VR3	<-	VR4
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "App.gen_code", 3, 1
+App.gen_code:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin dispatch - line 316
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid189
+	jumpt	VR3 dispatch_notvoid189
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	316
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid189:
+	## actual parameter 1
+	VR4	<-	str_const27
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 317
+	load	VR3 [VR0, 12]
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid190
+	jumpt	VR3 dispatch_notvoid190
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	317
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid190:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	VR5	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 40]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 318
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid191
+	jumpt	VR3 dispatch_notvoid191
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	318
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid191:
+	## actual parameter 1
+	VR4	<-	str_const28
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 319
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid192
+	jumpt	VR3 dispatch_notvoid192
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	319
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid192:
+	## actual parameter 1
+	VR4	<-	str_const29
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 320
+	load	VR3 [VR0, 16]
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid193
+	jumpt	VR3 dispatch_notvoid193
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	320
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid193:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	VR5	<-	VR2
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	VI2	<-	VR5
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 40]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 321
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid194
+	jumpt	VR3 dispatch_notvoid194
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	321
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid194:
+	## actual parameter 1
+	VR4	<-	str_const30
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 322
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid195
+	jumpt	VR3 dispatch_notvoid195
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	322
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid195:
+	## actual parameter 1
+	VR4	<-	str_const31
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 323
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid196
+	jumpt	VR3 dispatch_notvoid196
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	323
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid196:
+	## actual parameter 1
+	VR4	<-	str_const32
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 324
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid197
+	jumpt	VR3 dispatch_notvoid197
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	324
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid197:
+	## actual parameter 1
+	VR4	<-	str_const33
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## begin dispatch - line 325
+	VR3	<-	VR0
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid198
+	jumpt	VR3 dispatch_notvoid198
+	VR4	<-	str_const0
+	VI0	<-	VR4
+	VR4	<-	325
+	VI1	<-	VR4
+	call	void_disp_handler
+dispatch_notvoid198:
+	## actual parameter 1
+	VR4	<-	str_const34
+	## store self and actual parameters into VI's
+	VI0	<-	VR3
+	VI1	<-	VR4
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 12]
+	call	VR4
+	## fetch (and maybe unbox) the result
+	VR3	<-	VI0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "App.init", 3, 1
+App.init:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin assign - line 280
+	VR3	<-	VR1
+	## store rhs in VR3 to attribute fun
+	store	VR3 [VR0, 12]
+	## begin assign - line 281
+	VR3	<-	VR2
+	## store rhs in VR3 to attribute arg
+	store	VR3 [VR0, 16]
+	VR3	<-	VR0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+.function "VarListNE.isNil", 1, 1
+VarListNE.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarListNE.head", 1, 1
+VarListNE.head:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 12]
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarListNE.tail", 1, 1
+VarListNE.tail:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 16]
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarListNE.print", 1, 1
+VarListNE.print:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 36
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid199
+	jumpt	VR1 dispatch_notvoid199
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	36
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid199:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 28]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 36
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid200
+	jumpt	VR1 dispatch_notvoid200
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	36
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid200:
+	## actual parameter 1
+	VR2	<-	str_const2
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	VI1	<-	VR2
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	## begin dispatch - line 37
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid201
+	jumpt	VR1 dispatch_notvoid201
+	VR2	<-	str_const0
+	VI0	<-	VR2
+	VR2	<-	37
+	VI1	<-	VR2
+	call	void_disp_handler
+dispatch_notvoid201:
+	## store self and actual parameters into VI's
+	VI0	<-	VR1
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 44]
+	call	VR2
+	## fetch (and maybe unbox) the result
+	VR1	<-	VI0
+	VR1	<-	VR0
+	## store result into the output register
+	VI0	<-	VR1
+	return
+.end
+
+.function "VarListNE.init", 3, 1
+VarListNE.init:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin assign - line 35
+	VR3	<-	VR1
+	## store rhs in VR3 to attribute x
+	store	VR3 [VR0, 12]
+	## begin assign - line 35
+	VR3	<-	VR2
+	## store rhs in VR3 to attribute rest
+	store	VR3 [VR0, 16]
+	VR3	<-	VR0
+	## store result into the output register
+	VI0	<-	VR3
+	return
+.end
+
+#### data section
+	.data
+#### object tags
+_int_tag:
+	DW	1
+_bool_tag:
+	DW	2
+_string_tag:
+	DW	3
+#### constants
+str_const75:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DS	4
+str_const74:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Main"
+	DS	4
+str_const73:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Term"
+	DS	4
+str_const72:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"App"
+	DS	1
+str_const71:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	"Lambda"
+	DS	2
+str_const70:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const5
+	DB	"Variable"
+	DS	4
+str_const69:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Expr"
+	DS	4
+str_const68:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"LambdaListRef"
+	DS	3
+str_const67:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const7
+	DB	"LambdaListNE"
+	DS	4
+str_const66:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const8
+	DB	"LambdaList"
+	DS	2
+str_const65:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"VarListNE"
+	DS	3
+str_const64:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const10
+	DB	"VarList"
+	DS	1
+str_const63:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const11
+	DB	"IO"
+	DS	2
+str_const62:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	"String"
+	DS	2
+str_const61:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Bool"
+	DS	4
+str_const60:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"Int"
+	DS	1
+str_const59:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	"Object"
+	DS	2
+str_const58:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const8
+	DB	"_prim_slot"
+	DS	2
+str_const57:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"SELF_TYPE"
+	DS	3
+str_const56:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"_no_class"
+	DS	3
+str_const55:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"<basic class>"
+	DS	3
+str_const54:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const10
+	DB	"\n};\n};\n"
+	DS	1
+str_const53:
+	DW	3
+	DW	11
+	DL	String_dispatch
+	DL	int_const12
+	DB	"  main() : EvalObject {\n"
+	DS	4
+str_const52:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"class Main {\n"
+	DS	3
+str_const51:
+	DW	3
+	DW	17
+	DL	String_dispatch
+	DL	int_const13
+	DB	"(*Generated by lam.cl (Jeff Foster, March 2000)*)\n"
+	DS	2
+str_const50:
+	DW	3
+	DW	16
+	DL	String_dispatch
+	DL	int_const14
+	DB	"\n------------------cut here------------------\n"
+	DS	2
+str_const49:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const15
+	DB	"Generating code for "
+	DS	4
+str_const48:
+	DW	3
+	DW	20
+	DL	String_dispatch
+	DL	int_const16
+	DB	"  apply(y : EvalObject) : EvalObject { { abort(); self; } };\n"
+	DS	3
+str_const47:
+	DW	3
+	DW	19
+	DL	String_dispatch
+	DL	int_const17
+	DB	"  init(p : Closure) : Closure {{ parent <- p; self; }};\n"
+	DS	4
+str_const46:
+	DW	3
+	DW	12
+	DL	String_dispatch
+	DL	int_const18
+	DB	"  get_x() : EvalObject { x };\n"
+	DS	2
+str_const45:
+	DW	3
+	DW	14
+	DL	String_dispatch
+	DL	int_const19
+	DB	"  get_parent() : Closure { parent };\n"
+	DS	3
+str_const44:
+	DW	3
+	DW	9
+	DL	String_dispatch
+	DL	int_const20
+	DB	"  x : EvalObject;\n"
+	DS	2
+str_const43:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const15
+	DB	"  parent : Closure;\n"
+	DS	4
+str_const42:
+	DW	3
+	DW	14
+	DL	String_dispatch
+	DL	int_const21
+	DB	"class Closure inherits EvalObject {\n"
+	DS	4
+str_const41:
+	DW	3
+	DW	16
+	DL	String_dispatch
+	DL	int_const14
+	DB	"  eval() : EvalObject { { abort(); self; } };\n"
+	DS	2
+str_const40:
+	DW	3
+	DW	12
+	DL	String_dispatch
+	DL	int_const22
+	DB	"class EvalObject inherits IO {\n"
+	DS	1
+str_const39:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	" =>\n"
+	DS	4
+str_const38:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"beta-reduce: "
+	DS	3
+str_const37:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"z"
+	DS	3
+str_const36:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"y"
+	DS	3
+str_const35:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"x"
+	DS	3
+str_const34:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const10
+	DB	"  esac)"
+	DS	1
+str_const33:
+	DW	3
+	DW	17
+	DL	String_dispatch
+	DL	int_const23
+	DB	"    o : Object => { abort(); new EvalObject; };\n"
+	DS	4
+str_const32:
+	DW	3
+	DW	12
+	DL	String_dispatch
+	DL	int_const22
+	DB	"    c : Closure => c.apply(y);\n"
+	DS	1
+str_const31:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const7
+	DB	"  case x of\n"
+	DS	4
+str_const30:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	" in\n"
+	DS	4
+str_const29:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const24
+	DB	"     y : EvalObject <- "
+	DS	1
+str_const28:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const11
+	DB	",\n"
+	DS	2
+str_const27:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const24
+	DB	"(let x : EvalObject <- "
+	DS	1
+str_const26:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const11
+	DB	"))"
+	DS	2
+str_const25:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	")@("
+	DS	1
+str_const24:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const11
+	DB	"(("
+	DS	2
+str_const23:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"};\n"
+	DS	1
+str_const22:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const25
+	DB	";}};\n"
+	DS	3
+str_const21:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const26
+	DB	"      x <- y;\n"
+	DS	2
+str_const20:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	92
+	DB	"n"");\n"
+	DS	2
+str_const19:
+	DW	3
+	DW	13
+	DL	String_dispatch
+	DL	int_const27
+	DB	"    { out_string(""Applying closure "
+	DS	1
+str_const18:
+	DW	3
+	DW	14
+	DL	String_dispatch
+	DL	int_const28
+	DB	"  apply(y : EvalObject) : EvalObject {\n"
+	DS	1
+str_const17:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const15
+	DB	" inherits Closure {\n"
+	DS	4
+str_const16:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"class Closure"
+	DS	3
+str_const15:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	"self))"
+	DS	2
+str_const14:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"new Closure))"
+	DS	3
+str_const13:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const10
+	DB	").init("
+	DS	1
+str_const12:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"((new Closure"
+	DS	3
+str_const11:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"."
+	DS	3
+str_const10:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	92
+	DS	3
+str_const9:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const10
+	DB	"get_x()"
+	DS	1
+str_const8:
+	DW	3
+	DW	11
+	DL	String_dispatch
+	DL	int_const29
+	DB	"Error:  free occurrence of "
+	DS	1
+str_const7:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const6
+	DB	"get_parent()."
+	DS	3
+str_const6:
+	DW	3
+	DW	16
+	DL	String_dispatch
+	DL	int_const30
+	DB	"\nError: Expr is pure virtual; can't gen_code\n"
+	DS	3
+str_const5:
+	DW	3
+	DW	16
+	DL	String_dispatch
+	DL	int_const31
+	DB	"\nError: Expr is pure virtual; can't substitute\n"
+	DS	1
+str_const4:
+	DW	3
+	DW	17
+	DL	String_dispatch
+	DL	int_const23
+	DB	"\nError: Expr is pure virtual; can't beta-reduce\n"
+	DS	4
+str_const3:
+	DW	3
+	DW	16
+	DL	String_dispatch
+	DL	int_const31
+	DB	"\nError: Expr is pure virtual; can't print self\n"
+	DS	1
+str_const2:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	" "
+	DS	3
+str_const1:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"\n"
+	DS	3
+str_const0:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const32
+	DB	"_tests/advanced/lam.cl"
+	DS	2
+int_const32:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	22
+int_const31:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	47
+int_const30:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	45
+int_const29:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	27
+int_const28:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	39
+int_const27:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	35
+int_const26:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	14
+int_const25:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	5
+int_const24:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	23
+int_const23:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	48
+int_const22:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	31
+int_const21:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	36
+int_const20:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	18
+int_const19:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	37
+int_const18:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	30
+int_const17:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	56
+int_const16:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	61
+int_const15:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	20
+int_const14:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	46
+int_const13:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	50
+int_const12:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	24
+int_const11:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	2
+int_const10:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	7
+int_const9:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	9
+int_const8:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	10
+int_const7:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	12
+int_const6:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	13
+int_const5:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	8
+int_const4:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	6
+int_const3:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	3
+int_const2:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	4
+int_const1:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+int_const0:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const1:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const0:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+#### class names by tag
+class_nameTab:
+	DL	str_const59
+	DL	str_const60
+	DL	str_const61
+	DL	str_const62
+	DL	str_const63
+	DL	str_const66
+	DL	str_const68
+	DL	str_const67
+	DL	str_const64
+	DL	str_const69
+	DL	str_const73
+	DL	str_const74
+	DL	str_const70
+	DL	str_const71
+	DL	str_const72
+	DL	str_const65
+#### prototypes and init by tag
+class_objTab:
+	DL	Object_protObj
+	DL	Object_init
+	DL	Int_protObj
+	DL	Int_init
+	DL	Bool_protObj
+	DL	Bool_init
+	DL	String_protObj
+	DL	String_init
+	DL	IO_protObj
+	DL	IO_init
+	DL	LambdaList_protObj
+	DL	LambdaList_init
+	DL	LambdaListRef_protObj
+	DL	LambdaListRef_init
+	DL	LambdaListNE_protObj
+	DL	LambdaListNE_init
+	DL	VarList_protObj
+	DL	VarList_init
+	DL	Expr_protObj
+	DL	Expr_init
+	DL	Term_protObj
+	DL	Term_init
+	DL	Main_protObj
+	DL	Main_init
+	DL	Variable_protObj
+	DL	Variable_init
+	DL	Lambda_protObj
+	DL	Lambda_init
+	DL	App_protObj
+	DL	App_init
+	DL	VarListNE_protObj
+	DL	VarListNE_init
+#### dispatch tables by tag
+Object_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+String_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	String.concat
+	DL	String.length
+	DL	String.substr
+IO_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+LambdaList_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	LambdaList.isNil
+	DL	LambdaList.headE
+	DL	LambdaList.headC
+	DL	LambdaList.headN
+	DL	LambdaList.tail
+	DL	LambdaList.add
+LambdaListRef_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	LambdaListRef.isNil
+	DL	LambdaListRef.headE
+	DL	LambdaListRef.headC
+	DL	LambdaListRef.headN
+	DL	LambdaListRef.reset
+	DL	LambdaListRef.add
+	DL	LambdaListRef.removeHead
+LambdaListNE_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	LambdaListNE.isNil
+	DL	LambdaListNE.headE
+	DL	LambdaListNE.headC
+	DL	LambdaListNE.headN
+	DL	LambdaListNE.tail
+	DL	LambdaList.add
+	DL	LambdaListNE.init
+VarList_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	VarList.isNil
+	DL	VarList.head
+	DL	VarList.tail
+	DL	VarList.add
+	DL	VarList.print
+Expr_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Expr.print_self
+	DL	Expr.beta
+	DL	Expr.substitute
+	DL	Expr.gen_code
+Term_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Term.var
+	DL	Term.lam
+	DL	Term.app
+	DL	Term.i
+	DL	Term.k
+	DL	Term.s
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Term.var
+	DL	Term.lam
+	DL	Term.app
+	DL	Term.i
+	DL	Term.k
+	DL	Term.s
+	DL	Main.beta_reduce
+	DL	Main.eval_class
+	DL	Main.closure_class
+	DL	Main.gen_code
+	DL	Main.main
+Variable_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Variable.print_self
+	DL	Variable.beta
+	DL	Variable.substitute
+	DL	Variable.gen_code
+	DL	Variable.init
+Lambda_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Lambda.print_self
+	DL	Lambda.beta
+	DL	Lambda.substitute
+	DL	Lambda.gen_code
+	DL	Lambda.init
+	DL	Lambda.apply
+	DL	Lambda.gen_closure_code
+App_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	App.print_self
+	DL	App.beta
+	DL	App.substitute
+	DL	App.gen_code
+	DL	App.init
+VarListNE_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	VarListNE.isNil
+	DL	VarListNE.head
+	DL	VarListNE.tail
+	DL	VarList.add
+	DL	VarListNE.print
+	DL	VarListNE.init
+#### prototype objects
+Object_protObj:
+	DW	0
+	DW	3
+	DL	Object_dispatch
+Int_protObj:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+Bool_protObj:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+String_protObj:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DW	0
+IO_protObj:
+	DW	4
+	DW	3
+	DL	IO_dispatch
+LambdaList_protObj:
+	DW	5
+	DW	3
+	DL	LambdaList_dispatch
+LambdaListRef_protObj:
+	DW	6
+	DW	5
+	DL	LambdaListRef_dispatch
+	DW	0
+	DW	0
+LambdaListNE_protObj:
+	DW	7
+	DW	7
+	DL	LambdaListNE_dispatch
+	DW	0
+	DW	0
+	DW	0
+	DW	0
+VarList_protObj:
+	DW	8
+	DW	3
+	DL	VarList_dispatch
+Expr_protObj:
+	DW	9
+	DW	3
+	DL	Expr_dispatch
+Term_protObj:
+	DW	10
+	DW	3
+	DL	Term_dispatch
+Main_protObj:
+	DW	11
+	DW	3
+	DL	Main_dispatch
+Variable_protObj:
+	DW	12
+	DW	4
+	DL	Variable_dispatch
+	DL	str_const75
+Lambda_protObj:
+	DW	13
+	DW	5
+	DL	Lambda_dispatch
+	DW	0
+	DW	0
+App_protObj:
+	DW	14
+	DW	5
+	DL	App_dispatch
+	DW	0
+	DW	0
+VarListNE_protObj:
+	DW	15
+	DW	5
+	DL	VarListNE_dispatch
+	DW	0
+	DW	0
