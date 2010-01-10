@@ -67,9 +67,9 @@ assignment
                     | ^(MINUS op1=operand['eax'] op2=operand['ebx'])
                         { self.__gen("subl \%ebx, \%eax") }                    
                     | ^(MUL op1=operand['eax'] op2=operand['ebx'])
-                        { self.__gen("mul \%ebx") }                    
+                        { self.__gen("imul \%ebx") }                    
                     | ^(DIV op1=operand['eax'] op2=operand['ebx'])
-                        { self.__gen("xorl \%edx, \%edx\ndiv \%ebx") }
+                        { self.__gen("xorl \%edx, \%edx\nidiv \%ebx") }
                     | ^(LT op1=operand['edx'] op2=operand['ebx']) {
                         self.__gen("xorl \%eax, \%eax")
                         self.__gen("cmpl \%edx, \%ebx")
