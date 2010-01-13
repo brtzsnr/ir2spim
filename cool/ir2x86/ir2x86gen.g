@@ -121,12 +121,17 @@ jump
     ;
 
 label
-    : LABEL { 
-        self.__gen($LABEL.text + ":")
+    : LABEL {
+        name = $LABEL.text
         if self.__entryLabel:
             self.__entryLabel = False
+            self.__gen(".globl " + name)
+            self.__gen(".type " + name + ", @function")
+            self.__gen(name + ":")
             if len(self.__vrMap) > 0:
                 self.__gen("subl $" + str(4 * len(self.__vrMap)) + ", \%esp")
+        else:
+            self.__gen(name + ":")
     }
     ;
 
@@ -174,7 +179,12 @@ data_statement
     | ^(DB STRING) 
     { self.__gen(".ascii " + $STRING.text.replace("\"\"", "\\\"")) }
     | ^(DS INTEGER) { self.__gen(".fill " + $INTEGER.text) }
-    | LABEL { self.__gen($LABEL.text + ":") }
+    | LABEL { 
+        name = $LABEL.text
+        self.__gen(".globl " + name)
+        self.__gen(".type " + name + ", @object")
+        self.__gen(name + ":") 
+    }
     ;
 
 operand[reg] 
