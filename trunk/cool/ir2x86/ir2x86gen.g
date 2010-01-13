@@ -69,7 +69,7 @@ assignment
                     | ^(MUL op1=operand['eax'] op2=operand['ebx'])
                         { self.__gen("imul \%ebx") }                    
                     | ^(DIV op1=operand['eax'] op2=operand['ebx'])
-                        { self.__gen("xorl \%edx, \%edx\nidiv \%ebx") }
+                        { self.__gen("cltd\nidiv \%ebx") }
                     | ^(LT op1=operand['edx'] op2=operand['ebx']) {
                         self.__gen("xorl \%eax, \%eax")
                         self.__gen("cmpl \%edx, \%ebx")
@@ -154,8 +154,7 @@ io
     | ^(LOADB val=vr addr=vr offset=integer) {
         self.__genVrLoad('ebx', $addr.text)
         self.__gen("addl $" + $offset.text + ", \%ebx")
-        self.__gen("xorl \%eax, \%eax")
-        self.__gen("movb (\%ebx), \%al")
+        self.__gen("movsbl (\%ebx), \%eax")
         self.__genVrStore('eax', $val.text)
     }
     | ^(STOREB val=vr addr=vr offset=integer) {
