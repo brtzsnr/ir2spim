@@ -29,10 +29,11 @@ if len(sys.argv) != 3:
     print "\tgcc -nostartfiles os_library.c <output.s> -o <output>"
     sys.exit(0)
 
-out = open(sys.argv[2], "w")
-print >>out, ".text\n.globl _start"
-iregs_num = 2
-iregs_num = max(iregs_num, parse_file(sys.argv[1], out))
-iregs_num = max(iregs_num, parse_file("library.ir", out))
-print >>out, ".data\n.globl __iregs\n__iregs:\n.fill " + str(4 * iregs_num)
+if __name__ == '__main__':
+    out = open(sys.argv[2], "w")
+    print >>out, ".text\n.globl _start"
+    iregs_num = 2
+    iregs_num = max(iregs_num, parse_file(sys.argv[1], out))
+    iregs_num = max(iregs_num, parse_file("library.ir", out))
+    print >>out, ".data\n.globl __iregs\n__iregs:\n.fill " + str(4 * iregs_num)
 
