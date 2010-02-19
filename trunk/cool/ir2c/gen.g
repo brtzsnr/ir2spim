@@ -108,7 +108,7 @@ assignment
                     | ^(EQ op1=operand op2=operand)
                         { rval = self.__gen_op("==", $op1.val, $op2.val) } 
                     | ^(NOT op1=operand)
-                        { rval = self.__gen_op("xor", $op1.val, "-1") }
+                        { rval = "~(\%s)" \% $op1.val }
                     )) { self.__gen("\%s = \%s;" \% ($vr.text, rval)) }
     | ^(ASSIGN vi vr) { self.__gen("iregs[\%s] = \%s;" \% ($vi.text[2:], $vr.text)) }
     ;
