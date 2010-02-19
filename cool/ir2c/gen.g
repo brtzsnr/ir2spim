@@ -66,8 +66,9 @@ function
         self.__fn = self.__globals.functions[$name.text]
         self.__gen("static void \%s() {" \% (util.FUNCTION_PREFIX + 
                         self.__fn.first_label), False)
-        for vr in self.__fn.vr_map.iterkeys():
-            self.__gen("int32_t \%s;" \% vr)
+
+        if len(self.__fn.vr_map) > 0:
+            self.__gen("int32_t \%s;" \% ', '.join(self.__fn.vr_map.iterkeys()))
     } code_statement* { 
         self.__gen("}\n", False) 
     })
@@ -166,7 +167,7 @@ data_statement
     | ^(DB STRING) { 
         ss = $STRING.text
         self.__data_list.append(("int8_t", "\"\%s\"" \% ss, 
-                            str(util.len_llvm_string(ss))))
+                            str(util.len_const_string(ss))))
     }
     | ^(DS INTEGER) {
         self.__data_list.append(("int8_t", None, $INTEGER.text))

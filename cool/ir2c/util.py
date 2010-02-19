@@ -31,7 +31,7 @@ def recode_coolir_string(s):
     s = s.replace("\"\"", "\\\"")
     return s
 
-def len_llvm_string(s):
+def len_const_string(s):
     """Compute the number of bytes that @s takes in memory"""
     return len(s) - s.count("\\")
 

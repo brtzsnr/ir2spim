@@ -92,7 +92,7 @@ data_statement
     : ^(DW INTEGER) { self.__file_data.data_len += 4 }
     | ^(DL LABEL) { self.__file_data.data_len += 4 }  
     | ^(DB INTEGER) { self.__file_data.data_len += 1 }
-    | ^(DB STRING) { self.__file_data.data_len += util.len_llvm_string($STRING.text) }
+    | ^(DB STRING) { self.__file_data.data_len += util.len_const_string($STRING.text) }
     | ^(DS INTEGER) { self.__file_data.data_len += int($INTEGER.text) }
     | LABEL { self.__file_data.data_label_offsets[$LABEL.text] = self.__file_data.data_len }
     ;
