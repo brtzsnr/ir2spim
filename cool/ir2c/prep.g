@@ -67,7 +67,7 @@ label
     ;
 
 submit
-    : RETURN { self.__fn.noreturn = False } 
+    : RETURN
     ;
 
 io
@@ -86,15 +86,19 @@ vr  : VR {
 vi : VI;
 integer : INTEGER;
 
-data: { self.__file_data.data_len = 0 } ^(DATA data_statement*);
+data: { self.__file_data.data_fields_cnt = 0 } ^(DATA data_statement*);
 
 data_statement
-    : ^(DW INTEGER) { self.__file_data.data_len += 4 }
-    | ^(DL LABEL) { self.__file_data.data_len += 4 }  
-    | ^(DB INTEGER) { self.__file_data.data_len += 1 }
-    | ^(DB STRING) { self.__file_data.data_len += util.len_const_string($STRING.text) }
-    | ^(DS INTEGER) { self.__file_data.data_len += int($INTEGER.text) }
-    | LABEL { self.__file_data.data_label_offsets[$LABEL.text] = self.__file_data.data_len }
+    : ^(DW INTEGER) { self.__file_data.data_fields_cnt += 1 }
+    | ^(DL LABEL) { self.__file_data.data_fields_cnt += 1 }  
+    | ^(DB INTEGER) { self.__file_data.data_fields_cnt += 1 }
+    | ^(DB STRING) { self.__file_data.data_fields_cnt += 1 }
+    | ^(DS INTEGER) { self.__file_data.data_fields_cnt += 1 }
+    | LABEL {
+        label = $LABEL.text
+        self.__file_data.data_label_offsets[label] = (
+            self.__file_data.data_fields_cnt + 1)
+    }
     ;
 
 binary_op : PLUS | MINUS | MUL | DIV | LT | LE | EQ;
