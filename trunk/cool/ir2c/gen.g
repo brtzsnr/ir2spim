@@ -16,8 +16,14 @@ import util
 }
 
 @members {
-    def __gen(self, str, indent = True):
-        print >>self.__gen_out, ('', '\t')[indent] + str
+    def __gen(self, str):
+        self.__fn.insn_list.append(str)
+
+    def __get_label_value(self, label):
+        if label in self.__globals.data_label_offsets:
+            return "(int32_t)&data.f\%d" \% self.__globals.data_label_offsets[label]
+        else:
+            return "(int32_t)&G_\%s" \% label
 
     def __gen_temp(self):
         res = "tmp\%d" \% self.__next_temp
@@ -35,28 +41,10 @@ import util
         else:
             fmtVar = vr, labelNot, labelCond
         self.__gen("if (\%s) goto \%s; else goto \%s;" \% fmtVar)
-        self.__gen(labelNot + ":", False)
-
-    def __get_label_value(self, label):
-        if label in self.__globals.data_label_offsets:
-            return "data_ptr(\%s)" \% str(self.__globals.data_label_offsets[label])
-        elif label in self.__globals.code_label_indices:
-            return "code_ptr(\%d)" \% self.__globals.code_label_indices[label]
-        else:
-            raise Exception("Label unknown: \%s" \% label)
-
-    def __gen_mem_load(self, val, addr, offset, size):
-        self.__gen("\%s = load_\%s_from_label(\%s, \%s);" \% (
-                    val, size, addr, offset))
-
-    def __gen_mem_store(self, val, addr, offset, size):
-        self.__gen("store_\%s_at_label(\%s, \%s, \%s);" \% (
-                    size, addr, offset, val))
+        self.__gen(labelNot + ":")
 }
 
-program[gen_out, globals] returns [data_list] : { 
-        self.__gen_out, self.__globals = $gen_out, $globals
-    } code data { $data_list = self.__data_list };
+program[globals] : { self.__globals = $globals } code data;
 
 code : ^(CODE function*);
 
@@ -64,15 +52,7 @@ function
     : ^(FUNCTION name=STRING in_cnt=INTEGER out_cnt=INTEGER {
         self.__next_temp = 0 
         self.__fn = self.__globals.functions[$name.text]
-        self.__gen("static void \%s() {" \% (util.FUNCTION_PREFIX + 
-                        self.__fn.first_label), False)
-
-        if len(self.__fn.vr_map) > 0:
-            self.__gen("int32_t \%s;" \% ', '.join(self.__fn.vr_map.iterkeys()))
-    } code_statement* { 
-        self.__gen("}\n", False) 
-    })
-    ;
+    } code_statement*);
 
 code_statement
 @init { print_eoi, self.__last_insn_is_br = True, False }
@@ -115,7 +95,7 @@ assignment
     ;
 
 call
-    : ^(CALL vr) { self.__gen("call_function_at_label(\%s);" \% $vr.text) }
+    : ^(CALL vr) { self.__gen("((void (*)()) \%s)();" \% $vr.text) }
     | ^(CALL LABEL) { self.__gen("\%s();" \% (util.FUNCTION_PREFIX + $LABEL.text)) }
     ;
 
@@ -128,7 +108,7 @@ jump
     ;
 
 label
-    : LABEL { self.__gen("\%s:" \% (util.LABEL_PREFIX + $LABEL.text), False) }
+    : LABEL { self.__gen("\%s:" \% (util.LABEL_PREFIX + $LABEL.text)) }
     ;
 
 submit
@@ -137,16 +117,20 @@ submit
 
 io
     : ^(LOAD val=vr addr=vr offset=integer) {
-        self.__gen_mem_load($val.text, $addr.text, $offset.text, "word")
+        self.__gen("\%s = *(int32_t*)(\%s + \%s);" \% (
+                    $val.text, $addr.text, $offset.text))
     }
     | ^(STORE val=vr addr=vr offset=integer) {
-        self.__gen_mem_store($val.text, $addr.text, $offset.text, "word")
+        self.__gen("*(int32_t*)(\%s + \%s) = \%s;" \% (
+                    $addr.text, $offset.text, $val.text))
     }
     | ^(LOADB val=vr addr=vr offset=integer) {
-        self.__gen_mem_load($val.text, $addr.text, $offset.text, "byte")
+        self.__gen("\%s = (int32_t) (*(uint8_t*)(\%s + \%s));" \% (
+                    $val.text, $addr.text, $offset.text))
     }
     | ^(STOREB val=vr addr=vr offset=integer) {
-        self.__gen_mem_store($val.text, $addr.text, $offset.text, "byte")
+        self.__gen("*(uint8_t*)(\%s + \%s) = (uint8_t)(\%s & 0xff);" \% (
+                    $addr.text, $offset.text, $val.text))
     }
     ;
 
@@ -155,7 +139,8 @@ operand returns [val]
     | integer { $val = $integer.text }
     ;
 
-data: { self.__data_list = [] } ^(DATA data_statement*);
+data: { self.__data_list = [] } ^(DATA data_statement*)
+    { self.__globals.data_list.extend(self.__data_list) };
 
 data_statement
     : ^(DW INTEGER) { self.__data_list.append(("int32_t", 
