@@ -69,7 +69,9 @@ assignment
     : vr ASSIGN^ operand 
     | vr ASSIGN l=LABEL -> ^(ASSIGN vr LABEL[util.recode_label($l.text)])
     | vr ASSIGN^ vi
+    | vr ASSIGN^ vo
     | vi ASSIGN^ vr
+    | vo ASSIGN^ vr
     | vr ASSIGN first=operand op=binary_op second=operand
         -> ^(ASSIGN vr ^($op $first $second))
     | vr ASSIGN op=unary_op operand -> ^(ASSIGN vr ^($op operand))
@@ -105,6 +107,7 @@ io
 operand : vr | integer;
 vr : VR;
 vi : VI;
+vo : VO;
 integer : INTEGER;
 
 // === DATA ===
@@ -130,6 +133,7 @@ STRING: '"' ('""' | ~('"'))* '"';
 
 VR: 'VR' UNSIGNED;
 VI: 'VI' UNSIGNED;
+VO: 'VO' UNSIGNED;
 INTEGER: ('-')? UNSIGNED;
 
 LABEL:  l=('A'..'Z' | 'a'..'z' | '_') ('A'..'Z' | 'a'..'z' | '0'..'9' | '_' | '.')*;

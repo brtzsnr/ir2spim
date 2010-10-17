@@ -25,7 +25,8 @@ code : ^(CODE function*);
 function
 @init { self.__fn = util.Function() }
     : ^(FUNCTION name=STRING in_cnt=INTEGER out_cnt=INTEGER code_statement*) {
-        self.__fn.iregs = max(int($in_cnt.text), int($out_cnt.text))
+        self.__fn.iregs = int($in_cnt.text)
+        self.__fn.oregs = int($out_cnt.text)
         self.__file_data.functions[$name.text] = self.__fn
     } 
     ;
@@ -43,7 +44,9 @@ assignment
     : ^(ASSIGN vr operand)
     | ^(ASSIGN vr LABEL)
     | ^(ASSIGN vr vi)
+    | ^(ASSIGN vr vo)
     | ^(ASSIGN vi vr)
+    | ^(ASSIGN vo vr)
     | ^(ASSIGN vr ^(binary_op operand operand))
     | ^(ASSIGN vr ^(unary_op operand))
     ;
@@ -84,6 +87,7 @@ vr  : VR {
     }
     ;
 vi : VI;
+vo : VO;
 integer : INTEGER;
 
 data: { self.__file_data.data_len = 0 } ^(DATA data_statement*);
