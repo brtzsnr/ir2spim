@@ -93,6 +93,7 @@ assignment
                     ( op1=operand { rval = $op1.val }
                     | LABEL { rval = self.__get_label_value($LABEL.text) }
                     | vi { rval = "iregs[\%s]" \% $vi.text[2:] }
+                    | vo { rval = "oregs[\%s]" \% $vo.text[2:] }
                     | ^(PLUS op1=operand op2=operand) 
                         { rval = self.__gen_op("+", $op1.val, $op2.val) }
                     | ^(MINUS op1=operand op2=operand)
@@ -111,6 +112,7 @@ assignment
                         { rval = "~(\%s)" \% $op1.val }
                     )) { self.__gen("\%s = \%s;" \% ($vr.text, rval)) }
     | ^(ASSIGN vi vr) { self.__gen("iregs[\%s] = \%s;" \% ($vi.text[2:], $vr.text)) }
+    | ^(ASSIGN vo vr) { self.__gen("oregs[\%s] = \%s;" \% ($vo.text[2:], $vr.text)) }
     ;
 
 call
@@ -176,6 +178,7 @@ data_statement
 
 vr : VR;
 vi : VI;
+vo : VO;
 integer : INTEGER;
 
 

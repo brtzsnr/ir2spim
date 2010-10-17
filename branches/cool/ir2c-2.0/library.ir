@@ -12,14 +12,14 @@ _start:
 	VR0 <- Main_protObj
 	VI0 <- VR0
 	call Object.copy
-	VR0 <- VI0
+	VR0 <- VO0
 	
 	VI0 <- VR0
 	call Main_init
 
 	VI0 <- VR0
 	call Main.main
-	VR2 <- VI0
+	VR2 <- VO0
 	
 	VR0 <- __str_term_msg
 	VR1 <- 35
@@ -40,7 +40,7 @@ Object.copy:
 
 	VI0 <- VR5       # Allocate memory
 	call __alloc__
-	VR2 <- VI0       # VR2 = target
+	VR2 <- VO0       # VR2 = target
 	
 	VR3 <- VR2       # Copy data from VR0 to VR2, VR3 = ptr
 __loc1:
@@ -98,7 +98,7 @@ Object.type_name:
 	VR1 <- class_nameTab
 	VR1 <- VR0 + VR1
 	load VR1 [VR1, 0]
-	VI0 <- VR1
+	VO0 <- VR1
     return
 .end
 	
@@ -107,7 +107,7 @@ Object.type_name:
 String.length:
 	VR0 <- VI0
 	load VR0 [VR0, 12]
-	VI0 <- VR0
+	VO0 <- VR0
 	return
 .end
 
@@ -124,7 +124,7 @@ __allocString:
 	VR11 <- VR10 * 4    	# Size in bytes
 	VI0 <- VR11	      		# Alloc the object
 	call __alloc__
-	VR1 <- VI0            
+	VR1 <- VO0            
 	
 	VR2 <- 3              	# Type id
 	store VR2 [VR1,0]
@@ -135,7 +135,7 @@ __allocString:
 	VR2 <- Int_protObj      # Actual size in bytes - box an integer
 	VI0 <- VR2
 	call Object.copy
-	VR2 <- VI0
+	VR2 <- VO0
 	store VR0 [VR2,12]
 	store VR2 [VR1,12]
 	
@@ -149,7 +149,7 @@ __la1:
 	VR3 <- VR20 = VR21
 	jumpf VR3 __la1
 		
-	VI0 <- VR1
+	VO0 <- VR1
 	return
 .end
 
@@ -194,7 +194,7 @@ String.concat:
 	# allocate new string
 	VI0 <- VR5
 	call __allocString
-	VR10 <- VI0
+	VR10 <- VO0
 	
 	# copy 1st string
 	VR6 <- VR0 + 16
@@ -212,7 +212,7 @@ String.concat:
 	VI2 <- VR7
 	call __copyBytes
 	
-    VI0 <- VR10
+    VO0 <- VR10
 	return
 .end
 	
@@ -253,7 +253,7 @@ __ss2:
 	# allocate new string
 	VI0 <- VR2
 	call __allocString
-	VR5 <- VI0
+	VR5 <- VO0
 
 	# copy substring
 	VR6 <- VR0 + 16			# from self + header + start
@@ -264,7 +264,7 @@ __ss2:
 	VI2 <- VR7
 	call __copyBytes
 
-	VI0 <- VR5
+	VO0 <- VR5
 	return
 .end
 	
@@ -277,7 +277,7 @@ IO.out_int:
 	VI0 <- VR0
 	call __outInt__
 	
-	VI0 <- VR1
+	VO0 <- VR1
 	return
 .end
 
@@ -293,7 +293,7 @@ IO.out_string:
 	VI1 <- VR12
 	call __outString__
 
-	VI0 <- VR1
+	VO0 <- VR1
 	return
 .end
 
@@ -301,15 +301,15 @@ IO.out_string:
 .function "IO.in_int", 0, 1
 IO.in_int:
 	call __inInt__			# Read a value
-	VR0 <- VI0
+	VR0 <- VO0
 	
 	VR2 <- Int_protObj      # Box it
 	VI0 <- VR2
 	call Object.copy
-	VR2 <- VI0
+	VR2 <- VO0
 	store VR0 [VR2,12]
 
-	VI0 <- VR2				# Return the boxed object
+	VO0 <- VR2				# Return the boxed object
 	return
 .end
 
@@ -317,12 +317,12 @@ IO.in_int:
 .function "IO.in_string", 0, 1
 IO.in_string:
 	call __inString__		# Read the plain data from standard input
-	VR0 <- VI0
-	VR1 <- VI1
+	VR0 <- VO0
+	VR1 <- VO1
 	
 	VI0 <- VR1				# allocate a new string to hold that data
 	call __allocString
-	VR2 <- VI0
+	VR2 <- VO0
 	
 	# copy the data into the object
 	VR3 <- VR2 + 16
@@ -331,7 +331,7 @@ IO.in_string:
 	VI2 <- VR3
 	call __copyBytes	
 	
-	VI0 <- VR2
+	VO0 <- VR2
 	return
 .end
 	
@@ -388,11 +388,11 @@ __et4:
 	jump __et4
 	
 __et1:
-	VI0 <- VR0			# compare ok
+	VO0 <- VR0			# compare ok
 	return
 
 __et0:
-	VI0 <- VR1			# compare failed
+	VO0 <- VR1			# compare failed
 	return
 .end
 	
@@ -442,7 +442,7 @@ _case_abort:
 	load VR1 [VR1,8]
 	VI0 <- VR0
 	call VR1
-	VR1 <- VI0
+	VR1 <- VO0
 	
 	VI0 <- VR2					# Print the resulting name
 	VI1 <- VR1

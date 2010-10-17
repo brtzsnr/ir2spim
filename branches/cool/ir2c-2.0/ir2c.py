@@ -19,6 +19,7 @@ def gen_prologue(out, globals):
 #include <string.h>
 
 static int32_t iregs[""" + str(globals.iregs) + """];
+static int32_t oregs[""" + str(globals.oregs) + """];
 static void (*function_labels[])();
 static int8_t *data_raw;
 static void G__u_start();
@@ -64,13 +65,15 @@ static int8_t *get_real_ptr(int32_t addr)
 
 #define VI0     (iregs[0])
 #define VI1     (iregs[1])
+#define VO0     (oregs[0])
+#define VO1     (oregs[1])
 
 static void G__u__u_alloc_u__u_()
 {
     int32_t pos = heap_used;
     expand_heap(VI0);
     heap_used += VI0;
-    VI0 = heap_ptr(pos);
+    VO0 = heap_ptr(pos);
 }
 
 static void G__u__u_abort_u__u_()
@@ -93,16 +96,16 @@ static void G__u__u_outString_u__u_()
 
 static void G__u__u_inInt_u__u_()
 {
-    scanf("%d", &VI0);
+    scanf("%d", &VO0);
 }
 
 static void G__u__u_inString_u__u_()
 {
     int8_t *ptr = get_real_ptr(sbuf);
     fgets(ptr, STR_BUF_LEN, stdin);
-    VI0 = sbuf;
-    VI1 = strlen(ptr) - 1;
-    ptr[VI1] = 0;
+    VO0 = sbuf;
+    VO1 = strlen(ptr) - 1;
+    ptr[strlen(ptr) - 1] = 0;
 }
 
 static int32_t load_word_from_label(int32_t addr, int32_t offset)
@@ -159,7 +162,7 @@ int main()
 {
     VI0 = STR_BUF_LEN;
     G__u__u_alloc_u__u_();
-    sbuf = VI0;
+    sbuf = VO0;
 
     G__u_start();
     return 0;
@@ -181,6 +184,7 @@ def add_os_functions(functions):
     for os_fn_name in OS_FUNCTIONS:
         os_fn = util.Function()
         os_fn.iregs = 2
+        os_fn.oregs = 2
         os_fn.noreturn = False
         os_fn.first_label = os_fn_name
         functions[os_fn_name] = os_fn
@@ -201,6 +205,7 @@ def prepare_files(tree_dict):
         # End of loop
 
     globals.iregs = max(fn.iregs for fn in globals.functions.itervalues())
+    globals.oregs = max(fn.oregs for fn in globals.functions.itervalues())
     return globals
 
 def compute_code_labels(globals):

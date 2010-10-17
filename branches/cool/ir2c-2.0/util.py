@@ -7,6 +7,7 @@ class Function(object):
     def __init__(self):
         self.first_label = None
         self.iregs = 0
+        self.oregs = 0
         self.noreturn = True
         self.vr_map = {}
 
