@@ -23,7 +23,7 @@ static void (*function_labels[])();
 static int8_t *data_raw;
 static void G__u_start();
 
-#define STR_BUF_LEN 64
+#define STR_BUF_LEN 1024
 static int32_t sbuf;
 
 #define HEAP_DATA_MASK      0x40000000
@@ -99,9 +99,10 @@ static void G__u__u_inInt_u__u_()
 static void G__u__u_inString_u__u_()
 {
     int8_t *ptr = get_real_ptr(sbuf);
-    scanf("%63s", ptr);
+    fgets(ptr, STR_BUF_LEN, stdin);
     VI0 = sbuf;
-    VI1 = strlen(ptr); 
+    VI1 = strlen(ptr) - 1;
+    ptr[VI1] = 0;
 }
 
 static int32_t load_word_from_label(int32_t addr, int32_t offset)
