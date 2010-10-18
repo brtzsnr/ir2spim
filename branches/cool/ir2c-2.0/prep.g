@@ -55,8 +55,8 @@ param
     ;
 
 call
-    : ^(CALL vr)
-    | ^(CALL LABEL)
+    : ^(CALL vr integer)
+    | ^(CALL LABEL integer)
     ;
 
 jump

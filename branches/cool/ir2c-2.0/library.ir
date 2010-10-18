@@ -11,24 +11,24 @@
 _start:
 	VR0 <- Main_protObj
 	param VR0
-	call Object.copy
+	call Object.copy 1
 	VR0 <- VO0
 	
 	param VR0
-	call Main_init
+	call Main_init 1
 
 	param VR0
-	call Main.main
+	call Main.main 1
 	VR2 <- VO0
 	
 	VR0 <- __str_term_msg
 	VR1 <- 35
 	param VR0
 	param VR1
-	call __outString__
+	call __outString__ 2
 	
 	param VR2
-	call __abort__
+	call __abort__ 1
 .end
 
 #########################
@@ -39,7 +39,7 @@ Object.copy:
 	VR5 <- VR1 * 4    # VR1 = size in words; VR5 = size in bytes
 
 	param VR5       # Allocate memory
-	call __alloc__
+	call __alloc__ 1
 	VR2 <- VO0       # VR2 = target
 	
 	VR3 <- VR2       # Copy data from VR0 to VR2, VR3 = ptr
@@ -65,7 +65,7 @@ Object.abort:
 	VR1 <- 24
 	param VR0
 	param VR1
-	call __outString__
+	call __outString__ 2
 	
 	load VR0 [VR5, 0]
 	VR0 <- VR0 * 4
@@ -75,17 +75,17 @@ Object.abort:
 	VR2 <- 0
 	param VR2
 	param VR1
-	call IO.out_string
+	call IO.out_string 2
 
 	VR0 <- __str_nl_msg
 	VR1 <- 1
 	param VR0
 	param VR1
-	call __outString__
+	call __outString__ 2
 
 	VR0 <- 0
 	param VR0
-	call __abort__
+	call __abort__ 1
 .end
 
 ######################
@@ -120,7 +120,7 @@ __allocString:
 	VR10 <- VR10 + 4    	# Add header
 	VR11 <- VR10 * 4    	# Size in bytes
 	param VR11	      		# Alloc the object
-	call __alloc__
+	call __alloc__ 1
 	VR1 <- VO0            
 	
 	VR2 <- 3              	# Type id
@@ -131,7 +131,7 @@ __allocString:
 	
 	VR2 <- Int_protObj      # Actual size in bytes - box an integer
 	param VR2
-	call Object.copy
+	call Object.copy 1
 	VR2 <- VO0
 	store VR0 [VR2,12]
 	store VR2 [VR1,12]
@@ -189,7 +189,7 @@ String.concat:
 	
 	# allocate new string
 	param VR5
-	call __allocString
+	call __allocString 1
 	VR10 <- VO0
 	
 	# copy 1st string
@@ -198,7 +198,7 @@ String.concat:
 	param VR3
 	param VR6
 	param VR7
-	call __copyBytes
+	call __copyBytes 0
 
 	# copy 2nd string
 	VR6 <- VR1 + 16
@@ -206,7 +206,7 @@ String.concat:
 	param VR4
 	param VR6
 	param VR7
-	call __copyBytes
+	call __copyBytes 0
 	
 	return VR10
 .end
@@ -247,7 +247,7 @@ __ss2:
 
 	# allocate new string
 	param VR2
-	call __allocString
+	call __allocString 1
 	VR5 <- VO0
 
 	# copy substring
@@ -257,7 +257,7 @@ __ss2:
 	param VR2
 	param VR6
 	param VR7
-	call __copyBytes
+	call __copyBytes 0
 
 	return VR5
 .end
@@ -269,7 +269,7 @@ IO.out_int:
     VR0 <- VI1
 	load VR0 [VR0,12]
 	param VR0
-	call __outInt__
+	call __outInt__ 1
 	
 	return VR1
 .end
@@ -284,7 +284,7 @@ IO.out_string:
 	VR10 <- VR10 + 16
 	param VR10
 	param VR12
-	call __outString__
+	call __outString__ 2
 
 	return VR1
 .end
@@ -292,12 +292,12 @@ IO.out_string:
 ######################
 .function "IO.in_int", 0, 1
 IO.in_int:
-	call __inInt__			# Read a value
+	call __inInt__ 0			# Read a value
 	VR0 <- VO0
 	
 	VR2 <- Int_protObj      # Box it
 	param VR2
-	call Object.copy
+	call Object.copy 1
 	VR2 <- VO0
 	store VR0 [VR2,12]
 
@@ -307,12 +307,12 @@ IO.in_int:
 ######################
 .function "IO.in_string", 0, 1
 IO.in_string:
-	call __inString__		# Read the plain data from standard input
+	call __inString__ 0		# Read the plain data from standard input
 	VR0 <- VO0
 	VR1 <- VO1
 	
 	param VR1				# allocate a new string to hold that data
-	call __allocString
+	call __allocString 1
 	VR2 <- VO0
 	
 	# copy the data into the object
@@ -320,7 +320,7 @@ IO.in_string:
 	param VR1
 	param VR0
 	param VR3
-	call __copyBytes	
+	call __copyBytes 0
 	
 	return VR2
 .end
@@ -393,25 +393,25 @@ _dispatch_abort:
 	
 	param VR2			# Print file name
 	param VR0
-	call IO.out_string
+	call IO.out_string 2
 
 	VR10 <- __str_colon_msg	# Print ':'
 	VR11 <- 1
 	param VR10
 	param VR11
-	call __outString__
+	call __outString__ 2
 	
 	param VR2			# Print line number
 	param VR1
-	call IO.out_int
+	call IO.out_int 1
 
 	VR10 <- __str_dispatch_msg	# Print error message
 	VR11 <- 20
 	param VR10
 	param VR11
-	call __outString__
+	call __outString__ 2
 	
-    call __abort__
+    call __abort__ 1
 .end
 		
 ######################
@@ -424,25 +424,25 @@ _case_abort:
 	VR11 <- 37
 	param VR10
 	param VR11
-	call __outString__
+	call __outString__ 2
 
 	load VR1 [VR0,8]			# Call self.type_name()
 	load VR1 [VR1,8]
 	param VR0
-	call VR1
+	call VR1 1
 	VR1 <- VO0
 	
 	param VR2					# Print the resulting name
 	param VR1
-	call IO.out_string
+	call IO.out_string 2
 
 	VR10 <- __str_nl_msg	# Print EOL
 	VR11 <- 1
 	param VR10
 	param VR11
-	call __outString__
+	call __outString__ 2
 	
-    call __abort__
+    call __abort__ 1
 .end
 
 ######################
@@ -454,24 +454,24 @@ _case_abort2:
 	
 	param VR2			# Print file name
 	param VR0
-	call IO.out_string
+	call IO.out_string 2
 
 	VR10 <- __str_colon_msg	# Print ':'
 	VR11 <- 1
 	param VR10
 	param VR11
-	call __outString__
+	call __outString__ 2
 	
 	param VR2			# Print line number
 	param VR1
-	call IO.out_int
+	call IO.out_int 1
 
 	VR10 <- __str_cabort_msg2	# Print error message
 	VR11 <- 33
 	param VR10
 	param VR11
-	call __outString__
-    call __abort__
+	call __outString__ 2
+    call __abort__ 1
 .end
 
 ######################
