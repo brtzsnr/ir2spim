@@ -96,7 +96,9 @@ static void G__u__u_outString_u__u_()
 
 static void G__u__u_inInt_u__u_()
 {
-    scanf("%d", &VO0);
+    static char buff[16];
+    fgets(buff, sizeof(buff), stdin);
+    sscanf(buff, "%d", &VO0);
 }
 
 static void G__u__u_inString_u__u_()
