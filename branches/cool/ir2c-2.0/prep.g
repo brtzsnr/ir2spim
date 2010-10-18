@@ -34,6 +34,7 @@ function
 code_statement
     : assignment 
     | jump
+    | param
     | call
     | label 
     | submit
@@ -45,9 +46,12 @@ assignment
     | ^(ASSIGN vr LABEL)
     | ^(ASSIGN vr vi)
     | ^(ASSIGN vr vo)
-    | ^(ASSIGN vi vr)
     | ^(ASSIGN vr ^(binary_op operand operand))
     | ^(ASSIGN vr ^(unary_op operand))
+    ;
+
+param
+    : ^(PARAM vr)
     ;
 
 call

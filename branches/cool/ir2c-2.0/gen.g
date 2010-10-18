@@ -52,6 +52,8 @@ import util
     def __gen_mem_store(self, val, addr, offset, size):
         self.__gen("store_\%s_at_label(\%s, \%s, \%s);" \% (
                     size, addr, offset, val))
+
+    param_idx = 0
 }
 
 program[gen_out, globals] returns [data_list] : { 
@@ -61,6 +63,7 @@ program[gen_out, globals] returns [data_list] : {
 code : ^(CODE function*);
 
 function
+@init { self.param_idx = 0 }
     : ^(FUNCTION name=STRING in_cnt=INTEGER out_cnt=INTEGER {
         self.__next_temp = 0 
         self.__fn = self.__globals.functions[$name.text]
@@ -80,8 +83,9 @@ code_statement
         self.__gen("// EOI: " + $code_statement.text)
         pass
     }       
-    : assignment 
-    | jump 
+    : assignment
+    | jump
+    | param
     | call
     | label { print_eoi = False }
     | submit
@@ -111,18 +115,26 @@ assignment
                     | ^(NOT op1=operand)
                         { rval = "~(\%s)" \% $op1.val }
                     )) { self.__gen("\%s = \%s;" \% ($vr.text, rval)) }
-    | ^(ASSIGN vi vr) { self.__gen("iregs[\%s] = \%s;" \% ($vi.text[2:], $vr.text)) }
+    ;
+
+param
+    : ^(PARAM vr) {
+        self.__gen("iregs[\%d] = \%s;" \% (self.param_idx, $vr.text))
+        self.param_idx += 1
+    }
     ;
 
 call
+@init { self.param_idx = 0 }
     : ^(CALL vr) { self.__gen("call_function_at_label(\%s);" \% $vr.text) }
     | ^(CALL LABEL) { self.__gen("\%s();" \% (util.FUNCTION_PREFIX + $LABEL.text)) }
     ;
 
 jump
+@init { self.param_idx = 0 }
     : ^(JUMP LABEL) { 
         self.__gen("goto \%s;" \% (util.LABEL_PREFIX + $LABEL.text)) 
-    } 
+    }
     | ^(JUMPT vr LABEL) { self.__gen_jmp_cond($vr.text, $LABEL.text, True) }
     | ^(JUMPF vr LABEL) { self.__gen_jmp_cond($vr.text, $LABEL.text, False) }
     ;
@@ -134,6 +146,7 @@ label
 submit
 @init {
   oreg_idx = 0
+  self.param_idx = 0
 }
     : RETURN
       { oreg_idx = 0 }
