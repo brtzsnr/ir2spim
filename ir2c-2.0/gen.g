@@ -112,7 +112,6 @@ assignment
                         { rval = "~(\%s)" \% $op1.val }
                     )) { self.__gen("\%s = \%s;" \% ($vr.text, rval)) }
     | ^(ASSIGN vi vr) { self.__gen("iregs[\%s] = \%s;" \% ($vi.text[2:], $vr.text)) }
-    | ^(ASSIGN vo vr) { self.__gen("oregs[\%s] = \%s;" \% ($vo.text[2:], $vr.text)) }
     ;
 
 call
@@ -133,7 +132,18 @@ label
     ;
 
 submit
-    : RETURN { self.__gen("return;") }
+@init {
+  oreg_idx = 0
+}
+    : RETURN
+      { oreg_idx = 0 }
+      (vr
+        {
+          self.__gen("VO\%d = \%s;" \% (oreg_idx, $vr.text))
+          oreg_idx += 1
+        }
+      )*
+      { self.__gen("return;") }
     ;
 
 io

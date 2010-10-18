@@ -71,7 +71,6 @@ assignment
     | vr ASSIGN^ vi
     | vr ASSIGN^ vo
     | vi ASSIGN^ vr
-    | vo ASSIGN^ vr
     | vr ASSIGN first=operand op=binary_op second=operand
         -> ^(ASSIGN vr ^($op $first $second))
     | vr ASSIGN op=unary_op operand -> ^(ASSIGN vr ^($op operand))
@@ -93,7 +92,7 @@ label
     ;
 
 submit
-    : RETURN 
+    : RETURN vr*
     ;
 
 io

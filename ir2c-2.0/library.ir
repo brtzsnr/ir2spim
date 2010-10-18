@@ -98,8 +98,7 @@ Object.type_name:
 	VR1 <- class_nameTab
 	VR1 <- VR0 + VR1
 	load VR1 [VR1, 0]
-	VO0 <- VR1
-    return
+	return VR1
 .end
 	
 ######################
@@ -107,8 +106,7 @@ Object.type_name:
 String.length:
 	VR0 <- VI0
 	load VR0 [VR0, 12]
-	VO0 <- VR0
-	return
+	return VR0
 .end
 
 ######################
@@ -149,8 +147,7 @@ __la1:
 	VR3 <- VR20 = VR21
 	jumpf VR3 __la1
 		
-	VO0 <- VR1
-	return
+	return VR1
 .end
 
 # Helper: copy memory bytes, non-overlapping
@@ -212,8 +209,7 @@ String.concat:
 	VI2 <- VR7
 	call __copyBytes
 	
-    VO0 <- VR10
-	return
+	return VR10
 .end
 	
 ######################
@@ -264,8 +260,7 @@ __ss2:
 	VI2 <- VR7
 	call __copyBytes
 
-	VO0 <- VR5
-	return
+	return VR5
 .end
 	
 ######################
@@ -277,8 +272,7 @@ IO.out_int:
 	VI0 <- VR0
 	call __outInt__
 	
-	VO0 <- VR1
-	return
+	return VR1
 .end
 
 ######################	
@@ -293,8 +287,7 @@ IO.out_string:
 	VI1 <- VR12
 	call __outString__
 
-	VO0 <- VR1
-	return
+	return VR1
 .end
 
 ######################
@@ -309,8 +302,7 @@ IO.in_int:
 	VR2 <- VO0
 	store VR0 [VR2,12]
 
-	VO0 <- VR2				# Return the boxed object
-	return
+	return VR2				# Return the boxed object
 .end
 
 ######################
@@ -331,8 +323,7 @@ IO.in_string:
 	VI2 <- VR3
 	call __copyBytes	
 	
-	VO0 <- VR2
-	return
+	return VR2
 .end
 	
 ######################
@@ -388,12 +379,10 @@ __et4:
 	jump __et4
 	
 __et1:
-	VO0 <- VR0			# compare ok
-	return
+	return VR0			# compare ok
 
 __et0:
-	VO0 <- VR1			# compare failed
-	return
+	return VR1			# compare failed
 .end
 	
 ######################
