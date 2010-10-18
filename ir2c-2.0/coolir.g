@@ -17,6 +17,7 @@ tokens {
     FUNCTION = '.function';
     END = '.end';
     ASSIGN = '<-';
+    PARAM = 'param';
     CALL = 'call';
     JUMP = 'jump';
     JUMPT = 'jumpt';
@@ -59,6 +60,7 @@ function
 code_statement
     : assignment 
     | jump
+    | param
     | call
     | label
     | submit
@@ -70,10 +72,13 @@ assignment
     | vr ASSIGN l=LABEL -> ^(ASSIGN vr LABEL[util.recode_label($l.text)])
     | vr ASSIGN^ vi
     | vr ASSIGN^ vo
-    | vi ASSIGN^ vr
     | vr ASSIGN first=operand op=binary_op second=operand
         -> ^(ASSIGN vr ^($op $first $second))
     | vr ASSIGN op=unary_op operand -> ^(ASSIGN vr ^($op operand))
+    ;
+
+param
+    : PARAM^ vr
     ;
 
 call
