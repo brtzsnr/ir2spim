@@ -82,8 +82,8 @@ param
     ;
 
 call
-    : CALL^ vr
-    | CALL l=LABEL -> ^(CALL LABEL[util.recode_label($l.text)])
+    : CALL^ vr integer
+    | CALL l=LABEL integer -> ^(CALL LABEL[util.recode_label($l.text)] integer)
     ;
 
 jump

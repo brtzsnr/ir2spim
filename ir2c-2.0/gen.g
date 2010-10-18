@@ -126,12 +126,11 @@ param
 
 call
 @init { self.param_idx = 0 }
-    : ^(CALL vr) { self.__gen("call_function_at_label(\%s);" \% $vr.text) }
-    | ^(CALL LABEL) { self.__gen("\%s();" \% (util.FUNCTION_PREFIX + $LABEL.text)) }
+    : ^(CALL vr integer) { self.__gen("call_function_at_label(\%s);" \% $vr.text) }
+    | ^(CALL LABEL integer) { self.__gen("\%s();" \% (util.FUNCTION_PREFIX + $LABEL.text)) }
     ;
 
 jump
-@init { self.param_idx = 0 }
     : ^(JUMP LABEL) { 
         self.__gen("goto \%s;" \% (util.LABEL_PREFIX + $LABEL.text)) 
     }
@@ -146,7 +145,6 @@ label
 submit
 @init {
   oreg_idx = 0
-  self.param_idx = 0
 }
     : RETURN
       { oreg_idx = 0 }
