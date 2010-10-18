@@ -46,7 +46,6 @@ assignment
     | ^(ASSIGN vr vi)
     | ^(ASSIGN vr vo)
     | ^(ASSIGN vi vr)
-    | ^(ASSIGN vo vr)
     | ^(ASSIGN vr ^(binary_op operand operand))
     | ^(ASSIGN vr ^(unary_op operand))
     ;
@@ -70,7 +69,7 @@ label
     ;
 
 submit
-    : RETURN { self.__fn.noreturn = False } 
+    : RETURN vr* { self.__fn.noreturn = False } 
     ;
 
 io
