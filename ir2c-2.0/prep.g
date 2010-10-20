@@ -34,7 +34,6 @@ function
 code_statement
     : assignment 
     | jump
-    | param
     | call
     | label 
     | submit
@@ -45,18 +44,17 @@ assignment
     : ^(ASSIGN vr operand)
     | ^(ASSIGN vr LABEL)
     | ^(ASSIGN vr vi)
-    | ^(ASSIGN vr vo)
     | ^(ASSIGN vr ^(binary_op operand operand))
     | ^(ASSIGN vr ^(unary_op operand))
     ;
 
-param
-    : ^(PARAM vr)
+call
+    : ^(CALL vr ^(ParameterRegs vr_list?) ^(ReturnedRegs vr_list?))
+    | ^(CALL LABEL ^(ParameterRegs vr_list?) ^(ReturnedRegs vr_list?))
     ;
 
-call
-    : ^(CALL vr integer)
-    | ^(CALL LABEL integer)
+vr_list
+    : vr+
     ;
 
 jump
@@ -90,7 +88,6 @@ vr  : VR {
     }
     ;
 vi : VI;
-vo : VO;
 integer : INTEGER;
 
 data: { self.__file_data.data_len = 0 } ^(DATA data_statement*);
