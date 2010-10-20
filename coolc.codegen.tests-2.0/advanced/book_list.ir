@@ -1,0 +1,1195 @@
+#### code section
+	.code
+
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	store	VR3 [VR2, 12]
+	# end boxing
+	call _dispatch_abort ( VR1 VR2 )
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	store	VR3 [VR2, 12]
+	# end boxing
+	call _case_abort2 ( VR1 VR2 )
+	return
+.end
+
+.function "Object init code", 1, 0
+Object_init:
+	return
+.end
+
+.function "Int init code", 1, 0
+Int_init:
+	return
+.end
+
+.function "Bool init code", 1, 0
+Bool_init:
+	return
+.end
+
+.function "String init code", 1, 0
+String_init:
+	return
+.end
+
+.function "IO init code", 1, 0
+IO_init:
+	return
+.end
+
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Object_init ( VR0 )
+	return	
+.end
+
+.function "Book init code", 1, 0
+Book_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call IO_init ( VR0 )
+	return	
+.end
+
+.function "BookList init code", 1, 0
+BookList_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call IO_init ( VR0 )
+	return	
+.end
+
+.function "Cons init code", 1, 0
+Cons_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call BookList_init ( VR0 )
+	return	
+.end
+
+.function "Nil init code", 1, 0
+Nil_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call BookList_init ( VR0 )
+	return	
+.end
+
+.function "Article init code", 1, 0
+Article_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Book_init ( VR0 )
+	return	
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin let - line 115
+	## begin dispatch - line 116
+	## begin new - line 116
+	VR1	<-	Book_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Book_init ( VR1 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
+	VR2	<-	str_const0
+	VR3	<-	116
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid0:
+	## actual parameter 1
+	VR2	<-	str_const7
+	## actual parameter 2
+	VR3	<-	str_const8
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR4 [VR1, 8]
+	load	VR4 [VR4, 28]
+	( VR1 )	<-	call VR4 ( VR1 VR2 VR3 )
+	## let var a_book in VR1
+	## begin let - line 119
+	## begin dispatch - line 120
+	## begin new - line 120
+	VR2	<-	Article_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	call Article_init ( VR2 )
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid1
+	jumpt	VR2 dispatch_notvoid1
+	VR3	<-	str_const0
+	VR4	<-	120
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid1:
+	## actual parameter 1
+	VR3	<-	str_const9
+	## actual parameter 2
+	VR4	<-	str_const10
+	## actual parameter 3
+	VR5	<-	str_const11
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR6 [VR2, 8]
+	load	VR6 [VR6, 36]
+	( VR2 )	<-	call VR6 ( VR2 VR3 VR4 VR5 )
+	## let var an_article in VR2
+	## begin assign - line 125
+	## begin dispatch - line 125
+	## begin dispatch - line 125
+	## begin new - line 125
+	VR3	<-	Nil_protObj
+	( VR3 )	<-	call Object.copy ( VR3 )
+	call Nil_init ( VR3 )
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid2
+	jumpt	VR3 dispatch_notvoid2
+	VR4	<-	str_const0
+	VR5	<-	125
+	call void_disp_handler ( VR4 VR5 )
+dispatch_notvoid2:
+	## actual parameter 1
+	VR4	<-	VR1
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR5 [VR3, 8]
+	load	VR5 [VR5, 32]
+	( VR3 )	<-	call VR5 ( VR3 VR4 )
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR3 dispatch_notvoid3
+	VR4	<-	str_const0
+	VR5	<-	125
+	call void_disp_handler ( VR4 VR5 )
+dispatch_notvoid3:
+	## actual parameter 1
+	VR4	<-	VR2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR5 [VR3, 8]
+	load	VR5 [VR5, 32]
+	( VR3 )	<-	call VR5 ( VR3 VR4 )
+	## store rhs in VR3 to attribute books
+	store	VR3 [VR0, 12]
+	## begin dispatch - line 126
+	load	VR3 [VR0, 12]
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid4
+	jumpt	VR3 dispatch_notvoid4
+	VR4	<-	str_const0
+	VR5	<-	126
+	call void_disp_handler ( VR4 VR5 )
+dispatch_notvoid4:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR4 [VR3, 8]
+	load	VR4 [VR4, 44]
+	( VR3 )	<-	call VR4 ( VR3 )
+	## store let result over let var an_article
+	VR2	<-	VR3
+	## store let result over let var a_book
+	VR1	<-	VR2
+	return	VR1
+.end
+
+.function "Book.initBook", 3, 1
+Book.initBook:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin assign - line 8
+	VR3	<-	VR1
+	## store rhs in VR3 to attribute title
+	store	VR3 [VR0, 12]
+	## begin assign - line 9
+	VR3	<-	VR2
+	## store rhs in VR3 to attribute author
+	store	VR3 [VR0, 16]
+	VR3	<-	VR0
+	return	VR3
+.end
+
+.function "Book.print", 1, 1
+Book.print:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 16
+	## begin dispatch - line 16
+	## begin dispatch - line 16
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid5
+	jumpt	VR1 dispatch_notvoid5
+	VR2	<-	str_const0
+	VR3	<-	16
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid5:
+	## actual parameter 1
+	VR2	<-	str_const1
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid6
+	jumpt	VR1 dispatch_notvoid6
+	VR2	<-	str_const0
+	VR3	<-	16
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid6:
+	## actual parameter 1
+	load	VR2 [VR0, 12]
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid7
+	jumpt	VR1 dispatch_notvoid7
+	VR2	<-	str_const0
+	VR3	<-	16
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid7:
+	## actual parameter 1
+	VR2	<-	str_const2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## begin dispatch - line 17
+	## begin dispatch - line 17
+	## begin dispatch - line 17
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid8
+	jumpt	VR1 dispatch_notvoid8
+	VR2	<-	str_const0
+	VR3	<-	17
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid8:
+	## actual parameter 1
+	VR2	<-	str_const3
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid9
+	jumpt	VR1 dispatch_notvoid9
+	VR2	<-	str_const0
+	VR3	<-	17
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid9:
+	## actual parameter 1
+	load	VR2 [VR0, 16]
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid10
+	jumpt	VR1 dispatch_notvoid10
+	VR2	<-	str_const0
+	VR3	<-	17
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid10:
+	## actual parameter 1
+	VR2	<-	str_const2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	VR1	<-	VR0
+	return	VR1
+.end
+
+.function "BookList.isNil", 1, 1
+BookList.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 49
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid11
+	jumpt	VR1 dispatch_notvoid11
+	VR2	<-	str_const0
+	VR3	<-	49
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid11:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	( VR1 )	<-	call VR2 ( VR1 )
+	VR1	<-	1
+	return	VR1
+.end
+
+.function "BookList.cons", 2, 1
+BookList.cons:
+	## store self and arguments into the reserved VR0..VR1
+	VR0	<-	VI0
+	VR1	<-	VI1
+	## begin let - line 52
+	## begin new - line 52
+	VR2	<-	Cons_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	call Cons_init ( VR2 )
+	## let var new_cell in VR2
+	## begin dispatch - line 53
+	VR3	<-	VR2
+	## caller in VR3
+	## dispatch to void handling, ends at dispatch_notvoid12
+	jumpt	VR3 dispatch_notvoid12
+	VR4	<-	str_const0
+	VR5	<-	53
+	call void_disp_handler ( VR4 VR5 )
+dispatch_notvoid12:
+	## actual parameter 1
+	VR4	<-	VR1
+	## actual parameter 2
+	VR5	<-	VR0
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR6 [VR3, 8]
+	load	VR6 [VR6, 48]
+	( VR3 )	<-	call VR6 ( VR3 VR4 VR5 )
+	## store let result over let var new_cell
+	VR2	<-	VR3
+	return	VR2
+.end
+
+.function "BookList.car", 1, 1
+BookList.car:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 61
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid13
+	jumpt	VR1 dispatch_notvoid13
+	VR2	<-	str_const0
+	VR3	<-	61
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid13:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	( VR1 )	<-	call VR2 ( VR1 )
+	## begin new - line 61
+	VR1	<-	Book_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Book_init ( VR1 )
+	return	VR1
+.end
+
+.function "BookList.cdr", 1, 1
+BookList.cdr:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 67
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid14
+	jumpt	VR1 dispatch_notvoid14
+	VR2	<-	str_const0
+	VR3	<-	67
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid14:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	( VR1 )	<-	call VR2 ( VR1 )
+	## begin new - line 67
+	VR1	<-	BookList_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call BookList_init ( VR1 )
+	return	VR1
+.end
+
+.function "BookList.print_list", 1, 1
+BookList.print_list:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 69
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid15
+	jumpt	VR1 dispatch_notvoid15
+	VR2	<-	str_const0
+	VR3	<-	69
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid15:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 0]
+	( VR1 )	<-	call VR2 ( VR1 )
+	return	VR1
+.end
+
+.function "Cons.isNil", 1, 1
+Cons.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	0
+	return	VR1
+.end
+
+.function "Cons.car", 1, 1
+Cons.car:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 12]
+	return	VR1
+.end
+
+.function "Cons.cdr", 1, 1
+Cons.cdr:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	load	VR1 [VR0, 16]
+	return	VR1
+.end
+
+.function "Cons.print_list", 1, 1
+Cons.print_list:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin typed case - line 94
+	## begin dispatch - line 94
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid16
+	jumpt	VR1 dispatch_notvoid16
+	VR2	<-	str_const0
+	VR3	<-	94
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid16:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 32]
+	( VR1 )	<-	call VR2 ( VR1 )
+	## case on void handling, ends at case0_notvoid
+	jumpt	VR1 case0_notvoid
+	VR2	<-	str_const0
+	VR3	<-	94
+	call void_case_handler ( VR2 VR3 )
+case0_notvoid:
+	load	VR2 [VR1, 0]
+case0_tag10:
+	VR3	<-	VR2 = 10
+	jumpf	VR3 case0_tag6
+	## begin dispatch - line 96
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid17
+	jumpt	VR2 dispatch_notvoid17
+	VR3	<-	str_const0
+	VR4	<-	96
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid17:
+	## actual parameter 1
+	VR3	<-	str_const6
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR4 [VR2, 8]
+	load	VR4 [VR4, 12]
+	( VR2 )	<-	call VR4 ( VR2 VR3 )
+	jump	case0_end
+case0_tag6:
+	VR3	<-	VR2 < 6
+	jumpt	VR3 case0_error
+	VR3	<-	10 < VR2
+	jumpt	VR3 case0_error
+	## begin dispatch - line 95
+	VR2	<-	VR0
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid18
+	jumpt	VR2 dispatch_notvoid18
+	VR3	<-	str_const0
+	VR4	<-	95
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid18:
+	## actual parameter 1
+	VR3	<-	str_const5
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR4 [VR2, 8]
+	load	VR4 [VR4, 12]
+	( VR2 )	<-	call VR4 ( VR2 VR3 )
+	jump	case0_end
+case0_error:
+	call _case_abort ( VR1 )
+case0_end:
+	VR1	<-	VR2
+	## begin dispatch - line 98
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid19
+	jumpt	VR1 dispatch_notvoid19
+	VR2	<-	str_const0
+	VR3	<-	98
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid19:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 44]
+	( VR1 )	<-	call VR2 ( VR1 )
+	return	VR1
+.end
+
+.function "Cons.init", 3, 1
+Cons.init:
+	## store self and arguments into the reserved VR0..VR2
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	## begin assign - line 82
+	VR3	<-	VR1
+	## store rhs in VR3 to attribute xcar
+	store	VR3 [VR0, 12]
+	## begin assign - line 83
+	VR3	<-	VR2
+	## store rhs in VR3 to attribute xcdr
+	store	VR3 [VR0, 16]
+	VR3	<-	VR0
+	return	VR3
+.end
+
+.function "Nil.isNil", 1, 1
+Nil.isNil:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	1
+	return	VR1
+.end
+
+.function "Nil.print_list", 1, 1
+Nil.print_list:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	1
+	return	VR1
+.end
+
+.function "Article.print", 1, 1
+Article.print:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 37
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid20
+	jumpt	VR1 dispatch_notvoid20
+	VR2	<-	str_const0
+	VR3	<-	37
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid20:
+	## prepare self and actual parameters
+	## compute the target address
+	VR2	<-	Book_dispatch
+	load	VR2 [VR2, 32]
+	( VR1 )	<-	call VR2 ( VR1 )
+	## begin dispatch - line 38
+	## begin dispatch - line 38
+	## begin dispatch - line 38
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid21
+	jumpt	VR1 dispatch_notvoid21
+	VR2	<-	str_const0
+	VR3	<-	38
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid21:
+	## actual parameter 1
+	VR2	<-	str_const4
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid22
+	jumpt	VR1 dispatch_notvoid22
+	VR2	<-	str_const0
+	VR3	<-	38
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid22:
+	## actual parameter 1
+	load	VR2 [VR0, 20]
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid23
+	jumpt	VR1 dispatch_notvoid23
+	VR2	<-	str_const0
+	VR3	<-	38
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid23:
+	## actual parameter 1
+	VR2	<-	str_const2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	VR1	<-	VR0
+	return	VR1
+.end
+
+.function "Article.initArticle", 4, 1
+Article.initArticle:
+	## store self and arguments into the reserved VR0..VR3
+	VR0	<-	VI0
+	VR1	<-	VI1
+	VR2	<-	VI2
+	VR3	<-	VI3
+	## begin dispatch - line 29
+	VR4	<-	VR0
+	## caller in VR4
+	## dispatch to void handling, ends at dispatch_notvoid24
+	jumpt	VR4 dispatch_notvoid24
+	VR5	<-	str_const0
+	VR6	<-	29
+	call void_disp_handler ( VR5 VR6 )
+dispatch_notvoid24:
+	## actual parameter 1
+	VR5	<-	VR1
+	## actual parameter 2
+	VR6	<-	VR2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR7 [VR4, 8]
+	load	VR7 [VR7, 28]
+	( VR4 )	<-	call VR7 ( VR4 VR5 VR6 )
+	## begin assign - line 30
+	VR4	<-	VR3
+	## store rhs in VR4 to attribute per_title
+	store	VR4 [VR0, 20]
+	VR4	<-	VR0
+	return	VR4
+.end
+
+#### data section
+	.data
+#### object tags
+_int_tag:
+	DW	1
+_bool_tag:
+	DW	2
+_string_tag:
+	DW	3
+#### constants
+str_const27:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DS	4
+str_const26:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Main"
+	DS	4
+str_const25:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"Nil"
+	DS	1
+str_const24:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Cons"
+	DS	4
+str_const23:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const4
+	DB	"BookList"
+	DS	4
+str_const22:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const5
+	DB	"Article"
+	DS	1
+str_const21:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Book"
+	DS	4
+str_const20:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const6
+	DB	"IO"
+	DS	2
+str_const19:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const7
+	DB	"String"
+	DS	2
+str_const18:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Bool"
+	DS	4
+str_const17:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"Int"
+	DS	1
+str_const16:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const7
+	DB	"Object"
+	DS	2
+str_const15:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const8
+	DB	"_prim_slot"
+	DS	2
+str_const14:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"SELF_TYPE"
+	DS	3
+str_const13:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"_no_class"
+	DS	3
+str_const12:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const10
+	DB	"<basic class>"
+	DS	3
+str_const11:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const11
+	DB	"PC Magazine"
+	DS	1
+str_const10:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const5
+	DB	"Ulanoff"
+	DS	1
+str_const9:
+	DW	3
+	DW	9
+	DL	String_dispatch
+	DL	int_const12
+	DB	"The Top 100 CD_ROMs"
+	DS	1
+str_const8:
+	DW	3
+	DW	10
+	DL	String_dispatch
+	DL	int_const13
+	DB	"Aho, Sethi, and Ullman"
+	DS	2
+str_const7:
+	DW	3
+	DW	16
+	DL	String_dispatch
+	DL	int_const14
+	DB	"Compilers, Principles, Techniques, and Tools"
+	DS	4
+str_const6:
+	DW	3
+	DW	12
+	DL	String_dispatch
+	DL	int_const15
+	DB	"- dynamic type was Article -\n"
+	DS	3
+str_const5:
+	DW	3
+	DW	11
+	DL	String_dispatch
+	DL	int_const16
+	DB	"- dynamic type was Book -\n"
+	DS	2
+str_const4:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const10
+	DB	"periodical:  "
+	DS	3
+str_const3:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const17
+	DB	"author:     "
+	DS	4
+str_const2:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DB	"\n"
+	DS	3
+str_const1:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const17
+	DB	"title:      "
+	DS	4
+str_const0:
+	DW	3
+	DW	22
+	DL	String_dispatch
+	DL	int_const18
+	DB	"../ir2spim/branches/cool/coolc.codegen.tests-2.0/advanced/book_list.cl"
+	DS	2
+int_const18:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	70
+int_const17:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	12
+int_const16:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	26
+int_const15:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	29
+int_const14:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	44
+int_const13:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	22
+int_const12:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	19
+int_const11:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	11
+int_const10:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	13
+int_const9:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	9
+int_const8:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	10
+int_const7:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	6
+int_const6:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	2
+int_const5:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	7
+int_const4:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	8
+int_const3:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	3
+int_const2:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	4
+int_const1:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+int_const0:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const1:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const0:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+#### class names by tag
+class_nameTab:
+	DL	str_const16
+	DL	str_const17
+	DL	str_const18
+	DL	str_const19
+	DL	str_const20
+	DL	str_const26
+	DL	str_const21
+	DL	str_const23
+	DL	str_const24
+	DL	str_const25
+	DL	str_const22
+#### prototypes and init by tag
+class_objTab:
+	DL	Object_protObj
+	DL	Object_init
+	DL	Int_protObj
+	DL	Int_init
+	DL	Bool_protObj
+	DL	Bool_init
+	DL	String_protObj
+	DL	String_init
+	DL	IO_protObj
+	DL	IO_init
+	DL	Main_protObj
+	DL	Main_init
+	DL	Book_protObj
+	DL	Book_init
+	DL	BookList_protObj
+	DL	BookList_init
+	DL	Cons_protObj
+	DL	Cons_init
+	DL	Nil_protObj
+	DL	Nil_init
+	DL	Article_protObj
+	DL	Article_init
+#### dispatch tables by tag
+Object_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+String_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	String.concat
+	DL	String.length
+	DL	String.substr
+IO_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
+Book_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Book.initBook
+	DL	Book.print
+BookList_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	BookList.isNil
+	DL	BookList.cons
+	DL	BookList.car
+	DL	BookList.cdr
+	DL	BookList.print_list
+Cons_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Cons.isNil
+	DL	BookList.cons
+	DL	Cons.car
+	DL	Cons.cdr
+	DL	Cons.print_list
+	DL	Cons.init
+Nil_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Nil.isNil
+	DL	BookList.cons
+	DL	BookList.car
+	DL	BookList.cdr
+	DL	Nil.print_list
+Article_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+	DL	Book.initBook
+	DL	Article.print
+	DL	Article.initArticle
+#### prototype objects
+Object_protObj:
+	DW	0
+	DW	3
+	DL	Object_dispatch
+Int_protObj:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+Bool_protObj:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+String_protObj:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DW	0
+IO_protObj:
+	DW	4
+	DW	3
+	DL	IO_dispatch
+Main_protObj:
+	DW	5
+	DW	4
+	DL	Main_dispatch
+	DW	0
+Book_protObj:
+	DW	6
+	DW	5
+	DL	Book_dispatch
+	DL	str_const27
+	DL	str_const27
+BookList_protObj:
+	DW	7
+	DW	3
+	DL	BookList_dispatch
+Cons_protObj:
+	DW	8
+	DW	5
+	DL	Cons_dispatch
+	DW	0
+	DW	0
+Nil_protObj:
+	DW	9
+	DW	3
+	DL	Nil_dispatch
+Article_protObj:
+	DW	10
+	DW	6
+	DL	Article_dispatch
+	DL	str_const27
+	DL	str_const27
+	DL	str_const27

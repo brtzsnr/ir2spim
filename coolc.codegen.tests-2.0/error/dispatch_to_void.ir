@@ -1,0 +1,349 @@
+#### code section
+	.code
+
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	store	VR3 [VR2, 12]
+	# end boxing
+	call _dispatch_abort ( VR1 VR2 )
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	store	VR3 [VR2, 12]
+	# end boxing
+	call _case_abort2 ( VR1 VR2 )
+	return
+.end
+
+.function "Object init code", 1, 0
+Object_init:
+	return
+.end
+
+.function "Int init code", 1, 0
+Int_init:
+	return
+.end
+
+.function "Bool init code", 1, 0
+Bool_init:
+	return
+.end
+
+.function "String init code", 1, 0
+String_init:
+	return
+.end
+
+.function "IO init code", 1, 0
+IO_init:
+	return
+.end
+
+.function "A init code", 1, 0
+A_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Object_init ( VR0 )
+	return	
+.end
+
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Object_init ( VR0 )
+	return	
+.end
+
+.function "A.m", 1, 1
+A.m:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	0
+	return	VR1
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 15
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
+	VR2	<-	str_const0
+	VR3	<-	15
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid0:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	( VR1 )	<-	call VR2 ( VR1 )
+	VR1	<-	0
+	return	VR1
+.end
+
+#### data section
+	.data
+#### object tags
+_int_tag:
+	DW	1
+_bool_tag:
+	DW	2
+_string_tag:
+	DW	3
+#### constants
+str_const12:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DS	4
+str_const11:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const1
+	DB	"Main"
+	DS	4
+str_const10:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const2
+	DB	"A"
+	DS	3
+str_const9:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"IO"
+	DS	2
+str_const8:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	"String"
+	DS	2
+str_const7:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const1
+	DB	"Bool"
+	DS	4
+str_const6:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const5
+	DB	"Int"
+	DS	1
+str_const5:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const4
+	DB	"Object"
+	DS	2
+str_const4:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const6
+	DB	"_prim_slot"
+	DS	2
+str_const3:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const7
+	DB	"SELF_TYPE"
+	DS	3
+str_const2:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const7
+	DB	"_no_class"
+	DS	3
+str_const1:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const8
+	DB	"<basic class>"
+	DS	3
+str_const0:
+	DW	3
+	DW	23
+	DL	String_dispatch
+	DL	int_const9
+	DB	"../ir2spim/branches/cool/coolc.codegen.tests-2.0/error/dispatch_to_void.cl"
+	DS	2
+int_const9:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	74
+int_const8:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	13
+int_const7:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	9
+int_const6:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	10
+int_const5:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	3
+int_const4:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	6
+int_const3:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	2
+int_const2:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	1
+int_const1:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	4
+int_const0:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+bool_const1:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const0:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+#### class names by tag
+class_nameTab:
+	DL	str_const5
+	DL	str_const6
+	DL	str_const7
+	DL	str_const8
+	DL	str_const9
+	DL	str_const10
+	DL	str_const11
+#### prototypes and init by tag
+class_objTab:
+	DL	Object_protObj
+	DL	Object_init
+	DL	Int_protObj
+	DL	Int_init
+	DL	Bool_protObj
+	DL	Bool_init
+	DL	String_protObj
+	DL	String_init
+	DL	IO_protObj
+	DL	IO_init
+	DL	A_protObj
+	DL	A_init
+	DL	Main_protObj
+	DL	Main_init
+#### dispatch tables by tag
+Object_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+String_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	String.concat
+	DL	String.length
+	DL	String.substr
+IO_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+A_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	A.m
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
+#### prototype objects
+Object_protObj:
+	DW	0
+	DW	3
+	DL	Object_dispatch
+Int_protObj:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+Bool_protObj:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+String_protObj:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const0
+	DW	0
+IO_protObj:
+	DW	4
+	DW	3
+	DL	IO_dispatch
+A_protObj:
+	DW	5
+	DW	3
+	DL	A_dispatch
+Main_protObj:
+	DW	6
+	DW	4
+	DL	Main_dispatch
+	DW	0
