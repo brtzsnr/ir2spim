@@ -52,8 +52,6 @@ import util
     def __gen_mem_store(self, val, addr, offset, size):
         self.__gen("store_\%s_at_label(\%s, \%s, \%s);" \% (
                     size, addr, offset, val))
-
-    param_idx = 0
 }
 
 program[gen_out, globals] returns [data_list] : { 
@@ -63,14 +61,14 @@ program[gen_out, globals] returns [data_list] : {
 code : ^(CODE function*);
 
 function
-@init { self.param_idx = 0 }
     : ^(FUNCTION name=STRING in_cnt=INTEGER out_cnt=INTEGER {
         self.__next_temp = 0 
         self.__fn = self.__globals.functions[$name.text]
-        self.__gen("static void \%s() {" \% (util.FUNCTION_PREFIX + 
+        self.__gen("static void \%s(int32_t *i_regs) {" \% (util.FUNCTION_PREFIX + 
                         self.__fn.first_label), False)
         for vr in self.__fn.vr_map.iterkeys():
             self.__gen("int32_t \%s;" \% vr)
+        self.__gen("int32_t callee_i_regs[\%d];" \% self.__globals.iregs)
     } code_statement* { 
         self.__gen("}\n", False) 
     })
@@ -85,7 +83,6 @@ code_statement
     }       
     : assignment
     | jump
-    | param
     | call
     | label { print_eoi = False }
     | submit
@@ -96,8 +93,7 @@ assignment
     : ^(ASSIGN vr 
                     ( op1=operand { rval = $op1.val }
                     | LABEL { rval = self.__get_label_value($LABEL.text) }
-                    | vi { rval = "iregs[\%s]" \% $vi.text[2:] }
-                    | vo { rval = "oregs[\%s]" \% $vo.text[2:] }
+                    | vi { rval = "i_regs[\%s]" \% $vi.text[2:] }
                     | ^(PLUS op1=operand op2=operand) 
                         { rval = self.__gen_op("+", $op1.val, $op2.val) }
                     | ^(MINUS op1=operand op2=operand)
@@ -117,17 +113,44 @@ assignment
                     )) { self.__gen("\%s = \%s;" \% ($vr.text, rval)) }
     ;
 
-param
-    : ^(PARAM vr) {
-        self.__gen("iregs[\%d] = \%s;" \% (self.param_idx, $vr.text))
-        self.param_idx += 1
-    }
-    ;
-
 call
-@init { self.param_idx = 0 }
-    : ^(CALL vr integer) { self.__gen("call_function_at_label(\%s);" \% $vr.text) }
-    | ^(CALL LABEL integer) { self.__gen("\%s();" \% (util.FUNCTION_PREFIX + $LABEL.text)) }
+@init {
+  paramIdx = 0
+  retIdx = 0
+  callStr = ''
+}
+    : ^(CALL target=vr { callStr = "call_function_at_label(\%s, callee_i_regs);" \% $target.text }
+      ^(ParameterRegs
+        ((p=vr
+        {
+          self.__gen("callee_i_regs[\%d] = \%s;" \% (paramIdx, $p.text))
+          paramIdx += 1
+        })+)?)
+        {
+          self.__gen(callStr)
+        }
+      ^(ReturnedRegs
+        ((ret=vr
+        {
+          self.__gen("\%s = oregs[\%d];" \% ($ret.text, retIdx))
+          retIdx += 1
+        })+)?))
+    | ^(CALL LABEL { callStr = "\%s(callee_i_regs);" \% (util.FUNCTION_PREFIX + $LABEL.text) }
+      ^(ParameterRegs
+        ((p=vr
+        {
+          self.__gen("callee_i_regs[\%d] = \%s;" \% (paramIdx, $p.text))
+          paramIdx += 1
+        })+)?)
+        {
+          self.__gen(callStr)
+        }
+      ^(ReturnedRegs
+        ((ret=vr
+        {
+          self.__gen("\%s = oregs[\%d];" \% ($ret.text, retIdx))
+          retIdx += 1
+        })+)?))
     ;
 
 jump
@@ -199,7 +222,6 @@ data_statement
 
 vr : VR;
 vi : VI;
-vo : VO;
 integer : INTEGER;
 
 

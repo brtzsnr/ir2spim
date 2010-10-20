@@ -18,11 +18,10 @@ def gen_prologue(out, globals):
 #include <stdlib.h>
 #include <string.h>
 
-static int32_t iregs[""" + str(globals.iregs) + """];
 static int32_t oregs[""" + str(globals.oregs) + """];
 static void (*function_labels[])();
 static int8_t *data_raw;
-static void G__u_start();
+static void G__u_start(int32_t *i_regs);
 
 #define STR_BUF_LEN 1024
 static int32_t sbuf;
@@ -63,45 +62,43 @@ static int8_t *get_real_ptr(int32_t addr)
     return NULL;
 }
 
-#define VI0     (iregs[0])
-#define VI1     (iregs[1])
 #define VO0     (oregs[0])
 #define VO1     (oregs[1])
 
-static void G__u__u_alloc_u__u_()
+static void G__u__u_alloc_u__u_(int32_t *i_regs)
 {
     int32_t pos = heap_used;
-    expand_heap(VI0);
-    heap_used += VI0;
+    expand_heap(i_regs[0]);
+    heap_used += i_regs[0];
     VO0 = heap_ptr(pos);
 }
 
-static void G__u__u_abort_u__u_()
+static void G__u__u_abort_u__u_(int32_t *i_regs)
 {
-    exit(VI0);
+    exit(i_regs[0]);
 }
 
-static void G__u__u_outInt_u__u_()
+static void G__u__u_outInt_u__u_(int32_t *i_regs)
 {
-    printf("%d", VI0);
+    printf("%d", i_regs[0]);
 }
 
-static void G__u__u_outString_u__u_()
+static void G__u__u_outString_u__u_(int32_t *i_regs)
 {
     int32_t i;
-    int8_t *ptr = get_real_ptr(VI0);
-    for( i = 0 ; i < VI1 ; i++ )
+    int8_t *ptr = get_real_ptr(i_regs[0]);
+    for( i = 0 ; i < i_regs[1] ; i++ )
         putchar(ptr[i]);
 }
 
-static void G__u__u_inInt_u__u_()
+static void G__u__u_inInt_u__u_(int32_t *i_regs)
 {
     static char buff[16];
     fgets(buff, sizeof(buff), stdin);
     sscanf(buff, "%d", &VO0);
 }
 
-static void G__u__u_inString_u__u_()
+static void G__u__u_inString_u__u_(int32_t *i_regs)
 {
     int8_t *ptr = get_real_ptr(sbuf);
     fgets(ptr, STR_BUF_LEN, stdin);
@@ -150,28 +147,30 @@ static void store_byte_at_label(int32_t addr, int32_t offset, int32_t val)
     *(get_real_ptr(addr) + offset) = (val & 0xff);
 }
 
-static void call_function_at_label(int32_t addr)
+static void call_function_at_label(int32_t addr, int32_t *i_regs)
 {
     if (!is_code_ptr(addr))
     {
         printf("Error: invalid code segment access\\n");
         exit(-1);
     }
-    (*function_labels[ptr_offset(addr)])();
+    (*function_labels[ptr_offset(addr)])(i_regs);
 }
 
 int main()
 {
-    VI0 = STR_BUF_LEN;
-    G__u__u_alloc_u__u_();
+    int32_t callee_i_regs[1];
+
+    callee_i_regs[0] = STR_BUF_LEN;
+    G__u__u_alloc_u__u_(callee_i_regs);
     sbuf = VO0;
 
-    G__u_start();
+    G__u_start(NULL);
     return 0;
 }
 """
     for fn in globals.functions.itervalues():
-        print >>out, "static void G_%s();" % fn.first_label
+        print >>out, "static void G_%s(int32_t *i_regs);" % fn.first_label
     print >>out
 
 def parse_file(in_name, file_dict):
@@ -243,7 +242,7 @@ def gen_data(out, globals):
     print >>out, "static int8_t *data_raw = (int8_t*)&data;"
 
 def gen_code_labels(out, globals):
-    print >>out, "static void (*function_labels[])(void) = { %s };" % (
+    print >>out, "static void (*function_labels[])(int32_t*) = { %s };" % (
             ', '.join(globals.code_label_list))
 
 if __name__ == '__main__':

@@ -17,7 +17,6 @@ tokens {
     FUNCTION = '.function';
     END = '.end';
     ASSIGN = '<-';
-    PARAM = 'param';
     CALL = 'call';
     JUMP = 'jump';
     JUMPT = 'jumpt';
@@ -39,6 +38,8 @@ tokens {
     DB = 'DB';
     DL = 'DL';
     DS = 'DS';
+    ParameterRegs;
+    ReturnedRegs;
 }
 
 @header {
@@ -58,9 +59,8 @@ function
     ;
 
 code_statement
-    : assignment 
+    : assignment
     | jump
-    | param
     | call
     | label
     | submit
@@ -71,19 +71,20 @@ assignment
     : vr ASSIGN^ operand 
     | vr ASSIGN l=LABEL -> ^(ASSIGN vr LABEL[util.recode_label($l.text)])
     | vr ASSIGN^ vi
-    | vr ASSIGN^ vo
     | vr ASSIGN first=operand op=binary_op second=operand
         -> ^(ASSIGN vr ^($op $first $second))
     | vr ASSIGN op=unary_op operand -> ^(ASSIGN vr ^($op operand))
     ;
 
-param
-    : PARAM^ vr
+call
+    : (LPAREN ret=vr_list RPAREN ASSIGN)? CALL target=vr (LPAREN p=vr_list RPAREN)? ->
+      ^(CALL $target ^(ParameterRegs $p?) ^(ReturnedRegs $ret?))
+    | (LPAREN ret=vr_list RPAREN ASSIGN)? CALL l=LABEL (LPAREN p=vr_list RPAREN)? ->
+      ^(CALL LABEL[util.recode_label($l.text)] ^(ParameterRegs $p?) ^(ReturnedRegs $ret?))
     ;
 
-call
-    : CALL^ vr integer
-    | CALL l=LABEL integer -> ^(CALL LABEL[util.recode_label($l.text)] integer)
+vr_list
+    : vr+
     ;
 
 jump
@@ -97,7 +98,7 @@ label
     ;
 
 submit
-    : RETURN vr*
+    : RETURN vr_list?
     ;
 
 io
@@ -111,7 +112,6 @@ io
 operand : vr | integer;
 vr : VR;
 vi : VI;
-vo : VO;
 integer : INTEGER;
 
 // === DATA ===
@@ -145,5 +145,7 @@ LABEL:  l=('A'..'Z' | 'a'..'z' | '_') ('A'..'Z' | 'a'..'z' | '0'..'9' | '_' | '.
 WHITESPACE: (' ' | '\t') { $channel = HIDDEN; };
 NEWLINE: ('\r')? ('\n') { $channel = HIDDEN; };
 COMMENT: '#' (~('\n' | '\r'))* { $channel = HIDDEN; };
+LPAREN: '(';
+RPAREN: ')';
 
- 
+
