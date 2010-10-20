@@ -1,0 +1,576 @@
+#### code section
+	.code
+
+.function "Void dispatch handler", 2, 0
+void_disp_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	store	VR3 [VR2, 12]
+	# end boxing
+	call _dispatch_abort ( VR1 VR2 )
+	return
+.end
+
+.function "Void case handler", 2, 0
+void_case_handler:
+	VR1	<-	VI0
+	VR3	<-	VI1
+	# boxing integer from VR3 to VR2
+	VR2	<-	Int_protObj
+	( VR2 )	<-	call Object.copy ( VR2 )
+	store	VR3 [VR2, 12]
+	# end boxing
+	call _case_abort2 ( VR1 VR2 )
+	return
+.end
+
+.function "Object init code", 1, 0
+Object_init:
+	return
+.end
+
+.function "Int init code", 1, 0
+Int_init:
+	return
+.end
+
+.function "Bool init code", 1, 0
+Bool_init:
+	return
+.end
+
+.function "String init code", 1, 0
+String_init:
+	return
+.end
+
+.function "IO init code", 1, 0
+IO_init:
+	return
+.end
+
+.function "P init code", 1, 0
+P_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Object_init ( VR0 )
+	## begin assign - line 4
+	VR1	<-	10
+	## store rhs in VR1 to attribute i
+	store	VR1 [VR0, 12]
+	## begin assign - line 5
+	## begin new - line 5
+	VR1	<-	IO_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call IO_init ( VR1 )
+	## store rhs in VR1 to attribute io
+	store	VR1 [VR0, 16]
+	return	
+.end
+
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Object_init ( VR0 )
+	## begin assign - line 32
+	## begin new - line 32
+	VR1	<-	C_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call C_init ( VR1 )
+	## store rhs in VR1 to attribute c
+	store	VR1 [VR0, 12]
+	## begin assign - line 33
+	## begin new - line 33
+	VR1	<-	P_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call P_init ( VR1 )
+	## store rhs in VR1 to attribute p
+	store	VR1 [VR0, 16]
+	return	
+.end
+
+.function "C init code", 1, 0
+C_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call P_init ( VR0 )
+	return	
+.end
+
+.function "P.method", 1, 1
+P.method:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 9
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
+	VR2	<-	str_const0
+	VR3	<-	9
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid0:
+	## actual parameter 1
+	VR2	<-	str_const1
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## begin dispatch - line 10
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid1
+	jumpt	VR1 dispatch_notvoid1
+	VR2	<-	str_const0
+	VR3	<-	10
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid1:
+	## actual parameter 1
+	load	VR2 [VR0, 12]
+	# boxing integer from VR2 to VR3
+	VR3	<-	Int_protObj
+	( VR3 )	<-	call Object.copy ( VR3 )
+	store	VR2 [VR3, 12]
+	# end boxing
+	VR2	<-	VR3
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 16]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## begin dispatch - line 11
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid2
+	jumpt	VR1 dispatch_notvoid2
+	VR2	<-	str_const0
+	VR3	<-	11
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid2:
+	## actual parameter 1
+	VR2	<-	str_const2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	VR1	<-	VR0
+	return	VR1
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 38
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR1 dispatch_notvoid3
+	VR2	<-	str_const0
+	VR3	<-	38
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid3:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	( VR1 )	<-	call VR2 ( VR1 )
+	## begin dispatch - line 39
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid4
+	jumpt	VR1 dispatch_notvoid4
+	VR2	<-	str_const0
+	VR3	<-	39
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid4:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	( VR1 )	<-	call VR2 ( VR1 )
+	VR1	<-	0
+	return	VR1
+.end
+
+.function "C.method", 1, 1
+C.method:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 21
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid5
+	jumpt	VR1 dispatch_notvoid5
+	VR2	<-	str_const0
+	VR3	<-	21
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid5:
+	## actual parameter 1
+	VR2	<-	str_const3
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## begin dispatch - line 22
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid6
+	jumpt	VR1 dispatch_notvoid6
+	VR2	<-	str_const0
+	VR3	<-	22
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid6:
+	## actual parameter 1
+	load	VR2 [VR0, 12]
+	# boxing integer from VR2 to VR3
+	VR3	<-	Int_protObj
+	( VR3 )	<-	call Object.copy ( VR3 )
+	store	VR2 [VR3, 12]
+	# end boxing
+	VR2	<-	VR3
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 16]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## begin dispatch - line 23
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid7
+	jumpt	VR1 dispatch_notvoid7
+	VR2	<-	str_const0
+	VR3	<-	23
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid7:
+	## actual parameter 1
+	VR2	<-	str_const2
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR3 [VR1, 8]
+	load	VR3 [VR3, 12]
+	( VR1 )	<-	call VR3 ( VR1 VR2 )
+	## begin dispatch - line 24
+	VR1	<-	VR0
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid8
+	jumpt	VR1 dispatch_notvoid8
+	VR2	<-	str_const0
+	VR3	<-	24
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid8:
+	## prepare self and actual parameters
+	## compute the target address
+	VR2	<-	P_dispatch
+	load	VR2 [VR2, 12]
+	( VR1 )	<-	call VR2 ( VR1 )
+	VR1	<-	VR0
+	return	VR1
+.end
+
+#### data section
+	.data
+#### object tags
+_int_tag:
+	DW	1
+_bool_tag:
+	DW	2
+_string_tag:
+	DW	3
+#### constants
+str_const16:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DS	4
+str_const15:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Main"
+	DS	4
+str_const14:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"C"
+	DS	3
+str_const13:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"P"
+	DS	3
+str_const12:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const4
+	DB	"IO"
+	DS	2
+str_const11:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const5
+	DB	"String"
+	DS	2
+str_const10:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const2
+	DB	"Bool"
+	DS	4
+str_const9:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const6
+	DB	"Int"
+	DS	1
+str_const8:
+	DW	3
+	DW	6
+	DL	String_dispatch
+	DL	int_const5
+	DB	"Object"
+	DS	2
+str_const7:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const0
+	DB	"_prim_slot"
+	DS	2
+str_const6:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const7
+	DB	"SELF_TYPE"
+	DS	3
+str_const5:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const7
+	DB	"_no_class"
+	DS	3
+str_const4:
+	DW	3
+	DW	8
+	DL	String_dispatch
+	DL	int_const8
+	DB	"<basic class>"
+	DS	3
+str_const3:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"C.method()\n"
+	DS	1
+str_const2:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const3
+	DB	"\n"
+	DS	3
+str_const1:
+	DW	3
+	DW	7
+	DL	String_dispatch
+	DL	int_const9
+	DB	"P.method()\n"
+	DS	1
+str_const0:
+	DW	3
+	DW	22
+	DL	String_dispatch
+	DL	int_const10
+	DB	"../ir2spim/branches/cool/coolc.codegen.tests-2.0/simple/inheritance.cl"
+	DS	2
+int_const10:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	70
+int_const9:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	11
+int_const8:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	13
+int_const7:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	9
+int_const6:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	3
+int_const5:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	6
+int_const4:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	2
+int_const3:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	1
+int_const2:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	4
+int_const1:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+int_const0:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	10
+bool_const1:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	1
+bool_const0:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+#### class names by tag
+class_nameTab:
+	DL	str_const8
+	DL	str_const9
+	DL	str_const10
+	DL	str_const11
+	DL	str_const12
+	DL	str_const13
+	DL	str_const15
+	DL	str_const14
+#### prototypes and init by tag
+class_objTab:
+	DL	Object_protObj
+	DL	Object_init
+	DL	Int_protObj
+	DL	Int_init
+	DL	Bool_protObj
+	DL	Bool_init
+	DL	String_protObj
+	DL	String_init
+	DL	IO_protObj
+	DL	IO_init
+	DL	P_protObj
+	DL	P_init
+	DL	Main_protObj
+	DL	Main_init
+	DL	C_protObj
+	DL	C_init
+#### dispatch tables by tag
+Object_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+String_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	String.concat
+	DL	String.length
+	DL	String.substr
+IO_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	IO.out_string
+	DL	IO.out_int
+	DL	IO.in_string
+	DL	IO.in_int
+P_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	P.method
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
+C_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	C.method
+#### prototype objects
+Object_protObj:
+	DW	0
+	DW	3
+	DL	Object_dispatch
+Int_protObj:
+	DW	1
+	DW	4
+	DL	Object_dispatch
+	DW	0
+Bool_protObj:
+	DW	2
+	DW	4
+	DL	Object_dispatch
+	DW	0
+String_protObj:
+	DW	3
+	DW	5
+	DL	String_dispatch
+	DL	int_const1
+	DW	0
+IO_protObj:
+	DW	4
+	DW	3
+	DL	IO_dispatch
+P_protObj:
+	DW	5
+	DW	5
+	DL	P_dispatch
+	DW	0
+	DW	0
+Main_protObj:
+	DW	6
+	DW	5
+	DL	Main_dispatch
+	DW	0
+	DW	0
+C_protObj:
+	DW	7
+	DW	5
+	DL	C_dispatch
+	DW	0
+	DW	0
