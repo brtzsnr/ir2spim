@@ -412,6 +412,31 @@ _case_abort2:
 	call __abort__ (VR0)
 .end
 
+.function "Object init code", 1, 0
+Object_init:
+  return
+.end
+
+.function "Int init code", 1, 0
+Int_init:
+  return
+.end
+
+.function "Bool init code", 1, 0
+Bool_init:
+  return
+.end
+
+.function "String init code", 1, 0
+String_init:
+  return
+.end
+
+.function "IO init code", 1, 0
+IO_init:
+  return
+.end
+
 ######################
 .data
 
@@ -449,3 +474,50 @@ __str_cabort_msg2:
 	DB "Match on void in case statement.\n"		# 33
 	DB 0
 	DS 2
+
+#### dispatch tables by tag
+Object_dispatch:
+  DL  Object.abort
+  DL  Object.copy
+  DL  Object.type_name
+String_dispatch:
+  DL  Object.abort
+  DL  Object.copy
+  DL  Object.type_name
+  DL  String.concat
+  DL  String.length
+  DL  String.substr
+IO_dispatch:
+  DL  Object.abort
+  DL  Object.copy
+  DL  Object.type_name
+  DL  IO.out_string
+  DL  IO.out_int
+  DL  IO.in_string
+  DL  IO.in_int
+
+#### prototype objects
+Object_protObj:
+  DW  0
+  DW  3
+  DL  Object_dispatch
+Int_protObj:
+  DW  1
+  DW  4
+  DL  Object_dispatch
+  DW  0
+Bool_protObj:
+  DW  2
+  DW  4
+  DL  Object_dispatch
+  DW  0
+String_protObj:
+  DW  3
+  DW  5
+  DL  String_dispatch
+  DL  int_const1
+  DW  0
+IO_protObj:
+  DW  4
+  DW  3
+  DL  IO_dispatch
