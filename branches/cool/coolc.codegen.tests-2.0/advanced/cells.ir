@@ -27,31 +27,6 @@ void_case_handler:
 	return
 .end
 
-.function "Object init code", 1, 0
-Object_init:
-	return
-.end
-
-.function "Int init code", 1, 0
-Int_init:
-	return
-.end
-
-.function "Bool init code", 1, 0
-Bool_init:
-	return
-.end
-
-.function "String init code", 1, 0
-String_init:
-	return
-.end
-
-.function "IO init code", 1, 0
-IO_init:
-	return
-.end
-
 .function "Main init code", 1, 0
 Main_init:
 	## store self into the reserved VR0
@@ -625,13 +600,6 @@ loop_end1:
 
 #### data section
 	.data
-#### object tags
-_int_tag:
-	DW	1
-_bool_tag:
-	DW	2
-_string_tag:
-	DW	3
 #### constants
 str_const16:
 	DW	3
@@ -746,16 +714,16 @@ str_const1:
 	DS	3
 str_const0:
 	DW	3
-	DW	21
+	DW	15
 	DL	String_dispatch
 	DL	int_const12
-	DB	"../ir2spim/branches/cool/coolc.codegen.tests-2.0/advanced/cells.cl"
-	DS	2
+	DB	"./coolc.codegen.tests-2.0/advanced/cells.cl"
+	DS	1
 int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	66
+	DW	43
 int_const11:
 	DW	1
 	DW	4
@@ -851,26 +819,7 @@ class_objTab:
 	DL	Main_init
 	DL	CellularAutomaton_protObj
 	DL	CellularAutomaton_init
-#### dispatch tables by tag
-Object_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-String_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	String.concat
-	DL	String.length
-	DL	String.substr
-IO_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	IO.out_string
-	DL	IO.out_int
-	DL	IO.in_string
-	DL	IO.in_int
+#### dispatch tables
 Main_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -893,30 +842,6 @@ CellularAutomaton_dispatch:
 	DL	CellularAutomaton.cell_at_next_evolution
 	DL	CellularAutomaton.evolve
 #### prototype objects
-Object_protObj:
-	DW	0
-	DW	3
-	DL	Object_dispatch
-Int_protObj:
-	DW	1
-	DW	4
-	DL	Object_dispatch
-	DW	0
-Bool_protObj:
-	DW	2
-	DW	4
-	DL	Object_dispatch
-	DW	0
-String_protObj:
-	DW	3
-	DW	5
-	DL	String_dispatch
-	DL	int_const1
-	DW	0
-IO_protObj:
-	DW	4
-	DW	3
-	DL	IO_dispatch
 Main_protObj:
 	DW	5
 	DW	4

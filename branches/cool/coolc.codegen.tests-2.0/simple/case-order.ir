@@ -27,31 +27,6 @@ void_case_handler:
 	return
 .end
 
-.function "Object init code", 1, 0
-Object_init:
-	return
-.end
-
-.function "Int init code", 1, 0
-Int_init:
-	return
-.end
-
-.function "Bool init code", 1, 0
-Bool_init:
-	return
-.end
-
-.function "String init code", 1, 0
-String_init:
-	return
-.end
-
-.function "IO init code", 1, 0
-IO_init:
-	return
-.end
-
 .function "Main init code", 1, 0
 Main_init:
 	## store self into the reserved VR0
@@ -129,13 +104,6 @@ case0_end:
 
 #### data section
 	.data
-#### object tags
-_int_tag:
-	DW	1
-_bool_tag:
-	DW	2
-_string_tag:
-	DW	3
 #### constants
 str_const13:
 	DW	3
@@ -229,16 +197,16 @@ str_const1:
 	DS	1
 str_const0:
 	DW	3
-	DW	22
+	DW	16
 	DL	String_dispatch
 	DL	int_const10
-	DB	"../ir2spim/branches/cool/coolc.codegen.tests-2.0/simple/case-order.cl"
-	DS	3
+	DB	"./coolc.codegen.tests-2.0/simple/case-order.cl"
+	DS	2
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	69
+	DW	46
 int_const9:
 	DW	1
 	DW	4
@@ -321,26 +289,7 @@ class_objTab:
 	DL	IO_init
 	DL	Main_protObj
 	DL	Main_init
-#### dispatch tables by tag
-Object_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-String_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	String.concat
-	DL	String.length
-	DL	String.substr
-IO_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	IO.out_string
-	DL	IO.out_int
-	DL	IO.in_string
-	DL	IO.in_int
+#### dispatch tables
 Main_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -351,30 +300,6 @@ Main_dispatch:
 	DL	IO.in_int
 	DL	Main.main
 #### prototype objects
-Object_protObj:
-	DW	0
-	DW	3
-	DL	Object_dispatch
-Int_protObj:
-	DW	1
-	DW	4
-	DL	Object_dispatch
-	DW	0
-Bool_protObj:
-	DW	2
-	DW	4
-	DL	Object_dispatch
-	DW	0
-String_protObj:
-	DW	3
-	DW	5
-	DL	String_dispatch
-	DL	int_const0
-	DW	0
-IO_protObj:
-	DW	4
-	DW	3
-	DL	IO_dispatch
 Main_protObj:
 	DW	5
 	DW	3
