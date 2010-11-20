@@ -1,0 +1,163 @@
+#3
+_program
+  #3
+  _class
+    A
+    Object
+    "./coolc.codegen.tests-2.0/error/case_with_void.cl"
+    (
+    #4
+    _attr
+      i
+      Int
+      #0
+      _no_expr
+      : _no_type
+    #6
+    _method
+      init
+      SELF_TYPE
+      #7
+      _block
+        #8
+        _assign
+          i
+          #8
+          _int
+            10
+          : Int
+        : Int
+        #9
+        _object
+          self
+        : SELF_TYPE
+      : SELF_TYPE
+    )
+  #14
+  _class
+    B
+    A
+    "./coolc.codegen.tests-2.0/error/case_with_void.cl"
+    (
+    #16
+    _method
+      init
+      SELF_TYPE
+      #17
+      _block
+        #18
+        _assign
+          i
+          #18
+          _int
+            20
+          : Int
+        : Int
+        #19
+        _object
+          self
+        : SELF_TYPE
+      : SELF_TYPE
+    )
+  #24
+  _class
+    C
+    A
+    "./coolc.codegen.tests-2.0/error/case_with_void.cl"
+    (
+    #26
+    _method
+      init
+      SELF_TYPE
+      #27
+      _block
+        #28
+        _assign
+          i
+          #28
+          _int
+            30
+          : Int
+        : Int
+        #29
+        _object
+          self
+        : SELF_TYPE
+      : SELF_TYPE
+    )
+  #35
+  _class
+    Main
+    Object
+    "./coolc.codegen.tests-2.0/error/case_with_void.cl"
+    (
+    #36
+    _attr
+      a
+      A
+      #0
+      _no_expr
+      : _no_type
+    #37
+    _attr
+      io
+      IO
+      #37
+      _new
+        IO
+      : IO
+    #39
+    _method
+      main
+      Int
+      #40
+      _block
+        #41
+        _typcase
+          #41
+          _object
+            a
+          : A
+          #42
+          _branch
+            b
+            B
+            #42
+            _dispatch
+              #42
+              _object
+                io
+              : IO
+              out_string
+              (
+              #42
+              _string
+                "B\n"
+              : String
+              )
+            : IO
+          #43
+          _branch
+            c
+            C
+            #43
+            _dispatch
+              #43
+              _object
+                io
+              : IO
+              out_string
+              (
+              #43
+              _string
+                "C\n"
+              : String
+              )
+            : IO
+        : IO
+        #46
+        _int
+          0
+        : Int
+      : Int
+    )
