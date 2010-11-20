@@ -1,0 +1,202 @@
+#2
+_program
+  #2
+  _class
+    Base
+    IO
+    "./coolc.codegen.tests-2.0/simple/override-basic.cl"
+    (
+    #4
+    _method
+      identify
+      Object
+      #4
+      _block
+        #5
+        _dispatch
+          #5
+          _object
+            self
+          : SELF_TYPE
+          out_string
+          (
+          #5
+          _dispatch
+            #5
+            _object
+              self
+            : SELF_TYPE
+            type_name
+            (
+            )
+          : String
+          )
+        : SELF_TYPE
+        #6
+        _static_dispatch
+          #6
+          _object
+            self
+          : SELF_TYPE
+          Base
+          out_string
+          (
+          #6
+          _string
+            "\n"
+          : String
+          )
+        : SELF_TYPE
+      : SELF_TYPE
+    )
+  #11
+  _class
+    Derived
+    Base
+    "./coolc.codegen.tests-2.0/simple/override-basic.cl"
+    (
+    #13
+    _method
+      out_string
+      #13
+      _formal
+        s
+        String
+      SELF_TYPE
+      #15
+      _block
+        #16
+        _static_dispatch
+          #16
+          _object
+            self
+          : SELF_TYPE
+          Base
+          out_string
+          (
+          #16
+          _string
+            "derived "
+          : String
+          )
+        : SELF_TYPE
+        #17
+        _static_dispatch
+          #17
+          _object
+            self
+          : SELF_TYPE
+          Base
+          out_string
+          (
+          #17
+          _object
+            s
+          : String
+          )
+        : SELF_TYPE
+        #18
+        _static_dispatch
+          #18
+          _object
+            self
+          : SELF_TYPE
+          Base
+          out_string
+          (
+          #18
+          _string
+            "\n"
+          : String
+          )
+        : SELF_TYPE
+      : SELF_TYPE
+    )
+  #24
+  _class
+    Main
+    Object
+    "./coolc.codegen.tests-2.0/simple/override-basic.cl"
+    (
+    #26
+    _method
+      main
+      Object
+      #28
+      _block
+        #29
+        _let
+          me
+          Base
+          #29
+          _new
+            Base
+          : Base
+          #30
+          _static_dispatch
+            #30
+            _object
+              me
+            : Base
+            Base
+            identify
+            (
+            )
+          : Object
+        : Object
+        #32
+        _let
+          me
+          Base
+          #32
+          _new
+            Derived
+          : Derived
+          #33
+          _static_dispatch
+            #33
+            _object
+              me
+            : Base
+            Base
+            identify
+            (
+            )
+          : Object
+        : Object
+        #35
+        _let
+          me
+          Derived
+          #35
+          _new
+            Derived
+          : Derived
+          #36
+          _block
+            #37
+            _static_dispatch
+              #37
+              _object
+                me
+              : Derived
+              Base
+              identify
+              (
+              )
+            : Object
+            #38
+            _static_dispatch
+              #38
+              _object
+                me
+              : Derived
+              Derived
+              identify
+              (
+              )
+            : Object
+          : Object
+        : Object
+      : Object
+    )

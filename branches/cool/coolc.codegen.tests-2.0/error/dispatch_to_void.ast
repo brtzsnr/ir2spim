@@ -1,0 +1,52 @@
+#3
+_program
+  #3
+  _class
+    A
+    Object
+    "./coolc.codegen.tests-2.0/error/dispatch_to_void.cl"
+    (
+    #5
+    _method
+      m
+      Int
+      #6
+      _int
+        0
+      : Int
+    )
+  #10
+  _class
+    Main
+    Object
+    "./coolc.codegen.tests-2.0/error/dispatch_to_void.cl"
+    (
+    #11
+    _attr
+      a
+      A
+      #0
+      _no_expr
+      : _no_type
+    #13
+    _method
+      main
+      Int
+      #14
+      _block
+        #15
+        _dispatch
+          #15
+          _object
+            a
+          : A
+          m
+          (
+          )
+        : Int
+        #16
+        _int
+          0
+        : Int
+      : Int
+    )
