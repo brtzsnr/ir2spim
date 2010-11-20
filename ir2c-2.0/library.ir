@@ -515,7 +515,7 @@ String_protObj:
   DW  3
   DW  5
   DL  String_dispatch
-  DL  int_const1
+  DL  Int_protObj
   DW  0
 IO_protObj:
   DW  4
