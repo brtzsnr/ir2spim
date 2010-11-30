@@ -77,6 +77,7 @@ instruction returns [Instruction result]
         |   li = logicalInstruction { $result = $li.result; }
         |   ci = callInstruction { $result = $ci.result; }
         |   ji = jumpInstruction { $result = $ji.result; }
+		|   ri = returnInstruction { $result = $ri.result; }
         |   mi = memoryInstruction { $result = $mi.result; }
         )
     ;
@@ -87,9 +88,6 @@ copyInstruction returns [CopyInstruction result]
     }
     |   rg = register ASSIGN irg = inRegister {
         $result = new CopyInstruction($rg.result, $irg.result);
-    }
-    |   irg = inRegister ASSIGN rg = register {
-        $result = new CopyInstruction($irg.result, $rg.result);
     }
     |   rg = register ASSIGN rl = LABEL {
     	$result = new CopyInstruction($rg.result, $rl.getText());
@@ -143,19 +141,43 @@ logicalInstruction returns [LogicalInstruction result]
     ;
 
 callInstruction returns [CallInstruction result]
-    :   CALL ml = LABEL {
-        $result = new CallInstruction($ml.getText());
+	@init {
+		List<Register> params = null;
+		List<Register> retvals = null;
+	}
+    :   (LPAREN ret=regList { retvals = $ret.result; } RPAREN ASSIGN)?
+         CALL ml = LABEL
+        (LPAREN p=regList { params = $p.result; } RPAREN)? {
+        $result = new CallInstruction($ml.getText(), params, retvals);
     }
-    |   CALL rg = register {
-        $result = new CallInstruction($rg.result);
+    |   (LPAREN ret=regList { retvals = $ret.result; } RPAREN ASSIGN)?
+         CALL rg = register
+        (LPAREN p=regList { params = $p.result; } RPAREN)? {
+        $result = new CallInstruction($rg.result, params, retvals);
+    }
+    ;
+
+regList returns [List<Register> result]
+	@init {
+		List<Register> vrList = new ArrayList<Register>();
+	}
+	@after {
+		return vrList;
+	}
+    : (register { vrList.add($register.result); })+
+    ;
+
+returnInstruction returns [Instruction result]
+	@init {
+		List<Register> vrList = null;
+	}
+    :   RETURN (regList { vrList = $regList.result; })? {
+        	$result = new ReturnInstruction(vrList);
     }
     ;
 
 jumpInstruction returns [Instruction result]
-    :   RETURN {
-        $result = new ReturnInstruction();
-    }
-    |   JUMP rl = LABEL {
+    :   JUMP rl = LABEL {
         $result = new JumpInstruction(JumpInstruction.OPERATION.JUMP, null, $rl.getText());
     }
     |   JUMPT rg = register rl = LABEL {
@@ -253,6 +275,9 @@ EQ          :       '='     ;
 COLON       :       ':'     ;
 UNDERSLASH  :       '_'     ;
 DOT         :       '.'     ;
+
+LPAREN      :       '('     ;
+RPAREN      :       ')'     ;
 
 fragment    LETTER                  :   ('a'..'z' | 'A'..'Z');
 fragment    DIGIT                   :   ('0'..'9');
