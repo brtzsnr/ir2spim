@@ -1,18 +1,26 @@
 package ro.pub.cpl.ir2spim.ir;
 
 import ro.pub.cpl.ir2spim.*;
+import java.util.List;
 
 public class CallInstruction extends Instruction {
 	private String directCallee;
 	private Register indirectCallee;
+	private List<Register> parameters;
+	private List<Register> retvals;
 
-	public CallInstruction(String directCallee) {
+	public CallInstruction(String directCallee, List<Register> parameters, List<Register> retvals) {
 		this.directCallee = directCallee;
 		this.indirectCallee = null;
+		this.parameters = parameters;
+		this.retvals = retvals;
 	}
-	public CallInstruction(Register indirectCallee) {
+
+	public CallInstruction(Register indirectCallee, List<Register> parameters, List<Register> retvals) {
 		this.directCallee = null;
 		this.indirectCallee = indirectCallee;
+		this.parameters = parameters;
+		this.retvals = retvals;
 	}
 
 	public boolean isDirect() {
@@ -35,10 +43,24 @@ public class CallInstruction extends Instruction {
     
     @Override
 	public String toString() {
-		if (this.isDirect()) {
-			return labelsToString() + " call " + this.directCallee;
-		} else {
-			return labelsToString() + " call " + this.indirectCallee;			
+		StringBuffer str = new StringBuffer();
+		if (retvals != null && retvals.size() > 0) {
+			str.append("(");
+			for (Register ret: retvals)
+				str.append(" " + ret);
+			str.append(" ) <- ");
 		}
+		if (this.isDirect()) {
+			str.append(labelsToString() + "call " + this.directCallee);
+		} else {
+			str.append(labelsToString() + "call " + this.indirectCallee);
+		}
+		if (parameters != null && parameters.size() > 0) {
+			str.append(" (");
+			for (Register param: parameters)
+				str.append(" " + param);
+			str.append(" )");
+		}
+		return str.toString();
 	}
 }

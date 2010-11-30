@@ -18,8 +18,21 @@ public class Main {
 			CoolIrParser parser = new CoolIrParser(tokens);
 			
 			Program p = parser.program();
-            
-            System.out.println(p);
+
+			if (args[1].equals("list")) {
+				for (Method m: p.getMethods())
+					System.out.println(m.getName());
+			} else {
+				for (Method m: p.getMethods())
+					if (m.getName().equals(args[1])) {
+						Cfg cfg = new Cfg(m);
+						cfg.build();
+						cfg.exportToDot(System.out);
+						return;
+					}
+				System.out.println("No such method: " + args[1]);
+			}
+			return;
 		} catch (IOException e) {
 			System.out.println("Error: " + e.getMessage());
 		} catch (RecognitionException e) {	
