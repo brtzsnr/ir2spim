@@ -101,8 +101,12 @@ static void G__u__u_inInt_u__u_(int32_t *i_regs)
 static void G__u__u_inString_u__u_(int32_t *i_regs)
 {
     int8_t *ptr = get_real_ptr(sbuf);
-    fgets(ptr, STR_BUF_LEN, stdin);
+    char *read_str = fgets(ptr, STR_BUF_LEN, stdin);
     VO0 = sbuf;
+    if (read_str == NULL || strlen(read_str) == 0) {
+      VO1 = 0;
+      return;
+    }
     VO1 = strlen(ptr) - 1;
     ptr[strlen(ptr) - 1] = 0;
 }
