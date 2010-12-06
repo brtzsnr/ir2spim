@@ -107,8 +107,11 @@ static void G__u__u_inString_u__u_(int32_t *i_regs)
       VO1 = 0;
       return;
     }
-    VO1 = strlen(ptr) - 1;
-    ptr[strlen(ptr) - 1] = 0;
+    VO1 = strlen(ptr);
+    if (ptr[strlen(ptr) - 1] == '\\n') {
+      VO1 -= 1;
+      ptr[strlen(ptr) - 1] = 0;
+    }
 }
 
 static int32_t load_word_from_label(int32_t addr, int32_t offset)
