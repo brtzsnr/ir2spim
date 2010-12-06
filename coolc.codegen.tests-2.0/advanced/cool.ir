@@ -114,10 +114,10 @@ dispatch_notvoid3:
 	## isvoid begin - line 5
 	VR2	<-	VR0
 	jumpf	VR2 isvoid_true0
-	VR2	<-	bool_const0
+	VR2	<-	0
 	jump	isvoid_end0
 isvoid_true0:
-	VR2	<-	bool_const1
+	VR2	<-	1
 isvoid_end0:
 	## caller in VR2
 	# boxing boolean from VR2 to VR3
@@ -277,16 +277,16 @@ str_const1:
 	DS	3
 str_const0:
 	DW	3
-	DW	15
+	DW	9
 	DL	String_dispatch
 	DL	int_const9
-	DB	"./coolc.codegen.tests-2.0/advanced/cool.cl"
-	DS	2
+	DB	"advanced/cool.cl"
+	DS	4
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	42
+	DW	16
 int_const8:
 	DW	1
 	DW	4

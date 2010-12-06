@@ -197,16 +197,16 @@ str_const1:
 	DS	1
 str_const0:
 	DW	3
-	DW	16
+	DW	10
 	DL	String_dispatch
 	DL	int_const10
-	DB	"./coolc.codegen.tests-2.0/simple/case-order.cl"
-	DS	2
+	DB	"simple/case-order.cl"
+	DS	4
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	46
+	DW	20
 int_const9:
 	DW	1
 	DW	4

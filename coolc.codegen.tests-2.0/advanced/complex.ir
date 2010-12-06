@@ -456,16 +456,16 @@ str_const1:
 	DS	1
 str_const0:
 	DW	3
-	DW	16
+	DW	9
 	DL	String_dispatch
 	DL	int_const10
-	DB	"./coolc.codegen.tests-2.0/advanced/complex.cl"
-	DS	3
+	DB	"advanced/complex.cl"
+	DS	1
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	45
+	DW	19
 int_const9:
 	DW	1
 	DW	4

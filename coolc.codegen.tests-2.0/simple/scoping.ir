@@ -330,16 +330,16 @@ str_const1:
 	DS	4
 str_const0:
 	DW	3
-	DW	15
+	DW	9
 	DL	String_dispatch
 	DL	int_const11
-	DB	"./coolc.codegen.tests-2.0/simple/scoping.cl"
-	DS	1
+	DB	"simple/scoping.cl"
+	DS	3
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	43
+	DW	17
 int_const10:
 	DW	1
 	DW	4

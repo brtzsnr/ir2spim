@@ -42,6 +42,14 @@ P_init:
 	return	
 .end
 
+.function "C init code", 1, 0
+C_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call P_init ( VR0 )
+	return	
+.end
+
 .function "Main init code", 1, 0
 Main_init:
 	## store self into the reserved VR0
@@ -54,14 +62,6 @@ Main_init:
 	call C_init ( VR1 )
 	## store rhs in VR1 to attribute c
 	store	VR1 [VR0, 12]
-	return	
-.end
-
-.function "C init code", 1, 0
-C_init:
-	## store self into the reserved VR0
-	VR0	<-	VI0
-	call P_init ( VR0 )
 	return	
 .end
 
@@ -250,6 +250,14 @@ dispatch_notvoid8:
 	return	VR4
 .end
 
+.function "C.method2", 1, 1
+C.method2:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	str_const5
+	return	VR1
+.end
+
 .function "Main.main", 1, 1
 Main.main:
 	## store self and arguments into the reserved VR0..VR0
@@ -294,14 +302,6 @@ dispatch_notvoid10:
 	load	VR5 [VR1, 8]
 	load	VR5 [VR5, 12]
 	( VR1 )	<-	call VR5 ( VR1 VR2 VR3 VR4 )
-	return	VR1
-.end
-
-.function "C.method2", 1, 1
-C.method2:
-	## store self and arguments into the reserved VR0..VR0
-	VR0	<-	VI0
-	VR1	<-	str_const5
 	return	VR1
 .end
 
@@ -442,16 +442,16 @@ str_const1:
 	DS	4
 str_const0:
 	DW	3
-	DW	16
+	DW	9
 	DL	String_dispatch
 	DL	int_const12
-	DB	"./coolc.codegen.tests-2.0/simple/dispatch.cl"
-	DS	4
+	DB	"simple/dispatch.cl"
+	DS	2
 int_const12:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	44
+	DW	18
 int_const11:
 	DW	1
 	DW	4
@@ -530,8 +530,8 @@ class_nameTab:
 	DL	str_const15
 	DL	str_const16
 	DL	str_const17
-	DL	str_const19
 	DL	str_const18
+	DL	str_const19
 #### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
@@ -546,40 +546,40 @@ class_objTab:
 	DL	IO_init
 	DL	P_protObj
 	DL	P_init
-	DL	Main_protObj
-	DL	Main_init
 	DL	C_protObj
 	DL	C_init
+	DL	Main_protObj
+	DL	Main_init
 #### dispatch tables
 P_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
 	DL	P.method1
-Main_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	Main.main
 C_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
 	DL	P.method1
 	DL	C.method2
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
 #### prototype objects
 P_protObj:
 	DW	5
 	DW	4
 	DL	P_dispatch
 	DW	0
-Main_protObj:
+C_protObj:
 	DW	6
 	DW	4
-	DL	Main_dispatch
+	DL	C_dispatch
 	DW	0
-C_protObj:
+Main_protObj:
 	DW	7
 	DW	4
-	DL	C_dispatch
+	DL	Main_dispatch
 	DW	0
