@@ -27,14 +27,6 @@ void_case_handler:
 	return
 .end
 
-.function "Main init code", 1, 0
-Main_init:
-	## store self into the reserved VR0
-	VR0	<-	VI0
-	call Object_init ( VR0 )
-	return	
-.end
-
 .function "Base init code", 1, 0
 Base_init:
 	## store self into the reserved VR0
@@ -51,91 +43,12 @@ Derived_init:
 	return	
 .end
 
-.function "Main.main", 1, 1
-Main.main:
-	## store self and arguments into the reserved VR0..VR0
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
 	VR0	<-	VI0
-	## begin let - line 29
-	## begin new - line 29
-	VR1	<-	Base_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Base_init ( VR1 )
-	## let var me in VR1
-	## begin dispatch - line 30
-	VR2	<-	VR1
-	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid0
-	jumpt	VR2 dispatch_notvoid0
-	VR3	<-	str_const0
-	VR4	<-	30
-	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid0:
-	## prepare self and actual parameters
-	## compute the target address
-	VR3	<-	Base_dispatch
-	load	VR3 [VR3, 28]
-	( VR2 )	<-	call VR3 ( VR2 )
-	## store let result over let var me
-	VR1	<-	VR2
-	## begin let - line 32
-	## begin new - line 32
-	VR1	<-	Derived_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Derived_init ( VR1 )
-	## let var me in VR1
-	## begin dispatch - line 33
-	VR2	<-	VR1
-	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid1
-	jumpt	VR2 dispatch_notvoid1
-	VR3	<-	str_const0
-	VR4	<-	33
-	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid1:
-	## prepare self and actual parameters
-	## compute the target address
-	VR3	<-	Base_dispatch
-	load	VR3 [VR3, 28]
-	( VR2 )	<-	call VR3 ( VR2 )
-	## store let result over let var me
-	VR1	<-	VR2
-	## begin let - line 35
-	## begin new - line 35
-	VR1	<-	Derived_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Derived_init ( VR1 )
-	## let var me in VR1
-	## begin dispatch - line 37
-	VR2	<-	VR1
-	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid2
-	jumpt	VR2 dispatch_notvoid2
-	VR3	<-	str_const0
-	VR4	<-	37
-	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid2:
-	## prepare self and actual parameters
-	## compute the target address
-	VR3	<-	Base_dispatch
-	load	VR3 [VR3, 28]
-	( VR2 )	<-	call VR3 ( VR2 )
-	## begin dispatch - line 38
-	VR2	<-	VR1
-	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid3
-	jumpt	VR2 dispatch_notvoid3
-	VR3	<-	str_const0
-	VR4	<-	38
-	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid3:
-	## prepare self and actual parameters
-	## compute the target address
-	VR3	<-	Derived_dispatch
-	load	VR3 [VR3, 28]
-	( VR2 )	<-	call VR3 ( VR2 )
-	## store let result over let var me
-	VR1	<-	VR2
-	return	VR1
+	call Object_init ( VR0 )
+	return	
 .end
 
 .function "Base.identify", 1, 1
@@ -145,22 +58,22 @@ Base.identify:
 	## begin dispatch - line 5
 	VR1	<-	VR0
 	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid4
-	jumpt	VR1 dispatch_notvoid4
+	## dispatch to void handling, ends at dispatch_notvoid0
+	jumpt	VR1 dispatch_notvoid0
 	VR2	<-	str_const0
 	VR3	<-	5
 	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid4:
+dispatch_notvoid0:
 	## actual parameter 1
 	## begin dispatch - line 5
 	VR2	<-	VR0
 	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid5
-	jumpt	VR2 dispatch_notvoid5
+	## dispatch to void handling, ends at dispatch_notvoid1
+	jumpt	VR2 dispatch_notvoid1
 	VR3	<-	str_const0
 	VR4	<-	5
 	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid5:
+dispatch_notvoid1:
 	## prepare self and actual parameters
 	## compute the target address
 	load	VR3 [VR2, 8]
@@ -174,12 +87,12 @@ dispatch_notvoid5:
 	## begin dispatch - line 6
 	VR1	<-	VR0
 	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid6
-	jumpt	VR1 dispatch_notvoid6
+	## dispatch to void handling, ends at dispatch_notvoid2
+	jumpt	VR1 dispatch_notvoid2
 	VR2	<-	str_const0
 	VR3	<-	6
 	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid6:
+dispatch_notvoid2:
 	## actual parameter 1
 	VR2	<-	str_const1
 	## prepare self and actual parameters
@@ -198,12 +111,12 @@ Derived.out_string:
 	## begin dispatch - line 16
 	VR2	<-	VR0
 	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid7
-	jumpt	VR2 dispatch_notvoid7
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR2 dispatch_notvoid3
 	VR3	<-	str_const0
 	VR4	<-	16
 	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid7:
+dispatch_notvoid3:
 	## actual parameter 1
 	VR3	<-	str_const2
 	## prepare self and actual parameters
@@ -214,12 +127,12 @@ dispatch_notvoid7:
 	## begin dispatch - line 17
 	VR2	<-	VR0
 	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid8
-	jumpt	VR2 dispatch_notvoid8
+	## dispatch to void handling, ends at dispatch_notvoid4
+	jumpt	VR2 dispatch_notvoid4
 	VR3	<-	str_const0
 	VR4	<-	17
 	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid8:
+dispatch_notvoid4:
 	## actual parameter 1
 	VR3	<-	VR1
 	## prepare self and actual parameters
@@ -230,12 +143,12 @@ dispatch_notvoid8:
 	## begin dispatch - line 18
 	VR2	<-	VR0
 	## caller in VR2
-	## dispatch to void handling, ends at dispatch_notvoid9
-	jumpt	VR2 dispatch_notvoid9
+	## dispatch to void handling, ends at dispatch_notvoid5
+	jumpt	VR2 dispatch_notvoid5
 	VR3	<-	str_const0
 	VR4	<-	18
 	call void_disp_handler ( VR3 VR4 )
-dispatch_notvoid9:
+dispatch_notvoid5:
 	## actual parameter 1
 	VR3	<-	str_const1
 	## prepare self and actual parameters
@@ -244,6 +157,93 @@ dispatch_notvoid9:
 	load	VR4 [VR4, 12]
 	( VR2 )	<-	call VR4 ( VR2 VR3 )
 	return	VR2
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin let - line 29
+	## begin new - line 29
+	VR1	<-	Base_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Base_init ( VR1 )
+	## let var me in VR1
+	## begin dispatch - line 30
+	VR2	<-	VR1
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid6
+	jumpt	VR2 dispatch_notvoid6
+	VR3	<-	str_const0
+	VR4	<-	30
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid6:
+	## prepare self and actual parameters
+	## compute the target address
+	VR3	<-	Base_dispatch
+	load	VR3 [VR3, 28]
+	( VR2 )	<-	call VR3 ( VR2 )
+	## store let result over let var me
+	VR1	<-	VR2
+	## begin let - line 32
+	## begin new - line 32
+	VR1	<-	Derived_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Derived_init ( VR1 )
+	## let var me in VR1
+	## begin dispatch - line 33
+	VR2	<-	VR1
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid7
+	jumpt	VR2 dispatch_notvoid7
+	VR3	<-	str_const0
+	VR4	<-	33
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid7:
+	## prepare self and actual parameters
+	## compute the target address
+	VR3	<-	Base_dispatch
+	load	VR3 [VR3, 28]
+	( VR2 )	<-	call VR3 ( VR2 )
+	## store let result over let var me
+	VR1	<-	VR2
+	## begin let - line 35
+	## begin new - line 35
+	VR1	<-	Derived_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Derived_init ( VR1 )
+	## let var me in VR1
+	## begin dispatch - line 37
+	VR2	<-	VR1
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid8
+	jumpt	VR2 dispatch_notvoid8
+	VR3	<-	str_const0
+	VR4	<-	37
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid8:
+	## prepare self and actual parameters
+	## compute the target address
+	VR3	<-	Base_dispatch
+	load	VR3 [VR3, 28]
+	( VR2 )	<-	call VR3 ( VR2 )
+	## begin dispatch - line 38
+	VR2	<-	VR1
+	## caller in VR2
+	## dispatch to void handling, ends at dispatch_notvoid9
+	jumpt	VR2 dispatch_notvoid9
+	VR3	<-	str_const0
+	VR4	<-	38
+	call void_disp_handler ( VR3 VR4 )
+dispatch_notvoid9:
+	## prepare self and actual parameters
+	## compute the target address
+	VR3	<-	Derived_dispatch
+	load	VR3 [VR3, 28]
+	( VR2 )	<-	call VR3 ( VR2 )
+	## store let result over let var me
+	VR1	<-	VR2
+	return	VR1
 .end
 
 #### data section
@@ -355,16 +355,16 @@ str_const1:
 	DS	3
 str_const0:
 	DW	3
-	DW	17
+	DW	11
 	DL	String_dispatch
 	DL	int_const11
-	DB	"./coolc.codegen.tests-2.0/simple/override-basic.cl"
-	DS	2
+	DB	"simple/override-basic.cl"
+	DS	4
 int_const11:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	50
+	DW	24
 int_const10:
 	DW	1
 	DW	4
@@ -437,9 +437,9 @@ class_nameTab:
 	DL	str_const9
 	DL	str_const10
 	DL	str_const11
-	DL	str_const14
 	DL	str_const12
 	DL	str_const13
+	DL	str_const14
 #### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
@@ -452,18 +452,13 @@ class_objTab:
 	DL	String_init
 	DL	IO_protObj
 	DL	IO_init
-	DL	Main_protObj
-	DL	Main_init
 	DL	Base_protObj
 	DL	Base_init
 	DL	Derived_protObj
 	DL	Derived_init
+	DL	Main_protObj
+	DL	Main_init
 #### dispatch tables
-Main_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	Main.main
 Base_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -482,16 +477,21 @@ Derived_dispatch:
 	DL	IO.in_string
 	DL	IO.in_int
 	DL	Base.identify
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
 #### prototype objects
-Main_protObj:
-	DW	5
-	DW	3
-	DL	Main_dispatch
 Base_protObj:
-	DW	6
+	DW	5
 	DW	3
 	DL	Base_dispatch
 Derived_protObj:
-	DW	7
+	DW	6
 	DW	3
 	DL	Derived_dispatch
+Main_protObj:
+	DW	7
+	DW	3
+	DL	Main_dispatch

@@ -46,6 +46,14 @@ P_init:
 	return	
 .end
 
+.function "C init code", 1, 0
+C_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call P_init ( VR0 )
+	return	
+.end
+
 .function "Main init code", 1, 0
 Main_init:
 	## store self into the reserved VR0
@@ -65,14 +73,6 @@ Main_init:
 	call P_init ( VR1 )
 	## store rhs in VR1 to attribute p
 	store	VR1 [VR0, 16]
-	return	
-.end
-
-.function "C init code", 1, 0
-C_init:
-	## store self into the reserved VR0
-	VR0	<-	VI0
-	call P_init ( VR0 )
 	return	
 .end
 
@@ -138,42 +138,6 @@ dispatch_notvoid2:
 	return	VR1
 .end
 
-.function "Main.main", 1, 1
-Main.main:
-	## store self and arguments into the reserved VR0..VR0
-	VR0	<-	VI0
-	## begin dispatch - line 38
-	load	VR1 [VR0, 16]
-	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid3
-	jumpt	VR1 dispatch_notvoid3
-	VR2	<-	str_const0
-	VR3	<-	38
-	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid3:
-	## prepare self and actual parameters
-	## compute the target address
-	load	VR2 [VR1, 8]
-	load	VR2 [VR2, 12]
-	( VR1 )	<-	call VR2 ( VR1 )
-	## begin dispatch - line 39
-	load	VR1 [VR0, 12]
-	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid4
-	jumpt	VR1 dispatch_notvoid4
-	VR2	<-	str_const0
-	VR3	<-	39
-	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid4:
-	## prepare self and actual parameters
-	## compute the target address
-	load	VR2 [VR1, 8]
-	load	VR2 [VR2, 12]
-	( VR1 )	<-	call VR2 ( VR1 )
-	VR1	<-	0
-	return	VR1
-.end
-
 .function "C.method", 1, 1
 C.method:
 	## store self and arguments into the reserved VR0..VR0
@@ -181,12 +145,12 @@ C.method:
 	## begin dispatch - line 21
 	load	VR1 [VR0, 16]
 	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid5
-	jumpt	VR1 dispatch_notvoid5
+	## dispatch to void handling, ends at dispatch_notvoid3
+	jumpt	VR1 dispatch_notvoid3
 	VR2	<-	str_const0
 	VR3	<-	21
 	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid5:
+dispatch_notvoid3:
 	## actual parameter 1
 	VR2	<-	str_const3
 	## prepare self and actual parameters
@@ -197,12 +161,12 @@ dispatch_notvoid5:
 	## begin dispatch - line 22
 	load	VR1 [VR0, 16]
 	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid6
-	jumpt	VR1 dispatch_notvoid6
+	## dispatch to void handling, ends at dispatch_notvoid4
+	jumpt	VR1 dispatch_notvoid4
 	VR2	<-	str_const0
 	VR3	<-	22
 	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid6:
+dispatch_notvoid4:
 	## actual parameter 1
 	load	VR2 [VR0, 12]
 	# boxing integer from VR2 to VR3
@@ -219,12 +183,12 @@ dispatch_notvoid6:
 	## begin dispatch - line 23
 	load	VR1 [VR0, 16]
 	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid7
-	jumpt	VR1 dispatch_notvoid7
+	## dispatch to void handling, ends at dispatch_notvoid5
+	jumpt	VR1 dispatch_notvoid5
 	VR2	<-	str_const0
 	VR3	<-	23
 	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid7:
+dispatch_notvoid5:
 	## actual parameter 1
 	VR2	<-	str_const2
 	## prepare self and actual parameters
@@ -235,18 +199,54 @@ dispatch_notvoid7:
 	## begin dispatch - line 24
 	VR1	<-	VR0
 	## caller in VR1
-	## dispatch to void handling, ends at dispatch_notvoid8
-	jumpt	VR1 dispatch_notvoid8
+	## dispatch to void handling, ends at dispatch_notvoid6
+	jumpt	VR1 dispatch_notvoid6
 	VR2	<-	str_const0
 	VR3	<-	24
 	call void_disp_handler ( VR2 VR3 )
-dispatch_notvoid8:
+dispatch_notvoid6:
 	## prepare self and actual parameters
 	## compute the target address
 	VR2	<-	P_dispatch
 	load	VR2 [VR2, 12]
 	( VR1 )	<-	call VR2 ( VR1 )
 	VR1	<-	VR0
+	return	VR1
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	## begin dispatch - line 38
+	load	VR1 [VR0, 16]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid7
+	jumpt	VR1 dispatch_notvoid7
+	VR2	<-	str_const0
+	VR3	<-	38
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid7:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	( VR1 )	<-	call VR2 ( VR1 )
+	## begin dispatch - line 39
+	load	VR1 [VR0, 12]
+	## caller in VR1
+	## dispatch to void handling, ends at dispatch_notvoid8
+	jumpt	VR1 dispatch_notvoid8
+	VR2	<-	str_const0
+	VR3	<-	39
+	call void_disp_handler ( VR2 VR3 )
+dispatch_notvoid8:
+	## prepare self and actual parameters
+	## compute the target address
+	load	VR2 [VR1, 8]
+	load	VR2 [VR2, 12]
+	( VR1 )	<-	call VR2 ( VR1 )
+	VR1	<-	0
 	return	VR1
 .end
 
@@ -366,16 +366,16 @@ str_const1:
 	DS	1
 str_const0:
 	DW	3
-	DW	16
+	DW	10
 	DL	String_dispatch
 	DL	int_const10
-	DB	"./coolc.codegen.tests-2.0/simple/inheritance.cl"
-	DS	1
+	DB	"simple/inheritance.cl"
+	DS	3
 int_const10:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	47
+	DW	21
 int_const9:
 	DW	1
 	DW	4
@@ -444,8 +444,8 @@ class_nameTab:
 	DL	str_const11
 	DL	str_const12
 	DL	str_const13
-	DL	str_const15
 	DL	str_const14
+	DL	str_const15
 #### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
@@ -460,26 +460,26 @@ class_objTab:
 	DL	IO_init
 	DL	P_protObj
 	DL	P_init
-	DL	Main_protObj
-	DL	Main_init
 	DL	C_protObj
 	DL	C_init
+	DL	Main_protObj
+	DL	Main_init
 #### dispatch tables
 P_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
 	DL	P.method
-Main_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	Main.main
 C_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
 	DL	C.method
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
 #### prototype objects
 P_protObj:
 	DW	5
@@ -487,15 +487,15 @@ P_protObj:
 	DL	P_dispatch
 	DW	0
 	DW	0
-Main_protObj:
+C_protObj:
 	DW	6
 	DW	5
-	DL	Main_dispatch
+	DL	C_dispatch
 	DW	0
 	DW	0
-C_protObj:
+Main_protObj:
 	DW	7
 	DW	5
-	DL	C_dispatch
+	DL	Main_dispatch
 	DW	0
 	DW	0

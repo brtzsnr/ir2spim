@@ -35,21 +35,6 @@ A_init:
 	return	
 .end
 
-.function "Main init code", 1, 0
-Main_init:
-	## store self into the reserved VR0
-	VR0	<-	VI0
-	call Object_init ( VR0 )
-	## begin assign - line 21
-	## begin new - line 21
-	VR1	<-	IO_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call IO_init ( VR1 )
-	## store rhs in VR1 to attribute io
-	store	VR1 [VR0, 12]
-	return	
-.end
-
 .function "B init code", 1, 0
 B_init:
 	## store self into the reserved VR0
@@ -178,6 +163,21 @@ Q_init:
 	return	
 .end
 
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
+	VR0	<-	VI0
+	call Object_init ( VR0 )
+	## begin assign - line 21
+	## begin new - line 21
+	VR1	<-	IO_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call IO_init ( VR1 )
+	## store rhs in VR1 to attribute io
+	store	VR1 [VR0, 12]
+	return	
+.end
+
 .function "Main.main", 1, 1
 Main.main:
 	## store self and arguments into the reserved VR0..VR0
@@ -217,120 +217,120 @@ loop_start0:
 	call void_case_handler ( VR6 VR7 )
 case0_notvoid:
 	load	VR6 [VR5, 0]
-case0_tag22:
-	VR7	<-	VR6 = 22
-	jumpf	VR7 case0_tag21
-	VR6	<-	17
-	jump	case0_end
 case0_tag21:
-	VR7	<-	VR6 < 21
-	jumpt	VR7 case0_tag20
-	VR7	<-	22 < VR6
-	jumpt	VR7 case0_tag20
-	VR6	<-	16
+	VR7	<-	VR6 = 21
+	jumpf	VR7 case0_tag20
+	VR6	<-	17
 	jump	case0_end
 case0_tag20:
 	VR7	<-	VR6 < 20
 	jumpt	VR7 case0_tag19
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag19
-	VR6	<-	15
+	VR6	<-	16
 	jump	case0_end
 case0_tag19:
 	VR7	<-	VR6 < 19
 	jumpt	VR7 case0_tag18
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag18
-	VR6	<-	14
+	VR6	<-	15
 	jump	case0_end
 case0_tag18:
 	VR7	<-	VR6 < 18
 	jumpt	VR7 case0_tag17
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag17
-	VR6	<-	13
+	VR6	<-	14
 	jump	case0_end
 case0_tag17:
 	VR7	<-	VR6 < 17
 	jumpt	VR7 case0_tag16
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag16
-	VR6	<-	12
+	VR6	<-	13
 	jump	case0_end
 case0_tag16:
 	VR7	<-	VR6 < 16
 	jumpt	VR7 case0_tag15
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag15
-	VR6	<-	11
+	VR6	<-	12
 	jump	case0_end
 case0_tag15:
 	VR7	<-	VR6 < 15
 	jumpt	VR7 case0_tag14
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag14
-	VR6	<-	10
+	VR6	<-	11
 	jump	case0_end
 case0_tag14:
 	VR7	<-	VR6 < 14
 	jumpt	VR7 case0_tag13
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag13
-	VR6	<-	9
+	VR6	<-	10
 	jump	case0_end
 case0_tag13:
 	VR7	<-	VR6 < 13
 	jumpt	VR7 case0_tag12
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag12
-	VR6	<-	8
+	VR6	<-	9
 	jump	case0_end
 case0_tag12:
 	VR7	<-	VR6 < 12
 	jumpt	VR7 case0_tag11
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag11
-	VR6	<-	7
+	VR6	<-	8
 	jump	case0_end
 case0_tag11:
 	VR7	<-	VR6 < 11
 	jumpt	VR7 case0_tag10
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag10
-	VR6	<-	6
+	VR6	<-	7
 	jump	case0_end
 case0_tag10:
 	VR7	<-	VR6 < 10
 	jumpt	VR7 case0_tag9
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag9
-	VR6	<-	5
+	VR6	<-	6
 	jump	case0_end
 case0_tag9:
 	VR7	<-	VR6 < 9
 	jumpt	VR7 case0_tag8
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag8
-	VR6	<-	4
+	VR6	<-	5
 	jump	case0_end
 case0_tag8:
 	VR7	<-	VR6 < 8
 	jumpt	VR7 case0_tag7
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag7
-	VR6	<-	3
+	VR6	<-	4
 	jump	case0_end
 case0_tag7:
 	VR7	<-	VR6 < 7
+	jumpt	VR7 case0_tag6
+	VR7	<-	21 < VR6
+	jumpt	VR7 case0_tag6
+	VR6	<-	3
+	jump	case0_end
+case0_tag6:
+	VR7	<-	VR6 < 6
 	jumpt	VR7 case0_tag5
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_tag5
 	VR6	<-	2
 	jump	case0_end
 case0_tag5:
 	VR7	<-	VR6 < 5
 	jumpt	VR7 case0_error
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case0_error
 	VR6	<-	1
 	jump	case0_end
@@ -414,120 +414,120 @@ loop_start1:
 	call void_case_handler ( VR6 VR7 )
 case1_notvoid:
 	load	VR6 [VR5, 0]
-case1_tag22:
-	VR7	<-	VR6 = 22
-	jumpf	VR7 case1_tag21
-	VR6	<-	17
-	jump	case1_end
 case1_tag21:
-	VR7	<-	VR6 < 21
-	jumpt	VR7 case1_tag20
-	VR7	<-	22 < VR6
-	jumpt	VR7 case1_tag20
-	VR6	<-	16
+	VR7	<-	VR6 = 21
+	jumpf	VR7 case1_tag20
+	VR6	<-	17
 	jump	case1_end
 case1_tag20:
 	VR7	<-	VR6 < 20
 	jumpt	VR7 case1_tag19
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag19
-	VR6	<-	15
+	VR6	<-	16
 	jump	case1_end
 case1_tag19:
 	VR7	<-	VR6 < 19
 	jumpt	VR7 case1_tag18
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag18
-	VR6	<-	14
+	VR6	<-	15
 	jump	case1_end
 case1_tag18:
 	VR7	<-	VR6 < 18
 	jumpt	VR7 case1_tag17
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag17
-	VR6	<-	13
+	VR6	<-	14
 	jump	case1_end
 case1_tag17:
 	VR7	<-	VR6 < 17
 	jumpt	VR7 case1_tag16
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag16
-	VR6	<-	12
+	VR6	<-	13
 	jump	case1_end
 case1_tag16:
 	VR7	<-	VR6 < 16
 	jumpt	VR7 case1_tag15
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag15
-	VR6	<-	11
+	VR6	<-	12
 	jump	case1_end
 case1_tag15:
 	VR7	<-	VR6 < 15
 	jumpt	VR7 case1_tag14
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag14
-	VR6	<-	10
+	VR6	<-	11
 	jump	case1_end
 case1_tag14:
 	VR7	<-	VR6 < 14
 	jumpt	VR7 case1_tag13
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag13
-	VR6	<-	9
+	VR6	<-	10
 	jump	case1_end
 case1_tag13:
 	VR7	<-	VR6 < 13
 	jumpt	VR7 case1_tag12
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag12
-	VR6	<-	8
+	VR6	<-	9
 	jump	case1_end
 case1_tag12:
 	VR7	<-	VR6 < 12
 	jumpt	VR7 case1_tag11
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag11
-	VR6	<-	7
+	VR6	<-	8
 	jump	case1_end
 case1_tag11:
 	VR7	<-	VR6 < 11
 	jumpt	VR7 case1_tag10
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag10
-	VR6	<-	6
+	VR6	<-	7
 	jump	case1_end
 case1_tag10:
 	VR7	<-	VR6 < 10
 	jumpt	VR7 case1_tag9
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag9
-	VR6	<-	5
+	VR6	<-	6
 	jump	case1_end
 case1_tag9:
 	VR7	<-	VR6 < 9
 	jumpt	VR7 case1_tag8
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag8
-	VR6	<-	4
+	VR6	<-	5
 	jump	case1_end
 case1_tag8:
 	VR7	<-	VR6 < 8
 	jumpt	VR7 case1_tag7
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag7
-	VR6	<-	3
+	VR6	<-	4
 	jump	case1_end
 case1_tag7:
 	VR7	<-	VR6 < 7
+	jumpt	VR7 case1_tag6
+	VR7	<-	21 < VR6
+	jumpt	VR7 case1_tag6
+	VR6	<-	3
+	jump	case1_end
+case1_tag6:
+	VR7	<-	VR6 < 6
 	jumpt	VR7 case1_tag5
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_tag5
 	VR6	<-	2
 	jump	case1_end
 case1_tag5:
 	VR7	<-	VR6 < 5
 	jumpt	VR7 case1_error
-	VR7	<-	22 < VR6
+	VR7	<-	21 < VR6
 	jumpt	VR7 case1_error
 	VR6	<-	1
 	jump	case1_end
@@ -815,16 +815,16 @@ str_const1:
 	DS	3
 str_const0:
 	DW	3
-	DW	16
+	DW	9
 	DL	String_dispatch
 	DL	int_const19
-	DB	"./coolc.codegen.tests-2.0/simple/caseloop.cl"
-	DS	4
+	DB	"simple/caseloop.cl"
+	DS	2
 int_const19:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	44
+	DW	18
 int_const18:
 	DW	1
 	DW	4
@@ -938,7 +938,6 @@ class_nameTab:
 	DL	str_const10
 	DL	str_const11
 	DL	str_const12
-	DL	str_const29
 	DL	str_const13
 	DL	str_const14
 	DL	str_const15
@@ -955,6 +954,7 @@ class_nameTab:
 	DL	str_const26
 	DL	str_const27
 	DL	str_const28
+	DL	str_const29
 #### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
@@ -969,8 +969,6 @@ class_objTab:
 	DL	IO_init
 	DL	A_protObj
 	DL	A_init
-	DL	Main_protObj
-	DL	Main_init
 	DL	B_protObj
 	DL	B_init
 	DL	C_protObj
@@ -1003,16 +1001,13 @@ class_objTab:
 	DL	P_init
 	DL	Q_protObj
 	DL	Q_init
+	DL	Main_protObj
+	DL	Main_init
 #### dispatch tables
 A_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
-Main_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	Main.main
 B_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -1077,77 +1072,82 @@ Q_dispatch:
 	DL	Object.abort
 	DL	Object.copy
 	DL	Object.type_name
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
 #### prototype objects
 A_protObj:
 	DW	5
 	DW	3
 	DL	A_dispatch
-Main_protObj:
-	DW	6
-	DW	4
-	DL	Main_dispatch
-	DW	0
 B_protObj:
-	DW	7
+	DW	6
 	DW	3
 	DL	B_dispatch
 C_protObj:
-	DW	8
+	DW	7
 	DW	3
 	DL	C_dispatch
 D_protObj:
-	DW	9
+	DW	8
 	DW	3
 	DL	D_dispatch
 E_protObj:
-	DW	10
+	DW	9
 	DW	3
 	DL	E_dispatch
 F_protObj:
-	DW	11
+	DW	10
 	DW	3
 	DL	F_dispatch
 G_protObj:
-	DW	12
+	DW	11
 	DW	3
 	DL	G_dispatch
 H_protObj:
-	DW	13
+	DW	12
 	DW	3
 	DL	H_dispatch
 I_protObj:
-	DW	14
+	DW	13
 	DW	3
 	DL	I_dispatch
 J_protObj:
-	DW	15
+	DW	14
 	DW	3
 	DL	J_dispatch
 K_protObj:
-	DW	16
+	DW	15
 	DW	3
 	DL	K_dispatch
 L_protObj:
-	DW	17
+	DW	16
 	DW	3
 	DL	L_dispatch
 M_protObj:
-	DW	18
+	DW	17
 	DW	3
 	DL	M_dispatch
 N_protObj:
-	DW	19
+	DW	18
 	DW	3
 	DL	N_dispatch
 O_protObj:
-	DW	20
+	DW	19
 	DW	3
 	DL	O_dispatch
 P_protObj:
-	DW	21
+	DW	20
 	DW	3
 	DL	P_dispatch
 Q_protObj:
-	DW	22
+	DW	21
 	DW	3
 	DL	Q_dispatch
+Main_protObj:
+	DW	22
+	DW	4
+	DL	Main_dispatch
+	DW	0

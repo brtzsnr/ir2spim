@@ -161,16 +161,16 @@ str_const1:
 	DS	3
 str_const0:
 	DW	3
-	DW	17
+	DW	11
 	DL	String_dispatch
 	DL	int_const9
-	DB	"./coolc.codegen.tests-2.0/error/dispatch_to_void.cl"
-	DS	1
+	DB	"error/dispatch_to_void.cl"
+	DS	3
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	51
+	DW	25
 int_const8:
 	DW	1
 	DW	4

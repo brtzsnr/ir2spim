@@ -78,7 +78,7 @@ loop_start0:
 	VR1	<-	2
 	## store rhs in VR1 to attribute divisor
 	store	VR1 [VR0, 20]
-	## begin loop - line 53
+	## begin loop - line 52
 loop_start1:
 	## begin if-then-else - line 53
 	## < operator - line 53
@@ -334,16 +334,16 @@ str_const1:
 	DS	2
 str_const0:
 	DW	3
-	DW	16
+	DW	9
 	DL	String_dispatch
 	DL	int_const13
-	DB	"./coolc.codegen.tests-2.0/advanced/primes.cl"
-	DS	4
+	DB	"advanced/primes.cl"
+	DS	2
 int_const13:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	44
+	DW	18
 int_const12:
 	DW	1
 	DW	4

@@ -27,42 +27,6 @@ void_case_handler:
 	return
 .end
 
-.function "Main init code", 1, 0
-Main_init:
-	## store self into the reserved VR0
-	VR0	<-	VI0
-	call Object_init ( VR0 )
-	## begin assign - line 55
-	## begin new - line 55
-	VR1	<-	Bazz_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Bazz_init ( VR1 )
-	## store rhs in VR1 to attribute a
-	store	VR1 [VR0, 12]
-	## begin assign - line 56
-	## begin new - line 56
-	VR1	<-	Foo_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Foo_init ( VR1 )
-	## store rhs in VR1 to attribute b
-	store	VR1 [VR0, 16]
-	## begin assign - line 57
-	## begin new - line 57
-	VR1	<-	Razz_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Razz_init ( VR1 )
-	## store rhs in VR1 to attribute c
-	store	VR1 [VR0, 20]
-	## begin assign - line 58
-	## begin new - line 58
-	VR1	<-	Bar_protObj
-	( VR1 )	<-	call Object.copy ( VR1 )
-	call Bar_init ( VR1 )
-	## store rhs in VR1 to attribute d
-	store	VR1 [VR0, 24]
-	return	
-.end
-
 .function "Bazz init code", 1, 0
 Bazz_init:
 	## store self into the reserved VR0
@@ -82,35 +46,35 @@ Bazz_init:
 	call void_case_handler ( VR2 VR3 )
 case0_notvoid:
 	load	VR2 [VR1, 0]
-case0_tag9:
-	VR3	<-	VR2 = 9
-	jumpf	VR3 case0_tag8
+case0_tag8:
+	VR3	<-	VR2 = 8
+	jumpf	VR3 case0_tag7
 	VR2	<-	VR1
 	jump	case0_end
-case0_tag8:
-	VR3	<-	VR2 < 8
-	jumpt	VR3 case0_tag7
-	VR3	<-	9 < VR2
-	jumpt	VR3 case0_tag7
+case0_tag7:
+	VR3	<-	VR2 < 7
+	jumpt	VR3 case0_tag6
+	VR3	<-	8 < VR2
+	jumpt	VR3 case0_tag6
 	## begin new - line 41
 	VR2	<-	Bar_protObj
 	( VR2 )	<-	call Object.copy ( VR2 )
 	call Bar_init ( VR2 )
 	jump	case0_end
-case0_tag7:
-	VR3	<-	VR2 < 7
-	jumpt	VR3 case0_tag6
-	VR3	<-	9 < VR2
-	jumpt	VR3 case0_tag6
+case0_tag6:
+	VR3	<-	VR2 < 6
+	jumpt	VR3 case0_tag5
+	VR3	<-	8 < VR2
+	jumpt	VR3 case0_tag5
 	## begin new - line 42
 	VR2	<-	Razz_protObj
 	( VR2 )	<-	call Object.copy ( VR2 )
 	call Razz_init ( VR2 )
 	jump	case0_end
-case0_tag6:
-	VR3	<-	VR2 < 6
+case0_tag5:
+	VR3	<-	VR2 < 5
 	jumpt	VR3 case0_error
-	VR3	<-	9 < VR2
+	VR3	<-	8 < VR2
 	jumpt	VR3 case0_error
 	## begin new - line 40
 	VR2	<-	Foo_protObj
@@ -164,25 +128,25 @@ Foo_init:
 	call void_case_handler ( VR2 VR3 )
 case1_notvoid:
 	load	VR2 [VR1, 0]
-case1_tag9:
-	VR3	<-	VR2 = 9
-	jumpf	VR3 case1_tag8
+case1_tag8:
+	VR3	<-	VR2 = 8
+	jumpf	VR3 case1_tag7
 	VR2	<-	VR1
 	jump	case1_end
-case1_tag8:
-	VR3	<-	VR2 < 8
-	jumpt	VR3 case1_tag7
-	VR3	<-	9 < VR2
-	jumpt	VR3 case1_tag7
+case1_tag7:
+	VR3	<-	VR2 < 7
+	jumpt	VR3 case1_tag6
+	VR3	<-	8 < VR2
+	jumpt	VR3 case1_tag6
 	## begin new - line 5
 	VR2	<-	Bar_protObj
 	( VR2 )	<-	call Object.copy ( VR2 )
 	call Bar_init ( VR2 )
 	jump	case1_end
-case1_tag7:
-	VR3	<-	VR2 < 7
+case1_tag6:
+	VR3	<-	VR2 < 6
 	jumpt	VR3 case1_error
-	VR3	<-	9 < VR2
+	VR3	<-	8 < VR2
 	jumpt	VR3 case1_error
 	## begin new - line 6
 	VR2	<-	Razz_protObj
@@ -278,15 +242,15 @@ Razz_init:
 	call void_case_handler ( VR2 VR3 )
 case2_notvoid:
 	load	VR2 [VR1, 0]
-case2_tag9:
-	VR3	<-	VR2 = 9
-	jumpf	VR3 case2_tag8
+case2_tag8:
+	VR3	<-	VR2 = 8
+	jumpf	VR3 case2_tag7
 	VR2	<-	VR1
 	jump	case2_end
-case2_tag8:
-	VR3	<-	VR2 < 8
+case2_tag7:
+	VR3	<-	VR2 < 7
 	jumpt	VR3 case2_error
-	VR3	<-	9 < VR2
+	VR3	<-	8 < VR2
 	jumpt	VR3 case2_error
 	## begin new - line 27
 	VR2	<-	Bar_protObj
@@ -431,12 +395,40 @@ dispatch_notvoid11:
 	return	
 .end
 
-.function "Main.main", 1, 1
-Main.main:
-	## store self and arguments into the reserved VR0..VR0
+.function "Main init code", 1, 0
+Main_init:
+	## store self into the reserved VR0
 	VR0	<-	VI0
-	VR1	<-	str_const1
-	return	VR1
+	call Object_init ( VR0 )
+	## begin assign - line 55
+	## begin new - line 55
+	VR1	<-	Bazz_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Bazz_init ( VR1 )
+	## store rhs in VR1 to attribute a
+	store	VR1 [VR0, 12]
+	## begin assign - line 56
+	## begin new - line 56
+	VR1	<-	Foo_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Foo_init ( VR1 )
+	## store rhs in VR1 to attribute b
+	store	VR1 [VR0, 16]
+	## begin assign - line 57
+	## begin new - line 57
+	VR1	<-	Razz_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Razz_init ( VR1 )
+	## store rhs in VR1 to attribute c
+	store	VR1 [VR0, 20]
+	## begin assign - line 58
+	## begin new - line 58
+	VR1	<-	Bar_protObj
+	( VR1 )	<-	call Object.copy ( VR1 )
+	call Bar_init ( VR1 )
+	## store rhs in VR1 to attribute d
+	store	VR1 [VR0, 24]
+	return	
 .end
 
 .function "Bazz.printh", 1, 1
@@ -506,6 +498,14 @@ Foo.doh:
 	VR2	<-	VR1
 	## store let result over let var i
 	VR1	<-	VR2
+	return	VR1
+.end
+
+.function "Main.main", 1, 1
+Main.main:
+	## store self and arguments into the reserved VR0..VR0
+	VR0	<-	VI0
+	VR1	<-	str_const1
 	return	VR1
 .end
 
@@ -625,16 +625,16 @@ str_const1:
 	DS	2
 str_const0:
 	DW	3
-	DW	17
+	DW	10
 	DL	String_dispatch
 	DL	int_const9
-	DB	"./coolc.codegen.tests-2.0/advanced/hairyscary.cl"
-	DS	4
+	DB	"advanced/hairyscary.cl"
+	DS	2
 int_const9:
 	DW	1
 	DW	4
 	DL	Object_dispatch
-	DW	48
+	DW	22
 int_const8:
 	DW	1
 	DW	4
@@ -697,11 +697,11 @@ class_nameTab:
 	DL	str_const8
 	DL	str_const9
 	DL	str_const10
-	DL	str_const15
 	DL	str_const14
 	DL	str_const11
 	DL	str_const13
 	DL	str_const12
+	DL	str_const15
 #### prototypes and init by tag
 class_objTab:
 	DL	Object_protObj
@@ -714,8 +714,6 @@ class_objTab:
 	DL	String_init
 	DL	IO_protObj
 	DL	IO_init
-	DL	Main_protObj
-	DL	Main_init
 	DL	Bazz_protObj
 	DL	Bazz_init
 	DL	Foo_protObj
@@ -724,12 +722,9 @@ class_objTab:
 	DL	Razz_init
 	DL	Bar_protObj
 	DL	Bar_init
+	DL	Main_protObj
+	DL	Main_init
 #### dispatch tables
-Main_dispatch:
-	DL	Object.abort
-	DL	Object.copy
-	DL	Object.type_name
-	DL	Main.main
 Bazz_dispatch:
 	DL	Object.abort
 	DL	Object.copy
@@ -770,24 +765,21 @@ Bar_dispatch:
 	DL	IO.in_int
 	DL	Bazz.printh
 	DL	Foo.doh
+Main_dispatch:
+	DL	Object.abort
+	DL	Object.copy
+	DL	Object.type_name
+	DL	Main.main
 #### prototype objects
-Main_protObj:
-	DW	5
-	DW	7
-	DL	Main_dispatch
-	DW	0
-	DW	0
-	DW	0
-	DW	0
 Bazz_protObj:
-	DW	6
+	DW	5
 	DW	6
 	DL	Bazz_dispatch
 	DW	0
 	DW	0
 	DW	0
 Foo_protObj:
-	DW	7
+	DW	6
 	DW	8
 	DL	Foo_dispatch
 	DW	0
@@ -796,7 +788,7 @@ Foo_protObj:
 	DW	0
 	DW	0
 Razz_protObj:
-	DW	8
+	DW	7
 	DW	10
 	DL	Razz_dispatch
 	DW	0
@@ -807,7 +799,7 @@ Razz_protObj:
 	DW	0
 	DW	0
 Bar_protObj:
-	DW	9
+	DW	8
 	DW	12
 	DL	Bar_dispatch
 	DW	0
@@ -815,6 +807,14 @@ Bar_protObj:
 	DW	0
 	DW	0
 	DW	0
+	DW	0
+	DW	0
+	DW	0
+	DW	0
+Main_protObj:
+	DW	9
+	DW	7
+	DL	Main_dispatch
 	DW	0
 	DW	0
 	DW	0
