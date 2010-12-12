@@ -1,3 +1,4 @@
+# -*- coding: iso-8859-1 -*-
 # Andrei Homescu (c) 2010
 
 import sys
@@ -41,6 +42,15 @@ static int32_t sbuf;
 static int8_t *heap = NULL;
 static int32_t heap_used = 0, heap_cap = 0;
 
+static unsigned long long cycle_count = 0;
+static unsigned char show_cycles = 0;
+static unsigned long long alloc_byte_count = 0;
+static unsigned long long alloc_call_count = 0;
+static unsigned char show_alloc_info = 0;
+static unsigned long long load_count = 0;
+static unsigned long long store_count = 0;
+static unsigned char show_load_store = 0;
+
 static void expand_heap(int size)
 {
     if (heap_used + size > heap_cap)
@@ -67,6 +77,8 @@ static int8_t *get_real_ptr(int32_t addr)
 
 static void G__u__u_alloc_u__u_(int32_t *i_regs)
 {
+    alloc_call_count++;
+    alloc_byte_count += i_regs[0];
     int32_t pos = heap_used;
     expand_heap(i_regs[0]);
     heap_used += i_regs[0];
@@ -75,6 +87,16 @@ static void G__u__u_alloc_u__u_(int32_t *i_regs)
 
 static void G__u__u_abort_u__u_(int32_t *i_regs)
 {
+    if (show_cycles)
+      printf("Total cycles: %u\\n", cycle_count);
+    if (show_alloc_info) {
+      printf("Total alloc calls: %u\\n", alloc_call_count);
+      printf("Total alloc bytes: %u\\n", alloc_byte_count);
+    }
+    if (show_load_store) {
+      printf("Total load count: %u\\n", load_count);
+      printf("Total store count: %u\\n", store_count);
+    }
     exit(i_regs[0]);
 }
 
@@ -164,7 +186,7 @@ static void call_function_at_label(int32_t addr, int32_t *i_regs)
     (*function_labels[ptr_offset(addr)])(i_regs);
 }
 
-int main()
+int main(int argc, char **argv)
 {
     int32_t callee_i_regs[1];
 
@@ -172,6 +194,12 @@ int main()
     G__u__u_alloc_u__u_(callee_i_regs);
     sbuf = VO0;
 
+    if (argc > 1)
+      show_cycles = 1;
+    if (argc > 2)
+      show_alloc_info = 1;
+    if (argc > 3)
+      show_load_store = 1;
     G__u_start(NULL);
     return 0;
 }
