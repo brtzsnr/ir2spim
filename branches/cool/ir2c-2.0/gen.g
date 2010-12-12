@@ -95,22 +95,50 @@ assignment
                     | LABEL { rval = self.__get_label_value($LABEL.text) }
                     | vi { rval = "i_regs[\%s]" \% $vi.text[2:] }
                     | ^(PLUS op1=operand op2=operand) 
-                        { rval = self.__gen_op("+", $op1.val, $op2.val) }
+                        {
+                          rval = self.__gen_op("+", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(MINUS op1=operand op2=operand)
-                        { rval = self.__gen_op("-", $op1.val, $op2.val) }
+                        {
+                          rval = self.__gen_op("-", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(MUL op1=operand op2=operand)
-                        { rval = self.__gen_op("*", $op1.val, $op2.val) }
+                        {
+                          rval = self.__gen_op("*", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(DIV op1=operand op2=operand)
-                        { rval = self.__gen_op("/", $op1.val, $op2.val) }
+                        {
+                          rval = self.__gen_op("/", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(LT op1=operand op2=operand)
-                        { rval = self.__gen_op("<", $op1.val, $op2.val) } 
+                        {
+                          rval = self.__gen_op("<", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(LE op1=operand op2=operand)
-                        { rval = self.__gen_op("<=", $op1.val, $op2.val) } 
+                        {
+                          rval = self.__gen_op("<=", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(EQ op1=operand op2=operand)
-                        { rval = self.__gen_op("==", $op1.val, $op2.val) } 
+                        {
+                          rval = self.__gen_op("==", $op1.val, $op2.val)
+                          self.__gen("cycle_count++;")
+                        }
                     | ^(NOT op1=operand)
-                        { rval = "~(\%s)" \% $op1.val }
-                    )) { self.__gen("\%s = \%s;" \% ($vr.text, rval)) }
+                        {
+                          rval = "~(\%s)" \% $op1.val
+                          self.__gen("cycle_count++;")
+                        }
+                    ))
+                    {
+                      self.__gen("\%s = \%s;" \% ($vr.text, rval))
+                      self.__gen("cycle_count++;")
+                    }
     ;
 
 call
@@ -118,6 +146,9 @@ call
   paramIdx = 0
   retIdx = 0
   callStr = ''
+}
+@after {
+  self.__gen("cycle_count += 2;")
 }
     : ^(CALL target=vr { callStr = "call_function_at_label(\%s, callee_i_regs);" \% $target.text }
       ^(ParameterRegs
@@ -155,10 +186,17 @@ call
 
 jump
     : ^(JUMP LABEL) { 
-        self.__gen("goto \%s;" \% (util.LABEL_PREFIX + $LABEL.text)) 
+        self.__gen("goto \%s;" \% (util.LABEL_PREFIX + $LABEL.text))
+        self.__gen("cycle_count += 3;")
     }
-    | ^(JUMPT vr LABEL) { self.__gen_jmp_cond($vr.text, $LABEL.text, True) }
-    | ^(JUMPF vr LABEL) { self.__gen_jmp_cond($vr.text, $LABEL.text, False) }
+    | ^(JUMPT vr LABEL) {
+        self.__gen_jmp_cond($vr.text, $LABEL.text, True)
+        self.__gen("cycle_count += \%s ? 3 : 1;" \% $vr.text)
+    }
+    | ^(JUMPF vr LABEL) {
+        self.__gen_jmp_cond($vr.text, $LABEL.text, False)
+        self.__gen("cycle_count += !\%s ? 3 : 1;" \% $vr.text)
+    }
     ;
 
 label
@@ -168,6 +206,9 @@ label
 submit
 @init {
   oreg_idx = 0
+}
+@after {
+  self.__gen("cycle_count += 2;")
 }
     : RETURN
       { oreg_idx = 0 }
@@ -181,17 +222,24 @@ submit
     ;
 
 io
+@after {
+  self.__gen("cycle_count += 2;")
+}
     : ^(LOAD val=vr addr=vr offset=integer) {
         self.__gen_mem_load($val.text, $addr.text, $offset.text, "word")
+        self.__gen("load_count++;")
     }
     | ^(STORE val=vr addr=vr offset=integer) {
         self.__gen_mem_store($val.text, $addr.text, $offset.text, "word")
+        self.__gen("store_count++;")
     }
     | ^(LOADB val=vr addr=vr offset=integer) {
         self.__gen_mem_load($val.text, $addr.text, $offset.text, "byte")
+        self.__gen("load_count++;")
     }
     | ^(STOREB val=vr addr=vr offset=integer) {
         self.__gen_mem_store($val.text, $addr.text, $offset.text, "byte")
+        self.__gen("store_count++;")
     }
     ;
 
