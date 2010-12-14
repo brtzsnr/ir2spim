@@ -18,6 +18,7 @@ def gen_prologue(out, globals):
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 static int32_t oregs[""" + str(globals.oregs) + """];
 static void (*function_labels[])();
@@ -88,14 +89,14 @@ static void G__u__u_alloc_u__u_(int32_t *i_regs)
 static void G__u__u_abort_u__u_(int32_t *i_regs)
 {
     if (show_cycles)
-      printf("Total cycles: %u\\n", cycle_count);
+      printf("Total cycles: %llu\\n", cycle_count);
     if (show_alloc_info) {
-      printf("Total alloc calls: %u\\n", alloc_call_count);
-      printf("Total alloc bytes: %u\\n", alloc_byte_count);
+      printf("Total alloc calls: %llu\\n", alloc_call_count);
+      printf("Total alloc bytes: %llu\\n", alloc_byte_count);
     }
     if (show_load_store) {
-      printf("Total load count: %u\\n", load_count);
-      printf("Total store count: %u\\n", store_count);
+      printf("Total load count: %llu\\n", load_count);
+      printf("Total store count: %llu\\n", store_count);
     }
     exit(i_regs[0]);
 }
@@ -141,7 +142,7 @@ static int32_t load_word_from_label(int32_t addr, int32_t offset)
     if (!is_data_ptr(addr))
     {
         printf("Error: invalid data segment access\\n");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     return *((int32_t*)(get_real_ptr(addr) + offset));
 }
@@ -151,7 +152,7 @@ static void store_word_at_label(int32_t addr, int32_t offset, int32_t val)
     if (!is_data_ptr(addr))
     {
         printf("Error: invalid data segment access\\n");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     *((int32_t*)(get_real_ptr(addr) + offset)) = val;
 }
@@ -161,7 +162,7 @@ static int32_t load_byte_from_label(int32_t addr, int32_t offset)
     if (!is_data_ptr(addr))
     {
         printf("Error: invalid data segment access\\n");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     return *(get_real_ptr(addr) + offset);
 }
@@ -171,7 +172,7 @@ static void store_byte_at_label(int32_t addr, int32_t offset, int32_t val)
     if (!is_data_ptr(addr))
     {
         printf("Error: invalid data segment access\\n");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     *(get_real_ptr(addr) + offset) = (val & 0xff);
 }
@@ -181,7 +182,7 @@ static void call_function_at_label(int32_t addr, int32_t *i_regs)
     if (!is_code_ptr(addr))
     {
         printf("Error: invalid code segment access\\n");
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     (*function_labels[ptr_offset(addr)])(i_regs);
 }
@@ -189,17 +190,29 @@ static void call_function_at_label(int32_t addr, int32_t *i_regs)
 int main(int argc, char **argv)
 {
     int32_t callee_i_regs[1];
+    int c;
 
     callee_i_regs[0] = STR_BUF_LEN;
     G__u__u_alloc_u__u_(callee_i_regs);
     sbuf = VO0;
 
-    if (argc > 1)
-      show_cycles = 1;
-    if (argc > 2)
-      show_alloc_info = 1;
-    if (argc > 3)
-      show_load_store = 1;
+    while ((c = getopt (argc, argv, "camh")) != -1)
+        switch (c)
+        {
+            case 'c':
+                show_cycles = 1;
+                break;
+            case 'a':
+                show_alloc_info = 1;
+                break;
+            case 'm':
+                show_load_store = 1;
+                break;
+            default:
+                fprintf(stderr, "Usage: %s [-c] [-a] [-m] (c: cycles, a: allocs, m: memory ops)\\n",
+                        argv[0]);
+                exit(EXIT_FAILURE);
+        }
     G__u_start(NULL);
     return 0;
 }
