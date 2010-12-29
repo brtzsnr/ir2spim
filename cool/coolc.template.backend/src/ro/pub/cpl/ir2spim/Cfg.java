@@ -183,11 +183,12 @@ class Cfg
 		printer.println("node [shape=box, style=rounded];");
 		for (BasicBlock bb: blockList) {
 			printer.print(bb.toString() + " [label=\"");
+			printer.print("# BB " + bb.getIndex() + " #\\l");
 			if (bb.getIndex() == 0) {
 				printer.println("Start\"];");
 				continue;
 			}
-			if (bb.getIndex() == blockList.size() - 1) {
+			else if (bb.getIndex() == blockList.size() - 1) {
 				printer.println("Stop\"];");
 				continue;
 			}
