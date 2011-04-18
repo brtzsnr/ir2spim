@@ -1,0 +1,229 @@
+##################################
+# Hello World
+
+# The simplest program contains
+# - the start function
+# - a string constant
+# - a call to the predefined function "print", which has one argument of string type.
+#   This is the only place where string constants are used.
+#
+# Whitespace, including end of line, is not significant. 
+# Statements and functions are completed with ;
+# "end" is a keyword. "start" and "print" are predefined functions
+
+start:
+    [print "Hello world!\n"];
+end;
+
+
+
+##################################
+# ASCII Art
+#   _
+# "/ \"
+# "\_/"
+#
+# String constants can contain escape characters: \"  \\ and \n . Anything else is the character itself.
+# Here's a program that prints some ASCII art.
+
+start:
+	[print "  _\n\"/ \\\"\n\"\\_/\"\n"];
+end;
+
+
+
+##################################
+# Negative Average
+#
+# Another type in the language is 'number' - which means a 32 bit signed integer.
+# Positive and negative constants of this type are possible (e.g. -20 , 0 , 403 )
+# A function can have local variables of type 'number', which are defined in the 'local' section
+#
+# The local variables can be assigned values using assignment statments: variable = expression
+# The expressions are numerical, they can contain binary arithmetic operators ( + - * / ), unary - , and parentheses.
+# The expressions can contain function calls.
+#
+# Functions can have paramters and return values. 
+# "read" is a predefined function that reads a line from standard input, converts it into a number, then returns that number.
+# "write" is a predefined function with a number parameter. It prints its parameters on the standard output.
+#
+# "local" and "number" are keywords
+# "read" and "write" are predefined functions.
+#
+
+start:
+	local 
+		number r1;
+		number r2;
+		number r3;	
+	end;
+	[print ">"]; r1 = [ read ];
+	[print ">"]; r2 = [ read ];
+	[print ">"]; r3 = [ read ];
+	[print "Negative Average = "];
+	[write -(r1 + r2 + r3) / 3];
+	[print "\n"];
+end;
+
+
+
+##################################
+# Surface Computation
+#
+# User defined functions, besides 'start', can have parameters, and return values.
+# An function call can reference functions that are defined later in the file.
+# 'number' arguments to a function are passed by value - changes to an argument does not affect its value in the caller function.
+# 'return' is a control structure that marks the end of the execution of a function
+#
+# "return" is a keyword
+
+start:
+	local 
+		number r;	
+	end;
+	[print "Radius? "];
+	r = [ read ];
+	[print "Circle Surface = "];
+	[write [ surf r ]];
+	[print "\n"];
+end;
+
+pi100 -> number:
+	return 314;
+end;
+
+surf number r -> number:
+	return (pi100 * r * r) / 100;
+end;
+
+
+
+##################################
+# Unlimited Average
+#
+# Another type is a 1-dimensional array of numbers. The size of the array is a positive integer constant.
+# Arrays are local variables, too, and are declared in a similar way.
+# An array element can be used in any place where a local variable can be used. The first element has index 0.
+# If an array is an argument to a function, it is passed by reference, not by value
+# A function can have multiple parameters of various types, but it cannot return an array.
+#
+# Control flow structures include "if", "while", and "until" - the last one loops as long as the expression is false
+# The control flow statements have a conditional expression parameter. Conditions are comparisons between integer expressions.
+# Allowed operators are < , = , >
+#
+# "if", "while", "until" are keywords
+
+# Average array values
+average number[256] data, number count -> number:
+	local number i; number sum; end;
+	i = 0;
+	sum = 0;
+	while i < count;
+		sum = sum + data[i];
+		i = i + 1;
+	end;
+	return sum / count;
+end;
+
+# Read an array, return the size of the data read
+
+readArray number[256] data -> number:
+	local number c; number[256] d; number i; end;
+	[print "Count? "];
+	c = [read];
+	if c > 0;
+		if c > 256;
+			[ print "ERROR: Buffer overflow!\n"];
+			return 0;
+		else
+			i = c;
+			until i = 0;
+				[print ">"];
+				d[c - i] = [ read ];
+				i = i - 1;
+			end;
+		end;
+		
+		return c;
+	end;
+	
+	if c = 0;
+		# do nothing
+	else
+		[ print "ERROR: Count is negative!\n"];
+	end;
+	return 0;
+end;
+
+start:
+	local number c; number[256] d; end;
+	c = [readArray d];
+	if c > 0;
+		[print "Average value: "];
+		[write [average d,c]];
+		[print "\n"];
+	end;
+end;
+
+##################################
+# Quick Sort
+#
+# A function can call itself recursively
+
+start:
+	local 
+		number c; number[256] d;
+		number i;
+	end;
+	c = [readArray d];
+	[sort d,c];
+	[writeArray d,c];
+end;
+
+#readArray - is reused from the Unlimited Average example
+
+writeArray number[256] data, number count:
+	local number i; end;
+	i = 0;
+	while i < count;
+		[print ">"];
+		[write data[i]];
+		[print "\n"];
+		i = i + 1;
+	end;
+end;
+
+sort number[256] data, number count:
+	[quickSort data, 0, count];
+end;
+
+quickSort number[256] data, number start, number count:
+	local 
+		number idx; 
+		number value; 
+		number i;
+	end;
+	if count > 1;
+		idx = start + count / 2;
+		value = data[idx];
+		[swap data, idx, start+count-1];
+		idx = start;
+		i = start;
+		while i - start < count - 1;
+			if data[i] < pivotValue;
+				[swap data, i, idx];
+				idx = idx + 1;
+			end;
+			i = i + 1;
+		end;
+		[swap data, idx, start+count-1];
+		
+        [quicksort data, start, idx];
+		[quicksort data, start + idx + 1, count - idx - 1];
+	end;
+end;
+
+swap number[256] data, number p1, number p2:
+	local number t; end;
+	t = data[p1]; data[p1] = data[p2]; data[p2] = t;
+end;
