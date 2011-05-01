@@ -24,6 +24,6 @@ pi100 -> number:
 end;
 
 surf number r -> number:
-	return (pi100 * r * r) / 100;
+	return ([pi100] * r * r) / 100;
 end;
 
