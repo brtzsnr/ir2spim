@@ -28,7 +28,7 @@ end;
 # Read an array, return the size of the data read
 
 readArray number[256] data -> number:
-	local number c; number[256] d; number i; end;
+	local number c; number i; end;
 	[print "Count? "];
 	c = [read];
 	if c > 0;
@@ -39,7 +39,7 @@ readArray number[256] data -> number:
 			i = c;
 			until i = 0;
 				[print ">"];
-				d[c - i] = [ read ];
+				data[c - i] = [ read ];
 				i = i - 1;
 			end;
 		end;
