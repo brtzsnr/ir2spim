@@ -34,7 +34,7 @@ def recode_coolir_string(s):
 
 def len_llvm_string(s):
     """Compute the number of bytes that @s takes in memory"""
-    return len(s) - s.count("\\")
+    return len(s) - s.count("\\") + s.count("\\\\")
 
 def recode_label(l):
     return l.replace("_", "_u_").replace(".", "_d_")
