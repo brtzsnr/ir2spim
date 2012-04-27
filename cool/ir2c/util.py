@@ -24,16 +24,27 @@ class Globals(object):
         self.data_label_offsets = {}
         self.data_list = []
 
+def decode_coolir_string(s):
+    """Decode the string @s from CoolIR format"""
+    s = s[1:-1]
+    s = s.replace("\"\"", "\"")
+    s = s.replace("\\\\", "\\")
+    s = s.replace("\\n", "\n")
+    s = s.replace("\\t", "\t")
+    return s
 
 def recode_coolir_string(s):
-    """Recode the string @s from CoolIR format into LLVM string format"""
+    """Recode the string @s into C format"""
     s = s[1:-1]
-    s = s.replace("\"\"", "\\\"")
+    s = s.replace("\\", "\\\\")
+    s = s.replace("\"", "\\\"")
+    s = s.replace("\n", "\\n")
+    s = s.replace("\t", "\\t")
     return s
 
 def len_const_string(s):
     """Compute the number of bytes that @s takes in memory"""
-    return len(s) - s.count("\\")
+    return len(s)
 
 def recode_label(l):
     return l.replace("_", "_u_").replace(".", "_d_")
