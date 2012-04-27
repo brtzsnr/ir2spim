@@ -115,7 +115,7 @@ data_statement
     : DW^ INTEGER 
     | DL l=LABEL -> ^(DL LABEL[util.recode_label($l.text)]) 
     | DB^ INTEGER
-    | DB s=STRING -> ^(DB STRING[util.recode_coolir_string($s.text)])
+    | DB s=STRING -> ^(DB STRING[util.decode_coolir_string($s.text)])
     | DS^ INTEGER 
     | l=LABEL ':' -> LABEL[util.recode_label($l.text)]
     ;

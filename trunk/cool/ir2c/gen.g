@@ -151,7 +151,7 @@ data_statement
                         int($INTEGER.text), None)) }
     | ^(DB STRING) { 
         ss = $STRING.text
-        self.__data_list.append(("int8_t", "\"\%s\"" \% ss, 
+        self.__data_list.append(("int8_t", "\"\%s\"" \% util.recode_coolir_string(ss), 
                             str(util.len_const_string(ss))))
     }
     | ^(DS INTEGER) {
