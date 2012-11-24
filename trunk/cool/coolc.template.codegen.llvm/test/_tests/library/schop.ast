@@ -1,0 +1,93 @@
+#1
+_program
+  #1
+  _class
+    Main
+    IO
+    "library/schop.cl"
+    (
+    #2
+    _method
+      main
+      Int
+      #3
+      _let
+        a
+        String
+        #3
+        _dispatch
+          #3
+          _object
+            self
+          : SELF_TYPE
+          in_string
+          (
+          )
+        : String
+        #4
+        _let
+          b
+          Int
+          #4
+          _dispatch
+            #4
+            _object
+              self
+            : SELF_TYPE
+            in_int
+            (
+            )
+          : Int
+          #4
+          _let
+            c
+            Int
+            #4
+            _dispatch
+              #4
+              _object
+                self
+              : SELF_TYPE
+              in_int
+              (
+              )
+            : Int
+            #5
+            _block
+              #5
+              _dispatch
+                #5
+                _object
+                  self
+                : SELF_TYPE
+                out_string
+                (
+                #5
+                _dispatch
+                  #5
+                  _object
+                    a
+                  : String
+                  substr
+                  (
+                  #5
+                  _object
+                    b
+                  : Int
+                  #5
+                  _object
+                    c
+                  : Int
+                  )
+                : String
+                )
+              : SELF_TYPE
+              #5
+              _int
+                0
+              : Int
+            : Int
+          : Int
+        : Int
+      : Int
+    )
