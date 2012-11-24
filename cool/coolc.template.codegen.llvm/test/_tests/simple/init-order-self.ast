@@ -1,0 +1,168 @@
+#2
+_program
+  #2
+  _class
+    Main
+    IO
+    "simple/init-order-self.cl"
+    (
+    #4
+    _method
+      recite
+      #4
+      _formal
+        value
+        Int
+      Object
+      #6
+      _block
+        #7
+        _dispatch
+          #7
+          _object
+            self
+          : SELF_TYPE
+          out_int
+          (
+          #7
+          _object
+            value
+          : Int
+          )
+        : SELF_TYPE
+        #8
+        _dispatch
+          #8
+          _object
+            self
+          : SELF_TYPE
+          out_string
+          (
+          #8
+          _string
+            "\n"
+          : String
+          )
+        : SELF_TYPE
+        #9
+        _object
+          self
+        : SELF_TYPE
+      : SELF_TYPE
+    #13
+    _attr
+      x
+      Object
+      #13
+      _dispatch
+        #13
+        _object
+          self
+        : SELF_TYPE
+        recite
+        (
+        #13
+        _int
+          1
+        : Int
+        )
+      : Object
+    #14
+    _attr
+      y
+      Object
+      #14
+      _dispatch
+        #14
+        _object
+          self
+        : SELF_TYPE
+        recite
+        (
+        #14
+        _int
+          2
+        : Int
+        )
+      : Object
+    #15
+    _attr
+      z
+      Object
+      #15
+      _dispatch
+        #15
+        _object
+          self
+        : SELF_TYPE
+        recite
+        (
+        #15
+        _int
+          3
+        : Int
+        )
+      : Object
+    #16
+    _attr
+      c
+      Object
+      #16
+      _dispatch
+        #16
+        _object
+          self
+        : SELF_TYPE
+        recite
+        (
+        #16
+        _int
+          4
+        : Int
+        )
+      : Object
+    #17
+    _attr
+      b
+      Object
+      #17
+      _dispatch
+        #17
+        _object
+          self
+        : SELF_TYPE
+        recite
+        (
+        #17
+        _int
+          5
+        : Int
+        )
+      : Object
+    #18
+    _attr
+      a
+      Object
+      #18
+      _dispatch
+        #18
+        _object
+          self
+        : SELF_TYPE
+        recite
+        (
+        #18
+        _int
+          6
+        : Int
+        )
+      : Object
+    #20
+    _method
+      main
+      Object
+      #22
+      _object
+        self
+      : SELF_TYPE
+    )

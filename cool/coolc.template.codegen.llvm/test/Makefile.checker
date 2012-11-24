@@ -1,0 +1,14 @@
+test all : test_all
+
+build-pre:
+	find . -print0 | xargs -r0 touch
+	mkdir -p bin/
+	test -f lib/library.ir && cp -f lib/library.ir _simulator/library.ir || true
+
+build-post:
+
+test_all:
+	/bin/bash ./eval.sh
+
+clean:
+
