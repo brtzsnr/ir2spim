@@ -50,86 +50,20 @@ class CgenClassTable extends SymbolTable {
     private void codeGlobalData() {
 	// The following global names must be defined first.
 
-	str.print("\t.data\n" + CgenSupport.ALIGN);
-	str.println(CgenSupport.GLOBAL + CgenSupport.CLASSNAMETAB);
-	str.print(CgenSupport.GLOBAL); 
-	CgenSupport.emitProtObjRef(TreeConstants.Main, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL); 
-	CgenSupport.emitProtObjRef(TreeConstants.Int, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL); 
-	CgenSupport.emitProtObjRef(TreeConstants.Str, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL); 
-	BoolConst.falsebool.codeRef(str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL); 
-	BoolConst.truebool.codeRef(str);
-	str.println("");
-	str.println(CgenSupport.GLOBAL + CgenSupport.INTTAG);
-	str.println(CgenSupport.GLOBAL + CgenSupport.BOOLTAG);
-	str.println(CgenSupport.GLOBAL + CgenSupport.STRINGTAG);
-
-	// We also need to know the tag of the Int, String, and Bool classes
-	// during code generation.
-
-	str.println(CgenSupport.INTTAG + CgenSupport.LABEL 
-		    + CgenSupport.WORD + intclasstag);
-	str.println(CgenSupport.BOOLTAG + CgenSupport.LABEL 
-		    + CgenSupport.WORD + boolclasstag);
-	str.println(CgenSupport.STRINGTAG + CgenSupport.LABEL 
-		    + CgenSupport.WORD + stringclasstag);
-
+	str.print("\t.data\n");
     }
 
     /** Emits code to start the .text segment and to
      * declare the global names.
      * */
     private void codeGlobalText() {
-	str.println(CgenSupport.GLOBAL + CgenSupport.HEAP_START);
-	str.print(CgenSupport.HEAP_START + CgenSupport.LABEL);
-	str.println(CgenSupport.WORD + 0);
-	str.println("\t.text");
-	str.print(CgenSupport.GLOBAL);
-	CgenSupport.emitInitRef(TreeConstants.Main, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL);
-	CgenSupport.emitInitRef(TreeConstants.Int, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL);
-	CgenSupport.emitInitRef(TreeConstants.Str, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL);
-	CgenSupport.emitInitRef(TreeConstants.Bool, str);
-	str.println("");
-	str.print(CgenSupport.GLOBAL);
-	CgenSupport.emitMethodRef(TreeConstants.Main, TreeConstants.main_meth, str);
-	str.println("");
+	str.println("\t.code");
     }
 
     /** Emits code definitions for boolean constants. */
     private void codeBools(int classtag) {
-	BoolConst.falsebool.codeDef(classtag, str);
-	BoolConst.truebool.codeDef(classtag, str);
-    }
-
-    /** Generates GC choice constants (pointers to GC functions) */
-    private void codeSelectGc() {
-	str.println(CgenSupport.GLOBAL + "_MemMgr_INITIALIZER");
-	str.println("_MemMgr_INITIALIZER:");
-	str.println(CgenSupport.WORD 
-		    + CgenSupport.gcInitNames[Flags.cgen_Memmgr]);
-
-	str.println(CgenSupport.GLOBAL + "_MemMgr_COLLECTOR");
-	str.println("_MemMgr_COLLECTOR:");
-	str.println(CgenSupport.WORD 
-		    + CgenSupport.gcCollectNames[Flags.cgen_Memmgr]);
-
-	str.println(CgenSupport.GLOBAL + "_MemMgr_TEST");
-	str.println("_MemMgr_TEST:");
-	str.println(CgenSupport.WORD 
-		    + ((Flags.cgen_Memmgr_Test == Flags.GC_TEST) ? "1" : "0"));
+	BoolConst.falsebool.codeIRDef(classtag, str);
+	BoolConst.truebool.codeIRDef(classtag, str);
     }
 
     /** Emits code to reserve space for and initialize all of the
@@ -312,17 +246,17 @@ class CgenClassTable extends SymbolTable {
 					    TreeConstants.prim_slot,
 					    new no_expr(0)))
 			   .appendElement(new method(0,
-					      TreeConstants.length,
-					      new Formals(0),
-					      TreeConstants.Int,
-					      new no_expr(0)))
-			   .appendElement(new method(0,
 					      TreeConstants.concat,
 					      new Formals(0)
 						  .appendElement(new formal(0,
 								     TreeConstants.arg, 
 								     TreeConstants.Str)),
 					      TreeConstants.Str,
+					      new no_expr(0)))
+			   .appendElement(new method(0,
+					      TreeConstants.length,
+					      new Formals(0),
+					      TreeConstants.Int,
 					      new no_expr(0)))
 			   .appendElement(new method(0,
 					      TreeConstants.substr,
@@ -398,9 +332,6 @@ class CgenClassTable extends SymbolTable {
     public void code() {
 	if (Flags.cgen_debug) System.out.println("coding global data");
 	codeGlobalData();
-
-	if (Flags.cgen_debug) System.out.println("choosing gc");
-	codeSelectGc();
 
 	if (Flags.cgen_debug) System.out.println("coding constants");
 	codeConstants();

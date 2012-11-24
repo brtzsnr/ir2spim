@@ -41,28 +41,25 @@ class StringSymbol extends AbstractSymbol {
     public void codeDef(int stringclasstag, PrintStream s) {
 	IntSymbol lensym = (IntSymbol)AbstractTable.inttable.addInt(str.length());
 	
-	// Add -1 eye catcher
-	s.println(CgenSupport.WORD + "-1");
-	codeRef(s); s.print(CgenSupport.LABEL); // label
-	s.println(CgenSupport.WORD + stringclasstag); // tag
-	s.println(CgenSupport.WORD + (CgenSupport.DEFAULT_OBJFIELDS +
+	s.print(IRRef() + CgenSupport.LABEL); // label
+	s.println(CgenSupport.DWORD + stringclasstag); // tag
+	s.println(CgenSupport.DWORD + (CgenSupport.DEFAULT_OBJFIELDS +
 				      CgenSupport.STRING_SLOTS +
 				      (str.length() + 4) / 4)); // object size
-	s.print(CgenSupport.WORD);
+	s.print(CgenSupport.DLABEL);
 
 	/* Add code to reference the dispatch table for class String here */
 
-	s.println("");		// dispatch table
-	s.print(CgenSupport.WORD); lensym.codeRef(s); s.println(""); // length
+	s.println(TreeConstants.Str + CgenSupport.DISPTAB_SUFFIX);		// dispatch table
+	s.print(CgenSupport.DLABEL + lensym.IRRef()); s.println(""); // length
 	CgenSupport.emitStringConstant(str, s); // ascii string
-	s.print(CgenSupport.ALIGN); // align to word
     }
 
-    /** Emits a reference to this string constant.
+    /** Returns a reference to this string constant.
      * @param s the output stream
      * */
-    public void codeRef(PrintStream s) {
-	s.print(CgenSupport.STRCONST_PREFIX + index);
+    public String IRRef() {
+	return CgenSupport.STRCONST_PREFIX + index;
     }
 
     /** Returns a copy of this symbol */
