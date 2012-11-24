@@ -42,25 +42,22 @@ class IntSymbol extends AbstractSymbol {
      *
      * */
     public void codeDef(int intclasstag, PrintStream s) {
-	// Add -1 eye catcher
-	s.println(CgenSupport.WORD + "-1");
-	codeRef(s); s.print(CgenSupport.LABEL); // label
-	s.println(CgenSupport.WORD + intclasstag); // tag
-	s.println(CgenSupport.WORD + (CgenSupport.DEFAULT_OBJFIELDS + 
+	s.print(IRRef() + CgenSupport.LABEL); // label
+	s.println(CgenSupport.DWORD + intclasstag); // tag
+	s.println(CgenSupport.DWORD + (CgenSupport.DEFAULT_OBJFIELDS + 
 				      CgenSupport.INT_SLOTS)); // size
-	s.print(CgenSupport.WORD);
+	s.print(CgenSupport.DLABEL);
 
 	/* Add code to reference the dispatch table for class Int here */
 
-	s.println("");		// dispatch table
-	s.println(CgenSupport.WORD + str); // integer value
+	s.println(TreeConstants.Int + CgenSupport.DISPTAB_SUFFIX);		// dispatch table
+	s.println(CgenSupport.DWORD + str); // integer value
     }
 
-    /** Emits a reference to this integer constant.
-     * @param s the output stream
+    /** Returns a reference to this integer constant.
      * */
-    public void codeRef(PrintStream s) {
-	s.print(CgenSupport.INTCONST_PREFIX + index);
+    public String IRRef() {
+	return (CgenSupport.INTCONST_PREFIX + index);
     }
 
     /** Returns a copy of this symbol */

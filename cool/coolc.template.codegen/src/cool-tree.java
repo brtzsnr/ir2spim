@@ -19,7 +19,6 @@ abstract class Program extends TreeNode {
         super(lineNumber);
     }
     public abstract void dump_with_types(PrintStream out, int n);
-    public abstract void semant();
     public abstract void cgen(PrintStream s);
 
 }
@@ -155,7 +154,7 @@ abstract class Expression extends TreeNode {
         else
             { out.println(Utilities.pad(n) + ": _no_type"); }
     }
-    public abstract void code(PrintStream s);
+    public abstract void codeIR(PrintStream s);
 
 }
 
@@ -254,32 +253,6 @@ class program extends Program {
 	    ((Class_)e.nextElement()).dump_with_types(out, n + 1);
         }
     }
-    /** This method is the entry point to the semantic checker.  You will
-        need to complete it in programming assignment 4.
-	<p>
-        Your checker should do the following two things:
-	<ol>
-	<li>Check that the program is semantically correct
-	<li>Decorate the abstract syntax tree with type information
-        by setting the type field in each Expression node.
-        (see tree.h)
-	</ol>
-	<p>
-	You are free to first do (1) and make sure you catch all semantic
-    	errors. Part (2) can be done in a second stage when you want
-	to test the complete compiler.
-    */
-    public void semant() {
-	/* ClassTable constructor may do some semantic analysis */
-	ClassTable classTable = new ClassTable(classes);
-	
-	/* some semantic analysis code may go here */
-
-	if (classTable.errors()) {
-	    System.err.println("Compilation halted due to static semantic errors.");
-	    System.exit(1);
-	}
-    }
     /** This method is the entry point to the code generator.  All of the work
       * of the code generator takes place within CgenClassTable constructor.
       * @param s the output stream 
@@ -290,9 +263,9 @@ class program extends Program {
         // spim wants comments to start with '#'
         s.print("# start of generated code\n");
 
-	CgenClassTable codegen_classtable = new CgenClassTable(classes, s);
+        CgenClassTable codegen_classtable = new CgenClassTable(classes, s);
 
-	s.print("\n# end of generated code\n");
+        s.print("\n# end of generated code\n");
     }
 
 }
@@ -563,7 +536,7 @@ class assign extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -623,7 +596,7 @@ class static_dispatch extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -678,7 +651,7 @@ class dispatch extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -729,7 +702,7 @@ class cond extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -775,7 +748,7 @@ class loop extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -823,7 +796,7 @@ class typcase extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -866,7 +839,7 @@ class block extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -922,7 +895,7 @@ class let extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -968,7 +941,7 @@ class plus extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1014,7 +987,7 @@ class sub extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1060,7 +1033,7 @@ class mul extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1106,7 +1079,7 @@ class divide extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1147,7 +1120,7 @@ class neg extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1193,7 +1166,7 @@ class lt extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1239,7 +1212,7 @@ class eq extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1285,7 +1258,7 @@ class leq extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1326,7 +1299,7 @@ class comp extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1362,13 +1335,10 @@ class int_const extends Expression {
 	dump_AbstractSymbol(out, n + 2, token);
 	dump_type(out, n);
     }
-    /** Generates code for this expression.  This method method is provided
-      * to you as an example of code generation.
+    /** Generates code for this expression.
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
-	CgenSupport.emitLoadInt(CgenSupport.ACC,
-                                (IntSymbol)AbstractTable.inttable.lookup(token.getString()), s);
+    public void codeIR(PrintStream s) {
     }
 
 }
@@ -1403,12 +1373,10 @@ class bool_const extends Expression {
 	dump_Boolean(out, n + 2, val);
 	dump_type(out, n);
     }
-    /** Generates code for this expression.  This method method is provided
-      * to you as an example of code generation.
+    /** Generates code for this expression.
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
-	CgenSupport.emitLoadBool(CgenSupport.ACC, new BoolConst(val), s);
+    public void codeIR(PrintStream s) {
     }
 
 }
@@ -1445,13 +1413,10 @@ class string_const extends Expression {
 	out.println("\"");
 	dump_type(out, n);
     }
-    /** Generates code for this expression.  This method method is provided
-      * to you as an example of code generation.
+    /** Generates code for this expression.
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
-	CgenSupport.emitLoadString(CgenSupport.ACC,
-                                   (StringSymbol)AbstractTable.stringtable.lookup(token.getString()), s);
+    public void codeIR(PrintStream s) {
     }
 
 }
@@ -1491,7 +1456,7 @@ class new_ extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1532,7 +1497,7 @@ class isvoid extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1568,7 +1533,7 @@ class no_expr extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 
@@ -1609,7 +1574,7 @@ class object extends Expression {
       * you wish.)
       * @param s the output stream 
       * */
-    public void code(PrintStream s) {
+    public void codeIR(PrintStream s) {
     }
 
 

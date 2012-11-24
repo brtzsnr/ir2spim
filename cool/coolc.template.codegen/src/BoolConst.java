@@ -45,33 +45,26 @@ class BoolConst {
     final static BoolConst truebool = new BoolConst(true);
     final static BoolConst falsebool = new BoolConst(false);
 
-    /** Emits a reference to this boolean constant.
-     * @param s the output stream
+    /** Returns a reference to this boolean constant.
      * */
-    public void codeRef(PrintStream s) {
-	s.print(CgenSupport.BOOLCONST_PREFIX + (val ? "1" : "0"));
+    public String IRRef() {
+	return CgenSupport.BOOLCONST_PREFIX + (val ? "1" : "0");
     }
 
-    /** Generates code for the boolean constant definition.  This method
-     * is incomplete; you get to finish it up in programming assignment
-     * 5.
+    /** Generates code for the boolean constant definition.
      * @param boolclasstag the class tag for string object
      * @param s the output stream
      *
      * */
-    public void codeDef(int boolclasstag, PrintStream s) {
-	// Add -1 eye catcher
-	s.println(CgenSupport.WORD + "-1");
-	codeRef(s); s.print(CgenSupport.LABEL); // label
-	s.println(CgenSupport.WORD + boolclasstag); // tag
-	s.println(CgenSupport.WORD + (CgenSupport.DEFAULT_OBJFIELDS +
+    public void codeIRDef(int boolclasstag, PrintStream s) {
+	s.print(IRRef() + CgenSupport.LABEL); // label
+	s.println(CgenSupport.DWORD + boolclasstag); // tag
+	s.println(CgenSupport.DWORD + (CgenSupport.DEFAULT_OBJFIELDS +
 				      CgenSupport.BOOL_SLOTS)); // size
-	s.print(CgenSupport.WORD);
+	s.print(CgenSupport.DLABEL);
 
-	/* Add code to reference the dispatch table for class Bool here */
-
-	s.println("");		// dispatch table
-	s.println(CgenSupport.WORD + (val ? "1" : "0")); // value (0 or 1)
+	s.println(TreeConstants.Bool + CgenSupport.DISPTAB_SUFFIX);		// dispatch table
+	s.println(CgenSupport.DWORD + (val ? "1" : "0")); // value (0 or 1)
     }
 }
     

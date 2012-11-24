@@ -19,11 +19,12 @@ ON AN "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATION TO
 PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 */
 
+import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.FileOutputStream;
-import java_cup.runtime.Symbol;
 
 /** Static semantics driver class */
 class Cgen {
@@ -32,7 +33,12 @@ class Cgen {
     public static void main(String[] args) {
 	args = Flags.handleFlags(args);
 	try {
-	    ASTLexer lexer = new ASTLexer(new InputStreamReader(System.in));
+            InputStream is = System.in;
+            
+            if (Flags.in_filename != null)
+                is = new FileInputStream(Flags.in_filename);
+            
+	    ASTLexer lexer = new ASTLexer(new InputStreamReader(is));
 	    ASTParser parser = new ASTParser(lexer);
 	    Object result = parser.parse().value;
 	    
@@ -42,7 +48,7 @@ class Cgen {
 		if (Flags.in_filename != null) {
 		    filename = Flags.in_filename.substring(0, 
 							   Flags.in_filename.lastIndexOf('.'))
-			+ ".s";
+			+ ".ir";
 		}
 	    } else {
 		filename = Flags.out_filename;
