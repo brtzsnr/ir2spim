@@ -1,0 +1,154 @@
+Language structure
+- One statement per line. Newline is the statement separator.
+
+- Everything after # is comment
+
+- Lines can be combined
+  - using '\\''\n' (but not in a comment). 
+  
+    if a==0 \
+        and b==1 :
+    
+    sys.print('Hello') # Lines are not joined\
+  
+  - implicitely between nested [] and (); newlines ignored.
+  
+    if (a==0
+        and b==1) :
+  
+  - inside character strings '...'; newlines part of string;
+  
+    usage = 'Usage
+--version   Print version\n'
+  
+- Statements are grouped using indentation levels
+    if not data==none:
+        if sys.length(data.buffer) == max:
+            sys.print('Buffer full')
+    else
+        sys.print('Buffer empty')
+
+  - Chars only, tabs are treated as single chars! Check editor settings
+  - Indentation should always decrease to a previous level. Example of illegal code.
+  
+  - Python like, but not the same
+
+Data model
+- Data types
+  - boolean: true, false    
+    operations: and, or, not
+    and or - shortcircuit
+  
+  - standard signed integers. assume 32-bit, don't check that in sources
+    operations: + - * /
+    comparisons: < > ==
+  
+  - string:  'string' ; \ is the escape character:  with '\<char>' => <char>. 
+    'C:\\Program Files' 
+    'select * from users where name=\'John\''  Exceptions: \n,\t.
+    operations + => new string
+    comparisons: ==
+    sys.length(stringref)
+    indexing stringref[id] - substring - check range
+    ###sys.ord('string') - integer - ascii value of the 1st char, or 0 if string is empty
+    ###sys.chr(integer) - new string with integer
+  
+  - objects:    none
+    class classname(parent):
+        field = init
+        field2 = init2
+        def method(param,param):
+            statements
+    
+    Create
+    objectref = classname()
+    operations: 
+        objectref.field
+        result = objectref,method(param,param)
+        object1 == object2 - exactly the same object, may be none
+    self.field, self.method()
+    fields, methods, inherit other classes
+    super.field, super.method()
+    
+    Checks: object ref is not null. method/field exists. method has the right number of params.
+  
+  - fixed length arrays of other objects
+    arrayref = array(size)
+    sys.length(arrayref)
+    array[index_int_expression]
+    
+    Checks: array is in bounds
+
+  - dynamic typing
+  - strict, no duck typing
+  
+Statements
+
+if cond:
+   statements
+else
+   statements
+   
+while cond:
+   statements
+   
+return expression
+
+lvalue = rvalue
+lvalue = local variable, field, array element   
+
+Vars: standard identifiers
+cannot have booleans.
+no casts.
+reference to strings, objects or arrays
+
+Default value: none
+
+I/O:
+sys.print(integer_or_string)
+stringref = sys.read()
+int = sys.read_int()
+
+program.run
+
+Keywords: if,else,while,return,class,def
+Built-ins: sys,self,super,true,false,array,none
+
+Optimizations
+- constant propagation
+- type checks for expressions
+- intermediate expression results
+- bound checks for strings and arrays
+- null checks
+- method and field name lookup for objects
+- check that method/field exists and has the right # of parameters
+- extra feature: method and field name optimization for inherited objects
+- extra feature: interprocedural
+  examples: in params, func effect
+assume program is complete
+
+library.ir
+
+- helper functions - copy bytes, compare bytes, zero bytes
+- print error message and abort
+- standard error messages
+
+example
+___NullCheck:
+
+https://ir2spim.googlecode.com/svn/trunk/cool
+
+Vor fi foarte apreciate, dar nu obligatorii, orice incercari de optimizare interprocedurala care sa functioneze corect, pe cazuri similare cu cel de mai jos:
+
+    class program:
+        def area_rectangle(length, height):
+            return length * height     # Skip type check - it is only called with integer parameters in this program
+            
+        def area_square(length):
+            return area_rectangle(length,length)
+            
+        def run():
+            area_triangle = area_square(20) / 2   # Skip type check: the result of area_square is always an integer
+
+Un avertisment: optimizarile intraprocedurale sunt mult mai grele decat par. Daca reusiti sa implementati una din ele, scrieti in README ce algoritm ati folosit, si o referinta catre el in cazul in care este un algoritm cunoscut.
+
