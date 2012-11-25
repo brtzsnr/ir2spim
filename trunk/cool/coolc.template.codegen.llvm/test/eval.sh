@@ -4,11 +4,11 @@ JCUP_JAR="java-cup-11a-runtime.jar"
 TESTS_DIR="_tests"
 SIMULATOR_DIR="_simulator"
 LIB_DIR="lib"
-SIMULATOR="python $SIMULATOR_DIR/simulator.py"
+SIMULATOR="lli"
 
 export CLASSPATH="$CLASSPATH:$JCUP_JAR:bin/"
 
-COMPILER="java Cgen"
+COMPILER="java coolir.Cgen"
 
 function fail {
 	printf "FAIL (%s)\n" "$1"
