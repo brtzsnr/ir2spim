@@ -40,14 +40,18 @@ function test_correct {
 	rm -f __stderr
 	rm -f __stderr2
 	
-	IR=${CL/%ast/ir}
-	$COMPILER $CL 1>$IR 2>__stderr	
+	IR=${CL/%ast/ll}
+	$COMPILER $CL 1>&2 2>__stderr	
 	
 	if [ -f $IR ]; then
 		if [ -f $IN ]; then
-			$SIMULATOR $IR 1>__stdout 2>__stderr2 < $IN
+			llvm-as lib/library.ll
+			llvm-as $IR
+			BC=${IR/%ll/bc}
+			llvm-link lib/library.bc $BC > a.bc
+			$SIMULATOR a.bc 1>__stdout 2>__stderr2 < $IN
 		else
-			$SIMULATOR $IR 1>__stdout 2>__stderr2
+			$SIMULATOR a.bc 1>__stdout 2>__stderr2
 		fi
 		
 		if [ -z "$(diff -q __stdout $REF)" ]; then
