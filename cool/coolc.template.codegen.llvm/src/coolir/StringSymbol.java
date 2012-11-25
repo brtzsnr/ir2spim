@@ -1,4 +1,4 @@
-/*
+package coolir;/*
 Copyright (c) 2000 The Regents of the University of California.
 All rights reserved.
 
@@ -21,50 +21,42 @@ PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
 import java.io.PrintStream;
 
-/** String table entry for string constants. */
+/**
+ * String table entry for string constants.
+ */
 class StringSymbol extends AbstractSymbol {
     /* Creates a new symbol.
      * 
      * @see AbstractSymbol
      * */
     public StringSymbol(String str, int len, int index) {
-	super(str, len, index);
+        super(str, len, index);
     }
 
-    /** Generates code for the string constant definition.  This method
+    /**
+     * Generates code for the string constant definition.  This method
      * is incomplete; you get to finish it up in programming assignment
      * 5.
-     * @param stringclasstag the class tag for string object
-     * @param s the output stream
      *
-     * */
-    public void codeDef(int stringclasstag, PrintStream s) {
-	IntSymbol lensym = (IntSymbol)AbstractTable.inttable.addInt(str.length());
-	
-	s.print(IRRef() + CgenSupport.LABEL); // label
-	s.println(CgenSupport.DWORD + stringclasstag); // tag
-	s.println(CgenSupport.DWORD + (CgenSupport.DEFAULT_OBJFIELDS +
-				      CgenSupport.STRING_SLOTS +
-				      (str.length() + 4) / 4)); // object size
-	s.print(CgenSupport.DLABEL);
-
-	/* Add code to reference the dispatch table for class String here */
-
-	s.println(TreeConstants.Str + CgenSupport.DISPTAB_SUFFIX);		// dispatch table
-	s.print(CgenSupport.DLABEL + lensym.IRRef()); s.println(""); // length
-	CgenSupport.emitStringConstant(str, s); // ascii string
+     * @param stringclasstag the class tag for string object
+     * @param s              the output stream
+     */
+    public void codeDef(int stringclasstag) {
     }
 
-    /** Returns a reference to this string constant.
+    /**
+     * Emits a reference to this string constant.
+     *
      * @param s the output stream
-     * */
-    public String IRRef() {
-	return CgenSupport.STRCONST_PREFIX + index;
+     */
+    public void codeRef() {
     }
 
-    /** Returns a copy of this symbol */
+    /**
+     * Returns a copy of this symbol
+     */
     public Object clone() {
-	return new StringSymbol(str, str.length(), index);
+        return new StringSymbol(str, str.length(), getIndex());
     }
 }
 
