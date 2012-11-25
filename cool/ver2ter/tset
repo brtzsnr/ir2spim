@@ -1,0 +1,446 @@
+== Enuntul pe scurt ==
+Va trebui sa realizati, folosind ANTLR si limbajul Java, translatarea optimizata a unui program din limbajul ver2ter descris mai jos, in limbajul intermediar CoolIR descris in cadrul [[Teme:Tema_3#CoolIR|temei 3]]. Limbajul ver2ter este un limbaj orientat obiect, dinamic, in care tipul unei variabile este determinat la rulare. Pentru a genera un cod cat mai bun trebuie detectat, in cazurile in care este posibil, tipul variabilelor chiar la momentul compilarii.
+
+== Informatii organizatorice ==
+
+* '''Deadline''': Termenul aceasta tema de casa. Termenul limita pâna când se pot trimite temele este '''joi, 6 mai, ora 23:00'''. Dupa termenul final nu veti mai avea posibilitatea de a trimite teme; voi accepta doar corecturi de o dimensiune rezonabila pentru a repara probleme cunoscute, dar nu si functionalitate noua implementata. Dupa terminarea corectarii - cel mai devreme 9 mai - nu se va mai accepta nicio modificare a temei.
+
+* '''Punctare''': Se vor acorda '''200 de puncte''' astfel:
+** 100 de puncte pentru translatarea completa si corecta a programului sursa ver2ter intr-un program functional CoolIR.
+** 100 de puncte pentru generarea optimizata a codului. Optimizarile ce trebuie aplicate trebuie sa acopere situatiile descrise in enunt.
+
+== Translatare ==
+Aplicatia Java va citi un fisier sursa ver2ter al carui nume se va trimite pe linia de comanda ('''''nume''.v2t'''), si va efectua analiza lexicala, sintactica si semantica. Daca programul citit este valid, se va genera un fisier CoolIR ('''''nume''.ir''') ce contine codul translatat.
+
+Tot in cadrul acestei teme va trebui sa completati un fisier CoolIR numit '''library.ir''', in care veti scrie functiile necesare la runtime pentru a rula programul. 
+
+Impreuna, aceste fisiere vor fi executate de catre interpretorul CoolIR.
+
+In cazul in care programul este eronat, compilatorul trebuie sa emita un mesaj de eroare relevant care, daca este posibil, sa includa si numarul liniei la care a avut loc eroarea. Nu este necesara revenirea din eroare si continuare compilarii. Compilatorul nu trebuie sa se blocheze sau sa se intoarca cu o exceptie necontrolata, in nicio circumstanta.
+
+== Limbajul ver2ter ==
+Un program ver2ter este alcatuit dintr-o colectie de definitii de clase. Fiecare clasa poate contine definitii de campuri si/sau de metode ale clasei respective.
+
+La pornirea programului, se va crea un obiect din clasa '''program''', si i se va apela metoda '''run'''
+
+    class counter :
+        count = 0
+        def bump(increment) :
+            self.count = self.count + increment
+            
+    class program :
+        def run() :
+            mycounter = counter()
+            mycounter.bump(2)
+        # Print the result now
+            sys.print(mycounter.count)
+
+=== Detalii lexicale ===
+Fiecare instructiune ver2ter se gaseste pe o singura linie; altfel spus, caracterul sfarsit de linie este si separator de instructiuni.
+
+Comentariile incep cu caracterul # si continua pana la sfarsitul liniei.
+
+Instructiunile sunt grupate in functie de nivelul de indentare. Din punct de vedere al indentarii, nu se face diferenta intre caracterele TAB so spatiu; 1 caracter TAB = 1 spatiu.
+* Daca numarul de spatii de la inceputul liniei este acelasi cu numarul de spatii din linia precedenta, cele doua instructiuni sunt grupate in acelasi bloc
+* Daca numarul de spatii este mai mare decat cel al liniei precedente, linia este prima dintr-un bloc nou, cu un nivel de indentare mai mare.
+* Daca numarul de spatii este mai mic decat cel al liniei precedente, acesta trebuie sa corespunda unui nivel de indentare anterior. In cazul in care numarul de spatii nu corespunde niciunui alt nivel de indentare, este o eroare sintactica.
+* Liniile goale, ce nu contin altceva decat spatii, tab, sau comentarii, sunt ignorate.
+
+    if a == 0 :
+        if b == 1 :
+            a  = a + 1
+    else :
+        b = b + 1
+      a = a - 1 # Indentation error!
+
+{{Atentie
+|mesaj=Designul ver2ter este asemanator cu Python, dar limbajul NU este un subset al acestuia; in multe cazuri, in special legate de clase, comportamentul este diferit.
+}}
+
+O instructiune se poate intinde pe mai multe linii in cazurile urmatoare
+* Daca linia se termina cu caracterul '''\''' . In acest caz, atat caracterul '''\''', cat si sfarsitul de linie vor fi ignorate. A doua linie nu va fi luata in calcul pentru indentare.
+
+    if month == 'may' \
+            and year == 2010 :
+        sys.print('Deadline!')
+
+* Daca linia se termina atunci cand exista o pereche de caractere '''(''' ''')''' ce nu sunt echilibrate. In acest caz, sfarsiturile de linie vor fi ignorate pana cand perechile de paranteze sunt echilibrate.
+
+    def set_timestamp(year, month, day,
+        hour, minute, second) :
+
+Identificatorii sunt formati din litere, cifre si _ , si nu trebuie sa inceapa cu o cifra.
+
+=== Tipuri de baza ===
+==== Numere intregi ====
+Valorile de tip intreg sunt numere intregi cu semn. Implementarea le va restrictiona la 32 de biti, dar nu trebuie verificat in cadrul analizei semantice daca toate constantele de tip intreg se incadreaza in 32 de biti. Tipul intreg suporta operatiile aritmetice standard: '''+''', '''-''', '''*''', '''/''', cu doi operanzi; nu este suportat minusul unar.
+==== Siruri de caractere ====
+Sirurile de caractere sunt delimitate de caracterul ''' ' '''. Caracterul '''\''' functioneaza ca un caracter escape, in particular pentru secventele urmatoare, de exemplu:
+{| class="wikitable"
+|-
+| '''\\''' 
+| '''\'''
+|-
+| '''\' ''' 
+| ''' ' '''
+|-
+| '''\n''' 
+| sfarsit de linie
+|-
+| '''\t''' 
+| tab
+|}
+
+ 'C:\\Program Files' 
+ 'select * from users where name=\'John\' ' 
+ 'NAME\tJohn\nAGE\t46\n'
+
+O constanta de tip sir de caractere poate contine caractere de sfarsit de linie. Acestea vor face parte din sir.
+
+     usage = 'Usage
+ --version   Print version\n'
+
+Un sir de caractere nu se poate modifica. Doua siruri de caractere pot fi concatenate folosind operatorul '''+''', ce genereaza un sir nou de caractere.
+
+===Obiecte===
+Un obiect este format dintr-un set de campuri si metode. Un obiect apartine unei clase, si toate obiectele din aceeasi clasa contin aceleasi campuri si metode.
+
+Accesul la campurile unui obiect se face folosind sintaxa ''expresie_obiect'' '''.''' ''identificator_camp''. In cazul in care campul nu exista pentru obiectul respectiv, programul va afisa mesajul ''RUNTIME ERROR: Field does not exist on line'', urmat de numarul liniei, si isi va opri executia.
+
+Apelul unei metode a unui obiect se face folosind sintaxa ''expresie_obiect'' '''.''' ''identificator_metoda'' '''(''' ''parametru'' ''',''' ''parametru'' ''')'''. In cazul in care metoda nu exista pentru obiectul respectiv, sau numarul parametrilor formali difera de numarul parametrilor actuali, programul va afisa mesajul ''RUNTIME ERROR: Method does not match on line'', urmat de numarul liniei, si isi va opri executia.
+
+Exista o constanta speciala de tip obiect, '''none''', ce nu apartine niciunei clase. Orice acces la un camp sau metoda a lui ''none'' va esua; programul va afisa mesajul ''RUNTIME ERROR: Access to a non-initalized object on line'', urmat de numarul liniei, si isi va opri executia.
+
+===Valori de adevar===
+Conditiile din instructiunile ''if'' si ''while'' necesita tipul valoare de adevar. Exista constantele predefinite '''true''' si '''false'''. Valorile de adevar pot fi generate de operatorii '''<''', '''>''' (functioneaza pe numere intregi) si '''==''' (functioneaza pentru valori de tip intreg, sir sau obiect). Se considera ca doua referinte la un obiect sunt egale daca refera acelasi obiect, sau sunt ambele ''none''.
+
+Expresiile de tip valoare de adevar pot fi combinate folosind operatorii '''and''', '''or''' si '''not'''. Operatorii '''and''' si '''or''' functioneaza cu scurtcircuitare: operanzii sunt evaluati de la stanga la dreapta, si daca primul operand este 0, respectiv 1, al doilea operand nu va mai fi evaluat.
+
+===Valori, variabile si expresii===
+Valorile in ver2ter au un tip bine definit. Nu se pot face conversii implicite de la un tip la altul. De exemplu, codul urmator va genera o eroare la rulare, deoarece numarul intreg 3 nu se poate converti automat la un sir de caractere.
+
+    count = 3
+    sys.print('count =' + count)
+
+In cazul in care tipul operanzilor unei expresii nu corespunde operatorului aplicat, programul CoolIR va afisa mesajul ''RUNTIME ERROR: Type mismatch on line'' urmat de numarul liniei, si isi va opri executia.
+
+Valorile pot fi memorate in variabilele locale si parametrii formali ai unei metode sau campurile unui obiect. Aceste locatii (lvalue) pot contine un numar intreg, un sir de caractere sau o referinta catre un obiect. Ele nu pot contine valori de adevar. O locatie poate contine valori de mai multe tipuri; acestea se stabilesc la rulare, in momentul unei atribuiri, si se pot schimba pe parcursul programului. Codul urmator nu va genera nicio eroare:
+
+ class program :
+    def printer(value) :
+        sys.print('value is ')
+        sys.print(value)
+        
+    def run() :
+        printer(10)
+        printer('name')
+
+O locatie neinitializata contine valoarea ''none''.
+
+Ca o consecinta, manipularea obiectelor - atribuirile, transmiterea parametrilor si intoarcerea valorilor la obiecte - se va face prin referinta.
+
+    class node :
+        value = none
+    
+    class program :
+        def run() :
+            n = node()
+            n.value = 1
+            n2 = n
+            n2.value = 2
+            sys.print(n.value) # Will print '2'
+
+=== Ordinea operatiilor=== 
+Daca nu este altfel specificat, evaluarea unei expresii se face de la stanga la dreapta.
+
+{| class="wikitable"
+|-
+| '''( )'''
+| parantezele simple, '''(''' ''')''', pot fi folosite pentru a modifica ordinea operatiilor.
+|-
+| '''.'''
+| apel de metoda, accesul la un camp dintr-un obiect
+|-
+| '''* /'''
+| operatii aritmetice pe intregi
+|-
+| '''+ -''' 
+| operatii aritmetice pe intregi, concatenare de siruri
+|-
+| '''< > ==''' 
+| comparatii de intregi, siruri sau obiecte
+|-
+| '''not''' 
+| operatie logica
+|-
+| '''and''' 
+| operatie logica
+|-
+| '''or''' 
+| operatie logica
+|}
+
+=== Structura programului ===
+
+Un program este o secventa de clase. O clasa este o secventa de declaratii de campuri si metode. Sintaxa este 
+
+'''class''' ''identificator'' ''':''' ''bloc_declaratii''
+
+Sintaxa pentru declaratia unui camp este ''identificator'' '''=''' ''expresie_initializare''.
+Sintaxa pentru declaratia unei metode este:
+
+'''def''' ''identificator'' '''(''' ''lista_parametri_formali'' ''') :''' ''bloc_instructiuni''
+
+    class shape :
+        length = self.default_length()
+        area = self.length * self.length
+        def default_length() :
+            return 100
+
+    class node:
+        value = none
+        next = none
+            
+    class list:
+        head = node()
+
+Crearea unui obiect se face folosind constructia ''nume_clasa'' '''( )''', ce intoarce o referinta catre noul obiect. In acel moment se aloca memoria pentru obiectul respectiv, si se executa secventele de intializare pentru fiecare camp. 
+
+Limbajul nu are un mecanism explicit de eliberare a memoriei unei valori. Intentia este de a colecta memoria automat, dar, pentru aceasta tema, colectarea memoriei nu trebuie implementata.
+
+In cadrul unei metode sau a unei secvente de initalizare, '''self''' refera obiectul curent. 
+
+In afara de ''self'', sunt disponibili parametrii formali ai metodei. Orice alt identificator, care nu este cuvant cheie sau nume de clasa, este o variabila locala, initializata implicit cu ''none''.
+
+O metoda intoarce intotdeauna o valoare. Daca aceasta nu este specificata explicit prin instructiunea ''return'', valoarea intoarsa este ''none''.
+
+O clasa poate mosteni campurile si metodele unei alte clase. 
+
+'''class''' ''identificator'' '''(''' ''identificator_parinte'' ''') :''' ''bloc_declaratii''
+    
+In acest caz, campurile si metodele noi vor fi adaugate la cele existente. La crearea obiectului, se va executa intai secventa de initalizare a campurilor din clasa parinte, si apoi se vor initializa campurile noi. In cazul in care exista o metoda cu acelasi nume, aceasta va inlocui metoda veche. Numarul de parametri ai unei metode redefinite trebuie sa ramana acelasi. In interiorul unei metode, se pot apela metodele din clasa parinte folosind sintaxa '''super.''' ''nume_metoda'' .
+    
+    class shape:
+        length = 10
+        
+        def increase(delta):
+            self.length = self.length + delta
+            
+    class square(shape):
+        area = self.length * self.length
+                
+        def increase(delta):
+            super.increase(delta)
+            self.area = self.length * self.length
+
+=== Instructiuni ===
+Limbajul ver2ter suporta urmatoarele instructiuni:
+* Apel de metoda. Valoarea intoarsa de metoda este ignorata.
+* Apel de metoda implicita. Metodele implicite sunt prefixate de cuvantul cheie '''sys'''.
+* Atribuire: ''lvalue'' '''=''' ''expresie''
+* Structura de control: '''if''' ''conditie'' ''':''' ''bloc_instructiuni'' '''else :''' ''bloc_instructiuni''
+* Ciclu: '''while''' ''conditie'' ''':''' ''bloc_instructiuni''
+* Intoarcera din metoda: '''return''' ''expresie'' incheie executia metodei si intoarce valoarea expresiei. Daca expresia lipseste, intoarce valoarea ''none''.
+
+=== Metode implicite ===
+
+{| class="wikitable"
+|-
+| '''sys.print(''' ''expresie'' ''')'''
+| Tipareste la iesirea standard valoarea expresiei, care trebuie sa fie un numar intreg sau un sir de caractere
+|-
+| '''sys.read()'''
+| Citeste de la intrarea standard si intoarce un sir de caractere
+|-
+| '''sys.read_int()'''
+| Citeste de la intrarea standard  si intoarce un numar intreg
+|}
+
+== Runtime: library.ir ==
+La executia unui program CoolIR, interpretorul poate folosi un numar de functii predefinite, ce vor fi definite in fisierul ''library.ir''. Acesta contine, pentru inceput:
+* Functiile predefinite din simulator
+* Eticheta '''__start'''. Aici va trebui sa adaugati codul de initializare a programului.
+* Cateva functii ajutatoare pentru a copia, compara si initializa memoria.
+* Mesaje de eroare standard, si o functie care le afiseaza si opreste executia programului.
+
+In library.ir puteti adauga orice alte functii de care va fi nevoie la executia programului. De exemplu, probabil veti avea functii care 
+* aloca memorie pentru un obiect
+* concateneaza si compara siruri, 
+* implementeaza sys.print, sys.read, sys.read_int
+* verifica daca tipurile intr-o expresie sunt compatibile
+* verifica daca un obiect contine un anumit camp sau metoda.
+
+De exemplu, daca un obiect ''none'' este reprezentat de valoarea 0, puteti adauga in library.ir functia
+
+    __CheckNone:
+        VR0 <- VI0      # Value
+        VR1 <- VI1      # Line number
+        VR2 <- VR0 = 0
+        jumpf VR2 __label1      # Is it object none ?
+        
+        VR10 <- __str_none_msg  # Abort with error message
+        VR11 <- __len_none_msg
+        load VR12, [VR11,0]
+        VI0 <- VR10
+        VI1 <- VR12
+        VI2 <- VR1
+        call __runtimeError
+        
+    __label1:
+        return
+    
+...si in codul generat puteti face verificarile cu o secventa de tipul
+
+    VR30 <- 100         # At line 100
+    VI0 <- VR20         # Check if VR20 is a reference to none
+    VI1 <- VR30
+    call __CheckNone
+
+Puteti sa scrieti library.ir de la zero, adaugand functii pe masura ce aveti nevoie de ele. Alternativ, puteti folosi ca punct de plecare library.ir de la tema 3- dar tineti cont de faptul ca reprezentarea datelor din COOL nu este 100% potrivita pentru ver2ter, si va trebui modificata.
+
+{{Sfat
+|mesaj=
+Inainte de a incepe implementarea...
+* Alegeti cu grija gramatica, in special analizorul lexical. Puteti sa va inspirati din alte limbaje ce folosesc indentarea; de exemplu [http://docs.python.org/reference manualul online Python] contine un capitol legat de analiza lexicala.
+* Ganditi-va la o reprezentare interna adecvata pentru un obiect, care sa permita verificarea numelor campurilor si al metodelor la executia programului.
+* Ganditi-va la o reprezentare interna adecvata pentru o variabila locala, care sa poata fi accesata folosind un registru VR, sa poata contine valori intregi, siruri de caractere sau obiecte, si sa suporte verificarea tipurilor la rulare.
+* Identificati secventele de cod CoolIR comune, si scrieti-le in library.ir
+}}
+
+== Optimizare ==
+
+Pasul de optimizare va trebuie sa imbunatateasca instructiunile generate pentru situatiile de mai jos:
+* Se vor elimina verificarile de tip pentru expresii, in cazul in care rezultatul acestora poate fi cunoscut la compilare. In cazul in care verificarea de tip esueaza, se va afisa un avertisment la compilare.
+
+    len = 10
+    if shape == 'square' :
+        area = len * len            # Type check removed, len is integer
+    else
+        area = len * len / 2        # Type checks removed
+        
+    area_feet = area * 9            # Type check removed, area is integer
+    sys.print('area' + area_feet)   # Compile time warning: type mismatch
+    
+* Rezultatele intermediare folosite la evaluarea expresiilor vor fi calculate cat mai eficient, folosind pe cat posibil intructiuni simple, fara verificari sau conversii de tip.
+
+    self.area = self.height * self.length / 2
+    
+    ... va genera cod asemanator cu
+    
+    load VR10 [VR0,4] # code sequence to load height
+    load VR11 [VR0,8] # code sequence to load length
+    VR12 <- VR10 * VR11
+    VR13 <- 2
+    VR14 <- VR13 / VR14
+    store VR12 [VR0,12] # code sequence to store area 
+
+* Se vor elimina verificarile sau se va emite un avertisment in cazul cand se poate verifica la compilare daca o referinta este ''none''.
+
+ class list:
+    head = none
+    def append(node, value):
+        node.value = value
+        node.next = self.head       # Null check removed, node is already checked
+        self.head = element.next    # Warning: null check fails, element is none    
+
+* In cazul cand clasa unui obiect poate fi verificata la compilare, se vor elimina verificarile de camp sau metoda, sau se vor emite avertismente, dupa caz. Tot in acest caz, codul ce acceseaza campurile si apeleaza metodele trebuie sa fie cat mai eficient, deoarece adresa acestora este cunoscuta la compilare, si nu mai trebuie calculata la rulare in functie de nume.
+
+ class node:
+    value = 0
+    
+ class list:
+    def append_many(value, count):
+        new = node()
+        while count > 0 :
+            new.value = value   # Field check removed, new is a known 'node'. Access the field value directly.
+            self.append(new)
+            count = count - 1
+            new = node()
+
+* Optimizarile de mai sus se aplica si in cazul cand valorile unui obiect pot fi din clase diferite, dar au o clasa parinte comuna.
+
+  class shape:
+    length = 0
+    def area():
+        return 0
+    
+  class square:
+    def area():
+        return self.length * self.length;
+    
+  class triangle:
+    def area():
+        return self.length * self.length / 2;
+    
+  class program:
+    def print_area(type, len):
+        if type=='square':
+            s = square()
+        else:
+            s = triangle()
+        s.length = len      # Skip field check. Common ancestor of square and triangle is area.
+        sys.print(s.area())
+    
+    def run() :
+        print_area('square',10)
+        print_area('triangle',20)
+
+* In cazul cand existenta unui camp sau metoda poate fi verificata la compilare, se vor elimina verificarile suplimentare.
+
+    killed = node.next
+    node.dump(id)
+    node.next = skipped     # Already checked that node.next exists, don't check anymore
+    node.dump(id+1)         # Already checked that node.dump exists and has one parameter, don't check anymore
+
+Optimizarea poate tine cont ca intreg programul ver2ter este disponibil in fisierul de intrare. Se considera ca nu mai exista alte fisiere, clase si metode.
+
+Pentru aceasta tema se cer doar optimizari intraprocedurale, si eliminarea verificarilor doar pentru variabilele locale. De exemplu, verificarile de tip se vor elimina in:
+
+    current = 0
+    next = current + 1   # Type check removed
+
+...dar nu neaparat si in :
+
+    node.current = 0
+    next = node.current + 1   # Field check must be removed, but type check may remain
+
+...nici toate verificarile de campuri in :
+
+    node.current.value = 0
+    next = node.current.value  # Field check for node.current must be removed, but the one for node.current.value may remain
+
+Cateva sfaturi pentru realizarea temei
+* Este foarte dificil sa faceti optimizarile direct pe limbajul CoolIR, deoarece se pierd informatiile semantice din limbajul ver2ter. Recomandarea este sa folositi o reprezentare intermediara de nivel mai inalt. 
+
+Este de ajuns, de exemplu, sa aveti, pentru o functie, o lista de instructiuni, si o lista de variabile locale. De exemplu, pentru secventa ''a.sum = b.sum + c + 1'' se vor adauga noi temporari in lista de variabile locale, si noi obiecte in lista de instructiuni. Codul generat ar putea fi similar cu 
+
+    FieldAddress(T1, b, sum)
+    Load(T2, T1)
+    Add(T3, T2, c)
+    Add(T4, T3, 1)
+    FieldAddress(T5, a, sum)
+    Store(T5,T4)
+
+...unde Load, Store, Add, FieldAddress sunt tipuri de intructiuni, reprezentate ca obiecte Java intr-o lista in compilator.
+    
+* Pe aceasta reprezentare, folositi un algoritm iterativ prin care calculati tipul fiecarei variabile locale la fiecare punct din program.
+
+* In final, alocati registri virtuali variabilelor locale, si, in functie rezultatele analizei, convertiti instructiunile din limbajul intermediar in secvente de instructiuni CoolIR.
+}}
+
+
+== Predarea temei ==
+Pentru a preda tema, va trebui sa realizati o arhiva '''.zip''', care sa contina urmatoarele in directorul ei radacina:
+# Codul sursa al temei (fara binare sau biblioteci!).
+# Un fisier README in care sa prezentati solutia aleasa:
+#* Detalii despre reprezentarea interna a variabilelor locale.
+#* Detalii despre reprezentarea interna a obiectelor.
+#* Detalii despre optimizarile aplicate.
+# Un fisier '''Makefile''' cu urmatoarele targeturi:
+#* <tt>clean</tt> - sterge toate binarele si fisierele sursa generate in urma compilarii
+#* <tt>build</tt> - compileaza tema si genereaza fisierele .class corespunzatoare in directorul <tt>bin</tt>
+# Un fisier '''library.ir''' ce contine bibloteca runtime. Versiunea de pornire este: [http://cs.pub.ro/~cpl/arhive/tema6/library.ir library.ir]
+
+'''Important!'''
+* In urma rularii <tt>make build</tt> trebuie sa rezulte clasa <tt>bin/ro/pub/cpl/ver2ter/FrontEnd.class</tt>. Aceasta va fi folosita ca entry point in evaluarea analizorului vostru. 
+* Nu includeti in arhiva fisiere binare sau librarii (nici cele care erau in arhiva de pornire). O arhiva corecta va contine doar codul sursa, un Makefile care sa-l compileze, library.ir si fisierul README.

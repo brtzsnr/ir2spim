@@ -1,0 +1,196 @@
+# CoolIR Runtime library
+
+# Predefined functions - these are intrinsics implemented in the simulator
+##########################################################################
+.code
+
+__library_loop__:
+	jump __library_loop__
+
+# __alloc__: allocate a chunk of memory
+# Input: VI0 <- size to allocate in bytes
+# Output: VI0 <- the allocated address
+__alloc__:
+	jump __library_loop__
+	
+# __alloc__: stops interpreter
+# Input: VI0 <- error code for the O/S
+__abort__:
+	jump __library_loop__
+
+# __outInt__: print an integer
+# Input: VI0 <- value
+__outInt__:
+	jump __library_loop__
+
+# __outString__: print a string
+# Input: VI0 <- string address
+#        VI1 <- size in bytes
+__outString__:
+	jump __library_loop__
+
+# __inInt__: read an integer
+# Output: VI0 <- value
+__inInt__:
+	jump __library_loop__
+
+# __inInt__: read a string
+# Output: VI0 <- address of the string
+#         VI1 <- size of the string
+__inString__:
+	jump __library_loop__
+
+# The ver2ter runtime
+#########################
+# Startup code
+__start:
+    # Write here code that creates an object of type 'program' and calls its 'run' method
+    # ...
+	VI0 <- 0  # Replace this code with the return value of your program
+	call __abort__
+
+    
+# Helper: zero memory bytes
+# Input: VI0 <- size
+#        VI1 <- from
+__zeroBytes:
+	VR0 <- VI0
+	VR1 <- 0
+	VR2 <- VI1
+	
+__zb0:
+	VR3 <- 0 < VR0
+	jumpf VR3 __zb1
+	
+	storeb VR1 [VR2,0] 
+	
+	VR0 <- VR0 - 1
+	VR2 <- VR2 + 1
+	jump __zb0
+	
+__zb1:
+	return
+
+    
+# Helper: copy memory bytes, non-overlapping
+# Input: VI0 <- size
+#        VI1 <- from
+#        VI2 <- to
+__copyBytes:
+	VR0 <- VI0
+	VR1 <- VI1
+	VR2 <- VI2
+	
+__cb0:
+	VR3 <- 0 < VR0
+	jumpf VR3 __cb1
+	
+	loadb VR3 [VR1,0]
+	storeb VR3 [VR2,0] 
+	
+	VR0 <- VR0 - 1
+	VR1 <- VR1 + 1
+	VR2 <- VR2 + 1
+	jump __cb0
+	
+__cb1:
+	return
+
+   
+# Helper: compare memory areas
+# Input: VI0 <- size
+#        VI1 <- string1
+#        VI2 <- string2
+# Output: VI0 <- 0 if equal, 1 if different
+#########################
+__compareBytes:
+	VR0 <- VI0
+	VR1 <- VI1
+	VR2 <- VI2
+	
+__cmb0:
+	VR3 <- 0 < VR0
+	jumpf VR3 __cmb1
+	
+	loadb VR3 [VR1,0]
+	loadb VR4 [VR2,0] 
+
+	VR10 <- VR3 = VR4
+	jumpf VR10 __cmb2	# if different, strings are different
+	
+	VR0 <- VR0 - 1
+	VR1 <- VR1 + 1
+	VR2 <- VR2 + 1
+	jump __cmb0
+	
+__cmb1:
+    VI <- 0
+	return
+
+__cmb2:
+    VI <- 1
+	return
+
+
+# Helper: print an error message and exit
+# Input: VI0 <- message
+#        VI1 <- message length
+#        VI2 <- line number
+#########################
+__runtimeError:
+	VR0 <- VI0
+	VR1 <- VI1
+	VR2 <- VI2
+
+	VI0 <- VR0          # Message
+	VI1 <- VR1
+	call __outString__
+
+    VI0 <- VR2          # Line number
+    call __outInt__
+    
+    VR10 <- __str_eol    # \n
+    VR11 <- 1
+    VI0 <- VR10
+    VI1 <- VR11
+	call __outString__
+
+    call __abort__      # exit
+    
+    
+######################
+.data
+
+#########################
+#Error messages
+__str_eol:
+    DB "\n" # 1 char
+    DB 0
+    DS 2
+
+__str_field_msg:
+	DB "RUNTIME ERROR: Field does not exist on line"	# 43 chars
+	DB 0
+__len_field_msg:
+    DW 43
+
+__str_method_msg:
+	DB "RUNTIME ERROR: Method does not match on line"	# 44 chars
+	DB 0
+    DS 3
+__len_method_msg:
+    DW 44
+
+__str_none_msg:
+	DB "RUNTIME ERROR: Access to a non-initalized object on line"	# 56 chars
+	DB 0
+    DS 3
+__len_none_msg:
+    DW 56
+
+__str_type_msg:
+	DB "RUNTIME ERROR: Type mismatch on line"	# 36 chars
+	DB 0
+    DS 3
+__len_type_msg:
+    DW 36
