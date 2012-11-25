@@ -44,11 +44,11 @@ function test_correct {
 	$COMPILER $CL 1>&2 2>__stderr	
 	
 	if [ -f $IR ]; then
+		llvm-as lib/library.ll
+		llvm-as $IR
+		BC=${IR/%ll/bc}
+		llvm-link lib/library.bc $BC > a.bc
 		if [ -f $IN ]; then
-			llvm-as lib/library.ll
-			llvm-as $IR
-			BC=${IR/%ll/bc}
-			llvm-link lib/library.bc $BC > a.bc
 			$SIMULATOR a.bc 1>__stdout 2>__stderr2 < $IN
 		else
 			$SIMULATOR a.bc 1>__stdout 2>__stderr2
