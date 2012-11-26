@@ -1,0 +1,66 @@
+#1
+_program
+  #1
+  _class
+    Main
+    IO
+    "_tests/library/sum2.cl"
+    (
+    #2
+    _attr
+      a
+      Int
+      #2
+      _int
+        100
+      : Int
+    #3
+    _attr
+      b
+      Int
+      #3
+      _int
+        10
+      : Int
+    #5
+    _method
+      main
+      Int
+      #6
+      _let
+        c
+        Int
+        #6
+        _plus
+          #6
+          _object
+            a
+          : Int
+          #6
+          _object
+            b
+          : Int
+        : Int
+        #7
+        _block
+          #7
+          _dispatch
+            #7
+            _object
+              self
+            : SELF_TYPE
+            out_int
+            (
+            #7
+            _object
+              c
+            : Int
+            )
+          : SELF_TYPE
+          #7
+          _object
+            c
+          : Int
+        : Int
+      : Int
+    )
