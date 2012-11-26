@@ -1,0 +1,124 @@
+#2
+_program
+  #2
+  _class
+    Main
+    IO
+    "_tests/simple/eval-order-args.cl"
+    (
+    #4
+    _method
+      recite
+      #4
+      _formal
+        value
+        Int
+      Object
+      #6
+      _block
+        #7
+        _dispatch
+          #7
+          _object
+            self
+          : SELF_TYPE
+          out_int
+          (
+          #7
+          _object
+            value
+          : Int
+          )
+        : SELF_TYPE
+        #8
+        _dispatch
+          #8
+          _object
+            self
+          : SELF_TYPE
+          out_string
+          (
+          #8
+          _string
+            "\n"
+          : String
+          )
+        : SELF_TYPE
+      : SELF_TYPE
+    #12
+    _method
+      disregard
+      #12
+      _formal
+        a
+        Object
+      #12
+      _formal
+        b
+        Object
+      #12
+      _formal
+        c
+        Object
+      Object
+      #14
+      _object
+        self
+      : SELF_TYPE
+    #17
+    _method
+      main
+      Object
+      #19
+      _dispatch
+        #19
+        _object
+          self
+        : SELF_TYPE
+        disregard
+        (
+        #19
+        _dispatch
+          #19
+          _object
+            self
+          : SELF_TYPE
+          recite
+          (
+          #19
+          _int
+            1
+          : Int
+          )
+        : Object
+        #19
+        _dispatch
+          #19
+          _object
+            self
+          : SELF_TYPE
+          recite
+          (
+          #19
+          _int
+            2
+          : Int
+          )
+        : Object
+        #19
+        _dispatch
+          #19
+          _object
+            self
+          : SELF_TYPE
+          recite
+          (
+          #19
+          _int
+            3
+          : Int
+          )
+        : Object
+        )
+      : Object
+    )

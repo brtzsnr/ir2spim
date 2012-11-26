@@ -1,0 +1,91 @@
+#1
+_program
+  #1
+  _class
+    Main
+    IO
+    "library/compare.cl"
+    (
+    #2
+    _method
+      main
+      Int
+      #3
+      _let
+        a
+        String
+        #3
+        _dispatch
+          #3
+          _object
+            self
+          : SELF_TYPE
+          in_string
+          (
+          )
+        : String
+        #4
+        _let
+          b
+          String
+          #4
+          _dispatch
+            #4
+            _object
+              self
+            : SELF_TYPE
+            in_string
+            (
+            )
+          : String
+          #5
+          _let
+            c
+            Int
+            #5
+            _cond
+              #5
+              _eq
+                #5
+                _object
+                  a
+                : String
+                #5
+                _object
+                  b
+                : String
+              : Bool
+              #5
+              _int
+                1
+              : Int
+              #5
+              _int
+                0
+              : Int
+            : Int
+            #6
+            _block
+              #6
+              _dispatch
+                #6
+                _object
+                  self
+                : SELF_TYPE
+                out_int
+                (
+                #6
+                _object
+                  c
+                : Int
+                )
+              : SELF_TYPE
+              #6
+              _object
+                c
+              : Int
+            : Int
+          : Int
+        : Int
+      : Int
+    )
