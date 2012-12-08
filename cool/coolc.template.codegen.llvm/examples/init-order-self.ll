@@ -37,6 +37,7 @@ declare i32 @Object__type_name(i32)
 declare void @__outString__(i32, i32)
 declare void @_dispatch_abort(i32, i32)
 declare void @llvm.memcpy.i32(i8*, i8*, i32, i32)
+declare i32 @IO__in_string(i32)
 declare void @printmemorie()
 declare void @IO_init(i32)
 declare void @Object_init(i32)
@@ -394,30 +395,30 @@ entry:
 @s12 = internal constant [1 x i8] c"\00"
 @str_const__12 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__14, i8* getelementptr ([1 x i8]* @s12, i32 0, i32 0)}
 @s11 = internal constant [5 x i8] c"Main\00"
-@str_const__11 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__3, i8* getelementptr ([5 x i8]* @s11, i32 0, i32 0)}
+@str_const__11 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__3, i8* getelementptr ([5 x i8]* @s11, i32 0, i32 0)}
 @s10 = internal constant [3 x i8] c"IO\00"
 @str_const__10 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([3 x i8]* @s10, i32 0, i32 0)}
 @s9 = internal constant [7 x i8] c"String\00"
-@str_const__9 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([7 x i8]* @s9, i32 0, i32 0)}
+@str_const__9 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([7 x i8]* @s9, i32 0, i32 0)}
 @s8 = internal constant [5 x i8] c"Bool\00"
-@str_const__8 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__3, i8* getelementptr ([5 x i8]* @s8, i32 0, i32 0)}
+@str_const__8 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__3, i8* getelementptr ([5 x i8]* @s8, i32 0, i32 0)}
 @s7 = internal constant [4 x i8] c"Int\00"
 @str_const__7 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__2, i8* getelementptr ([4 x i8]* @s7, i32 0, i32 0)}
 @s6 = internal constant [7 x i8] c"Object\00"
-@str_const__6 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([7 x i8]* @s6, i32 0, i32 0)}
+@str_const__6 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([7 x i8]* @s6, i32 0, i32 0)}
 @s5 = internal constant [11 x i8] c"_prim_slot\00"
-@str_const__5 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__15, i8* getelementptr ([11 x i8]* @s5, i32 0, i32 0)}
+@str_const__5 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__15, i8* getelementptr ([11 x i8]* @s5, i32 0, i32 0)}
 @s4 = internal constant [10 x i8] c"SELF_TYPE\00"
-@str_const__4 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__16, i8* getelementptr ([10 x i8]* @s4, i32 0, i32 0)}
+@str_const__4 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__16, i8* getelementptr ([10 x i8]* @s4, i32 0, i32 0)}
 @s3 = internal constant [10 x i8] c"_no_class\00"
-@str_const__3 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__16, i8* getelementptr ([10 x i8]* @s3, i32 0, i32 0)}
+@str_const__3 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__16, i8* getelementptr ([10 x i8]* @s3, i32 0, i32 0)}
 @s2 = internal constant [14 x i8] c"<basic class>\00"
-@str_const__2 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__6, i8* getelementptr ([14 x i8]* @s2, i32 0, i32 0)}
+@str_const__2 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__6, i8* getelementptr ([14 x i8]* @s2, i32 0, i32 0)}
 @s1 = internal constant [2 x i8] c"\0A\00"
 @str_const__1 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__0, i8* getelementptr ([2 x i8]* @s1, i32 0, i32 0)}
-@s0 = internal constant [33 x i8] c"_tests/simple/init-order-self.cl\00"
-@str_const__0 = global %struct.String_protObj_t{i32 3, i32 13, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__17, i8* getelementptr ([33 x i8]* @s0, i32 0, i32 0)}
-@int_const__17 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 32}
+@s0 = internal constant [26 x i8] c"simple/init-order-self.cl\00"
+@str_const__0 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__17, i8* getelementptr ([26 x i8]* @s0, i32 0, i32 0)}
+@int_const__17 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 25}
 @int_const__16 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 9}
 @int_const__15 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 10}
 @int_const__14 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 0}
@@ -443,4 +444,5 @@ entry:
 @class_initTab = global %struct.class_initTab_t { i8* bitcast (void (i32)* @Object_init to i8*), i8* bitcast (void (i32)* @Int_init to i8*), i8* bitcast (void (i32)* @Bool_init to i8*), i8* bitcast (void (i32)* @String_init to i8*), i8* bitcast (void (i32)* @IO_init to i8*), i8* bitcast (void (i32)* @Main_init to i8*) }
 %struct.Main_dispTab_t = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*}
 @Main_dispTab = global %struct.Main_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_int to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_string to i8*), i8* bitcast (i32 (i32)* @IO__in_int to i8*), i8* bitcast (i32 (i32)* @IO__in_string to i8*), i8* bitcast (i32 (i32,i32)* @Main__recite to i8*), i8* bitcast (i32 (i32)* @Main__main to i8*)}
+
 
