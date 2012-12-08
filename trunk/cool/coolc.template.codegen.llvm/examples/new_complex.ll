@@ -1552,3 +1552,4 @@ entry:
 %struct.Complex_dispTab_t = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*}
 @Complex_dispTab = global %struct.Complex_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_int to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_string to i8*), i8* bitcast (i32 (i32)* @IO__in_int to i8*), i8* bitcast (i32 (i32)* @IO__in_string to i8*), i8* bitcast (i32 (i32,i32,i32)* @Complex__init to i8*), i8* bitcast (i32 (i32)* @Complex__print to i8*), i8* bitcast (i32 (i32)* @Complex__reflect_0 to i8*), i8* bitcast (i32 (i32)* @Complex__reflect_X to i8*), i8* bitcast (i32 (i32)* @Complex__reflect_Y to i8*), i8* bitcast (i32 (i32,i32)* @Complex__equal to i8*), i8* bitcast (i32 (i32)* @Complex__x_value to i8*), i8* bitcast (i32 (i32)* @Complex__y_value to i8*)}
 
+
