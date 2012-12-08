@@ -10165,3 +10165,4 @@ sfarsit_loop_Main_0:
 %struct.Main_dispTab_t = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*}
 @Main_dispTab = global %struct.Main_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_int to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_string to i8*), i8* bitcast (i32 (i32)* @IO__in_int to i8*), i8* bitcast (i32 (i32)* @IO__in_string to i8*), i8* bitcast (i32 (i32)* @Main__menu to i8*), i8* bitcast (i32 (i32)* @Main__prompt to i8*), i8* bitcast (i32 (i32)* @Main__get_int to i8*), i8* bitcast (i32 (i32,i32)* @Main__is_even to i8*), i8* bitcast (i32 (i32,i32)* @Main__class_type to i8*), i8* bitcast (i32 (i32,i32)* @Main__print to i8*), i8* bitcast (i32 (i32)* @Main__main to i8*)}
 
+
