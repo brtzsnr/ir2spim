@@ -33,10 +33,10 @@
 @class_nameTab = external global %struct.class_nameTab_t
 
 @.str = constant [3 x i8] c"%d\00"
-@s1 = constant [35 x i8] c"COOL program successfully executed\00"
+@s1 = constant [36 x i8] c"COOL program successfully executed\0A\00"
 @s3 = constant [2 x i8] c":\00"
 @s5 = constant [21 x i8] c": Dispatch to void.\0A\00"
-@s7 = constant [36 x i8] c": Match on void in case statement.\0A\00"
+@s7 = constant [34 x i8] c"Match on void in case statement.\0A\00"
 @s9 = constant [38 x i8] c"No match in case statement for Class \00"
 @s11 = constant [2 x i8] c"\0A\00"
 @s13 = constant [25 x i8] c"Abort called from class \00"
@@ -82,7 +82,7 @@ define void @_case_abort2(i32 %X, i32 %Y) {
   call i32 @IO__out_string(i32 0, i32 %X)
   call i32 (i8*, ...)* @printf( i8* getelementptr ([2 x i8]* @s3, i32 0, i32 0) )
   call i32 @IO__out_int(i32 0, i32 %Y)
-  call i32 (i8*, ...)* @printf( i8* getelementptr ([36 x i8]* @s7, i32 0, i32 0) )
+  call i32 (i8*, ...)* @printf( i8* getelementptr ([34 x i8]* @s7, i32 0, i32 0) )
   call void @__abort__()
   ret void
 }
@@ -260,7 +260,7 @@ define void @__start() {
   %1 = call i32 @Object__copy(i32 ptrtoint (%struct.Main_protObj_t* @Main_protObj to i32))
   call void @Main_init(i32 %1)
   call void @Main__main(i32 %1)
-  call i32 (i8*, ...)* @printf( i8* getelementptr ([35 x i8]* @s1, i32 0, i32 0) )
+  call i32 (i8*, ...)* @printf( i8* getelementptr ([36 x i8]* @s1, i32 0, i32 0) )
   call void @__abort__()
   ret void
 }
