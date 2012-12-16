@@ -37,7 +37,6 @@ declare i32 @Object__type_name(i32)
 declare void @__outString__(i32, i32)
 declare void @_dispatch_abort(i32, i32)
 declare void @llvm.memcpy.i32(i8*, i8*, i32, i32)
-declare i32 @IO__in_string(i32)
 declare void @printmemorie()
 declare void @IO_init(i32)
 declare void @Object_init(i32)
@@ -3670,7 +3669,7 @@ dispatch_not_void_Parse_18:
   %VR96 = inttoptr i32 %VR95 to i32 (i32, i32)*
   %VR97 = call i32 (i32, i32)* %VR96(i32 %ARG, i32 %VR87)
 ;; <- dispatch: linia 309
-  %VR98 = xor i32 1, %VR97
+  %VR98 = xor i32 4294967295, %VR97
 ;; <- neg: linia 309
   br label %join_if_Parse_11_true
 ;#######################################; <- dispatch_not_void_Parse_18
@@ -5207,5 +5206,4 @@ join_if_BoolOp_1:
 
 %struct.BoolOp_dispTab_t = type { i8*, i8*, i8*, i8*, i8*}
 @BoolOp_dispTab = global %struct.BoolOp_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32,i32,i32)* @BoolOp__and to i8*), i8* bitcast (i32 (i32,i32,i32)* @BoolOp__or to i8*)}
-
 
