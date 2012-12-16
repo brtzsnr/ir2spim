@@ -37,7 +37,6 @@ declare i32 @Object__type_name(i32)
 declare void @__outString__(i32, i32)
 declare void @_dispatch_abort(i32, i32)
 declare void @llvm.memcpy.i32(i8*, i8*, i32, i32)
-declare i32 @IO__in_string(i32)
 declare void @printmemorie()
 declare void @IO_init(i32)
 declare void @Object_init(i32)
@@ -770,7 +769,7 @@ entry:
   %VR5 = inttoptr i32 %VR4 to i32*
   %VR6 = load i32* %VR5
 ;; <- object: linia 33
-  %VR7 = xor i32 1, %VR6
+  %VR7 = xor i32 4294967295, %VR6
 ;; <- neg: linia 33
 ;boxing to int
   %VR8 = call i32  @Object__copy(i32 ptrtoint (%struct.Int_protObj_t* @Int_protObj to i32))
@@ -821,7 +820,7 @@ eq_test_join_Complex_3:
   %VR21 = inttoptr i32 %VR20 to i32*
   %VR22 = load i32* %VR21
 ;; <- object: linia 34
-  %VR23 = xor i32 1, %VR22
+  %VR23 = xor i32 4294967295, %VR22
 ;; <- neg: linia 34
 ;boxing to int
   %VR24 = call i32  @Object__copy(i32 ptrtoint (%struct.Int_protObj_t* @Int_protObj to i32))
@@ -889,7 +888,7 @@ entry:
   %VR5 = inttoptr i32 %VR4 to i32*
   %VR6 = load i32* %VR5
 ;; <- object: linia 41
-  %VR7 = xor i32 1, %VR6
+  %VR7 = xor i32 4294967295, %VR6
 ;; <- neg: linia 41
 ;boxing to int
   %VR8 = call i32  @Object__copy(i32 ptrtoint (%struct.Int_protObj_t* @Int_protObj to i32))
@@ -957,7 +956,7 @@ entry:
   %VR5 = inttoptr i32 %VR4 to i32*
   %VR6 = load i32* %VR5
 ;; <- object: linia 48
-  %VR7 = xor i32 1, %VR6
+  %VR7 = xor i32 4294967295, %VR6
 ;; <- neg: linia 48
 ;boxing to int
   %VR8 = call i32  @Object__copy(i32 ptrtoint (%struct.Int_protObj_t* @Int_protObj to i32))
@@ -1033,9 +1032,8 @@ eq_test_join_Complex_6:
 @str_const__2 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([4 x i8]* @s2, i32 0, i32 0)}
 @s1 = internal constant [4 x i8] c"=)\0A\00"
 @str_const__1 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([4 x i8]* @s1, i32 0, i32 0)}
-@s0 = internal constant [20 x i8] c"advanced/complex.cl\00"
-@str_const__0 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__13, i8* getelementptr ([20 x i8]* @s0, i32 0, i32 0)}
-@int_const__13 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 19}
+@s0 = internal constant [27 x i8] c"_tests/advanced/complex.cl\00"
+@str_const__0 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__6, i8* getelementptr ([27 x i8]* @s0, i32 0, i32 0)}
 @int_const__12 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 1}
 @int_const__11 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 13}
 @int_const__10 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 9}
@@ -1062,5 +1060,4 @@ eq_test_join_Complex_6:
 
 %struct.Complex_dispTab_t = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*}
 @Complex_dispTab = global %struct.Complex_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_int to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_string to i8*), i8* bitcast (i32 (i32)* @IO__in_int to i8*), i8* bitcast (i32 (i32)* @IO__in_string to i8*), i8* bitcast (i32 (i32,i32,i32)* @Complex__init to i8*), i8* bitcast (i32 (i32)* @Complex__print to i8*), i8* bitcast (i32 (i32)* @Complex__reflect_0 to i8*), i8* bitcast (i32 (i32)* @Complex__reflect_X to i8*), i8* bitcast (i32 (i32)* @Complex__reflect_Y to i8*)}
-
 

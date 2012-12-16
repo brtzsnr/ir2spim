@@ -37,7 +37,6 @@ declare i32 @Object__type_name(i32)
 declare void @__outString__(i32, i32)
 declare void @_dispatch_abort(i32, i32)
 declare void @llvm.memcpy.i32(i8*, i8*, i32, i32)
-declare i32 @IO__in_string(i32)
 declare void @printmemorie()
 declare void @IO_init(i32)
 declare void @Object_init(i32)
@@ -169,9 +168,9 @@ dispatch_not_void_Main_0:
 @str_const__2 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__8, i8* getelementptr ([10 x i8]* @s2, i32 0, i32 0)}
 @s1 = internal constant [14 x i8] c"<basic class>\00"
 @str_const__1 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([14 x i8]* @s1, i32 0, i32 0)}
-@s0 = internal constant [26 x i8] c"error/dispatch_to_void.cl\00"
-@str_const__0 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__10, i8* getelementptr ([26 x i8]* @s0, i32 0, i32 0)}
-@int_const__10 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 25}
+@s0 = internal constant [33 x i8] c"_tests/error/dispatch_to_void.cl\00"
+@str_const__0 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__10, i8* getelementptr ([33 x i8]* @s0, i32 0, i32 0)}
+@int_const__10 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 32}
 @int_const__9 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 13}
 @int_const__8 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 9}
 @int_const__7 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 10}
@@ -195,5 +194,4 @@ dispatch_not_void_Main_0:
 
 %struct.Main_dispTab_t = type { i8*, i8*, i8*, i8*}
 @Main_dispTab = global %struct.Main_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32)* @Main__main to i8*)}
-
 

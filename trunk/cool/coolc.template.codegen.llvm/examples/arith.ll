@@ -226,7 +226,7 @@ entry:
 ;- let -- block -- assign -- neg -- object -
 ;; -> object: linia 36
 ;; <- object: linia 36
-  %VR3 = xor i32 1, %VR1
+  %VR3 = xor i32 4294967295, %VR1
 ;; <- neg: linia 36
   store i32 %VR3, i32* %VR2a
 ;; <- assign: linia 36
@@ -716,7 +716,7 @@ entry:
 ;- let -- block -- assign -- neg -- object -
 ;; -> object: linia 96
 ;; <- object: linia 96
-  %VR3 = xor i32 1, %VR1
+  %VR3 = xor i32 4294967295, %VR1
 ;; <- neg: linia 96
   store i32 %VR3, i32* %VR2a
 ;; <- assign: linia 96
@@ -897,7 +897,7 @@ false_false_D_0:
 ;- let -- cond -- dispatch -- neg -- object -
 ;; -> object: linia 117
 ;; <- object: linia 117
-  %VR6 = xor i32 1, %VR1
+  %VR6 = xor i32 4294967295, %VR1
 ;; <- neg: linia 117
 ;- let -- cond -- dispatch -- object -
 ;; -> object: linia 117
@@ -3417,7 +3417,7 @@ dispatch_not_void_A2I_6:
   %VR96 = inttoptr i32 %VR95 to i32 (i32, i32)*
   %VR97 = call i32 (i32, i32)* %VR96(i32 %ARG, i32 %VR87)
 ;; <- dispatch: linia 201
-  %VR98 = xor i32 1, %VR97
+  %VR98 = xor i32 4294967295, %VR97
 ;; <- neg: linia 201
   br label %join_if_A2I_21_true
 ;#######################################; <- dispatch_not_void_A2I_6
@@ -4132,7 +4132,7 @@ false_A2I_24:
 ;; -> int_const: linia 235
   %VR29 = add i32 1, 0
 ;; <- int_const: linia 235
-  %VR30 = xor i32 1, %VR29
+  %VR30 = xor i32 4294967295, %VR29
 ;; <- neg: linia 235
   %VR31 = mul i32 %VR1, %VR30
 ;; <- mul: linia 235
@@ -5660,7 +5660,7 @@ false_false_Main_0:
 ;- let -- cond -- dispatch -- neg -- object -
 ;; -> object: linia 311
 ;; <- object: linia 311
-  %VR6 = xor i32 1, %VR1
+  %VR6 = xor i32 4294967295, %VR1
 ;; <- neg: linia 311
 ;- let -- cond -- dispatch -- object -
 ;; -> object: linia 311
@@ -9855,7 +9855,7 @@ sfarsit_loop_Main_0:
 
 }
 @s73 = internal constant [5 x i8] c"Main\00"
-@str_const__73 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([5 x i8]* @s73, i32 0, i32 0)}
+@str_const__73 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([5 x i8]* @s73, i32 0, i32 0)}
 @s72 = internal constant [4 x i8] c"A2I\00"
 @str_const__72 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__3, i8* getelementptr ([4 x i8]* @s72, i32 0, i32 0)}
 @s71 = internal constant [2 x i8] c"E\00"
@@ -9871,35 +9871,35 @@ sfarsit_loop_Main_0:
 @s66 = internal constant [3 x i8] c"IO\00"
 @str_const__66 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__2, i8* getelementptr ([3 x i8]* @s66, i32 0, i32 0)}
 @s65 = internal constant [7 x i8] c"String\00"
-@str_const__65 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__7, i8* getelementptr ([7 x i8]* @s65, i32 0, i32 0)}
+@str_const__65 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__7, i8* getelementptr ([7 x i8]* @s65, i32 0, i32 0)}
 @s64 = internal constant [5 x i8] c"Bool\00"
-@str_const__64 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([5 x i8]* @s64, i32 0, i32 0)}
+@str_const__64 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__5, i8* getelementptr ([5 x i8]* @s64, i32 0, i32 0)}
 @s63 = internal constant [4 x i8] c"Int\00"
 @str_const__63 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__3, i8* getelementptr ([4 x i8]* @s63, i32 0, i32 0)}
 @s62 = internal constant [7 x i8] c"Object\00"
-@str_const__62 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__7, i8* getelementptr ([7 x i8]* @s62, i32 0, i32 0)}
+@str_const__62 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__7, i8* getelementptr ([7 x i8]* @s62, i32 0, i32 0)}
 @s61 = internal constant [11 x i8] c"_prim_slot\00"
-@str_const__61 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__10, i8* getelementptr ([11 x i8]* @s61, i32 0, i32 0)}
+@str_const__61 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__10, i8* getelementptr ([11 x i8]* @s61, i32 0, i32 0)}
 @s60 = internal constant [10 x i8] c"SELF_TYPE\00"
-@str_const__60 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s60, i32 0, i32 0)}
+@str_const__60 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s60, i32 0, i32 0)}
 @s59 = internal constant [10 x i8] c"_no_class\00"
-@str_const__59 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s59, i32 0, i32 0)}
+@str_const__59 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s59, i32 0, i32 0)}
 @s58 = internal constant [14 x i8] c"<basic class>\00"
-@str_const__58 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__112, i8* getelementptr ([14 x i8]* @s58, i32 0, i32 0)}
+@str_const__58 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__112, i8* getelementptr ([14 x i8]* @s58, i32 0, i32 0)}
 @s57 = internal constant [2 x i8] c"q\00"
 @str_const__57 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s57, i32 0, i32 0)}
 @s56 = internal constant [2 x i8] c"j\00"
 @str_const__56 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s56, i32 0, i32 0)}
 @s55 = internal constant [29 x i8] c"times 8 with a remainder of \00"
-@str_const__55 = global %struct.String_protObj_t{i32 3, i32 12, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__11, i8* getelementptr ([29 x i8]* @s55, i32 0, i32 0)}
+@str_const__55 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__11, i8* getelementptr ([29 x i8]* @s55, i32 0, i32 0)}
 @s54 = internal constant [13 x i8] c"is equal to \00"
-@str_const__54 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s54, i32 0, i32 0)}
+@str_const__54 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s54, i32 0, i32 0)}
 @s53 = internal constant [2 x i8] c"h\00"
 @str_const__53 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s53, i32 0, i32 0)}
 @s52 = internal constant [24 x i8] c"is not divisible by 3.\0A\00"
-@str_const__52 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__114, i8* getelementptr ([24 x i8]* @s52, i32 0, i32 0)}
+@str_const__52 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__114, i8* getelementptr ([24 x i8]* @s52, i32 0, i32 0)}
 @s51 = internal constant [20 x i8] c"is divisible by 3.\0A\00"
-@str_const__51 = global %struct.String_protObj_t{i32 3, i32 9, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__115, i8* getelementptr ([20 x i8]* @s51, i32 0, i32 0)}
+@str_const__51 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__115, i8* getelementptr ([20 x i8]* @s51, i32 0, i32 0)}
 @s50 = internal constant [2 x i8] c"g\00"
 @str_const__50 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s50, i32 0, i32 0)}
 @s49 = internal constant [2 x i8] c"f\00"
@@ -9915,65 +9915,65 @@ sfarsit_loop_Main_0:
 @s44 = internal constant [2 x i8] c"a\00"
 @str_const__44 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s44, i32 0, i32 0)}
 @s43 = internal constant [9 x i8] c"is odd!\0A\00"
-@str_const__43 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__4, i8* getelementptr ([9 x i8]* @s43, i32 0, i32 0)}
+@str_const__43 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__4, i8* getelementptr ([9 x i8]* @s43, i32 0, i32 0)}
 @s42 = internal constant [10 x i8] c"is even!\0A\00"
-@str_const__42 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s42, i32 0, i32 0)}
+@str_const__42 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s42, i32 0, i32 0)}
 @s41 = internal constant [8 x i8] c"number \00"
-@str_const__41 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__8, i8* getelementptr ([8 x i8]* @s41, i32 0, i32 0)}
+@str_const__41 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__8, i8* getelementptr ([8 x i8]* @s41, i32 0, i32 0)}
 @s40 = internal constant [2 x i8] c" \00"
 @str_const__40 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s40, i32 0, i32 0)}
 @s39 = internal constant [8 x i8] c"Oooops\0A\00"
-@str_const__39 = global %struct.String_protObj_t{i32 3, i32 6, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__8, i8* getelementptr ([8 x i8]* @s39, i32 0, i32 0)}
+@str_const__39 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__8, i8* getelementptr ([8 x i8]* @s39, i32 0, i32 0)}
 @s38 = internal constant [21 x i8] c"Class type is now E\0A\00"
-@str_const__38 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s38, i32 0, i32 0)}
+@str_const__38 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s38, i32 0, i32 0)}
 @s37 = internal constant [21 x i8] c"Class type is now D\0A\00"
-@str_const__37 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s37, i32 0, i32 0)}
+@str_const__37 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s37, i32 0, i32 0)}
 @s36 = internal constant [21 x i8] c"Class type is now C\0A\00"
-@str_const__36 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s36, i32 0, i32 0)}
+@str_const__36 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s36, i32 0, i32 0)}
 @s35 = internal constant [21 x i8] c"Class type is now B\0A\00"
-@str_const__35 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s35, i32 0, i32 0)}
+@str_const__35 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s35, i32 0, i32 0)}
 @s34 = internal constant [21 x i8] c"Class type is now A\0A\00"
-@str_const__34 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s34, i32 0, i32 0)}
+@str_const__34 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__116, i8* getelementptr ([21 x i8]* @s34, i32 0, i32 0)}
 @s33 = internal constant [27 x i8] c"Please enter a number...  \00"
-@str_const__33 = global %struct.String_protObj_t{i32 3, i32 11, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__117, i8* getelementptr ([27 x i8]* @s33, i32 0, i32 0)}
+@str_const__33 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__117, i8* getelementptr ([27 x i8]* @s33, i32 0, i32 0)}
 @s32 = internal constant [2 x i8] c"\0A\00"
 @str_const__32 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s32, i32 0, i32 0)}
 @s31 = internal constant [22 x i8] c"	To quit...enter q:\0A\0A\00"
-@str_const__31 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__118, i8* getelementptr ([22 x i8]* @s31, i32 0, i32 0)}
+@str_const__31 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__118, i8* getelementptr ([22 x i8]* @s31, i32 0, i32 0)}
 @s30 = internal constant [33 x i8] c"	To get a new number...enter j:\0A\00"
-@str_const__30 = global %struct.String_protObj_t{i32 3, i32 13, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__119, i8* getelementptr ([33 x i8]* @s30, i32 0, i32 0)}
+@str_const__30 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__119, i8* getelementptr ([33 x i8]* @s30, i32 0, i32 0)}
 @s29 = internal constant [17 x i8] c"by 8...enter h:\0A\00"
-@str_const__29 = global %struct.String_protObj_t{i32 3, i32 9, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__120, i8* getelementptr ([17 x i8]* @s29, i32 0, i32 0)}
+@str_const__29 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__120, i8* getelementptr ([17 x i8]* @s29, i32 0, i32 0)}
 @s28 = internal constant [12 x i8] c"	To divide \00"
-@str_const__28 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__121, i8* getelementptr ([12 x i8]* @s28, i32 0, i32 0)}
+@str_const__28 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__121, i8* getelementptr ([12 x i8]* @s28, i32 0, i32 0)}
 @s27 = internal constant [31 x i8] c"is a multiple of 3...enter g:\0A\00"
-@str_const__27 = global %struct.String_protObj_t{i32 3, i32 12, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__122, i8* getelementptr ([31 x i8]* @s27, i32 0, i32 0)}
+@str_const__27 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__122, i8* getelementptr ([31 x i8]* @s27, i32 0, i32 0)}
 @s26 = internal constant [17 x i8] c"	To find out if \00"
-@str_const__26 = global %struct.String_protObj_t{i32 3, i32 9, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__120, i8* getelementptr ([17 x i8]* @s26, i32 0, i32 0)}
+@str_const__26 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__120, i8* getelementptr ([17 x i8]* @s26, i32 0, i32 0)}
 @s25 = internal constant [13 x i8] c"...enter f:\0A\00"
-@str_const__25 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s25, i32 0, i32 0)}
+@str_const__25 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s25, i32 0, i32 0)}
 @s24 = internal constant [10 x i8] c"	To cube \00"
-@str_const__24 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s24, i32 0, i32 0)}
+@str_const__24 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__9, i8* getelementptr ([10 x i8]* @s24, i32 0, i32 0)}
 @s23 = internal constant [13 x i8] c"...enter e:\0A\00"
-@str_const__23 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s23, i32 0, i32 0)}
+@str_const__23 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s23, i32 0, i32 0)}
 @s22 = internal constant [12 x i8] c"	To square \00"
-@str_const__22 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__121, i8* getelementptr ([12 x i8]* @s22, i32 0, i32 0)}
+@str_const__22 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__121, i8* getelementptr ([12 x i8]* @s22, i32 0, i32 0)}
 @s21 = internal constant [13 x i8] c"...enter d:\0A\00"
-@str_const__21 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s21, i32 0, i32 0)}
+@str_const__21 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s21, i32 0, i32 0)}
 @s20 = internal constant [27 x i8] c"	To find the factorial of \00"
-@str_const__20 = global %struct.String_protObj_t{i32 3, i32 11, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__117, i8* getelementptr ([27 x i8]* @s20, i32 0, i32 0)}
+@str_const__20 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__117, i8* getelementptr ([27 x i8]* @s20, i32 0, i32 0)}
 @s19 = internal constant [31 x i8] c"and another number...enter c:\0A\00"
-@str_const__19 = global %struct.String_protObj_t{i32 3, i32 12, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__122, i8* getelementptr ([31 x i8]* @s19, i32 0, i32 0)}
+@str_const__19 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__122, i8* getelementptr ([31 x i8]* @s19, i32 0, i32 0)}
 @s18 = internal constant [33 x i8] c"	To find the difference between \00"
-@str_const__18 = global %struct.String_protObj_t{i32 3, i32 13, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__119, i8* getelementptr ([33 x i8]* @s18, i32 0, i32 0)}
+@str_const__18 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__119, i8* getelementptr ([33 x i8]* @s18, i32 0, i32 0)}
 @s17 = internal constant [13 x i8] c"...enter b:\0A\00"
-@str_const__17 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s17, i32 0, i32 0)}
+@str_const__17 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s17, i32 0, i32 0)}
 @s16 = internal constant [12 x i8] c"	To negate \00"
-@str_const__16 = global %struct.String_protObj_t{i32 3, i32 7, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__121, i8* getelementptr ([12 x i8]* @s16, i32 0, i32 0)}
+@str_const__16 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__121, i8* getelementptr ([12 x i8]* @s16, i32 0, i32 0)}
 @s15 = internal constant [13 x i8] c"...enter a:\0A\00"
-@str_const__15 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s15, i32 0, i32 0)}
+@str_const__15 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__113, i8* getelementptr ([13 x i8]* @s15, i32 0, i32 0)}
 @s14 = internal constant [22 x i8] c"\0A	To add a number to \00"
-@str_const__14 = global %struct.String_protObj_t{i32 3, i32 10, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__118, i8* getelementptr ([22 x i8]* @s14, i32 0, i32 0)}
+@str_const__14 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__118, i8* getelementptr ([22 x i8]* @s14, i32 0, i32 0)}
 @s13 = internal constant [2 x i8] c"+\00"
 @str_const__13 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s13, i32 0, i32 0)}
 @s12 = internal constant [2 x i8] c"-\00"
@@ -10001,7 +10001,7 @@ sfarsit_loop_Main_0:
 @s1 = internal constant [2 x i8] c"0\00"
 @str_const__1 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__1, i8* getelementptr ([2 x i8]* @s1, i32 0, i32 0)}
 @s0 = internal constant [15 x i8] c"/tmp/cplPWy48R\00"
-@str_const__0 = global %struct.String_protObj_t{i32 3, i32 8, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__123, i8* getelementptr ([15 x i8]* @s0, i32 0, i32 0)}
+@str_const__0 = global %struct.String_protObj_t{i32 3, i32 5, %struct.String_dispTab_t* @String_dispTab, %struct.Int_protObj_t* @int_const__123, i8* getelementptr ([15 x i8]* @s0, i32 0, i32 0)}
 @int_const__123 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 14}
 @int_const__122 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 30}
 @int_const__121 = global %struct.Int_protObj_t {i32 1, i32 4, %struct.Object_dispTab_t* @Object_dispTab, i32 11}
@@ -10164,5 +10164,4 @@ sfarsit_loop_Main_0:
 
 %struct.Main_dispTab_t = type { i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*, i8*}
 @Main_dispTab = global %struct.Main_dispTab_t {i8* bitcast (i32 (i32)* @Object__abort to i8*), i8* bitcast (i32 (i32)* @Object__copy to i8*), i8* bitcast (i32 (i32)* @Object__type_name to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_int to i8*), i8* bitcast (i32 (i32,i32)* @IO__out_string to i8*), i8* bitcast (i32 (i32)* @IO__in_int to i8*), i8* bitcast (i32 (i32)* @IO__in_string to i8*), i8* bitcast (i32 (i32)* @Main__menu to i8*), i8* bitcast (i32 (i32)* @Main__prompt to i8*), i8* bitcast (i32 (i32)* @Main__get_int to i8*), i8* bitcast (i32 (i32,i32)* @Main__is_even to i8*), i8* bitcast (i32 (i32,i32)* @Main__class_type to i8*), i8* bitcast (i32 (i32,i32)* @Main__print to i8*), i8* bitcast (i32 (i32)* @Main__main to i8*)}
-
 
