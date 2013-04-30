@@ -1,6 +1,7 @@
 package ro.pub.cpl.sq2.hello1;
 
 import java.io.IOException;
+import java.io.PrintStream;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -14,9 +15,11 @@ public class Interpreter {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		if (args.length == 0) {
-			System.out.println("Usage:\njava ro.pub.cpl.sq2.hello1.Interpreter <file.sq2>");
+			System.out.println("Usage:\n"
+					+"java ro.pub.cpl.sq2.hello1.Interpreter <file.sq2>"
+					+"java ro.pub.cpl.sq2.hello1.Interpreter <file.sq2> <file.ir>"
+					);
 		}
 		else try {
 			ANTLRFileStream input = new ANTLRFileStream(args[0]);
@@ -24,8 +27,13 @@ public class Interpreter {
 			CommonTokenStream tokens = new CommonTokenStream (lexer);
 			Sq2Parser parser = new Sq2Parser(tokens);				
 			Program p = parser.program();
+			// TODO Populate symbol table with predefine functions
+			// Check that the program is semantically correct
 			p.check();
-			p.run();
+			if (args.length == 1)
+				p.run(); // Interpreter
+			else
+				p.generate(new PrintStream(args[1])); // Compiler
 		} catch (IOException e) {
 			System.out.println("Could not process file : " + e.getMessage());
 		} catch (RecognitionException e) {
