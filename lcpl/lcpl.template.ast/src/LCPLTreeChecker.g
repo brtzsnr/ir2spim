@@ -37,7 +37,7 @@ method returns [Method result]
         List<FormalParam> parameters = new LinkedList<FormalParam>();   
         List<Expression> body = new LinkedList<Expression>();
         body.add($statement.result);
-        $result = new Method($METHOD.line, $ID.text, parameters, "void", new Block($METHOD.line, body));
+        $result = new Method($METHOD.line, $ID.text, parameters, "void", new Block($statement.result.getLineNumber(), body));
     }
     ;    
 
