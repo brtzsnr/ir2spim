@@ -1,0 +1,499 @@
+\documentclass[12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\title{LCPL}
+\begin{document}
+
+\maketitle 
+
+\section{Descriere generală}
+
+%TODO:
+%bonus:
+%array, new, [], [,]
+%
+%bonus++: vector int
+
+\subsection{Structura unui program LCPL}
+
+Tot codul LCPL este organizat în \textbf{clase}, similar cu Java, C++, ... Un program LCPL trebuie definit în întregime într-un fișier. Un fișier poate conține mai multe clase.
+
+Definiția unei clase este (\texttt{[...]} reprezintă construcții opționale):
+
+\begin{verbatim}
+class <nume> [inherits <nume>]
+  <membri>
+end;
+\end{verbatim}
+
+
+Clasele conțin zero sau mai mulți \texttt{membri}, ce pot fi \texttt{atribute} sau \texttt{metode}.
+
+Un atribut reprezintă date interne clasei și nu poate fi accesat direct decât din interiorul clasei. Pentru accesul din exterior, trebuiesc folosite metodele.
+
+Declaratia unui atribut are forma
+
+\begin{verbatim}
+<tip> <nume> [ = <expresie> ] ;
+\end{verbatim}
+
+Atributele unei clase se declară într-o secțiune \texttt{var ... end;}. Pot exista mai multe asemenea secțiuni într-o clasă. Atributele definite într-o secțiune sunt vizibile pe toată lungimea clasei (chiar și înainte de apariția în text a secțiunii).
+
+\begin{verbatim}
+var Int xcar; List xcdr; end;
+\end{verbatim}
+
+Fiecare atribut are un tip care trebuie declarat explicit de programator. În exemplul de mai sus, tipul lui \texttt{xcar} este \texttt{Int} iar tipul lui \texttt{xcdr} este \texttt{List}.
+
+Un atribut poate fi declarat împreună cu o inițializare:
+
+\begin{verbatim}
+var Int xcar = 2 + 3; end;
+\end{verbatim}
+
+În acest caz, este o eroare dacă tipul expresiei cu care se inițializează atributul nu corespunde cu tipul declarat.
+
+O metodă este de forma:
+
+\begin{verbatim}
+<nume> [ <argumente> ]  [ -> <tip> ] : <corp> end;
+\end{verbatim}
+
+Tipul unei metode reprezintă lista argumentelor acesteia - separate prin caracterul \texttt{,} - precum și tipul expresiei întoarse de metodă (prima linie din exemplul de mai jos). În cazul în care metodă nu întoarce o expresie, tipul întors lipsește (a doua linie). În cazul în care o metodă nu are argumente, lista lor lipsește (ultima linie).
+
+\begin{verbatim}
+hello Int a, String b -> String : 
+  "Hello " + b + a; 
+end;
+
+printHello Int a, String b :
+   [out [hello a,b]];
+end;
+
+piTimes100 -> Int :
+   314;
+end;
+\end{verbatim}
+
+Este posibil să existe și metode fără argumente și fără tip întors, de exemplu metoda următoare ce conține un corp vid:
+
+\begin{verbatim}
+empty: end;
+\end{verbatim}
+
+Un program LCPL trebuie sa contina o clasa \texttt{Main} cu o metodă \texttt{main}, fără argumente, definită în această clasă, sau moștenită din părinții clasei \texttt{Main}. La pornirea programului se va crea un obiect de tip \texttt{Main}, se va initializa, și apoi se va apela metoda \texttt{main}.
+
+LCPL este un limbaj case sensitive, \texttt{Cons} și \texttt{cons} reprezintă două lucruri diferite.
+
+\subsection{Tipuri de date și clase}
+
+Tipurile de date din LCPL sunt numerele întregi (\texttt{Int}) și clasele.
+
+O clasă poate moșteni de la o singură superclasă (folosind \texttt{inherits} urmat de numele ei).
+
+Numele unei clase este public vizibil în tot programul, nu există ierarhii de module. Prin urmare, este o eroare să aveți două clase cu același nume (nu puteți redefini o clasă)
+
+Este o eroare definirea a două atribute sau a două metode cu același nume dar este perfect legal cazul în care un atribut și o metodă au același nume.
+
+Între clase există o ierarhie de tipuri creată pe baza relațiilor de moștenire. O clasă moștenește o singură altă clasă; în cazul în care nu este declarată clasa părinte se va moșteni automat clasa specială \texttt{Object} de la rădăcina ierarhiei de clase.
+
+Ierarhia de clase este de fapt un graf \texttt{aciclic} de clase. Moștenirea ciclică reprezintă o eroare. De asemenea, este ilegală moștenirea unei clase a cărei definiții lipsește din program.
+
+Moștenirea presupune copierea tuturor membrilor clasei părinte în clasa copil. Din cauza restricțiilor de nume legate de membrii din aceeași clasă, nu se poate redefini un atribut. Redefinirea unei metode suprascrie metoda din clasa părinte, și este permisă cât timp se păstrează intacte tipurile argumentelor și tipul valorii întoarse.
+
+Numele argumentelor unei metode trebuie să fie diferite. În cazul în care un argument are același nume cu un atribut al clasei, atributul este invizibil pe parcursul metodei.
+
+Pentru a aloca spațiu pentru obiecte și a le putea folosi, se folosește operatorul \texttt{new}. Nu există mecanism pentru eliberarea spațiului ocupat de obiecte, LCPL are un management automat al memoriei.
+
+La crearea unei instanțe a clasei folosind \texttt{new}, se vor inițializa \textit{în ordinea definirii} toate atributele acesteia, începând cu la atributele clasei părinte. Dacă nu există inițializare explicită, atunci se va folosi o inițializare implicită: exceptând clasele speciale prezentate mai jos, celelalte atribute se vor inițializa la valoarea \texttt{void} (echivalentul lui \texttt{null} din Java).
+
+Valorile \texttt{void} pot fi asignate unei variabile și se pot face comparații pe ele. Apelarea de metode ale unei instanțe de obiect cu valoare \texttt{void} generează o eroare la runtime.
+
+\subsection{Metode}
+
+Corpul unei metode este format dintr-un bloc de \texttt{instrucțiuni}. Acestea pot fi simple expresii aritmetice, logice sau pe șiruri, instanțieri de obiecte, apeluri de metode, atribuiri și instructiuni de control. Toate instrucțiunile ce apar în corpul unei metode sunt terminate prin \texttt{;}.
+
+\begin{verbatim}
+class Main
+    main:
+        local Cons c; Int x; end;
+        c = new Cons;
+        x = 0;
+    end;
+end;
+\end{verbatim}
+
+Exemplul de mai sus declară o variabilă \texttt{c} de tip \texttt{Cons} și un întreg \texttt{x}, locale metodei \texttt{main}. O metodă poate conține \textbf{oricâte} construcții \texttt{local ... end;} folosite pentru declararea de variabile locale metodei. Fiecare nume de variabilă local este vizibil din momentul apariției definirii, până la finalul blocului în care se află. Există posibilitatea ca o variabilă definită într-o construcție \texttt{local ... end;} să ascundă un nume de variabilă definit anterior (local, parametru sau atribut). Variabilele locale unei metode pot fi definite și inițializate, exact ca la atribute:
+
+\begin{verbatim}
+local Cons c = new Cons; Int x = 0; end;
+\end{verbatim}
+
+Dacă o metodă întoarce o valoare, corpul acesteia trebuie să se termine cu o instrucțiune al cărei tip corespunde celui întors de metodă. De exemplu, următoarea funcție întoarce valoarea instrucțiunii \texttt{if} , de tipul \texttt{Int}.
+
+\begin{verbatim}
+fact Int n -> Int:
+    if n < 1 then 
+        1; 
+    else 
+        n * [fact n - 1];
+    end;
+end;
+\end{verbatim}
+
+Este o eroare cazul în care metoda întoarce o valoare de un tip dar are corpul vid, de exemplu:
+
+\begin{verbatim}
+fact Int n -> Int: end; # eroare
+\end{verbatim}
+
+În cazul în care metoda nu declară nici un tip întors, se considera ca metoda întoarce tipul vid. Este o eroare să folosiți rezultatul întors de o astfel de metodă:
+
+\begin{verbatim}
+m Int n: n; end;
+...
+a = [m 42]; # eroare!!
+\end{verbatim}
+
+Următorul exemplu ilustrează un program cu 2 clase:
+
+\begin{verbatim}
+class Cons 
+    var Int xcar; Cons xcdr; end;
+    
+    size -> Int:
+        1 + if xcdr == void then 0; else [xcdr.size]; end;
+    end;
+
+    init Int hd, Cons tl:
+        xcar = hd;
+        xcdr = tl;
+    end;
+end;
+
+class Main
+    main:
+        local Cons c; Int x; end;
+        c = new Cons;
+        x = 0;
+        [c.init x, c];
+    end;
+end;
+\end{verbatim}
+
+
+
+
+\subsection{Expresii}
+
+Cele mai simple expresii din limbaj sunt \textbf{constantele}. Acestea pot fi întregi (valorile boolene fiind mapate pe principiul \texttt{0} - fals, altfel adevărat) și șiruri de caractere. Tipul constantelor întregi este \texttt{Int} iar al celor de tip șir de caractere \texttt{String}.
+
+Cuvantul cheie \texttt{void} este o constanta ce intoarce valoarea \texttt{void} .
+
+Numele de variabile, parametrii formali, atributele și \texttt{self} sunt \textbf{identificatori}, deci expresii.  Tipul fiecărei expresii de această formă este tipul cu care a fost declarat identificatorul.
+
+Pentru a putea accesa membrii clasei din interiorul acesteia (util în cazul în care ei sunt ascunși de parametrii formali sau de variabile locale), se poate folosi \texttt{self} (exact ca \texttt{this} din C++ și Java).
+
+Atributele sunt vizibile doar în interiorul clasei, pe toată durata acesteia. Variabilele locale sunt vizibile doar în interiorul metodei în care sunt definite, pornind de la punctul în care au fost definite.
+
+O \textbf{atribuire} este o expresie de forma
+
+\begin{verbatim}
+<id> = <expr>
+\end{verbatim}
+
+Tipul întors de atribuire este tipul cu care a fost declarat \texttt{<id>}. Valoarea unei atribuiri este valoarea expresiei \texttt{<expr>}.
+
+Cele două tipuri trebuie să corespundă, sau tipul expresiei \texttt{<expr>} să poată fi convertit implicit la tipul expresiei \texttt{<id>}. Se face conversia implicită de la \texttt{Int} către \texttt{<String>}. Expresia \texttt{<expr>} nu trebuie să aibă tipul vid.
+
+Pentru o variabilă de un anumit tip se poate folosi orice tip aflat mai jos în ierarhia de clase. In exemplul de mai sus, unei variabile \texttt{List} i se poate atribui o expresie de tip \texttt{Cons} fără a fi nevoie de o conversie explicită.
+
+Pe de altă parte, pentru conversia inversă trebuie să realizăm o conversie explicită folosind sintaxa \texttt{\{ tip expresie\_de\_convertit \}}.
+
+Conversia explicită către un alt tip, \textit{cast}, este și ea o expresie. Tipul întors este tipul către care se face conversia. Dacă nu se poate face conversia se va genera o eroare la rulare.
+
+Aceleași reguli de conversie a tipurilor se aplică și inițializărilor din construcțiile \texttt{local}, \texttt{var}, sau parametrilor la apelul unei metode.
+
+Apelul unei metode, \texttt{dispatch}, se realizează folosind una din construcțiile:
+
+\begin{verbatim}
+[<expr>.<id> <expr>, ... <expr>]
+[<expr>.<id>]
+[<id> <expr>, ... <expr>]
+[<id>]
+\end{verbatim}
+
+Ultimele două cazuri, sunt o scurtătură, forma \texttt{<id>} fiind de fapt \texttt{self.<id>}.
+
+Prima formă reprezintă un apel de metodă cu argumente, fiecare argument fiind separat prin spațiu de celelalte. A doua formă este un apel de metodă fără argumente.
+
+Tipul întors de o expresie de tip dispatch este tipul întors de metodă, sau tipul vid, daca metoda nu are declarat un tip întors. Valoarea unui apel de metodă este valoarea ultimei instrucțiuni executate de metoda respectiva.
+
+Este o eroare să furnizați un număr diferit de argumente decât sunt necesare, sau să folosiți un argument de un tip necorespunzător.
+
+LCPL suportă polimorfismul. In cazul in care o metodă este redefinită într-o clasă derivată, și o variabilă de tip bază referă un obiect de tip derivat, expresia dispatch va apela metoda din clasa derivată și nu cea din clasa de bază. 
+
+Dacă se doreste specificarea explicită a metodei care va fi apelată, fara a folosi mecanismul de polimorfism, se poate folosi sintaxa de dispatch static:
+
+\begin{verbatim}
+[<expr>.<tip>.<id> <expr>, ... <expr>]
+[<expr>.<tip>.<id>]
+\end{verbatim}
+
+De exemplu:
+
+\begin{verbatim}
+class Shape
+  print IO stream :
+    [stream.out "This is a generic shape"];
+  end;
+end;
+
+class Circle inherits Shape
+  print IO stream :
+    [stream.out "This is a circle"];
+  end;
+end;
+
+class Main inherits IO
+  main :
+    local
+      Shape s = new Circle;
+    end;
+    [s.print self] ; # This is a circle
+    [s.Shape.print self] ; # This is a generic shape
+  end;
+end;
+
+\end{verbatim}
+
+
+Daca se doreste dispatch static pentru o metodă a obiectului \texttt{self} , acesta trebuie specificat explicit, ca în exemplul de mai jos:
+
+\begin{verbatim}
+class Shape
+  var Int x; Int y1; Int x2; Int y2; end;
+  init Int x, Int y, Int dx, Int dy :
+    self.x = x; self.y = y;
+    x2 = x + dx; y2 = y + dy;
+  end;
+end;
+
+class Ellipse inherits Shape
+  var Int rx; Int ry; end;
+  init Int x, Int y, Int dx, Int dy :
+    [self.Shape.init x, y, dx, dy];
+    rx = dx / 2; ry = dy / 2;
+  end;
+end;
+\end{verbatim}
+
+%TODO Cast doar daca obiectul este intr-adevar de tipul destinatie, upstream
+
+O \textbf{expresie condițională} este de formele:
+
+\begin{verbatim}
+if <expr1> then <expr>;...<expr>; else <expr>;...<expr>; end
+if <expr1> then <expr>;...<expr>; end
+\end{verbatim}
+
+Tipul \textbf{if}-ului este tipul ultimei instrucțiune din cele două ramuri, sau tipul vid în cazul în care ramura \textbf{else} nu există, una din ramuri nu întoarce nimic, sau tipurile întoarse de cele două ramuri nu sunt compatibile (unul din ele nu se poate converti către celălalt). Valoarea if-ului este valoarea ultimei instrucțiuni executate.
+
+O \textbf{buclă} are forma
+
+\begin{verbatim}
+while <expr1> loop <expr>;...<expr>; end
+\end{verbatim}
+
+O expresie \textbf{while} are tipul vid și nu întoarce nicio valoare.
+
+Atât pentru \texttt{if} cât și pentru \texttt{while}, \texttt{expr1} reprezintă o expresie al cărei tip este întreg cu semnificația că orice valoarea nenulă înseamnă true, 0 înseamnă false.
+
+În fiecare ramură de \texttt{if} și în interiorul buclei \texttt{while} se pot pune mai multe instrucțiuni. Blocurile de instrucțiuni respective pot conține construcții \texttt{local}. Variabilele declarate în acele construcții sunt vizibile până la sfarsitul expresiei condiționale sau al buclei.
+
+
+Pentru a construi și inițializa un nou obiect se folosește \textbf{\texttt{new}}.
+
+\begin{verbatim}
+new <type>
+\end{verbatim}
+
+Se întoarce obiectul nou construit, de tipul corespunzător.
+
+Operațiile aritmetice (\texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}), de comparație (\texttt{<}, \texttt{<=}) și de egalitate (\texttt{==}) sunt expresii. Exceptând \texttt{+} și \texttt{==}, ambii operanzi sunt întregi și valoarea întoarsă este un întreg (0 sau 1).
+
+Daca operanzii lui \texttt{==} sunt \texttt{Int} sau \texttt{String} se compară conținutul celor doi operanzi. Un \texttt{Int} poate fi comparat cu un \texttt{String} prin conversie implicită la \texttt{String}. Altfel, dacă cei doi operanzi sunt clase derivate din \texttt{Object}, \texttt{==} întoarce "1" doar dacă referă același obiect, sau sunt ambii \texttt{void}. Operanzii nu trebuie sa aiba tipul vid.
+
+Folosirea unui argument de tip \texttt{String} în cazul operatorului \texttt{+} forțează tipul celuilalt argument la \texttt{String}: dacă tipul argumentului e diferit de \texttt{Int} sau \texttt{String} se aruncă eroare de tip la compilare, altfel întregul e convertit la șir și șirul este lăsat nemodificat.
+
+Operatorul \texttt{-} funcționează și ca operator unar, pentru a obține un număr negativ.
+
+Pentru a nega un întreg (\texttt{0} $\rightarrow$ \texttt{1}, orice altceva $\rightarrow$ \texttt{0}) se folosește \texttt{!}.
+
+%TODO Operatorul \texttt{[]} se aplica unui String. Intoarce tip String, valoare de tip String. Parametri <String>[<int>,<int>]
+
+Pentru a grupa expresii se pot folosi paranteze: \texttt{(} și \texttt{)}.
+
+\subsection{Prioritatea operatorilor și reguli de asociativitate}
+
+Următoarea listă listează operatorii, în ordinea descrescătoare a priorității lor:
+
+\begin{verbatim}
+.
+[metoda] string[...] {...} if while
+- unar
+* /
++ -
+< <= ==
+!
+= new
+\end{verbatim}
+
+Operatorul \texttt{-} unar are precedență față de operatorul binar. Exceptând \texttt{=}, \texttt{<}, \texttt{<=} și \texttt{==}, toți operatorii binari sunt asociativi stânga. Operatorii de comparație nu sunt asociativi. Operatorul \texttt{=} este asociativ dreapta.
+
+
+
+\section{Clase speciale și valori întregi}
+LCPL are 3 clase speciale: \texttt{Object}, \texttt{IO} și \texttt{String}.
+
+Întregii sunt un alt tip fundamental; \texttt{Int} nu este o clasă derivată din \texttt{Object}. Implicit, întregii se inițializează cu \texttt{0}.
+
+\subsection{\texttt{Object}}
+
+Clasa \texttt{Object} este radăcina ierarhiei de clase. Sunt definite următoarele metode:
+
+\begin{verbatim}
+abort 
+typeName -> String
+copy -> Object
+\end{verbatim}
+
+Metoda \texttt{abort} termină programul forțat.
+
+Metoda \texttt{type\_name} întoarce numele clasei originale a obiectului. Următoarele apeluri întorc ale metodei \texttt{type\_name} întorc o constanta de tip \texttt{String} cu valoarea \texttt{"List"}:
+
+\begin{verbatim}
+method_test:
+    local List a; Cons b = {Cons a}; Object c = a; end;
+    [a.typeName];
+    [b.typeName];
+    [c.typeName];
+    end;
+\end{verbatim}
+
+Metoda \texttt{copy} realizează o copie de suprafață a obiectului, fără a copia și referințele acestuia.
+
+Orice instanță a unei clase ce derivează din \texttt{Object}, inclusiv \texttt{Object} se va inițializa implicit cu \texttt{void}.
+
+\subsection{\texttt{IO}}
+
+Pentru a avea acces la standard input și output trebuiesc folosite metodele din clasa \texttt{IO}, prin intermediul unui obiect al acestui tip.
+
+Metodele sunt:
+
+\begin{verbatim}
+out String msg -> IO
+in -> String
+\end{verbatim}
+
+Metoda \texttt{out} tipărește un șir pe standard output și întoarce obiectul de tip IO.
+
+Metoda \texttt{in} citește standard input până la sfarșitul liniei și întoarce șirul citit, fără caracterul \textit{new line}.
+
+Este o eroare redefinirea clasei \texttt{IO}, dar aceasta poate fi derivată.
+
+Inițializarea implicită se face tot prin \texttt{void}.
+
+\subsection{\texttt{String}}
+
+Clasa \texttt{String} reprezintă șirurile. Metodele ei sunt:
+
+\begin{verbatim}
+length -> Int
+toInt -> Int
+\end{verbatim}
+
+Metoda \texttt{toInt} poate fi folosită pentru a converti un șir la întreg. În cazul în care șirul pe care este aplicată metoda nu poate fi parsat ca un întreg (vezi exemplele) se va întoarce valoarea 0.
+
+\begin{verbatim}
+["42".toInt] # -> 42
+["42a".toInt] # -> 0
+["abc42".toInt] # -> 0
+["abc".toInt] # -> 0
+\end{verbatim}
+
+În plus, clasa \texttt{String} suportă o sintaxă specială pentru extragerea unui subșir dintr-un șir:
+
+\begin{verbatim}
+s[start, final]
+\end{verbatim}
+
+în cazurile în care \texttt{start < 0}, \texttt{start > final} sau unul din indici este în afara șirului, se va genera o eroare la rulare. Indexarea începe de la \texttt{0} și extrage șirul de la \texttt{start} inclusiv până la \texttt{final} exclusiv.
+
+\begin{verbatim}
+"abcd"[0,4] # -> "abcd"
+"abcd"[1,3] # -> "bc"
+"abcd"[-1,3] # eroare
+"abcd"[1,5] # eroare
+"abcd"[2,2] # ""
+"abcd"[3,2] # eroare
+\end{verbatim}
+
+
+Mai mult, șirurile se pot concatena folosind \texttt{+}.
+
+\begin{verbatim}
+"as" + "df" # -> "asdf"
+\end{verbatim}
+
+Un alt avantaj al clasei \texttt{String} este conversia implicită către \texttt{String} a valorilor întregi, în cazul folosirii operatorului \texttt{+}m \texttt{==} , în cazul unei atribuiri către o variabilă sau parametru de tip \texttt{String}.
+
+\begin{verbatim}
+4 + "2"
+"4" + 2
+local String s = 42; end;
+42 == "42"  # -> true
+\end{verbatim}
+
+În final, inițializarea default a unui \texttt{String} este \texttt{""}.
+
+\section{Structură lexicală}
+
+LCPL conține următorii atomi lexicali:
+
+\begin{description}
+	\item[întregi] șiruri nevide de cifre \texttt{0} - \texttt{9} care sunt \texttt{0} sau nu încep cu \texttt{0}.
+    
+    \item[identificatori] șiruri diferite de cuvintele cheie, conținând litere, cifre și \texttt{\_}. Trebuie să înceapă cu o literă.
+    
+    \item[șiruri] secevențe de caractere încadrate de \texttt{"..."}. În interiorul unui șir, secvența \texttt{\textbackslash c} este \texttt{c} exceptând cazurile:
+    \begin{itemize}
+    	\item \texttt{\textbackslash n} linie nouă
+    	\item \texttt{\textbackslash r} carriage return
+    	\item \texttt{\textbackslash t} tab
+    \end{itemize}
+    
+    Un șir trebuie să nu conțină un final de rând neescapat.
+    
+\begin{verbatim}
+"This is a valid \
+string."
+"This is
+not valid."
+\end{verbatim}
+    
+    Toate șirurile dintr-un fișier trebuiesc terminate până la finalul lui.
+    
+    \item[comentariile] sunt doar pe o singură linie, încep cu \texttt{\#} și se termină la final de linie
+        
+\begin{verbatim}
+# this is a comment # still in comment
+\end{verbatim}
+
+    \item[Cuvinte cheie] \texttt{class}, \texttt{inherits}, \texttt{end}, \texttt{var}, \texttt{local}, \texttt{void}, \texttt{new}, \texttt{if}, \texttt{then}, \texttt{else}, \texttt{while}, \texttt{loop}.
+    
+    \item[White space] blank (ASCII 32), \texttt{\textbackslash n} (newline), \texttt{\textbackslash r} (carriage return), \texttt{\textbackslash t} (tab).
+\end{description}
+
+
+\end{document}
