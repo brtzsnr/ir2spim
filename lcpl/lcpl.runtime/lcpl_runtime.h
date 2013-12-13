@@ -25,7 +25,7 @@ struct TObject * M6_Object_copy(struct TObject *);
 
 void IO_init(struct TIO *);
 struct TString *M2_IO_in(struct TIO *);
-void M2_IO_out(struct TIO *self, struct TString *string);
+struct TIO* M2_IO_out(struct TIO *self, struct TString *string);
 
 void String_init(struct TString * self);
 int M6_String_length(struct TString *);
