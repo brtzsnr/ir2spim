@@ -66,9 +66,10 @@ struct TString *M2_IO_in(struct TIO *self)
 	
 	return string;
 }
-void M2_IO_out(struct TIO *self, struct TString *string) 
+struct TIO* M2_IO_out(struct TIO *self, struct TString *string) 
 { 
-	printf("%s", string->string); 
+	printf("%s", string->string);
+	return self;
 }
 
 // String
