@@ -92,19 +92,19 @@ define void @M4_Main_main(%struct.TMain* %self) {
 
 define void @startup() {
   %1 = call i8* @__lcpl_new(%struct.__lcpl_rtti* bitcast (%0* @RMain to %struct.__lcpl_rtti*)) ; Create main object
-  %2 = bitcast i8* %1 to %struct.TIO*                       ; Convert char * into destination type
+  %2 = bitcast i8* %1 to %struct.TMain*                       ; Convert char * into destination type
   
   ; Dispatch to main method
-  %3 = bitcast %struct.TIO* %2 to i8*                       
+  %3 = bitcast %struct.TMain* %2 to i8*                       
   call void @__lcpl_checkNull(i8* %3)
-  %4 = getelementptr %struct.TIO* %2, i32 0, i32 0          
+  %4 = getelementptr %struct.TMain* %2, i32 0, i32 0          
   %5 = load %struct.__lcpl_rtti** %4            
   %6 = getelementptr %struct.__lcpl_rtti* %5, i32 0, i32 3  
   %7 = bitcast [0 x i8*]* %6 to i8**            
   %8 = getelementptr i8** %7, i32 6                         
   %9 = load i8** %8                            
-  %10 = bitcast i8* %9 to void (%struct.TIO*)* 
-  call void %10(%struct.TIO* %2)
+  %10 = bitcast i8* %9 to void (%struct.TMain*)* 
+  call void %10(%struct.TMain* %2)
   
   ret void
 }
