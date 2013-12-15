@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -44,9 +43,9 @@ struct TString* M6_Object_typeName(struct TObject *self)
 }
 struct TObject * M6_Object_copy(struct TObject *self) 
 {
-	struct TObject* newObject = (struct TObject*)__lcpl_new(self->rtti);
+	struct TObject* newObject = (struct TObject*)malloc(self->rtti->size);
 	memcpy(newObject, self, self->rtti->size);
-	return 0; 
+	return newObject; 
 }
 
 // IO 
@@ -146,6 +145,9 @@ void __lcpl_checkNull(void *ptr)
 
 void* __lcpl_cast(void* sourceObject, struct __lcpl_rtti* destRtti)
 {
+  if (sourceObject == 0)
+    return 0;
+    
 	struct __lcpl_rtti* sourceRtti = ((struct TObject*)sourceObject)->rtti;
 	struct __lcpl_rtti* rtti = sourceRtti;
 	
