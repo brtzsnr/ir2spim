@@ -20,4 +20,4 @@ namespace {
 
 
 char NullCheckDCEPass::ID = 0;
-static RegisterPass<NullCheckDCEPass> X ("nullcheckdce", "NullCheck DCE Pass", false, false);
+static RegisterPass<NullCheckDCEPass> X ("nullcheckdce", "Pointer null check analysis and dead code elimination", false, false);
